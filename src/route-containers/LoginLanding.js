@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import Logo from '../images/FindMyClub_Logo.svg';
+import '../css/containers/LoginLanding.css';
+
 class LoginLanding extends Component {
 
 	/****************************
@@ -18,7 +21,11 @@ class LoginLanding extends Component {
 	render() {
 		return (
 			<div className="LoginLanding container">
-				<h3>This is the landing container for the login page</h3>
+				<img src={Logo} alt='Find My Club' className='login-landing-logo'/>
+
+                <button className='round-rect-button login-landing-login-btn'
+                        onClick={this.handleLogin.bind(this)}>Login</button>
+                <p className='login-landing-label'>New York University</p>
 			</div>
 		);
 	}
@@ -30,6 +37,12 @@ class LoginLanding extends Component {
     *                           *
     *****************************/
 
+    /** Calls a transition from this container to the introduction container. */
+    handleLogin() {
+        if(this.props.onLogin) {
+            this.props.onLogin();
+        }
+    }
 
 
 

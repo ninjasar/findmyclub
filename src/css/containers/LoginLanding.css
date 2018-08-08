@@ -1,0 +1,45 @@
+.LoginLanding {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    background-color: white;
+}
+
+.login-landing-logo {
+    display: block;
+    margin-top: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 180px;
+}
+
+.login-landing-login-btn {
+    position: absolute;
+    width: 200px;
+    bottom: 60px;
+    display: block;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    left: calc(100% / 2 - 100px);
+}
+
+.login-landing-label {
+    position: absolute;
+    width: 200px;
+    bottom: 30px;
+    left: calc(100% / 2 - 100px);
+    display: block;
+    font-size: 12px;
+    font-weight: 300;
+    color: #323232;
+    user-select: none;
+    text-align: center;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    letter-spacing: normal;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Login from './routes/Login';
+import './fonts/fonts.css';
 import './css/App.css';
 
 class App extends Component {

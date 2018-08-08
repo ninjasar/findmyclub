@@ -18,7 +18,8 @@ class LoginInterestSelection extends Component {
 	render() {
 		return (
 			<div className="LoginInterestSelection container">
-				<h3>This is where you pick your interests</h3>
+				<button className='round-rect-button login-interests-finish-btn'
+                        onClick={this.handleFinishSelectingInterests.bind(this)}>Next</button>
 			</div>
 		);
 	}
@@ -30,6 +31,11 @@ class LoginInterestSelection extends Component {
     *                           *
     *****************************/
 
+    handleFinishSelectingInterests() {
+        if(this.props.onNext) {
+            this.props.onNext();
+        }
+    }
 
 
 
