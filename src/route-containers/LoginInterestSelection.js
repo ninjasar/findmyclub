@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Login from './routes/Login';
-import './css/App.css';
 
-class App extends Component {
+class LoginInterestSelection extends Component {
 
 	/****************************
     *                           *
@@ -19,8 +17,8 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				<Login />
+			<div className="LoginInterestSelection container">
+				<h3>This is where you pick your interests</h3>
 			</div>
 		);
 	}
@@ -44,4 +42,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default LoginInterestSelection;
