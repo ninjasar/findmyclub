@@ -9,6 +9,7 @@
 	color: white;
 	background: none;
 	text-decoration: none;
+	transition-duration: 0.2s;
 	background-color: #561389;
 }
 .round-rect-button:hover {

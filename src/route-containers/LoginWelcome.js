@@ -22,7 +22,7 @@ class LoginWelcome extends Component {
 		return (
 			<div className="LoginWelcome container">
 				<div className='login-welcome-banner-image-area'>
-                    <img src={''} alt='Welcome' className='login-welcome-banner-image'/>
+                    <img src={BannerImage} alt='Welcome' className='login-welcome-banner-image'/>
                 </div>
 
                 <h3 className='login-welcome-header'>Welcome to <br/>Find My Club!</h3>

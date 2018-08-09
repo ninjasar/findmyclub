@@ -1,0 +1,128 @@
+.LoginInterestSelection {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    margin-left: auto;
+    overflow-x: hidden;
+    text-align: center;
+    margin-right: auto;
+    background-color: white;
+}
+
+.login-interests-info-btn {
+    position: relative;
+    top: 20px;
+    right: 10px;
+    float: right;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: #dfceeb;
+    background: none;
+    text-align: right;
+    text-decoration: none;
+    transition-duration: 0.2s;
+}
+.login-interests-info-btn:hover {
+    color: #b8a4c7;
+}
+.login-interests-info-btn:active {
+    color: #9a85aa;
+}
+
+.login-interests-title {
+    position: relative;
+    font-size: 22px;
+    margin-top: 60px;
+    color: #330d51;
+    font-weight: bold;
+    text-align: center;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    letter-spacing: normal;
+}
+
+.login-interests-subtitle {
+    font-size: 12px;
+    font-weight: 300;
+    color: #323232;
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    letter-spacing: normal;
+}
+
+.login-interests-selections {
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    /* background-color: seagreen; */
+}
+.interest-item {
+    width: 140px;
+    height: 180px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    border-radius: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    transition-duration: 0.3s;
+    background-color: #f3edf7;
+    border: 2px solid #dfceeb;
+    /* background-color: crimson; */
+}
+.interest-item:hover {
+    box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
+}
+.interest-item:active {
+    box-shadow: 3px 3px 30px 1px rgba(0, 0, 0, 0.35);
+}
+.interest-image {
+    position: absolute;
+    top: 20px;
+    width: 80%;
+    height: 65%;
+    border-radius: 100%;
+    left: calc(140px / 2 - 36.2%);
+    background-color: lightblue;
+}
+.interest-title {
+    position: absolute;
+    width: 100%;
+    font-size: 18px;
+    color: #330d51;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    top: calc(65% + 20px);
+    letter-spacing: normal;
+}
+
+.login-interests-finish-btn {
+    position: relative;
+    width: 200px;
+    display: block;
+    font-size: 12px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
