@@ -5,6 +5,8 @@ import $ from 'jquery';
 import LoginLanding from '../route-containers/LoginLanding';
 import LoginWelcome from '../route-containers/LoginWelcome';
 import LoginInterestSelection from '../route-containers/LoginInterestSelection';
+import LoginMatching from '../route-containers/LoginMatching';
+import LoginClubMatch from '../route-containers/LoginClubMatch';
 import Constants from '../util/Constants';
 /* CONTAINERS */
 
@@ -28,9 +30,10 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
-        }, 200);
+        this.transitionContainer(<LoginClubMatch />);
+        // setTimeout(() => {
+        //     this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
+        // }, 200);
     }
 
 
@@ -63,10 +66,22 @@ class Login extends Component {
 
     /** Transitions to the view that lets people select their interests. */
     handleGoToSelectInterests() {
-        this.transitionContainer(<LoginInterestSelection onNext={() => {
-            alert('Finished selecting interests!');
-        }}/>);
+        this.transitionContainer(<LoginInterestSelection onNext={this.handleGoToMatching.bind(this)}/>);
     }
+
+
+    /** Goes to the loading screen for finding clubs with your interests. */
+    handleGoToMatching() {
+        // This page itself does not actually do much. Any API calls should be done
+        // here in the login page, then when they are done you go to the next page.
+        this.transitionContainer(<LoginMatching />);
+
+        // TEMPORARY:
+        setTimeout(() => {
+            this.transitionContainer(<LoginClubMatch />);
+        }, 5000);
+    }
+
 
 
 

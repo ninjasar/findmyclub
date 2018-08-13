@@ -1,0 +1,144 @@
+.LoginMatching {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    margin-left: auto;
+    overflow-x: hidden;
+    text-align: center;
+    margin-right: auto;
+    background-color: white;
+}
+
+@keyframes bubbleMovement1 {
+    from { left: 60px; top: 200px; }
+    to { left: 80px; top: 210px; }
+}
+@keyframes bubbleMovement2 {
+    from { left: 100px; top: 150px; }
+    to { left: 80px; top: 130px; }
+}
+@keyframes bubbleMovement3 {
+    from { left: 120px; top: 200px; }
+    to { left: 100px; top: 220px; }
+}
+@keyframes bubbleMovement4 {
+    from { left: 200px; top: -100px; }
+    to { left: 180px; top: -80px; }
+}
+@keyframes bubbleMovement5 {
+    from { left: -40px; top: 120px; }
+    to { left: -20px; top: 100px; }
+}
+@keyframes bubbleMovement6 {
+    from { left: 10px; }
+    to { left: -30px; }
+}
+@keyframes bubbleMovement7 {
+    from { top: 150px; }
+    to { top: 110px; }
+}
+.login-matching-bubbles-holder {
+    position: relative;
+    width: 80%;
+    height: 48%;
+    right: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 50px;
+    /* background-color: deeppink; */
+}
+.login-matching-loading-bubble {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 100%;
+    background-color: orange;
+}
+.login-matching-loading-bubble:nth-child(1) {
+    top: 200px;
+    left: 60px;
+    width: 22px;
+    height: 22px;
+    background-image: linear-gradient(352deg, #6123ae, #d76dbd);
+    animation: bubbleMovement1 1.5s ease-in-out 0s infinite alternate-reverse;
+}
+.login-matching-loading-bubble:nth-child(2) {
+    top: 150px;
+    left: 100px;
+    width: 13px;
+    height: 13px;
+    background-image: linear-gradient(128deg, #2394ae, #c86dd7);
+    animation: bubbleMovement2 1.5s ease-in-out 0s infinite alternate-reverse;
+}
+.login-matching-loading-bubble:nth-child(3) {
+    width: 7px;
+    top: 250px;
+    left: 60px;
+    height: 7px;
+    background-image: linear-gradient(135deg, #3023ae, #c86dd7);
+    animation: bubbleMovement3 1.5s ease-in-out 0s infinite alternate-reverse;
+}
+.login-matching-loading-bubble:nth-child(4) {
+    top: 200px;
+    width: 9px;
+    left: -100px;
+    height: 9px;
+    background-image: linear-gradient(135deg, #3023ae, #c86dd7);
+    animation: bubbleMovement4 1.5s ease-in-out 0s infinite alternate-reverse;
+}
+.login-matching-loading-bubble:nth-child(5) {
+    top: 120px;
+    left: -70px;
+    width: 26px;
+    height: 26px;
+    background-image: linear-gradient(204deg, #23aea8, #c86dd7);
+    animation: bubbleMovement5 1.5s ease-in-out 0s infinite alternate-reverse;
+}
+.login-matching-loading-bubble:nth-child(6) {
+    top: 140px;
+    left: -20px;
+    width: 70px;
+    height: 70px;
+    background-image: linear-gradient(135deg, #3023ae, #c86dd7);
+    animation: bubbleMovement6 1.5s ease-in-out 0s infinite alternate-reverse;
+}
+.login-matching-loading-bubble:nth-child(7) {
+    top: 150px;
+    left: 60px;
+    width: 22px;
+    height: 22px;
+    background-image: linear-gradient(298deg, #3023ae, #c86dd7);
+    animation: bubbleMovement7 1.5s ease-in-out 0s infinite alternate-reverse;
+}
+
+.LoginMatching > h2 {
+    font-size: 22px;
+    color: #330d51;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    padding-left: 60px;
+    padding-right: 60px;
+    line-height: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham';
+}
+
+.LoginMatching > p {
+    font-size: 15px;
+    font-weight: 300;
+    color: #323232;
+    text-align: center;
+    font-style: normal;
+    padding-left: 60px;
+    padding-right: 60px;
+    line-height: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    letter-spacing: normal;
+}

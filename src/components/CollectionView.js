@@ -32,7 +32,8 @@ class CollectionView extends Component {
             orientation: props.orientation || CollectionView.Orientation.vertical,
             emptyDataView: props.emptyDataView || <div></div>,
             shouldScrollOnReload: props.shouldScrollOnReload || false,
-            edgeInsets: props.edgeInsets || ['0px','0px','0px','0px']   // top, right, bottom, left
+            edgeInsets: props.edgeInsets || ['0px','0px','0px','0px'],   // top, right, bottom, left,
+            isScrollEnabled: props.isScrollEnabled || true
         }
     }
 
@@ -51,7 +52,7 @@ class CollectionView extends Component {
                 className={`collectionView ${this.props.className}`}
                 style={this.configureStyles()}>
                 
-                {this.state.data.length > 0 ? this.state.data : this.state.emptyDataView}
+                {(this.props.data || []).length > 0 ? (this.props.data ? (this.props.data instanceof Function ? this.props.data() : this.props.data) : []) : this.state.emptyDataView}
 
             </div>
         );
@@ -144,8 +145,8 @@ class CollectionView extends Component {
         const edgeBottom = this.state.edgeInsets[2];
         const edgeLeft = this.state.edgeInsets[3];
         return {
-            overflowX: ofx,
-            overflowY: ofy,
+            overflowX: this.state.isScrollEnabled === true ? ofx : 'hidden',
+            overflowY: this.state.isScrollEnabled === true ? ofy : 'hidden',
             whiteSpace: ws,
             paddingTop: edgeTop,
             paddingLeft: edgeLeft,
