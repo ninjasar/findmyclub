@@ -19,8 +19,8 @@
     text-align: center;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
     letter-spacing: normal;
+    font-family: 'Gotham-Bold';
 }
 .login-club-matches-title > span {
     color: #8568dd;
@@ -55,7 +55,7 @@
 .login-club-matches-category-section {
     width: 95%;
     text-align: center;
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
 }
 
 .login-club-matches-category-section-title {
@@ -67,12 +67,12 @@
     padding-left: 10px;
     font-style: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
     letter-spacing: normal;
+    font-family: 'Gotham-Bold';
 }
 
 .login-club-matches-category-section-subtitle {
-    font-size: 12px;
+    font-size: 14px;
     color: #323232;
     text-align: left;
     line-height: 1.78;
@@ -85,4 +85,103 @@
 }
 .login-club-matches-category-section-subtitle > span {
     color: #3cced9;
+    font-family: 'Gotham-Bold';
+}
+
+
+.login-club-matches-club-list {
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    transition-duration: 0.2s;
+    /* background-color: lightgreen; */
+}
+.login-club-matches-see-more-btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 10px;
+    color: #330d51;
+    background: none;
+    line-height: 2.29;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-style: normal;
+    text-align: center;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    text-decoration: none;
+    letter-spacing: normal;
+}
+.club-item {
+    text-align: left;
+    user-select: none;
+    margin-left: 10px;
+	margin-right: 10px;
+    margin-bottom: 25px;
+}
+.club-card-follow-button {
+    position: relative;
+    width: 80px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    padding-top: 8px;
+    color: #330d51;
+    margin-top: 10px;
+    user-select: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 25px;
+    font-family: 'Gotham';
+    transition-duration: 0.5s;
+    background-color: #ffffff;
+    border: solid 1px #330d51;
+}
+.club-card-follow-button:hover {
+    box-shadow: 0 0 10px 4px #340d5121;
+}
+.club-card-follow-button:active {
+    box-shadow: 0 0 10px 5px #340d513b;
+}
+
+
+.login-club-matches-finish-btn {
+    position: relative;
+    width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.login-club-matches-skip-btn {
+    position: relative;
+    border: none;
+    outline: none;
+    display: block;
+    cursor: pointer;
+    font-size: 14px;
+    background: none;
+    color: #330d51;
+    margin-top: 30px;
+    margin-left: auto;
+    user-select: none;
+    margin-right: auto;
+    text-align: center;
+    font-style: normal;
+    line-height: normal;
+    margin-bottom: 50px;
+    font-weight: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    font-family: 'Gotham';
+    letter-spacing: normal;
+}
+.login-club-matches-skip-btn:active {
+    text-decoration: underline;
 }

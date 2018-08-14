@@ -17,34 +17,78 @@ class LoginClubMatch extends Component {
         this.state = {
             selectedInterests: props.selectedInterests || ['Art', 'Sports', 'Social', 'Tech'],
             matchingClubs: props.matchingClubs || [{
-                category: 'Art'
+                category: 'Art',
+                title: 'Art Club',
+                tags: 'art',
+                tagColor: '#3cced9'
             }, {
-                category: 'Art'
+                category: 'Art',
+                title: 'Art Club',
+                tags: 'art',
+                tagColor: '#3cced9'
             }, {
-                category: 'Art'
+                category: 'Art',
+                title: 'Art Club',
+                tags: 'art',
+                tagColor: '#3cced9'
             }, {
-                category: 'Sports'
+                category: 'Sports',
+                title: 'Basketball',
+                tags: 'sports',
+                tagColor: '#f5a623'
             }, {
-                category: 'Sports'
+                category: 'Sports',
+                title: 'Basketball',
+                tags: 'sports',
+                tagColor: '#f5a623'
             }, {
-                category: 'Sports'
+                category: 'Sports',
+                title: 'Basketball',
+                tags: 'sports',
+                tagColor: '#f5a623'
             }, {
-                category: 'Social'
+                category: 'Social',
+                title: 'Pi Beta Phi',
+                tags: 'greek life',
+                tagColor: '#ff7bac'
             }, {
-                category: 'Social'
+                category: 'Social',
+                title: 'Pi Beta Phi',
+                tags: 'greek life',
+                tagColor: '#ff7bac'
             }, {
-                category: 'Social'
+                category: 'Social',
+                title: 'Pi Beta Phi',
+                tags: 'greek life',
+                tagColor: '#ff7bac'
             }, {
-                category: 'Social'
+                category: 'Social',
+                title: 'Pi Beta Phi',
+                tags: 'greek life',
+                tagColor: '#ff7bac'
             }, {
-                category: 'Tech'
+                category: 'Tech',
+                title: 'Tech@NYU',
+                tags: 'tech',
+                tagColor: 'crimson'
             }, {
-                category: 'Tech'
+                category: 'Tech',
+                title: 'Tech@NYU',
+                tags: 'tech',
+                tagColor: 'crimson'
             }, {
-                category: 'Tech'
+                category: 'Tech',
+                title: 'Tech@NYU',
+                tags: 'tech',
+                tagColor: 'crimson'
             }, {
-                category: 'Tech'
-            }]
+                category: 'Tech',
+                title: 'Tech@NYU',
+                tags: 'tech',
+                tagColor: 'crimson'
+            }],
+
+            maxPerCategory: [2, 2, 2, 2]
         }
     }
 
@@ -59,8 +103,7 @@ class LoginClubMatch extends Component {
 		return (
 			<div className="LoginClubMatch container">
 				<h1 className='login-club-matches-title'>
-                    <span>{this.state.matchingClubs.length}</span>&nbsp;
-                    clubs match your interests perfectly!
+                    <span>{this.state.matchingClubs.length}</span>&nbsp;clubs match your interests perfectly!
                 </h1>
                 <p className='login-club-matches-subtitle'>Find out more about these by clicking on them!</p>
 
@@ -75,9 +118,20 @@ class LoginClubMatch extends Component {
                                 data={
                                     this.state.selectedInterests.map((val, index) => {
                                         const clubs = this.state.matchingClubs.filter((val2) => val2.category === val);
-                                        return Maps.mapInterestWithClubsToComponent(val, clubs);
+                                        const maxAt = this.state.maxPerCategory[index];
+                                        return Maps.mapInterestWithClubsToComponent(val, clubs, maxAt, (_clubs) => {
+                                            const currLen = this.state.maxPerCategory[index];
+                                            const longLen = _clubs.length;
+                                            const cpy = this.state.maxPerCategory;
+                                            cpy[index] = currLen === longLen ? 2 : longLen;
+                                            
+                                            this.setState({ maxPerCategory: cpy })
+                                        });
                                     })
                                 }/>
+
+                <button className='round-rect-button login-club-matches-finish-btn'>Finish</button>
+                <button className='login-club-matches-skip-btn'>Skip this step</button>
 			</div>
 		);
 	}

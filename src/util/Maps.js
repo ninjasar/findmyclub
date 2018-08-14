@@ -1,4 +1,27 @@
 import React from 'react';
+import CollectionView from '../components/CollectionView';
+
+
+const mCtC = ({ image, title, tags, tagColor }) => {
+    return (
+        <div className='club-item'>
+            <div className='club-card'>
+                <img src={image} alt='club-preview' className='club-card-image'/>
+
+                <h3 className='club-card-title'>{title}</h3>
+                <div className='club-card-tags' style={{
+                    backgroundColor: tagColor 
+                }}>{tags}</div>
+            </div>
+
+            <div className='club-card-follow-button'>+ Follow</div>
+        </div>
+    )
+}
+
+
+
+
 
 export default {
 
@@ -24,18 +47,37 @@ export default {
 
     /** Maps an interest to a cell with clubs inside of it.
     * @param {String} interest The name of the interest 
-    * @param {Array} clubs The clubs that match the interest. */
-    mapInterestWithClubsToComponent: (interest, clubs) => {
+    * @param {Array} clubs The clubs that match the interest. 
+    * @param {Number} max The maximum number of items to show. 
+    * @param {Function} onSeeMore What to do when you click see more (or see less). */
+    mapInterestWithClubsToComponent: (interest, clubs, max, onSeeMore) => {
         return (
             <div className='login-club-matches-category-section'>
                 <h1 className='login-club-matches-category-section-title'>{interest}</h1>
                 <h1 className='login-club-matches-category-section-subtitle'>
-                    There were <span>{clubs.length} club(s)</span> that match your interest.
+                    We found <span>{clubs.length} club(s)</span> that match your interest.
                 </h1>
+
+                <CollectionView className='login-club-matches-club-list'
+                                orientation={CollectionView.Orientation.vertical}
+                                edgeInsets={['20px', '0px', '10px', '0px']}
+                                data={
+                                    clubs.map((val) => {
+                                        return mCtC(val);
+                                    }).filter((_, index, __) => {
+                                        return index < max;
+                                    })
+                                }/>
+                <button className='login-club-matches-see-more-btn'
+                        onClick={() => {
+                            onSeeMore(clubs);
+                        }}>--- See {max === clubs.length ? 'Less' : 'More'} ---</button>
             </div>
         )
-    }
+    },
 
 
-
+    /** Maps a club to a card style component.
+    * @param {Object} club The club that is to be displayed. */
+    mapClubToComponent: mCtC
 }
