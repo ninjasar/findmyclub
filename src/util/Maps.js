@@ -48,14 +48,15 @@ export default {
     /** Maps an interest to a cell with clubs inside of it.
     * @param {String} interest The name of the interest 
     * @param {Array} clubs The clubs that match the interest. 
+    * @param {String} interestColor The color to use on the subtitle label.
     * @param {Number} max The maximum number of items to show. 
     * @param {Function} onSeeMore What to do when you click see more (or see less). */
-    mapInterestWithClubsToComponent: (interest, clubs, max, onSeeMore) => {
+    mapInterestWithClubsToComponent: (interest, clubs, interestColor, max, onSeeMore) => {
         return (
             <div className='login-club-matches-category-section'>
                 <h1 className='login-club-matches-category-section-title'>{interest}</h1>
                 <h1 className='login-club-matches-category-section-subtitle'>
-                    We found <span>{clubs.length} club(s)</span> that match your interest.
+                    We found <span style={{ color: interestColor }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 
                 <CollectionView className='login-club-matches-club-list'
@@ -63,7 +64,7 @@ export default {
                                 edgeInsets={['20px', '0px', '10px', '0px']}
                                 data={
                                     clubs.map((val) => {
-                                        return mCtC(val);
+                                        return mCtC({ ...val, tagColor: interestColor });
                                     }).filter((_, index, __) => {
                                         return index < max;
                                     })

@@ -10,6 +10,10 @@ import LoginClubMatch from '../route-containers/LoginClubMatch';
 import Constants from '../util/Constants';
 /* CONTAINERS */
 
+/* OVERLAYS */
+import LoginClubFilter from '../route-containers/LoginClubFilter';
+/* OVERLAYS */
+
 import '../css/Login.css';
 
 
@@ -25,12 +29,15 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentContainer: <div className='container'></div>
+            currentContainer: <div className='container'></div>,
+            currentOverlay: <div className='overlay'></div>
         }
     }
 
     componentDidMount() {
-        this.transitionContainer(<LoginClubMatch />);
+        this.transitionContainer(<LoginClubMatch onRefine={() => {
+            this.showOverlay(<LoginClubFilter />);
+        }}/>);
         // setTimeout(() => {
         //     this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
         // }, 200);
@@ -46,6 +53,7 @@ class Login extends Component {
 	render() {
 		return (
 			<div className="Login">
+                {this.state.currentOverlay}
 				{this.state.currentContainer}
 			</div>
 		);
@@ -122,6 +130,60 @@ class Login extends Component {
                 });
             })
         })
+    }
+
+
+    /** Brings up an overlay view on top of the current container.
+    * @param {Component} overlayView The view to display in the overlay. 
+    * @param {Number} duration How long the transition should last for. 
+    * @param {Function} then What to do when the transition is over. */
+    showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then) {
+        // 1.) Reset any existing overlay view by animating it away.
+        $('.overlay').animate({
+            opacity: 0,
+            top: '0px',
+            left: '100%',
+            width: '0px',
+            height: '0px',
+        }, duration || Constants.OVERLAY_TRANSITION_TIME, () => {
+            // 2.) Set the state of the new overlay.
+            this.setState({ currentOverlay: overlayView }, () => {
+                // 3.) Animate into the new overlay.
+                $('.overlay').css('opacity', 0);
+                $('.overlay').css('top', '0px');
+                $('.overlay').css('left', '100%');
+                $('.overlay').css('width', '0px');
+                $('.overlay').css('height', '0px');
+                $('.overlay').animate({
+                    opacity: 1,
+                    top: '0px',
+                    left: '0px',
+                    width: '100%',
+                    height: '100%'
+                },  duration || Constants.OVERLAY_TRANSITION_TIME, () => {
+                    if(then) then();
+                })
+            });
+        });
+    }
+
+
+    /** Hides the currently displaying overlay. 
+    * @param {Function} then What to do after the view has animated away. 
+    * @param {Number} duration How long the transition should last. */
+    hideOverlay(then, duration = Constants.OVERLAY_TRANSITION_TIME) {
+        $('.overlay').animate({
+            opacity: 0,
+            top: '0px',
+            left: '100%',
+            width: '0px',
+            height: '0px',
+        }, duration || Constants.OVERLAY_TRANSITION_TIME, () => {
+            // 2.) Set the state of the new overlay.
+            this.setState({ currentOverlay: <div className='overlay'></div> }, () => {
+                if(then) then();
+            });
+        });
     }
 
 

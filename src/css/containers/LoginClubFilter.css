@@ -1,0 +1,17 @@
+.LoginClubFilter {
+    position: absolute;
+    z-index: 100000;
+    background-color: white;
+}
+
+.login-club-filter-title {
+    font-size: 28px;
+    color: #330d51;
+    font-weight: bold;
+    text-align: center;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    letter-spacing: normal;
+}
