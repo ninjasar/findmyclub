@@ -4,14 +4,138 @@
     background-color: white;
 }
 
+.login-club-filter-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    background: none;
+    color: #dfceeb;
+    text-align: right;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    letter-spacing: normal;
+    transition-duration: 0.2s;
+}
+.login-club-filter-close-btn:hover {
+    color: #c4b6ce;
+}
+.login-club-filter-close-btn:active {
+    color: #a69aad;
+}
+
 .login-club-filter-title {
+    position: relative;
     font-size: 28px;
     color: #330d51;
+    margin-top: 50px;
     font-weight: bold;
     text-align: center;
     font-style: normal;
     line-height: normal;
     font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham-Bold';
+}
+.login-club-filter-subtitle {
+    font-size: 15px;
+    color: #323232;
+    font-weight: 300;
+    line-height: 1.47;
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 25px;
+    font-stretch: normal;
     font-family: 'Gotham';
     letter-spacing: normal;
+}
+
+
+.login-club-filter-section {
+    margin-bottom: 30px;
+}
+.login-club-filters-filter-section {
+    width: 100%;
+    /* background-color: mediumpurple; */
+}
+.login-club-filter-section-title {
+    font-size: 20px;
+    color: #323232;
+    text-align: left;
+    font-weight: bold;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham-Bold';
+}
+.login-club-filter-section-items {
+    width: 90vw;
+    text-align: left;
+    /* background-color: mediumturquoise; */
+}
+.filter-item {
+    width: 50%;
+    float: left;
+    text-align: left;
+    background-color: white;
+}
+.filter-item-title {
+    font-size: 15px;
+    color: #323232;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    display: inline-block;
+    letter-spacing: normal;
+}
+.filter-item-checkbox-checked, .filter-item-checkbox-unchecked {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    width: 20px;
+    height: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #561389;
+    padding-top: 3px;
+    text-align: center;
+    border-radius: 4px;
+    padding-bottom: 2px;
+    display: inline-block;
+    transition-duration: 0.2s;
+    background-color: #f3edf7;
+}
+.filter-item-checkbox-checked:hover, .filter-item-checkbox-unchecked:hover {
+    background-color: #e5d9eb;
+}
+.filter-item-checkbox-checked:active, .filter-item-checkbox-unchecked:active {
+    background-color: #d4c2e0;
+}
+
+
+.login-club-filters-filter-btn {
+    position: relative;
+    font-size: 16px;
+    color: #ffffff;
+    margin-top: 20px;
+    padding-top: 5px;
+    font-weight: bold;
+    text-align: center;
+    font-style: normal;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 50px;
+    line-height: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham-Bold';
 }

@@ -35,12 +35,9 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        this.transitionContainer(<LoginClubMatch onRefine={() => {
-            this.showOverlay(<LoginClubFilter />);
-        }}/>);
-        // setTimeout(() => {
-        //     this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
-        // }, 200);
+        setTimeout(() => {
+            this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
+        }, 200);
     }
 
 
@@ -86,7 +83,12 @@ class Login extends Component {
 
         // TEMPORARY:
         setTimeout(() => {
-            this.transitionContainer(<LoginClubMatch />);
+            this.transitionContainer(<LoginClubMatch onRefine={() => {
+                this.showOverlay(<LoginClubFilter onFiltered={(onFilters) => {
+                    this.hideOverlay();
+                    console.log('Filters that were turned on: ', onFilters);
+                }} onClose={this.hideOverlay.bind(this)}/>);
+            }}/>);
         }, 5000);
     }
 

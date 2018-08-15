@@ -31,7 +31,7 @@ class LoginWelcome extends Component {
                     We’re here to help you find the right clubs and organizations at NYU.
                 </p>
                 <button className='round-rect-button login-welcome-login-btn'
-                        onClick={this.handleGoToNextSlide.bind(this)}>Next</button>
+                        onClick={this.handleGoToNextSlide.bind(this)}>Let's get started!</button>
 			</div>
 		);
 	}

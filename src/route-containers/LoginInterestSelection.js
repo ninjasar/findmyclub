@@ -30,8 +30,7 @@ class LoginInterestSelection extends Component {
 			<div className="LoginInterestSelection container">
                 <button className='login-interests-info-btn'><span className='far fa-question-circle'/></button>
 
-                <h2 className='login-interests-title'>Tell us what you're into.</h2>
-                <p className='login-interests-subtitle'>Tap on as many of your favorite interests.</p>
+                <h2 className='login-interests-title'>What are you most interested in?</h2>
 
                 <CollectionView ref='interests-collection-view'
                                 className='login-interests-selections'

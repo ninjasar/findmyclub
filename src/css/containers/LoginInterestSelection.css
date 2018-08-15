@@ -40,22 +40,10 @@
     text-align: center;
     font-style: normal;
     line-height: normal;
-    font-stretch: normal;
-    font-family: 'Gotham';
-    letter-spacing: normal;
-}
-
-.login-interests-subtitle {
-    font-size: 12px;
-    font-weight: 300;
-    color: #323232;
-    font-style: normal;
-    text-align: center;
     margin-bottom: 25px;
-    line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
     letter-spacing: normal;
+    font-family: 'Gotham-Bold';
 }
 
 .login-interests-selections {
@@ -92,16 +80,17 @@
 }
 .interest-image {
     position: absolute;
-    top: 20px;
-    width: 80%;
-    height: 65%;
+    top: 50px;
+    width: 54px;
+    height: 52px;
     border-radius: 100%;
-    left: calc(140px / 2 - 36.2%);
+    left: calc(140px / 2 - 15%);
     background-color: lightblue;
 }
 .interest-title {
     position: absolute;
     width: 100%;
+    top: calc(65%);
     font-size: 2.5vh;
     color: #330d51;
     font-weight: bold;
@@ -111,9 +100,8 @@
     font-style: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
-    top: calc(65% + 20px);
     letter-spacing: normal;
+    font-family: 'Gotham-Bold';
 }
 
 .login-interests-finish-btn {

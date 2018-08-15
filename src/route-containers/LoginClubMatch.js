@@ -117,7 +117,7 @@ class LoginClubMatch extends Component {
                                         const maxAt = this.state.maxPerCategory[index];
                                         const tagColor = this.state.interestColors[index];
 
-                                        return Maps.mapInterestWithClubsToComponent(val, clubs, tagColor, maxAt, (_clubs) => {
+                                        return Maps.mapInterestWithClubsToComponent(val, index, clubs, tagColor, maxAt, (_clubs) => {
                                             const currLen = this.state.maxPerCategory[index];
                                             const longLen = _clubs.length;
                                             const cpy = this.state.maxPerCategory;
