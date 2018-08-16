@@ -27,29 +27,45 @@
 }
 
 .login-club-matches-subtitle {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
     color: #323232;
     text-align: center;
     font-style: normal;
+    padding-left: 40px;
+    padding-right: 40px;
     line-height: normal;
     font-stretch: normal;
     font-family: 'Gotham';
     letter-spacing: normal;
 }
 
+.login-club-matches-button-title {
+    font-size: 15px;
+    color: #323232;  
+    margin-top: 20px;
+    line-height: 1.47;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham-Bold';
+}
 .filter-button {
-    padding: 15px;
-    margin-top: 25px;
-    box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 170px;
+    height: 47px;
+    color: white;
+    font-size: 14px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.35);
+    background: linear-gradient(to left, #3cced9, #8568dd);
 }
 .filter-button:hover {
-    background-color: white;
-    box-shadow: 4px 4px 20px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.35);
 }
 .filter-button:active {
-    background-color: white;
-    box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.35);
 }
 
 .login-club-matches-category-section {
@@ -108,13 +124,13 @@
     background: none;
     line-height: 2.29;
     font-weight: bold;
-    margin-bottom: 30px;
     font-style: normal;
     text-align: center;
+    margin-bottom: 30px;
     font-stretch: normal;
-    font-family: 'Gotham';
     text-decoration: none;
     letter-spacing: normal;
+    font-family: 'Gotham-Bold';
 }
 .club-item {
     text-align: left;
@@ -184,4 +200,110 @@
 }
 .login-club-matches-skip-btn:active {
     text-decoration: underline;
+}
+
+
+
+/* Club Detail View */
+@keyframes detailFadeIn {
+    from {
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        width: 0px;
+        height: 0px;
+    }
+    to {
+        top: 0px;
+        left: 0px;
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+    }
+}
+@keyframes longClubListFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.club-detail-list-view {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    text-align: left;
+    padding-top: 30px;
+    overflow-x: hidden;
+    background-color: white;
+    animation: detailFadeIn 0.5s ease-in-out;
+}
+
+.club-detail-list-back-btn {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #8568dd;
+    background: none;
+    line-height: 1.69;
+    font-weight: bold;
+    text-align: center;
+    font-style: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    letter-spacing: normal;
+}
+
+.club-detail-list-filter-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    padding-bottom: 20px;
+}
+.club-detail-list-filter-btn > p {
+    position: relative;
+    bottom: 5px;
+}
+
+.club-detail-list-section-title {
+    position: relative;
+    top: 50px;
+    left: 20px;
+    font-size: 18px;
+    color: #330d51;
+    line-height: 0.89;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham-Bold';
+}
+.club-detail-list-section-subtitle {
+    position: relative;
+    top: 50px;
+    left: 20px;
+    font-size: 15px;
+    color: #323232;
+    line-height: 1.47;
+    font-style: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-family: 'Gotham';
+    letter-spacing: normal;
+}
+.club-detail-list-club-list {
+    position: relative;
+    top: 70px;
+    animation: longClubListFadeIn 2s ease-in-out;
 }

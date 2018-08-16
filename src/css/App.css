@@ -25,12 +25,9 @@
 	border: none;
 	outline: none;
 	cursor: pointer;
-	color: #330d51;
-	background: none;
 	border-radius: 25px;
 	text-decoration: none;
 	transition-duration: 0.2s;
-	background-color: white;
 }
 
 .club-card {
@@ -39,7 +36,7 @@
 	height: 180px;
 	cursor: pointer;
 	text-align: left;
-	border-radius: 2px;
+	border-radius: 4px;
 	transition-duration: 0.2s;
 	background-color: #ffffff;
 	box-shadow: 0 0 10px 4px #e6e9ef;

@@ -12,6 +12,7 @@ import Constants from '../util/Constants';
 
 /* OVERLAYS */
 import LoginClubFilter from '../route-containers/LoginClubFilter';
+import LoginClubDetail from '../route-containers/LoginClubDetail';
 /* OVERLAYS */
 
 import '../css/Login.css';
@@ -85,9 +86,17 @@ class Login extends Component {
         setTimeout(() => {
             this.transitionContainer(<LoginClubMatch onRefine={() => {
                 this.showOverlay(<LoginClubFilter onFiltered={(onFilters) => {
-                    this.hideOverlay();
-                    console.log('Filters that were turned on: ', onFilters);
-                }} onClose={this.hideOverlay.bind(this)}/>);
+                                                    this.hideOverlay();
+                                                    console.log('Filters that were turned on: ', onFilters);
+                                                }} 
+                                                onClose={this.hideOverlay.bind(this)}/>);
+            }}
+            onSelectClub={(selectedCard) => {
+                this.showOverlay(<LoginClubDetail club={selectedCard} onClose={() => this.hideOverlay()}/>);
+                console.log(selectedCard);
+            }}
+            onFollowClub={(selectedCard) => {
+                console.log(selectedCard);
             }}/>);
         }, 5000);
     }

@@ -33,14 +33,15 @@
 
 .login-interests-title {
     position: relative;
-    font-size: 22px;
+    font-size: 28px;
     margin-top: 60px;
     color: #330d51;
     font-weight: bold;
     text-align: center;
     font-style: normal;
+    padding-left: 40px;
+    padding-right: 40px;
     line-height: normal;
-    margin-bottom: 25px;
     font-stretch: normal;
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
@@ -108,9 +109,11 @@
     position: relative;
     width: 200px;
     display: block;
-    font-size: 12px;
+    font-size: 14px;
+    padding-top: 2px;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 40px;
+    font-family: 'Gotham-Bold';
 }

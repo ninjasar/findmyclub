@@ -28,14 +28,12 @@ class LoginInterestSelection extends Component {
 	render() {
 		return (
 			<div className="LoginInterestSelection container">
-                <button className='login-interests-info-btn'><span className='far fa-question-circle'/></button>
-
                 <h2 className='login-interests-title'>What are you most interested in?</h2>
 
                 <CollectionView ref='interests-collection-view'
                                 className='login-interests-selections'
                                 orientation={CollectionView.Orientation.vertical}
-                                edgeInsets={['20px', '0px', '30px', '0px']}
+                                edgeInsets={['0px', '0px', '30px', '0px']}
                                 isScrollEnabled={false}
                                 data={
                                     this.state.interests.map((val) => {
@@ -46,7 +44,7 @@ class LoginInterestSelection extends Component {
                                 }/>
 
 				<button className='round-rect-button login-interests-finish-btn'
-                        onClick={this.handleFinishSelectingInterests.bind(this)}>Next</button>
+                        onClick={this.handleFinishSelectingInterests.bind(this)}>Get my results</button>
 			</div>
 		);
 	}

@@ -2,10 +2,10 @@ import React from 'react';
 import CollectionView from '../components/CollectionView';
 
 // club to card
-const mCtC = ({ image, title, tags, tagColor }, key) => {
+const mCtC = ({ image, title, tags, tagColor }, key, onClubClick, onFollowClick) => {
     return (
         <div className='club-item' key={key}>
-            <div className='club-card'>
+            <div className='club-card' onClick={() => { onClubClick(key, title, tags) }}>
                 <img src={image} alt='club-preview' className='club-card-image'/>
 
                 <h3 className='club-card-title'>{title}</h3>
@@ -14,7 +14,8 @@ const mCtC = ({ image, title, tags, tagColor }, key) => {
                 }}>{tags}</div>
             </div>
 
-            <div className='club-card-follow-button'>+ Follow</div>
+            <div className='club-card-follow-button'
+                onClick={() => { onFollowClick(key, title, tags) }}>+ Follow</div>
         </div>
     )
 }
@@ -64,8 +65,10 @@ export default {
     * @param {Array} clubs The clubs that match the interest. 
     * @param {String} interestColor The color to use on the subtitle label.
     * @param {Number} max The maximum number of items to show. 
-    * @param {Function} onSeeMore What to do when you click see more (or see less). */
-    mapInterestWithClubsToComponent: (interest, key, clubs, interestColor, max, onSeeMore) => {
+    * @param {Function} onSeeMore What to do when you click see more (or see less).
+    * @param {Function} onClubClick What to do when you click the club card.
+    * @param {Function} onFollowClick What to do when you click the follow button. */
+    mapInterestWithClubsToComponent: (interest, key, clubs, interestColor, max, onSeeMore, onClubClick, onFollowClick) => {
         return (
             <div className='login-club-matches-category-section' key={key}>
                 <h1 className='login-club-matches-category-section-title'>{interest}</h1>
@@ -78,7 +81,7 @@ export default {
                                 edgeInsets={['20px', '0px', '10px', '0px']}
                                 data={
                                     clubs.map((val, index) => {
-                                        return mCtC({ ...val, tagColor: interestColor }, index);
+                                        return mCtC({ ...val, tagColor: interestColor }, index, onClubClick, onFollowClick);
                                     }).filter((_, index, __) => {
                                         return index < max;
                                     })
@@ -94,7 +97,9 @@ export default {
 
     /** Maps a club to a card style component.
     * @param {Object} club The club that is to be displayed. 
-    * @param {String|Number} key The key to use for this list item. */
+    * @param {String|Number} key The key to use for this list item.
+    * @param {Function} onClubClick What to do when you click the club card.
+    * @param {Function} onFollowClick What to do when you click the follow button. */
     mapClubToComponent: mCtC,
 
 
@@ -126,6 +131,23 @@ export default {
     * @param {String|Number} key The key to use for this list item.
     * @param {Bool} checked Whether or not this filter is checked on
     * @param {Function} onChange What to do when the filter is toggled. */
-    mapFilterToComponent: mFtC
+    mapFilterToComponent: mFtC,
+
+
+    /** Maps an upcoming event object to a component. 
+    * @param {Object} _ The event object to use for info gathering.
+    * @param {String|Number} key The key used to identify this event component.
+    * @param {Function} onClick What to do when an event is clicked. */
+    mapEventToComponent: ({ title, date, host }, key, onClick) => {
+        return (
+            <div className='event-item' key={key} onClick={() => onClick(title, date, host)}>
+                <h1 className='event-item-date-1'>{date.split(" ")[0]}</h1>
+                <h3 className='event-item-date-2'>{date.split(" ")[1]}</h3>
+
+                <h4 className='event-item-title'>{title}</h4>
+                <p className='event-item-host'>Hosted by <span>{host}</span></p>
+            </div>
+        )
+    }
 
 }
