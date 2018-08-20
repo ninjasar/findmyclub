@@ -3,25 +3,21 @@ import $ from 'jquery';
 import Constants from '../util/Constants';
 
 /* CONTAINERS */
-import LoginLanding from '../route-containers/LoginLanding';
-import LoginWelcome from '../route-containers/LoginWelcome';
-import LoginInterestSelection from '../route-containers/LoginInterestSelection';
-import LoginMatching from '../route-containers/LoginMatching';
-import LoginClubMatch from '../route-containers/LoginClubMatch';
-import LoginAllSet from '../route-containers/LoginAllSet';
+import DashboardClubs from '../route-containers/DashboardClubs';
+import DashboardEvents from '../route-containers/DashboardEvents';
+import DashboardDiscover from '../route-containers/DashboardDiscover';
 /* CONTAINERS */
 
 /* OVERLAYS */
-import LoginClubFilter from '../route-containers/LoginClubFilter';
-import LoginClubDetail from '../route-containers/LoginClubDetail';
+import ClubFilter from '../route-containers/LoginClubFilter';
+import ClubDetail from '../route-containers/LoginClubDetail';
 import EventDetail from '../route-containers/DashboardEventDetail';
 /* OVERLAYS */
 
-import '../css/Login.css';
+import AppLogo from '../images/FindMyClub_Logo.svg';
+import '../css/Dashboard.css';
 
-
-/** THe login page, which should be the first page of thsi app. */
-class Login extends Component {
+class Dashboard extends Component {
 
 	/****************************
     *                           *
@@ -32,16 +28,17 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentContainer: <div className='container'></div>,
-            currentOverlay: <div className='overlay'></div>
+            currentContainer: <div className='dashboard-container'></div>,
+            currentOverlay: <div className='overlay'></div>,
+            currentTabIndex: 0,
+            tabIndicatorLeft: 0
         }
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
-        }, 200);
+        this.showClubsTab();
     }
+
 
 
 	/****************************
@@ -52,9 +49,29 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div className="Login">
-                {this.state.currentOverlay}
-				{this.state.currentContainer}
+			<div className="Dashboard">
+				{this.state.currentOverlay}
+                
+                <div className='dashboard-top-bar'>
+                    <img src={AppLogo} alt='logo' className='dashboard-app-logo'/>
+                    <img src={''} alt='person' className='dashboard-profile-button'/>
+                </div>
+                <div className='dashboard-search-bar-area'>
+                    <input type='text' 
+                            className='dashboard-search-bar'
+                            placeholder='Search for keywords' />
+                </div>
+                
+                {this.state.currentContainer}
+                
+                <div className='dashboard-tab-bar'>
+                    <div className='dashboard-tab-indicator' style={{
+                        left: `${this.state.tabIndicatorLeft}%`
+                    }}></div>
+                    <div className='dashboard-tab-bar-item' onClick={this.showClubsTab.bind(this)}>My Clubs</div>
+                    <div className='dashboard-tab-bar-item' onClick={this.showEventsTab.bind(this)}>Events</div>
+                    <div className='dashboard-tab-bar-item' onClick={this.showDiscoverTab.bind(this)}>Discover</div>
+                </div>
 			</div>
 		);
 	}
@@ -66,55 +83,55 @@ class Login extends Component {
     *                           *
     *****************************/
 
-    /** Transitions to the introduction container. */
-    handleGoToIntroductionContainer() {
-        this.transitionContainer(<LoginWelcome onNext={this.handleGoToSelectInterests.bind(this)} />);
+    /** Shows the list of clubs the user is part of. */
+    showClubsTab() {
+        this.setState({
+            currentContainer: <DashboardClubs onSelectClub={(club) => {
+                this.showOverlay(<ClubDetail club={club}
+                                            onSelectEvent={(item) => {
+                                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
+                                            }}
+                                            onClose={() => {
+                                                this.hideOverlay()
+                                            }}/>);
+            }}/>,
+            currentTabIndex: 0,
+            tabIndicatorLeft: 0
+        })
     }
 
 
-    /** Transitions to the view that lets people select their interests. */
-    handleGoToSelectInterests() {
-        this.transitionContainer(<LoginInterestSelection onNext={this.handleGoToMatching.bind(this)}/>);
+    /** Shows the events list. */
+    showEventsTab() {
+        this.setState({
+            currentContainer: <DashboardEvents onSelectEvent={(item) => {
+                this.showOverlay(<EventDetail onClose={() => this.hideOverlay()}/>);
+            }}/>,
+            currentTabIndex: 1,
+            tabIndicatorLeft: 33
+        })
     }
 
 
-    /** Goes to the loading screen for finding clubs with your interests. */
-    handleGoToMatching() {
-        // This page itself does not actually do much. Any API calls should be done
-        // here in the login page, then when they are done you go to the next page.
-        this.transitionContainer(<LoginMatching />);
-
-        // TEMPORARY:
-        setTimeout(() => {
-            this.transitionContainer(<LoginClubMatch onRefine={() => {
-                this.showOverlay(<LoginClubFilter onFiltered={(onFilters) => {
-                                                    this.hideOverlay();
-                                                    console.log('Filters that were turned on: ', onFilters);
-                                                }} 
-                                                onClose={this.hideOverlay.bind(this)}/>);
+    /** Shows the discover tab. */
+    showDiscoverTab() {
+        this.setState({
+            currentContainer: <DashboardDiscover onSelectClub={(club) => {
+                this.showOverlay(<ClubDetail club={club}
+                                            onSelectEvent={(item) => {
+                                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
+                                            }}
+                                            onClose={() => {
+                                                this.hideOverlay()
+                                            }}/>);
             }}
-            onSelectClub={(selectedCard) => {
-                this.showOverlay(<LoginClubDetail club={selectedCard} onClose={() => this.hideOverlay()}
-                                                onSelectEvent={(item) => {
-                                                    this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
-                                                }}/>);
-                console.log(selectedCard);
-            }}
-            onFollowClub={(selectedCard) => {
-                console.log(selectedCard);
-            }}
-            onNext={() => {
-                this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)}/>);
-            }}/>);
-        }, 5000);
+            onRefine={() => {
+                this.showOverlay(<ClubFilter onClose={() => this.hideOverlay()}/>);
+            }}/>,
+            currentTabIndex: 2,
+            tabIndicatorLeft: 67
+        })
     }
-
-
-    /** Transitions to the dashboard page. */
-    handleGoToDashboard() {
-
-    }
-
 
 
 
@@ -125,7 +142,6 @@ class Login extends Component {
     *           STYLES          *
     *                           *
     *****************************/
-
 
 
     /****************************
@@ -140,14 +156,14 @@ class Login extends Component {
     * @param {Function} then What to do after the transition is done. */
     transitionContainer(newContainer, duration = Constants.CONTAINER_TRANSITION_TIME, then) {
         // 1.) Animate away the current one.
-        $('.container').animate({
+        $('.dashboard-container').animate({
             opacity: 0
         }, duration || Constants.CONTAINER_TRANSITION_TIME, () => {
             // 2.) Switch to the new one.
             this.setState({ currentContainer: newContainer }, () => {
                 // 3.) Animate in the new one.
-                $('.container').css('opacity', 0);
-                $('.container').animate({
+                $('.dashboard-container').css('opacity', 0);
+                $('.dashboard-container').animate({
                     opacity: 1
                 }, duration || Constants.CONTAINER_TRANSITION_TIME, () => {
                     if(then) then();
@@ -210,7 +226,6 @@ class Login extends Component {
         });
     }
 
-
 }
 
-export default Login;
+export default Dashboard;

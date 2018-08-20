@@ -197,75 +197,7 @@
     margin-bottom: 80px;
     /* background-color: lightgreen; */
 }
-.event-item {
-    width: 95%;
-    height: 80px;
-    border-radius: 2px;
-    margin-bottom: 15px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px 2px #e6e9ef;
-}
-.event-item-date-1 {
-    position: absolute;
-    top: -2px;
-    left: 30px;
-    width: 30px;
-    height: 20px;
-    font-size: 28px;
-    color: #330d51;
-    font-weight: bold;
-    font-style: normal;
-    line-height: normal;
-    font-stretch: normal;
-    letter-spacing: normal;
-    font-family: 'Gotham-Bold';
-}
-.event-item-date-2 {
-    position: absolute;
-    top: 22px;
-    left: 22px;
-    width: 30px;
-    height: 20px;
-    font-size: 22px;
-    color: #8568dd;
-    font-weight: bold;
-    font-style: normal;
-    line-height: normal;
-    font-stretch: normal;
-    letter-spacing: normal;
-    font-family: 'Gotham-Bold';
-}
-.event-item-title {
-    position: absolute;
-    top: -7px;
-    left: 90px;
-    font-size: 18px;
-    color: #323232;
-    font-weight: bold;
-    font-style: normal;
-    line-height: normal;
-    font-stretch: normal;
-    letter-spacing: normal;
-    font-family: 'Gotham-Bold';
-}
-.event-item-host {
-    position: absolute;
-    top: 25px;
-    left: 90px;
-    font-size: 16px;
-    color: #323232;
-    text-align: left;
-    font-weight: bold;
-    font-style: normal;
-    line-height: normal;
-    font-stretch: normal;
-    font-family: 'Gotham';
-    letter-spacing: normal;
-}
-.event-item-host > span {
-    color: #323232;
-    font-family: 'Gotham-Bold';
-}
+
 .club-detail-see-more-btn {
     position: relative;
     float: right;

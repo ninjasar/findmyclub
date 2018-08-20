@@ -79,3 +79,142 @@
 	border-radius: 25px;
 	display: inline-block;
 }
+
+.event-item {
+    width: 95%;
+	height: 120px;
+	cursor: pointer;
+    border-radius: 2px;
+    margin-bottom: 15px;
+	transition-duration: 0.2s;
+	background-color: #ffffff;
+    box-shadow: 0 0 10px 2px #e6e9ef;
+}
+.event-item:hover {
+	box-shadow: 2px 2px 15px 2px #d7d9df;
+}
+.event-item-host > span {
+    color: #323232;
+    font-family: 'Gotham-Bold';
+}
+.event-left {
+	width: 25%;
+	height: 100%;
+	display: inline-block;
+	/* background-color: lightseagreen; */
+}
+.event-middle {
+	width: 50%;
+	height: 100%;
+	display: inline-block;
+	/* background-color: lightcoral; */
+}
+.event-right {
+	width: 25%;
+	height: 100%;
+	display: inline-block;
+	/* background-color: cornflowerblue; */
+}
+.event-date-area {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	border-radius: 6px;
+	background-color: white;
+	border: solid 1px #dfceeb;
+}
+.event-date-area > p:nth-child(1) {
+	position: absolute;
+	top: 10px;
+	left: 30px;
+	width: 25%;
+	height: 40%;
+	font-size: 25px;
+	color: #330d51;
+	text-align: center;
+	font-family: 'Gotham-Bold';
+}
+.event-date-area > p:nth-child(2) {
+	position: absolute;
+	top: 50px;
+	left: 23px;
+	width: 25%;
+	height: 40%;
+	font-size: 18px;
+	color: #561389;
+	font-family: 'Gotham-Bold';
+}
+.event-info-area {
+	position: absolute;
+	top: 0px;
+	width: 50%;
+	height: 100%;
+	text-align: left;
+	/* background-color: goldenrod; */
+}
+.event-title {
+	font-size: 15px;
+	color: #323232;
+	font-weight: bold;
+	font-style: normal;
+	line-height: normal;
+	font-stretch: normal;
+	letter-spacing: normal;
+	font-family: 'Gotham-Bold';
+}
+.event-subtitle {
+	font-size: 12px;
+	color: #323232;
+	font-style: normal;
+	font-weight: normal;
+	line-height: normal;
+	font-stretch: normal;
+	font-family: 'Gotham';
+	letter-spacing: normal;
+	text-overflow: ellipsis;
+}
+.event-date {
+	font-size: 12px;
+	color: #323232;  
+	font-style: normal;
+	font-weight: normal;
+	line-height: normal;
+	font-stretch: normal;
+	font-family: 'Gotham';
+	letter-spacing: normal;
+}
+.event-location {
+	font-size: 12px;
+	color: #323232;
+	font-style: normal;
+	font-weight: normal;
+	line-height: normal;
+	font-stretch: normal;
+	font-family: 'Gotham';
+	letter-spacing: normal;
+}
+.fa-clock, .fa-map-marker-alt {
+	color: #8568dd;
+}
+.event-calendar-area {
+	position: absolute;
+	top: 0px;
+	left: 75%;
+	padding-top: 10px;
+}
+.fa-calendar-alt {
+	font-size: 20px;
+	color: #330d51;
+	padding-top: 25px;
+}
+.event-calendar-label {
+	font-size: 14px;
+	color: #330d51;
+	line-height: 1.4;
+	font-weight: bold;
+	font-style: normal;
+	text-align: center;
+	font-stretch: normal;
+	letter-spacing: normal;
+	font-family: 'Gotham-Bold';
+}

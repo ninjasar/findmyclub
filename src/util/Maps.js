@@ -138,14 +138,70 @@ export default {
     * @param {Object} _ The event object to use for info gathering.
     * @param {String|Number} key The key used to identify this event component.
     * @param {Function} onClick What to do when an event is clicked. */
-    mapEventToComponent: ({ title, date, host }, key, onClick) => {
+    mapEventToComponent: ({ title, date, host, location }, key, onClick) => {
         return (
-            <div className='event-item' key={key} onClick={() => onClick(title, date, host)}>
+            <div className='event-item' key={key}>
+                <div className='event-left' onClick={() => onClick(title, date, host, key)}>
+                    <div className='event-date-area'>
+                        <p>{date.split(" ")[0]}</p>
+                        <p>{date.split(" ")[1]}</p>
+                    </div>
+                </div>
+                <div className='event-middle' onClick={() => onClick(title, date, host, key)}>
+                    <div className='event-info-area'>
+                        <p className='event-title'>{title}</p>
+                        <p className='event-subtitle'>{host}</p>
+                        <p className='event-date'><span className='far fa-clock'/>&nbsp;&nbsp;{date}</p>
+                        <p className='event-location'><span className='fas fa-map-marker-alt'/>&nbsp;&nbsp;{location}</p>
+                    </div>
+                </div>
+                <div className='event-right' onClick={() => {
+                    console.log('add to calendar');
+                }}>
+                    <div className='event-calendar-area'>
+                        <span className='fas fa-calendar-alt'/>
+                        <p className='event-calendar-label'>Add to calendar</p>
+                    </div>
+                </div>
+{/*                 
                 <h1 className='event-item-date-1'>{date.split(" ")[0]}</h1>
                 <h3 className='event-item-date-2'>{date.split(" ")[1]}</h3>
 
                 <h4 className='event-item-title'>{title}</h4>
-                <p className='event-item-host'>Hosted by <span>{host}</span></p>
+                <p className='event-item-host'>Hosted by <span>{host}</span></p> */}
+            </div>
+        )
+    },
+
+
+    /** Maps a club object to a dashboard component.
+    * @param {Object} club The club object with all the data that needs to be displayed.
+    * @param {String|Number} key The key for identifying the component in the collection view. 
+    * @param {Function} onClick What to do when you click on a club. */
+    mapClubToDashboardComponent: ({ title, tag, image, tagColor }, key, onClick) => {
+        return (
+            <div className='dashboard-club-item' key={key} onClick={() => { onClick(key, title, tag) } }>
+                <img src={image} alt='club' className='dashboard-club-item-image'/>
+                <h4 className='dashboard-club-item-title'>{title}</h4>
+                <div className='dashboard-club-item-tag'>
+                    <div className='dashboard-club-item-tag-bubble'
+                        style={{
+                            backgroundColor: tagColor
+                        }}></div>&nbsp;<p>{tag}</p>
+                </div>
+            </div>
+        )
+    },
+
+
+    /** Maps an umbrella to a component with just at text label. 
+    * @param {String} umbrellaName The name of the umbrella.
+    * @param {String|Number} key The key for identifying the component in the collection view.
+    * @param {Function} onClick What to do when you click the label. */
+    mapUmbrellaToLabelComponent: (umbrellaName, key, onClick) => {
+        return (
+            <div className='dashboard-umbrella-label' key={key} onClick={onClick}>
+                {umbrellaName.substring(0, 18) + '...'}
             </div>
         )
     }

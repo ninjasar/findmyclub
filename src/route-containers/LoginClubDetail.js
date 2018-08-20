@@ -117,8 +117,14 @@ class LoginClubDetail extends Component {
                                 edgeInsets={['10px', '0px', '0px', '0px']}
                                 data={
                                     this.state.upcomingEvents.map((val, index) => {
-                                        return Maps.mapEventToComponent(val, index, (title, date, host) => {
-                                            console.log('CLICKED ON: ', title, date, host);
+                                        return Maps.mapEventToComponent(val, index, (_, __, ___, idx) => {
+                                            if(this.props.onSelectEvent) {
+                                                const items = this.state.upcomingEvents;
+                                                const item = items[idx];
+                                                this.props.onSelectEvent(item);
+                                            } else {
+                                                alert('Nothing here');
+                                            }
                                         })
                                     }).filter((_, index) => {
                                         if(this.state.maxEvents === 2) {
