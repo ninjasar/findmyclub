@@ -129,8 +129,18 @@ class LoginClubMatch extends Component {
                                     })
                                 }/>
 
-                <button className='round-rect-button login-club-matches-finish-btn'>Finish</button>
-                <button className='login-club-matches-skip-btn'>Skip this step</button>
+                <button className='round-rect-button login-club-matches-finish-btn'
+                        onClick={() => {
+                            if(this.props.onNext) {
+                                this.props.onNext();
+                            }
+                        }}>Finish</button>
+                <button className='login-club-matches-skip-btn'
+                        onClick={() => {
+                            if(this.props.onNext) {
+                                this.props.onNext();
+                            }
+                        }}>Skip this step</button>
 			</div>
 		);
 	}

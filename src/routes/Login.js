@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import Constants from '../util/Constants';
 
 /* CONTAINERS */
 import LoginLanding from '../route-containers/LoginLanding';
@@ -7,7 +8,7 @@ import LoginWelcome from '../route-containers/LoginWelcome';
 import LoginInterestSelection from '../route-containers/LoginInterestSelection';
 import LoginMatching from '../route-containers/LoginMatching';
 import LoginClubMatch from '../route-containers/LoginClubMatch';
-import Constants from '../util/Constants';
+import LoginAllSet from '../route-containers/LoginAllSet';
 /* CONTAINERS */
 
 /* OVERLAYS */
@@ -97,10 +98,18 @@ class Login extends Component {
             }}
             onFollowClub={(selectedCard) => {
                 console.log(selectedCard);
+            }}
+            onNext={() => {
+                this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)}/>);
             }}/>);
         }, 5000);
     }
 
+
+    /** Transitions to the dashboard page. */
+    handleGoToDashboard() {
+
+    }
 
 
 
