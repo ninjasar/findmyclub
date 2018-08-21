@@ -204,6 +204,18 @@ export default {
                 {umbrellaName.substring(0, 18) + '...'}
             </div>
         )
+    },
+
+
+    /** Maps an interest to a small component that can be clicked on to show the associated tags. 
+    * @param {Object} interest The interest object to display.
+    * @param {Function} onClick What to do when you click on this item. */
+    mapInterestToProfileComponent: ({ id, title, image }, onClick) => {
+        return (
+            <div className='profile-interest' onClick={() => { onClick(id, title) }}>
+                <img src={image} alt='alt'/>
+            </div>
+        )
     }
 
 }

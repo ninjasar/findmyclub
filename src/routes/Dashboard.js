@@ -12,6 +12,7 @@ import DashboardDiscover from '../route-containers/DashboardDiscover';
 import ClubFilter from '../route-containers/LoginClubFilter';
 import ClubDetail from '../route-containers/LoginClubDetail';
 import EventDetail from '../route-containers/DashboardEventDetail';
+import DashboardProfile from '../route-containers/DashboardProfile';
 /* OVERLAYS */
 
 import AppLogo from '../images/FindMyClub_Logo.svg';
@@ -54,7 +55,7 @@ class Dashboard extends Component {
                 
                 <div className='dashboard-top-bar'>
                     <img src={AppLogo} alt='logo' className='dashboard-app-logo'/>
-                    <img src={''} alt='person' className='dashboard-profile-button'/>
+                    <img src={''} alt='person' className='dashboard-profile-button' onClick={this.showProfile.bind(this)}/>
                 </div>
                 <div className='dashboard-search-bar-area'>
                     <input type='text' 
@@ -142,6 +143,14 @@ class Dashboard extends Component {
             currentTabIndex: 2,
             tabIndicatorLeft: 67
         })
+    }
+
+
+    /** Shows the profile overlay. */
+    showProfile() {
+        this.showOverlay(<DashboardProfile onClose={() => { 
+            this.hideOverlay()
+        }}/>);
     }
 
 
