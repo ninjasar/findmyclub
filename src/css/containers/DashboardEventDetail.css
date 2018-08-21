@@ -58,7 +58,8 @@
     width: 90px;
     height: 100px;
     margin-top: 30px;
-    margin-left: 10px;
+    margin-left: 20px;
+    user-select: none;
     border-radius: 6px;
     background-color: white;
     border: solid 1px #dfceeb;
@@ -92,7 +93,8 @@
 .event-detail-title {
     position: absolute;
     top: 250px;
-    left: 100px;
+    left: 120px;
+    right: 20px;
     font-size: 24px;
     color: #323232;
     font-weight: bold;
@@ -106,13 +108,14 @@
     font-family: 'Gotham-Bold';
 }
 .event-detail-host {
-    position: absolute;
-    top: 320px;
-    left: 100px;
+    position: relative;
+    top: -40px;
+    width: 60%;
+    left: 120px;
     font-size: 14px;
     color: #323232;
     font-weight: bold;
-    padding-top: 20px;
+    /* padding-top: 20px; */
     padding-left: 10px;
     font-style: normal;
     line-height: normal;
@@ -120,6 +123,23 @@
     display: inline-block;
     font-family: 'Gotham';
     letter-spacing: normal;
+    /* background-color: yellowgreen; */
+}
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .event-detail-host {
+        top: -20px;
+    }
+}
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    .event-detail-host {
+        top: -40px;
+    }
 }
 
 .event-detail-event-info-label {

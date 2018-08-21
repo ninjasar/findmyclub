@@ -68,9 +68,15 @@ class Dashboard extends Component {
                     <div className='dashboard-tab-indicator' style={{
                         left: `${this.state.tabIndicatorLeft}%`
                     }}></div>
-                    <div className='dashboard-tab-bar-item' onClick={this.showClubsTab.bind(this)}>My Clubs</div>
-                    <div className='dashboard-tab-bar-item' onClick={this.showEventsTab.bind(this)}>Events</div>
-                    <div className='dashboard-tab-bar-item' onClick={this.showDiscoverTab.bind(this)}>Discover</div>
+                    <div className='dashboard-tab-bar-item' onClick={this.showClubsTab.bind(this)}>
+                        <span className='fa fa-user'/>&nbsp;My Clubs
+                    </div>
+                    <div className='dashboard-tab-bar-item' onClick={this.showEventsTab.bind(this)}>
+                        <span className='fas fa-comments'/>&nbsp;Events
+                    </div>
+                    <div className='dashboard-tab-bar-item' onClick={this.showDiscoverTab.bind(this)}>
+                        <span className='fas fa-search'/>&nbsp;Discover
+                    </div>
                 </div>
 			</div>
 		);
