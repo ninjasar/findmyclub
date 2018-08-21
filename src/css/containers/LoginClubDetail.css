@@ -15,6 +15,7 @@
     cursor: pointer;
     font-size: 20px;
     background: none;
+    z-index: 1000000;
     margin-right: 10px;
     color: lightgray;
     text-decoration: none;

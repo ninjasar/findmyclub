@@ -110,6 +110,7 @@
     position: relative;
     left: 0px;
     width: 100%;
+    height: calc(100% - 60px);
     /* background-color: aquamarine; */
 }
 .dashboard-club-item {

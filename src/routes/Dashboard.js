@@ -126,7 +126,12 @@ class Dashboard extends Component {
                                             }}/>);
             }}
             onRefine={() => {
-                this.showOverlay(<ClubFilter onClose={() => this.hideOverlay()}/>);
+                this.showOverlay(<ClubFilter onClose={() => { this.hideOverlay() }}
+                                            onFiltered={(filteredResults) => {
+                                                console.log('Filtered: ', filteredResults);
+                                                document.body.scroll({ top: 0, behavior: 'instant' });
+                                                this.hideOverlay();
+                                            }}/>);
             }}/>,
             currentTabIndex: 2,
             tabIndicatorLeft: 67

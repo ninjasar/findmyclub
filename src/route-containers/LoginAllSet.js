@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import '../css/containers/LoginAllSet.css';
 
 class LoginAllSet extends Component {
@@ -28,12 +29,9 @@ class LoginAllSet extends Component {
                 <p className='login-allset-description'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae mauris suscipit, aliquet ex vitae, maximus sem. Etiam fringilla justo id leo molestie consectetur. Duis felis odio, sodales a varius a, vulputate vitae diam.
                 </p>
-                <button className='round-rect-button login-allset-next-btn'
-                        onClick={() => {
-                            if(this.props.onNext) {
-                                this.props.onNext();
-                            }
-                        }}>Finish</button>
+                <NavLink to='dashboard' className='round-rect-button login-allset-next-btn'>
+                    <p>Finish</p>
+                </NavLink>
 			</div>
 		);
 	}

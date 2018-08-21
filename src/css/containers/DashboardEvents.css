@@ -31,3 +31,11 @@
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
 }
+
+.dashboard-events-event-list {
+    position: relative;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 90px);
+    /* background-color: aquamarine; */
+}

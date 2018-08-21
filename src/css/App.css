@@ -2,6 +2,11 @@
 	text-align: center; 
 }
 
+.overlay {
+	position: fixed;
+	overflow-y: auto;
+}
+
 .round-rect-button {
 	height: 40px;
 	border: none;
@@ -85,7 +90,8 @@
 	height: 120px;
 	cursor: pointer;
     border-radius: 2px;
-    margin-bottom: 15px;
+	margin-bottom: 15px;
+	padding-bottom: 10px;
 	transition-duration: 0.2s;
 	background-color: #ffffff;
     box-shadow: 0 0 10px 2px #e6e9ef;
@@ -100,48 +106,53 @@
 .event-left {
 	width: 25%;
 	height: 100%;
+	text-align: center;
 	display: inline-block;
 	/* background-color: lightseagreen; */
 }
 .event-middle {
-	width: 50%;
+	width: 55%;
 	height: 100%;
 	display: inline-block;
 	/* background-color: lightcoral; */
 }
 .event-right {
-	width: 25%;
+	width: 20%;
 	height: 100%;
 	display: inline-block;
 	/* background-color: cornflowerblue; */
 }
 .event-date-area {
-	position: absolute;
+	position: relative;
 	top: 0px;
 	left: 0px;
+	width: 80%;
+	height: 80px;
+	margin-left: auto;
+	margin-right: auto;
 	border-radius: 6px;
-	background-color: white;
 	border: solid 1px #dfceeb;
 }
 .event-date-area > p:nth-child(1) {
-	position: absolute;
-	top: 10px;
-	left: 30px;
-	width: 25%;
+	position: relative;
+	top: -5px;
 	height: 40%;
 	font-size: 25px;
 	color: #330d51;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 	font-family: 'Gotham-Bold';
 }
 .event-date-area > p:nth-child(2) {
-	position: absolute;
-	top: 50px;
-	left: 23px;
-	width: 25%;
+	position: relative;
+	top: -30px;
 	height: 40%;
 	font-size: 18px;
 	color: #561389;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 	font-family: 'Gotham-Bold';
 }
 .event-info-area {
@@ -150,6 +161,7 @@
 	width: 50%;
 	height: 100%;
 	text-align: left;
+	padding-left: 10px;
 	/* background-color: goldenrod; */
 }
 .event-title {
@@ -199,21 +211,24 @@
 .event-calendar-area {
 	position: absolute;
 	top: 0px;
-	left: 75%;
-	padding-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 .fa-calendar-alt {
-	font-size: 20px;
+	font-size: 1rem;
 	color: #330d51;
-	padding-top: 25px;
+	padding-top: 40px;
+	padding-right: 10px;
 }
 .event-calendar-label {
-	font-size: 14px;
+	font-size: 0.8rem;
 	color: #330d51;
 	line-height: 1.4;
 	font-weight: bold;
 	font-style: normal;
 	text-align: center;
+	padding-right: 10px;
 	font-stretch: normal;
 	letter-spacing: normal;
 	font-family: 'Gotham-Bold';
