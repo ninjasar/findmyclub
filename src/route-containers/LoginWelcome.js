@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/containers/LoginWelcome.css';
 
-import BannerImage from '../images/WelcomeBanner.svg';
+import BannerImage from '../images/welcome_image.png';
 
 class LoginWelcome extends Component {
 

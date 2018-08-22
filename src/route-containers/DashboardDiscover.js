@@ -80,7 +80,7 @@ class DashboardDiscover extends Component {
                                     this.props.onRefine();
                                 }
                             }}>
-                        <span className='fa fa-filter'/>
+                        <span className='fas fa-sliders-h'/>
                     </button>
                 </div>
                 <CollectionView className='dashboard-discover-umbrellas-list'

@@ -100,9 +100,6 @@ class Login extends Component {
                                                 }}/>);
                 console.log(selectedCard);
             }}
-            onFollowClub={(selectedCard) => {
-                console.log(selectedCard);
-            }}
             onNext={() => {
                 this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)}/>);
             }}/>);

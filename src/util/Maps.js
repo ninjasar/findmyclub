@@ -2,20 +2,30 @@ import React from 'react';
 import CollectionView from '../components/CollectionView';
 
 // club to card
-const mCtC = ({ image, title, tags, tagColor }, key, onClubClick, onFollowClick) => {
+const mCtC = ({ image, title, tags, tagColor, followed }, key, onClubClick, onFollowClick) => {
     return (
         <div className='club-item' key={key}>
-            <div className='club-card' onClick={() => { onClubClick(key, title, tags) }}>
-                <img src={image} alt='club-preview' className='club-card-image'/>
+            <div className='club-card'>
+                <div className='club-card-top' onClick={() => { onClubClick(key, title, tags) }}>
+                    <div className='club-card-image-area'>
+                        <img src={image} alt='club-preview' className='club-card-image'/>
+                    </div>
 
-                <h3 className='club-card-title'>{title}</h3>
-                <div className='club-card-tags' style={{
-                    backgroundColor: tagColor 
-                }}>{tags}</div>
+                    <h3 className='club-card-title'>{title}</h3>
+                    <div className='club-card-tags' style={{
+                        backgroundColor: tagColor 
+                    }}></div>
+                    <p className='club-card-tags-label'>{tags}</p>
+                </div>
+                <div className='club-card-follow-button' 
+                    onClick={() => { onFollowClick(key, title, tags, followed) }}
+                    style={{
+                        color: followed === true ? 'white' : '#330d51',
+                        backgroundColor: followed === true ? '#330d51' : 'white'
+                    }}>
+                    <span className={followed === true ? 'fa fa-check' : 'fa fa-plus'}/> Follow
+                </div>
             </div>
-
-            <div className='club-card-follow-button'
-                onClick={() => { onFollowClick(key, title, tags) }}>+ Follow</div>
         </div>
     )
 }

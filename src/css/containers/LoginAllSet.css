@@ -11,19 +11,38 @@
 
 .login-allset-banner-image-area {
     width: 100vw;
-    height: 35%;
+    height: 30%;
     margin-bottom: 30px;
-    background-color: indianred;
+    /* background-color: indianred; */
 }
 .login-allset-banner-image {
     width: 100%;
     height: 100%;
+    border-radius: 0px 0px 60% 60%;
+}
+/* Laptops */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    .login-allset-banner-image {
+        border-radius: 0px 0px 0px 0px;
+    }
+}
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) {
+    .login-allset-banner-image {
+        border-radius: 0px 0px 0px 0px;
+    }
 }
 
 .login-allset-icon {
     font-size: 50px;
     color: #8568dd;
-    margin-top: -10px;
+    margin-top: 0px;
 }
 
 .login-allset-header {

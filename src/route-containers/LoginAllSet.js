@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import BannerImage from '../images/allset_image.png';
 import '../css/containers/LoginAllSet.css';
 
 class LoginAllSet extends Component {
@@ -21,7 +22,7 @@ class LoginAllSet extends Component {
 		return (
 			<div className="LoginAllSet container">
 				<div className='login-allset-banner-image-area'>
-                    <img src={''} alt='All Set' className='login-allset-banner-image'/>
+                    <img src={BannerImage} alt='All Set' className='login-allset-banner-image'/>
                 </div>
 
                 <p className='login-allset-icon'><span className='far fa-check-circle'/></p>
