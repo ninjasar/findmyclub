@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import Login from './routes/Login';
+import Dashboard from './routes/Dashboard';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { createStore } from 'redux';
 import './fonts/fonts.css';
 import './css/App.css';
-import Dashboard from './routes/Dashboard';
+
+
+
+// Create the redux store
+const defaultState = {
+    
+}
+const ReduxStore = (state = defaultState, action) => {
+    switch (action.type) {
+        default:
+            break;
+    }
+    return state;
+};
+const store = createStore(ReduxStore);
+
 
 class App extends Component {
 
@@ -21,7 +38,7 @@ class App extends Component {
     *****************************/
 
 	render() {
-		return (
+        return (
 			<Router>
                 <div className="App">
                     <Route exact path='/' component={Login}/>

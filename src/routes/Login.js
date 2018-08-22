@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import Constants from '../util/Constants';
+import Networking from '../util/Networking';
 
 /* CONTAINERS */
 import LoginLanding from '../route-containers/LoginLanding';
@@ -39,7 +40,10 @@ class Login extends Component {
 
     componentDidMount() {
         setTimeout(() => {
-            this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
+            this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}
+                                                    onError={(err) => {
+                                                        console.log(err);
+                                                    }}/>, 800);
         }, 200);
     }
 
