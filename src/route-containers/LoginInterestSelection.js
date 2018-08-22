@@ -84,82 +84,82 @@ class LoginInterestSelection extends Component {
         return [{
             id: 0,
             title: 'Academic',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '📚',
             selected: false
         },{
             id: 1,
             title: 'Community Engagement',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '👥',
             selected: false
         },{
             id: 2,
             title: 'Culture',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '👩',
             selected: false
         },{
             id: 3,
             title: 'Fraternity and Sorority Life',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '🎉',
             selected: false
         },{
             id: 4,
             title: 'Media and Publication',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '📱',
             selected: false
         },{
             id: 5,
             title: 'Health Professions and Clinical Interests',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '❤️',
             selected: false
         },{
             id: 6,
             title: 'Performance and Arts',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '🎨',
             selected: false
         },{
             id: 7,
             title: 'Politics and Advocacy',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '🧠',
             selected: false
         },{
             id: 8,
-            title: 'Professionaal Development',
-            image: require('../images/FindMyClub_Logo.svg'),
+            title: 'Professional Development',
+            image: '👨‍🎓',
             selected: false
         },{
             id: 9,
             title: 'Religion and Spirituality',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '🤷‍♂️',
             selected: false
         },{
             id: 10,
             title: 'Science and Technology',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '💻',
             selected: false
         },{
             id: 11,
             title: 'Self-Identity',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '🙋‍♂️',
             selected: false
         },{
             id: 12,
             title: 'Social',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '💃',
             selected: false
         },{
             id: 13,
             title: 'Sports and Games',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '🏀',
             selected: false
         },{
             id: 14,
             title: 'Student Governance',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '🕴',
             selected: false
         },{
             id: 15,
             title: 'Students with Different Abilities',
-            image: require('../images/FindMyClub_Logo.svg'),
+            image: '⭐️',
             selected: false
         }]
     }

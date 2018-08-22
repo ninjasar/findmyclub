@@ -63,7 +63,10 @@ export default {
                     onClick={() => {
                         onClick(id);
                     }}>
-            <img src={image} alt='interest-item' className={props.className + ' interest-image'}/>
+            {/* <img src={image} alt='interest-item' className={props.className + ' interest-image'}/> */}
+            <span className={`${props.className + ' interest-image'}`}>
+                {image}
+            </span>
             <h2 className={props.className + ' interest-title'}>{title}</h2>
         </div>
     },

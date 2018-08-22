@@ -20,6 +20,7 @@ class LoginClubDetail extends Component {
                 interest: props.club.category || '',
                 category: props.club.category || '',
                 umbrella: props.club.umbrella || 'Umbrella',
+                followed: props.club.followed || false
             },
             upcomingEvents: [{
                 title: 'First Meeting',
@@ -73,8 +74,15 @@ class LoginClubDetail extends Component {
                         }}><span className='fa fa-times'/></button>
 				<img className='club-detail-background-image' src={this.state.club.image} alt='image-preview'/>
 
-                <button className='pill-button club-detail-follow-btn'>
-                    <span className='fa fa-plus'/>&nbsp;Follow
+                <button className='pill-button club-detail-follow-btn' onClick={() => {
+                    this.setState({
+                        club: { ...this.state.club, followed: !this.state.club.followed }
+                    });
+                }} style={{
+                    color: this.state.club.followed === true ? 'white' : '#330d51',
+                    backgroundColor: this.state.club.followed === true ? '#330d51' : 'white'
+                }}>
+                    <span className={this.state.club.followed === true ? 'fa fa-check' : 'fa fa-plus'}/>&nbsp;Follow
                 </button>
                 <button className='pill-button club-detail-go-to-engage-btn'>
                     <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage

@@ -83,10 +83,12 @@
     position: absolute;
     top: 50px;
     width: 54px;
-    height: 52px;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 5px;
     border-radius: 100%;
     left: calc(140px / 2 - 15%);
-    background-color: lightblue;
+    background-color: #d7d7e1;
 }
 .interest-title {
     position: absolute;
