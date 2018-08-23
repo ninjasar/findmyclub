@@ -65,9 +65,9 @@ const followClub = async (clubID) => {
 
 
 export default {
-    getParameterByName: getParameterByName,
-    authenticateUser: authenticateUser,
-    getInterests: getInterests,
-    getClubs: getClubs,
-    followClub: followClub
+    getParameterByName,
+    authenticateUser,
+    getInterests,
+    getClubs,
+    followClub,
 }
