@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
+import Networking from '../util/Networking';
 import '../css/containers/DashboardClubs.css';
 
 class DashboardClubs extends Component {
@@ -14,43 +15,35 @@ class DashboardClubs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clubs: [{
-                title: 'Art Club',
-                tag: 'Art',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'Pi Beta Phi',
-                tag: 'Social',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'Tech@NYU',
-                tag: 'Tech',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'Lacrosse',
-                tag: 'Sports',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'BUGS',
-                tag: 'Tech',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'Basketball',
-                tag: 'Sports',
-                image: '',
-                tagColor: '#3cced9'
-            }],
+            clubs: [],
 
             umbrellas: ['College of Arts and Science', 'Tisch School of the Arts', 'Stern School of Business',
                         'Gallatain School of Individualized Studies', 'Tandon School of Engineering',
                         'School of Professional Studies'],
             umbrellaSearchFocused: false
         }
+    }
+
+
+    /** REMEMBER TO CHANGE THIS LATER: This page should only show the clubs that you are part of, not
+     * all the clubs at nyu.
+     */
+    async componentDidMount() {
+        var allClubs = [];
+
+        // Get all the interests, then all those clubs.
+        const allItrs = await Networking.getInterests();
+        for(var i in allItrs) {
+            const clubs = await Networking.getClubs(allItrs[i].ID);
+            allClubs = allClubs.concat(clubs);
+        }
+
+        // Set the state to all of the clubs.
+        allClubs = allClubs.map((val) => {
+            return { ...val, image: '', tag: 'art', tagColor: 'cyan' }
+        });
+        this.setState({ clubs: allClubs });
+        console.log(allClubs);
     }
    
 

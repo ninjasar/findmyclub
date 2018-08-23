@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
+import Networking from '../util/Networking';
 import '../css/containers/DashboardDiscover.css';
 
 class DashboardDiscover extends Component {
@@ -14,43 +15,31 @@ class DashboardDiscover extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clubs: [{
-                title: 'Art Club',
-                tag: 'Art',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'Pi Beta Phi',
-                tag: 'Social',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'Tech@NYU',
-                tag: 'Tech',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'Lacrosse',
-                tag: 'Sports',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'BUGS',
-                tag: 'Tech',
-                image: '',
-                tagColor: '#3cced9'
-            },{
-                title: 'Basketball',
-                tag: 'Sports',
-                image: '',
-                tagColor: '#3cced9'
-            }],
+            clubs: [],
 
             umbrellas: ['College of Arts and Science', 'Tisch School of the Arts', 'Stern School of Business',
                         'Gallatain School of Individualized Studies', 'Tandon School of Engineering',
                         'School of Professional Studies'],
             umbrellaSearchFocused: false
         }
+    }
+
+    async componentDidMount() {
+        var allClubs = [];
+
+        // Get all the interests, then all those clubs.
+        const allItrs = await Networking.getInterests();
+        for(var i in allItrs) {
+            const clubs = await Networking.getClubs(allItrs[i].ID);
+            allClubs = allClubs.concat(clubs);
+        }
+
+        // Set the state to all of the clubs.
+        allClubs = allClubs.map((val) => {
+            return { ...val, image: '', tag: 'art', tagColor: 'cyan' }
+        });
+        this.setState({ clubs: allClubs });
+        console.log(allClubs);
     }
 
 
@@ -97,8 +86,8 @@ class DashboardDiscover extends Component {
                 <CollectionView className='dashboard-discover-club-list'
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
-                                    this.state.clubs.map((val, index) => {
-                                        return Maps.mapClubToDashboardComponent(val, index, this.didSelectClub.bind(this));
+                                    this.state.clubs.map((val) => {
+                                        return Maps.mapClubToDashboardComponent(val, this.didSelectClub.bind(this));
                                     })
                                 }/>
 			</div>
@@ -113,10 +102,10 @@ class DashboardDiscover extends Component {
     *****************************/
 
     /** What to do when you click on a club. */
-    didSelectClub(key, title, tag) {
+    didSelectClub(ID, Name, tags) {
         if(this.props.onSelectClub) {
             const items = this.state.clubs;
-            const item = items[key];
+            const item = items.filter((val) => val.ID === ID)[0];
             this.props.onSelectClub(item);
         }
     }

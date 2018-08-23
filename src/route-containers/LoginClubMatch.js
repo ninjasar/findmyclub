@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
+import Networking from '../util/Networking';
 import '../css/containers/LoginClubMatch.css';
 
 class LoginClubMatch extends Component {
@@ -14,84 +15,15 @@ class LoginClubMatch extends Component {
 
     constructor(props) {
         super(props);
-        
         this.state = {
-            selectedInterests: props.selectedInterests || ['Art', 'Sports', 'Social', 'Tech'],
-            interestColors: ['#3cced9', '#f5a623', '#ff7bac', 'crimson'],
-            matchingClubs: props.matchingClubs || [{
-                category: 'Art',
-                title: 'Art Club',
-                tags: 'art',
-                followed: false
-            }, {
-                category: 'Art',
-                title: 'Art Club',
-                tags: 'art',
-                followed: false
-            }, {
-                category: 'Art',
-                title: 'Art Club',
-                tags: 'art',
-                followed: false
-            }, {
-                category: 'Sports',
-                title: 'Basketball',
-                tags: 'sports',
-                followed: false
-            }, {
-                category: 'Sports',
-                title: 'Basketball',
-                tags: 'sports',
-                followed: false
-            }, {
-                category: 'Sports',
-                title: 'Basketball',
-                tags: 'sports',
-                followed: false
-            }, {
-                category: 'Social',
-                title: 'Pi Beta Phi',
-                tags: 'greek life',
-                followed: false
-            }, {
-                category: 'Social',
-                title: 'Pi Beta Phi',
-                tags: 'greek life',
-                followed: false
-            }, {
-                category: 'Social',
-                title: 'Pi Beta Phi',
-                tags: 'greek life',
-                followed: false
-            }, {
-                category: 'Social',
-                title: 'Pi Beta Phi',
-                tags: 'greek life',
-                followed: false
-            }, {
-                category: 'Tech',
-                title: 'Tech@NYU',
-                tags: 'tech',
-                followed: false
-            }, {
-                category: 'Tech',
-                title: 'Tech@NYU',
-                tags: 'tech',
-                followed: false
-            }, {
-                category: 'Tech',
-                title: 'Tech@NYU',
-                tags: 'tech',
-                followed: false
-            }, {
-                category: 'Tech',
-                title: 'Tech@NYU',
-                tags: 'tech',
-                followed: true
-            }],
-
-            maxPerCategory: [2, 2, 2, 2],
-            
+            /* Of the form:
+                {
+                    interestID: [Array of Clubs]
+                }
+            */
+            clubMatches: props.clubMatches || {},
+            clubInterests: props.interests || {},
+        
             selectedInterest: '',
             selectedClubs: [],
             selectedIntersetColor: 'orange',
@@ -99,6 +31,11 @@ class LoginClubMatch extends Component {
             clubFilterOveralay: <div></div>
         }
     }
+
+    componentDidMount() {
+        console.log(this.props.clubMatches);
+    }
+
 
 
 	/****************************
@@ -111,6 +48,7 @@ class LoginClubMatch extends Component {
 		return (
 			<div className="LoginClubMatch container">
                 {this.state.clubFilterOveralay}
+                {/* The see more overlay. */}
                 <div className='club-detail-list-view' style={{ 
                         top: '50%',
                         left: '50%',
@@ -136,7 +74,7 @@ class LoginClubMatch extends Component {
                     <div className='club-detail-body'>
                         <h1 className='club-detail-list-section-title'>{this.state.selectedInterest}</h1>
                         <h1 className='club-detail-list-section-subtitle'>
-                            We found <span style={{ color: this.state.selectedIntersetColor }}>{this.state.selectedClubs.length} club(s)</span> that match your interest.
+                            We found <span style={{ color: 'cyan' }}>{this.state.selectedClubs.length} club(s)</span> that match your interest.
                         </h1>
 
                         <CollectionView className='club-detail-list-club-list'
@@ -144,24 +82,20 @@ class LoginClubMatch extends Component {
                                         orientation={CollectionView.Orientation.vertical}
                                         edgeInsets={['20px', '0px', '20px', '0px']}
                                         data={
-                                            this.state.selectedClubs.map((val, index) => {
-                                                return Maps.mapClubToComponent({ ...val, tagColor: this.state.selectedIntersetColor }, 
-                                                                                index,
+                                            this.state.selectedClubs.map((val) => {
+                                                return Maps.mapClubToComponent({ ...val, tagColor: 'cyan' }, 
                                                                                 this.didSelectClubCard.bind(this),
-                                                                                (key, title, tags, followed) => {
-                                                                                    const n = this.didFollowClubCard(key, title, tags, followed);
-                                                                                    this.setState({ selectedClubs: n }, () => {
-                                                                                        this.forceUpdate();
-                                                                                    })
-                                                                                });
+                                                                                this.didFollowClubCard.bind(this));
                                             })
                                         }/>
                         </div>
                     </div>
 
+
+                {/* The actual club matches page. */}
                 <div className='login-club-matches-header'>
                     <h1 className='login-club-matches-title'>
-                        <span>{this.state.matchingClubs.length}</span>&nbsp;clubs match your interests perfectly!
+                        {/* <span>{this.state.matchingClubs.length}</span>&nbsp;clubs match your interests perfectly! */}
                     </h1>
                     <p className='login-club-matches-subtitle'>Find out more about these by clicking on them!</p>
 
@@ -183,16 +117,7 @@ class LoginClubMatch extends Component {
                                     edgeInsets={['20px', '0px', '30px', '0px']}
                                     isScrollEnabled={false}
                                     data={
-                                        this.state.selectedInterests.map((val, index) => {
-                                            const clubs = this.state.matchingClubs.filter((val2) => val2.category === val);
-                                            const maxAt = this.state.maxPerCategory[index];
-                                            const tagColor = this.state.interestColors[index];
-
-                                            return Maps.mapInterestWithClubsToComponent(val, index, clubs, tagColor, maxAt, (c) => {
-                                                this.handleSeeMore(val, c, tagColor);
-                                            }, 
-                                            this.didSelectClubCard.bind(this), this.didFollowClubCard.bind(this));
-                                        })
+                                        this.populateClubs()
                                     }/>
 
                     <button className='round-rect-button login-club-matches-finish-btn'
@@ -224,55 +149,32 @@ class LoginClubMatch extends Component {
     *****************************/
 
     /** What to do when you click on a club card. */
-    didSelectClubCard(key, title, tags) {
+    didSelectClubCard(ID, Name, tags) {
         if(this.props.onSelectClub) {
-            const items = this.state.matchingClubs.filter((val) => val.tags === tags);
-            const item = items[key];
+            const clubs = Object.values(this.state.clubMatches).map((val) => val);
+            const flat = clubs.reduce((acc, x) => acc.concat(x));
+            const _item = flat.filter((val) => val.ID === ID)[0];
+            const item = { ..._item, image: '', tags: 'art', tagColor: 'cyan', followed: false };
             this.props.onSelectClub(item);
         }
     }
 
 
     /** What to do when you click on the follow button for a club card. */
-    didFollowClubCard(key, title, tags, followed) {
-        // Update the item in the state.
-        const items = this.state.matchingClubs.filter((val) => val.tags === tags);
-        const selected = items[key];
-
-        const correctIndex = this.state.matchingClubs.indexOf(selected);
-        selected.followed = !selected.followed;
-        const n = this.state.matchingClubs;
-        n[correctIndex] = selected;
-        this.setState({ matchingClubs: n });
-
-        // Update the data in the list.
-        const list = this.refs['login-club-matches-list'];
-        const newData = this.state.selectedInterests.map((val, index) => {
-            const clubs = this.state.matchingClubs.filter((val2) => val2.category === val);
-            const maxAt = this.state.maxPerCategory[index];
-            const tagColor = this.state.interestColors[index];
-
-            return Maps.mapInterestWithClubsToComponent(val, index, clubs, tagColor, maxAt, (c) => {
-                this.handleSeeMore(val, c, tagColor);
-            }, 
-            this.didSelectClubCard.bind(this), this.didFollowClubCard.bind(this));
-        })
-
-        list.reloadData(newData);
-        console.log(list);
-        return n.filter((val) => val.tags === tags);
+    didFollowClubCard(ID, Name, tags) {
+        console.log(ID);
+        Networking.followClub(ID);
     }
 
 
     /** Shows a view that has all of the clubs related to a particular interest. 
-    * @param {String} interest The name of the interest.
-    * @param {Array} clubs The full list of clubs related to particualr interest.
+    * @param {String} interestWithClubs The name and clubs associated with a category.
     * @param {String} interestColor The color of the interest highlighting. */
-    handleSeeMore(interest, clubs, interestColor) {
+    handleSeeMore(interestWithClubs, interestColor) {
         $('.club-detail-list-view').css('visibility', 'visible');
         this.setState({
-            selectedClubs: clubs,
-            selectedInterest: interest,
+            selectedClubs: interestWithClubs.clubs,
+            selectedInterest: interestWithClubs.ID,
             selectedIntersetColor: interestColor,
         }, () => {
             $('.club-detail-list-view').animate({
@@ -320,9 +222,28 @@ class LoginClubMatch extends Component {
 
     /****************************
     *                           *
-    *          OVERLAY          *
+    *           OTHER           *
     *                           *
     *****************************/
+
+    populateClubs() {
+        const clubs = Object.keys(this.state.clubMatches).map((val) => {
+            const name = this.state.clubInterests[val];
+            return { 
+                ID: name,
+                clubs: this.state.clubMatches[val].map((val2) => {
+                    return { ...val2, image: '', tags: 'art', tagColor: 'cyan', followed: false }
+                })
+            };
+        });
+        const mapped = clubs.map((val) => {
+            return Maps.mapInterestWithClubsToComponent(val, (c) => {
+                this.handleSeeMore(val, c, 'cyan');
+            }, this.didSelectClubCard.bind(this), this.didFollowClubCard.bind(this));
+        })
+
+        return mapped;
+    }
 
 }
 

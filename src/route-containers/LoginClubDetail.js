@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Maps from '../util/Maps';
+import Networking from '../util/Networking';
 import CollectionView from '../components/CollectionView';
 import '../css/containers/LoginClubDetail.css';
 
@@ -15,12 +16,11 @@ class LoginClubDetail extends Component {
         super(props);
         this.state = {
             club: {
-                title: props.club.title || '',
-                image: props.club.image || '',
-                interest: props.club.category || '',
-                category: props.club.category || '',
-                umbrella: props.club.umbrella || 'Umbrella',
-                followed: props.club.followed || false
+                ID: props.club.ID || '',
+                Name: props.club.Name || '',
+                image: '',
+                category: props.club.CategoryID || '',
+                umbrella: props.club.CategoryID || 'Umbrella',
             },
             upcomingEvents: [{
                 title: 'First Meeting',
@@ -55,6 +55,15 @@ class LoginClubDetail extends Component {
             maxEvents: 2
         }
     }
+
+    async componentDidMount() {
+        const intrs = await Networking.getInterests();
+        const categoryName = intrs.filter((val) => val.ID === this.state.club.category)[0];
+        this.setState({
+            club: { ...this.state.club, category: categoryName.Name, umbrella: categoryName.Name }
+        })
+    }
+
    
 
 	/****************************
@@ -74,24 +83,17 @@ class LoginClubDetail extends Component {
                         }}><span className='fa fa-times'/></button>
 				<img className='club-detail-background-image' src={this.state.club.image} alt='image-preview'/>
 
-                <button className='pill-button club-detail-follow-btn' onClick={() => {
-                    this.setState({
-                        club: { ...this.state.club, followed: !this.state.club.followed }
-                    });
-                }} style={{
-                    color: this.state.club.followed === true ? 'white' : '#330d51',
-                    backgroundColor: this.state.club.followed === true ? '#330d51' : 'white'
-                }}>
+                <button className='pill-button club-detail-follow-btn'>
                     <span className={this.state.club.followed === true ? 'fa fa-check' : 'fa fa-plus'}/>&nbsp;Follow
                 </button>
                 <button className='pill-button club-detail-go-to-engage-btn'>
                     <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
                 </button>
 
-                <h1 className='club-detail-title'>{this.state.club.title}</h1>
-                <p className='club-detail-information'><span>Interest</span> {this.state.club.category}</p>
+                <h1 className='club-detail-title'>{this.state.club.Name}</h1>
+                <p className='club-detail-information'><span>Interest</span> {this.state.club.Name}</p>
                 <p className='club-detail-information'><span>Category</span> {this.state.club.category}</p>
-                <p className='club-detail-information'><span>Umbrella</span> {this.state.club.category}</p>
+                <p className='club-detail-information'><span>Umbrella</span> {this.state.club.umbrella}</p>
 
                 <p className='club-detail-description'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor tellus at sem ornare fermentum. Maecenas et semper nunc, id accumsan ante. Fusce fringilla mi turpis. Donec nec tellus placerat, convallis leo eu, fringilla enim. Maecenas blandit feugiat mi, at porta augue vestibulum sed. Maecenas consectetur egestas mi, ut ultrices risus viverra nec. Donec fringilla dui non ex maximus, vitae finibus nisi egestas.

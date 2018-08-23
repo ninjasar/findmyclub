@@ -2,23 +2,23 @@ import React from 'react';
 import CollectionView from '../components/CollectionView';
 
 // club to card
-const mCtC = ({ image, title, tags, tagColor, followed }, key, onClubClick, onFollowClick) => {
+const mCtC = ({ image, ID, Name, tags, tagColor, followed }, onClubClick, onFollowClick) => {
     return (
-        <div className='club-item' key={key}>
+        <div className='club-item' key={ID}>
             <div className='club-card'>
-                <div className='club-card-top' onClick={() => { onClubClick(key, title, tags) }}>
+                <div className='club-card-top' onClick={() => { onClubClick(ID, Name, tags) }}>
                     <div className='club-card-image-area'>
                         <img src={image} alt='club-preview' className='club-card-image'/>
                     </div>
 
-                    <h3 className='club-card-title'>{title}</h3>
+                    <h3 className='club-card-title'>{Name}</h3>
                     <div className='club-card-tags' style={{
                         backgroundColor: tagColor 
                     }}></div>
                     <p className='club-card-tags-label'>{tags}</p>
                 </div>
                 <div className='club-card-follow-button' 
-                    onClick={() => { onFollowClick(key, title, tags, followed) }}
+                    onClick={() => { onFollowClick(ID, Name, tags) }}
                     style={{
                         color: followed === true ? 'white' : '#330d51',
                         backgroundColor: followed === true ? '#330d51' : 'white'
@@ -53,56 +53,54 @@ export default {
     * @param {Object} _ The data to populate the component with.
     * @param {Object} props Any other properties that need to be passed to the rendered component. 
     * @param {Function} onClick What should happen when you click on this item. */
-    mapInterestToComponent: ({ id, title, image, selected }, props, onClick) => {
-        return <div key={id} 
+    mapInterestToComponent: ({ ID, Name, image, selected }, props, onClick) => {
+        return <div key={ID} 
                     className={props.className + ' interest-item'}
                     style={{
                         backgroundColor: selected ? '#f3edf7' : 'unset',
                         border: selected ? '2px solid #dfceeb' : 'none'
                     }}
                     onClick={() => {
-                        onClick(id);
+                        onClick(ID);
                     }}>
             {/* <img src={image} alt='interest-item' className={props.className + ' interest-image'}/> */}
             <span className={`${props.className + ' interest-image'}`}>
                 {image}
             </span>
-            <h2 className={props.className + ' interest-title'}>{title}</h2>
+            <h2 className={props.className + ' interest-title'}>{Name}</h2>
         </div>
     },
 
 
     /** Maps an interest to a cell with clubs inside of it.
-    * @param {String} interest The name of the interest 
-    * @param {String|Number} key The key to use for this list item. 
-    * @param {Array} clubs The clubs that match the interest. 
-    * @param {String} interestColor The color to use on the subtitle label.
-    * @param {Number} max The maximum number of items to show. 
+    * @param {String} interestWithClubs Object where the key is the interest name and the value is array of clubs.
     * @param {Function} onSeeMore What to do when you click see more (or see less).
     * @param {Function} onClubClick What to do when you click the club card.
     * @param {Function} onFollowClick What to do when you click the follow button. */
-    mapInterestWithClubsToComponent: (interest, key, clubs, interestColor, max, onSeeMore, onClubClick, onFollowClick) => {
+    mapInterestWithClubsToComponent: (interestWithClubs, onSeeMore, onClubClick, onFollowClick) => {
+        const name = interestWithClubs.ID;
+        const clubs = interestWithClubs.clubs;
         return (
-            <div className='login-club-matches-category-section' key={key}>
-                <h1 className='login-club-matches-category-section-title'>{interest}</h1>
+            <div className='login-club-matches-category-section' key={name}>
+                <h1 className='login-club-matches-category-section-title'>{name}</h1>
                 <h1 className='login-club-matches-category-section-subtitle'>
-                    We found <span style={{ color: interestColor }}>{clubs.length} club(s)</span> that match your interest.
+                    We found <span style={{ color: 'cyan' }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 
                 <CollectionView className='login-club-matches-club-list'
                                 orientation={CollectionView.Orientation.vertical}
                                 edgeInsets={['20px', '0px', '10px', '0px']}
                                 data={
-                                    clubs.map((val, index) => {
-                                        return mCtC({ ...val, tagColor: interestColor }, index, onClubClick, onFollowClick);
+                                    clubs.map((val) => {
+                                        return mCtC({ ...val, tagColor: 'cyan' }, onClubClick, onFollowClick);
                                     }).filter((_, index, __) => {
-                                        return index < max;
+                                        return index < 2;
                                     })
                                 }/>
                 <button className='login-club-matches-see-more-btn'
                         onClick={() => {
                             onSeeMore(clubs);
-                        }}>--- See {max === clubs.length ? 'Less' : 'More'} ---</button>
+                        }}>--- See More ---</button>
             </div>
         )
     },
@@ -191,11 +189,11 @@ export default {
     * @param {Object} club The club object with all the data that needs to be displayed.
     * @param {String|Number} key The key for identifying the component in the collection view. 
     * @param {Function} onClick What to do when you click on a club. */
-    mapClubToDashboardComponent: ({ title, tag, image, tagColor }, key, onClick) => {
+    mapClubToDashboardComponent: ({ Name, tag, image, tagColor, ID }, onClick) => {
         return (
-            <div className='dashboard-club-item' key={key} onClick={() => { onClick(key, title, tag) } }>
+            <div className='dashboard-club-item' key={ID} onClick={() => { onClick(ID, Name, tag) } }>
                 <img src={image} alt='club' className='dashboard-club-item-image'/>
-                <h4 className='dashboard-club-item-title'>{title}</h4>
+                <h4 className='dashboard-club-item-title'>{Name}</h4>
                 <div className='dashboard-club-item-tag'>
                     <div className='dashboard-club-item-tag-bubble'
                         style={{

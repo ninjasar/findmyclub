@@ -12,14 +12,6 @@ class LoginLanding extends Component {
     *                           *
     *****************************/
 
-    constructor(props) {
-        super(props);
-
-        // Once you get here, check if the user is already logged in. If so,
-        // run the onLogin function to go to the next page.
-        const url = Networking.getParameterByName('token', window.location.toString());
-        console.log(url);
-    }
 
 
 	/****************************
@@ -49,18 +41,7 @@ class LoginLanding extends Component {
 
     /** Calls a transition from this container to the introduction container. */
     handleLogin() {
-        Networking.authenticateUser()
-        
-        // .then((val) => {
-        //     console.log(val);
-        //     // if(this.props.onLogin) {
-        //     //     this.props.onLogin();
-        //     // }
-        // }).catch((err) => {
-        //     if(this.props.onError) {
-        //         this.props.onError(err);
-        //     }
-        // })
+        Networking.authenticateUser();
     }
 
 

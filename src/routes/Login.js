@@ -39,12 +39,18 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}
-                                                    onError={(err) => {
-                                                        console.log(err);
-                                                    }}/>, 800);
-        }, 200);
+        // Once you get here, check if the user is already logged in. If so,
+        // run the onLogin function to go to the next page.
+        const token = Networking.getParameterByName('token', window.location.toString());
+        if(token !== null) {
+            setTimeout(() => {
+                this.transitionContainer(<LoginWelcome onNext={this.handleGoToSelectInterests.bind(this)} />);
+            }, 200);
+        } else {
+            setTimeout(() => {
+                this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
+            }, 200);
+        }
     }
 
 
@@ -82,14 +88,15 @@ class Login extends Component {
     }
 
 
-    /** Goes to the loading screen for finding clubs with your interests. */
-    handleGoToMatching() {
+    /** Goes to the loading screen for finding clubs with your interests.
+    * @param {Array} selectedInterests The array of selected interest objects. */
+    handleGoToMatching(selectedInterests) {
         // This page itself does not actually do much. Any API calls should be done
         // here in the login page, then when they are done you go to the next page.
         this.transitionContainer(<LoginMatching />);
-
-        // TEMPORARY:
-        setTimeout(() => {
+        
+        // Function to go to the club matches page.
+        const finished = (interests, matches) => {
             this.transitionContainer(<LoginClubMatch onRefine={() => {
                 this.showOverlay(<LoginClubFilter onFiltered={(onFilters) => {
                                                     this.hideOverlay();
@@ -98,7 +105,8 @@ class Login extends Component {
                                                 onClose={this.hideOverlay.bind(this)}/>);
             }}
             onSelectClub={(selectedCard) => {
-                this.showOverlay(<LoginClubDetail club={selectedCard} onClose={() => this.hideOverlay()}
+                this.showOverlay(<LoginClubDetail club={selectedCard} 
+                                                onClose={() => this.hideOverlay()}
                                                 onSelectEvent={(item) => {
                                                     this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
                                                 }}/>);
@@ -106,8 +114,31 @@ class Login extends Component {
             }}
             onNext={() => {
                 this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)}/>);
-            }}/>);
-        }, 5000);
+            }}
+            interests={interests}
+            clubMatches={matches}/>);
+        }
+
+        var total = {};
+        var interests = {};
+        selectedInterests.forEach((interest, i) => {
+            interests[interest.ID] = interest.Name;
+            Networking.getClubs(interest.ID).then((matchingClubs) => {
+                total[interest.ID] = matchingClubs;
+
+                if(i >= selectedInterests.length - 1) {
+                    finished(interests, total);
+                    return;
+                }
+            }).catch((err) => {
+                console.log(err);
+
+                if(i >= selectedInterests.length - 1) {
+                    finished(interests, total);
+                    return;
+                }
+            })
+        })
     }
 
 

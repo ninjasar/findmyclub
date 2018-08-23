@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
+import Networking from '../util/Networking';
 import '../css/containers/LoginInterestSelection.css';
 
 class LoginInterestSelection extends Component {
@@ -14,8 +15,9 @@ class LoginInterestSelection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            interests: this.populateInterests()
+            interests: []
         }
+        this.populateInterests();
     }
 
 
@@ -66,10 +68,10 @@ class LoginInterestSelection extends Component {
 
 
     /** Reloads the collection view when an option is clicked. */
-    didSelectInterest(id) {
+    didSelectInterest(ID) {
         // 1.) Get the object at the selected index.
         const data = this.state.interests;
-        const selectedObject = data[id];
+        const selectedObject = data.filter((val) => val.ID === ID)[0];
 
         // 2.) Update the value of whether or not it was selected.
         selectedObject.selected = selectedObject.selected === true ? false : true;
@@ -81,87 +83,19 @@ class LoginInterestSelection extends Component {
 
     /** Sets the state with some interests for the user. */
     populateInterests() {
-        return [{
-            id: 0,
-            title: 'Academic',
-            image: '📚',
-            selected: false
-        },{
-            id: 1,
-            title: 'Community Engagement',
-            image: '👥',
-            selected: false
-        },{
-            id: 2,
-            title: 'Culture',
-            image: '👩',
-            selected: false
-        },{
-            id: 3,
-            title: 'Fraternity and Sorority Life',
-            image: '🎉',
-            selected: false
-        },{
-            id: 4,
-            title: 'Media and Publication',
-            image: '📱',
-            selected: false
-        },{
-            id: 5,
-            title: 'Health Professions and Clinical Interests',
-            image: '❤️',
-            selected: false
-        },{
-            id: 6,
-            title: 'Performance and Arts',
-            image: '🎨',
-            selected: false
-        },{
-            id: 7,
-            title: 'Politics and Advocacy',
-            image: '🧠',
-            selected: false
-        },{
-            id: 8,
-            title: 'Professional Development',
-            image: '👨‍🎓',
-            selected: false
-        },{
-            id: 9,
-            title: 'Religion and Spirituality',
-            image: '🤷‍♂️',
-            selected: false
-        },{
-            id: 10,
-            title: 'Science and Technology',
-            image: '💻',
-            selected: false
-        },{
-            id: 11,
-            title: 'Self-Identity',
-            image: '🙋‍♂️',
-            selected: false
-        },{
-            id: 12,
-            title: 'Social',
-            image: '💃',
-            selected: false
-        },{
-            id: 13,
-            title: 'Sports and Games',
-            image: '🏀',
-            selected: false
-        },{
-            id: 14,
-            title: 'Student Governance',
-            image: '🕴',
-            selected: false
-        },{
-            id: 15,
-            title: 'Students with Different Abilities',
-            image: '⭐️',
-            selected: false
-        }]
+        Networking.getInterests().then((categoryArray) => {
+            this.setState({
+                interests: categoryArray.map((val) => {
+                    return {
+                        ...val,
+                        image: '🎨',
+                        selected: false
+                    }
+                })
+            })
+        }).catch((err) => {
+            alert(err);
+        });
     }
 
 

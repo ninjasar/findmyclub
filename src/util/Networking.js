@@ -12,17 +12,52 @@ const getParameterByName = (name, url) => {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+
 /** Authenticates the user when the login button is clicked. */
 const authenticateUser = async () => {
-    if(document.cookie.includes('token')) {
-
-    } else {
-        const currentLocation = window.location.toString();
-        const newLocation = `https://d1hmwr991s6qf2.cloudfront.net/auth/login?redirect=${currentLocation}`;
-        window.location = newLocation;
-    }
+    const currentLocation = window.location.toString();
+    const newLocation = `https://d1hmwr991s6qf2.cloudfront.net/auth/login?redirect=${currentLocation}`;
+    window.location = newLocation;
 }
 
+
+/** Returns all of the categories (interests) that the user can select from. 
+* @returns {Promise} Will either return an array of category objects or an error. */
+const getInterests = async () => {
+    const response = await superagent.get('https://d1hmwr991s6qf2.cloudfront.net/v1/categories');
+    return new Promise((res, rej) => {
+        if(response.error === true) {
+            rej(response.text);
+        } else {
+            res(response.body);
+        }
+    })
+}
+
+
+/** Returns a list of clubs that are associated with the given interest.
+* @param {Number} categoryID The id of the interest to look for clubs in. 
+* @returns {Promise} Returns either an array of clubs or an error. */
+const getClubs = async (categoryID) => {
+    const response = await superagent.get(`https://d1hmwr991s6qf2.cloudfront.net/v1/category_portals?category_id=${categoryID}`);
+    return new Promise((res, rej) => {
+        if(response.error === true) {
+            rej(response.text);
+        } else {
+            res(response.body);
+        }
+    });
+}
+
+
+/** Makes the user follow the selected club. 
+* @param {Number} clubID The id for the club that you want to follow. */
+const followClub = async (clubID) => {
+    const response = await superagent.post(`https://d1hmwr991s6qf2.cloudfront.net/v1/user/follow?portal_id=${clubID}`)
+                                    .set('Authorization', 'Bearer xxxxxxxx')
+                                    .set('Content-Type', 'application/x-www-form-urlencoded');
+    console.log(response);
+}
 
 
 
@@ -31,5 +66,8 @@ const authenticateUser = async () => {
 
 export default {
     getParameterByName: getParameterByName,
-    authenticateUser: authenticateUser
+    authenticateUser: authenticateUser,
+    getInterests: getInterests,
+    getClubs: getClubs,
+    followClub: followClub
 }
