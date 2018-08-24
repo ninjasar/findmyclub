@@ -90,7 +90,7 @@ class Login extends Component {
 
     /** Goes to the loading screen for finding clubs with your interests.
     * @param {Array} selectedInterests The array of selected interest objects. */
-    handleGoToMatching(selectedInterests) {
+    async handleGoToMatching(selectedInterests) {
         // This page itself does not actually do much. Any API calls should be done
         // here in the login page, then when they are done you go to the next page.
         this.transitionContainer(<LoginMatching />);
@@ -119,26 +119,34 @@ class Login extends Component {
             clubMatches={matches}/>);
         }
 
+        // Get all the categories.
+        const categories = await Networking.getCategories();
+        console.log(categories);
+
         var total = {};
-        var interests = {};
-        selectedInterests.forEach((interest, i) => {
-            interests[interest.ID] = interest.Name;
-            Networking.getClubs(interest.ID).then((matchingClubs) => {
-                total[interest.ID] = matchingClubs;
-
-                if(i >= selectedInterests.length - 1) {
-                    finished(interests, total);
-                    return;
-                }
-            }).catch((err) => {
-                console.log(err);
-
-                if(i >= selectedInterests.length - 1) {
-                    finished(interests, total);
-                    return;
-                }
-            })
+        selectedInterests.forEach((interest, index) => {
+            
         })
+        // var total = {};
+        // var interests = {};
+        // selectedInterests.forEach((interest, i) => {
+        //     interests[interest.ID] = interest.Name;
+        //     Networking.getClubs(interest.ID).then((matchingClubs) => {
+        //         total[interest.ID] = matchingClubs;
+
+        //         if(i >= selectedInterests.length - 1) {
+        //             finished(interests, total);
+        //             return;
+        //         }
+        //     }).catch((err) => {
+        //         console.log(err);
+
+        //         if(i >= selectedInterests.length - 1) {
+        //             finished(interests, total);
+        //             return;
+        //         }
+        //     })
+        // })
     }
 
 

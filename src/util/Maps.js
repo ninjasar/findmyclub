@@ -53,7 +53,7 @@ export default {
     * @param {Object} _ The data to populate the component with.
     * @param {Object} props Any other properties that need to be passed to the rendered component. 
     * @param {Function} onClick What should happen when you click on this item. */
-    mapInterestToComponent: ({ ID, Name, image, selected }, props, onClick) => {
+    mapInterestToComponent: ({ ID, Name, emoji, selected }, props, onClick) => {
         return <div key={ID} 
                     className={props.className + ' interest-item'}
                     style={{
@@ -65,7 +65,7 @@ export default {
                     }}>
             {/* <img src={image} alt='interest-item' className={props.className + ' interest-image'}/> */}
             <span className={`${props.className + ' interest-image'}`}>
-                {image}
+                {emoji}
             </span>
             <h2 className={props.className + ' interest-title'}>{Name}</h2>
         </div>

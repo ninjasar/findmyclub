@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
+import InC from '../util/InterestsAndCategories';
 import '../css/containers/LoginInterestSelection.css';
 
 class LoginInterestSelection extends Component {
@@ -17,8 +18,12 @@ class LoginInterestSelection extends Component {
         this.state = {
             interests: []
         }
+    }
+    
+    componentDidMount() {
         this.populateInterests();
     }
+
 
 
 	/****************************
@@ -82,19 +87,14 @@ class LoginInterestSelection extends Component {
 
 
     /** Sets the state with some interests for the user. */
-    populateInterests() {
-        Networking.getInterests().then((categoryArray) => {
-            this.setState({
-                interests: categoryArray.map((val) => {
-                    return {
-                        ...val,
-                        image: '🎨',
-                        selected: false
-                    }
-                })
+    async populateInterests() {
+        this.setState({
+            interests: Object.values(InC).map((val) => {
+                return {
+                    ...val,
+                    selected: false
+                }
             })
-        }).catch((err) => {
-            alert(err);
         });
     }
 

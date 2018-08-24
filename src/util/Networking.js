@@ -21,9 +21,9 @@ const authenticateUser = async () => {
 }
 
 
-/** Returns all of the categories (interests) that the user can select from. 
+/** Returns all of the categories from NYU Engage. 
 * @returns {Promise} Will either return an array of category objects or an error. */
-const getInterests = async () => {
+const getCategories = async () => {
     const response = await superagent.get('https://d1hmwr991s6qf2.cloudfront.net/v1/categories');
     return new Promise((res, rej) => {
         if(response.error === true) {
@@ -67,7 +67,7 @@ const followClub = async (clubID) => {
 export default {
     getParameterByName,
     authenticateUser,
-    getInterests,
+    getCategories,
     getClubs,
     followClub,
 }
