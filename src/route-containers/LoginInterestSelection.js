@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
-import InC from '../util/InterestsAndCategories';
+import { interests } from '../util/InterestsAndCategories';
 import '../css/containers/LoginInterestSelection.css';
 
 class LoginInterestSelection extends Component {
@@ -89,7 +89,7 @@ class LoginInterestSelection extends Component {
     /** Sets the state with some interests for the user. */
     async populateInterests() {
         this.setState({
-            interests: Object.values(InC).map((val) => {
+            interests: Object.values(interests).map((val) => {
                 return {
                     ...val,
                     selected: false

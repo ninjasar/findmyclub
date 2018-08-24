@@ -4,6 +4,7 @@ import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
 import '../css/containers/LoginClubMatch.css';
+import { getCategoryFromID, getInterestFromCategory } from '../util/InterestsAndCategories';
 
 class LoginClubMatch extends Component {
 
@@ -16,13 +17,8 @@ class LoginClubMatch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            /* Of the form:
-                {
-                    interestID: [Array of Clubs]
-                }
-            */
-            clubMatches: props.clubMatches || {},
-            clubInterests: props.interests || {},
+            clubMatches: props.clubMatches || [],
+            clubInterests: props.interests || [],
         
             selectedInterest: '',
             selectedClubs: [],
@@ -88,8 +84,8 @@ class LoginClubMatch extends Component {
                                                                                 this.didFollowClubCard.bind(this));
                                             })
                                         }/>
-                        </div>
                     </div>
+                </div>
 
 
                 {/* The actual club matches page. */}
@@ -227,22 +223,29 @@ class LoginClubMatch extends Component {
     *****************************/
 
     populateClubs() {
-        const clubs = Object.keys(this.state.clubMatches).map((val) => {
-            const name = this.state.clubInterests[val];
-            return { 
-                ID: name,
-                clubs: this.state.clubMatches[val].map((val2) => {
-                    return { ...val2, image: '', tags: 'art', tagColor: 'cyan', followed: false }
-                })
-            };
-        });
-        const mapped = clubs.map((val) => {
-            return Maps.mapInterestWithClubsToComponent(val, (c) => {
-                this.handleSeeMore(val, c, 'cyan');
-            }, this.didSelectClubCard.bind(this), this.didFollowClubCard.bind(this));
-        })
+        console.log(this.state.clubMatches);
+        console.log(this.state.clubInterests);
 
-        return mapped;
+        // const clubs = this.state.clubMatches.map((val, index) => {
+        //     const id = val.CategoryID;
+        //     const foundCategory = getCategoryFromID(id);
+        //     const foundInterest = getInterestFromCategory(foundCategory.Name);
+        //     const name = foundInterest.Name;
+        //     return { 
+        //         ID: name,
+        //         clubs: this.state.clubMatches[index].map((val2) => {
+        //             return { ...val2, image: '', tags: 'art', tagColor: 'cyan', followed: false }
+        //         })
+        //     };
+        // });
+        // const mapped = clubs.map((val) => {
+        //     return Maps.mapInterestWithClubsToComponent(val, (c) => {
+        //         this.handleSeeMore(val, c, 'cyan');
+        //     }, this.didSelectClubCard.bind(this), this.didFollowClubCard.bind(this));
+        // })
+
+        // return mapped;
+        return [];
     }
 
 }

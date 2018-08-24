@@ -43,6 +43,7 @@ class Login extends Component {
         // run the onLogin function to go to the next page.
         const token = Networking.getParameterByName('token', window.location.toString());
         if(token !== null) {
+            Constants.token = token;
             setTimeout(() => {
                 this.transitionContainer(<LoginWelcome onNext={this.handleGoToSelectInterests.bind(this)} />);
             }, 200);
@@ -95,7 +96,8 @@ class Login extends Component {
         // here in the login page, then when they are done you go to the next page.
         this.transitionContainer(<LoginMatching />);
         
-        // Function to go to the club matches page.
+        // Function to go to the club matches page once you finish the API call that
+        // finds the list of clubs matching to the users interests (see directly below).
         const finished = (interests, matches) => {
             this.transitionContainer(<LoginClubMatch onRefine={() => {
                 this.showOverlay(<LoginClubFilter onFiltered={(onFilters) => {
@@ -119,34 +121,31 @@ class Login extends Component {
             clubMatches={matches}/>);
         }
 
-        // Get all the categories.
-        const categories = await Networking.getCategories();
-        console.log(categories);
-
-        var total = {};
-        selectedInterests.forEach((interest, index) => {
-            
+        // Based on the selected interests, get a list of clubs that are associated with that interest.
+        // 1.) Look through all of the categories and filter them by the ones that have an interest name
+        // that matches one of the selected interests.
+        console.log(selectedInterests);
+        const allCategories = await Networking.getCategories();
+        console.log(allCategories);
+        const categoriesMatchingInterest = allCategories.filter((cat) => {
+            const containing = selectedInterests.filter((selInt) => {
+                console.log("This is an interest: ", selInt);
+                return selInt.Name === cat.interest.Name;
+            })
+            return containing.length > 0;
         })
-        // var total = {};
-        // var interests = {};
-        // selectedInterests.forEach((interest, i) => {
-        //     interests[interest.ID] = interest.Name;
-        //     Networking.getClubs(interest.ID).then((matchingClubs) => {
-        //         total[interest.ID] = matchingClubs;
+        console.log(categoriesMatchingInterest);
 
-        //         if(i >= selectedInterests.length - 1) {
-        //             finished(interests, total);
-        //             return;
-        //         }
-        //     }).catch((err) => {
-        //         console.log(err);
+        // 2.) Now that you have the categories that only include the ones from the selected interests,
+        // Use those categories to find the clubs that match the user's interests.
+        const matchingClubs = await Networking.getClubs(Object.values(categoriesMatchingInterest)
+                                                .map((val) => val.ID));
+        console.log(matchingClubs);
 
-        //         if(i >= selectedInterests.length - 1) {
-        //             finished(interests, total);
-        //             return;
-        //         }
-        //     })
-        // })
+
+        // 3.) Now that you have all of the clubs that match the user's preferences, send them over to
+        // the club matches page.
+        finished(selectedInterests, matchingClubs);
     }
 
 

@@ -1,7 +1,15 @@
 import superagent from 'superagent';
+import Constants from './Constants';
+import { getInterestFromCategory } from './InterestsAndCategories';
 
 
-/** Returns the query params */
+/****************************
+*                           *
+*           OTHER           *
+*                           *
+*****************************/
+
+/** Returns the query params from a url. */
 const getParameterByName = (name, url) => {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -13,10 +21,17 @@ const getParameterByName = (name, url) => {
 }
 
 
+
+/****************************
+*                           *
+*         API CALLS         *
+*                           *
+*****************************/
+
 /** Authenticates the user when the login button is clicked. */
 const authenticateUser = async () => {
     const currentLocation = window.location.toString();
-    const newLocation = `https://d1hmwr991s6qf2.cloudfront.net/auth/login?redirect=${currentLocation}`;
+    const newLocation = `${Constants.BASE_URL}/auth/login?redirect=${currentLocation}`;
     window.location = newLocation;
 }
 
@@ -24,22 +39,30 @@ const authenticateUser = async () => {
 /** Returns all of the categories from NYU Engage. 
 * @returns {Promise} Will either return an array of category objects or an error. */
 const getCategories = async () => {
-    const response = await superagent.get('https://d1hmwr991s6qf2.cloudfront.net/v1/categories');
+    const response = await superagent.get(`${Constants.BASE_URL}/v1/categories`);
     return new Promise((res, rej) => {
         if(response.error === true) {
             rej(response.text);
         } else {
-            res(response.body);
+            res(response.body.map((val) => {
+                return {
+                    ...val,
+                    interest: getInterestFromCategory(val.Name)
+                }
+            }));
         }
     })
 }
 
 
-/** Returns a list of clubs that are associated with the given interest.
-* @param {Number} categoryID The id of the interest to look for clubs in. 
+/** Returns a list of clubs that are associated with the given categories.
+* @param {Array} categoryID The array of ids of the category to look for clubs in. 
 * @returns {Promise} Returns either an array of clubs or an error. */
-const getClubs = async (categoryID) => {
-    const response = await superagent.get(`https://d1hmwr991s6qf2.cloudfront.net/v1/category_portals?category_id=${categoryID}`);
+const getClubs = async (categoryIDs) => {
+    const response = await superagent.get(`${Constants.BASE_URL}/v1/category_portals`)
+                                    .query({
+                                        category_id: categoryIDs
+                                    });
     return new Promise((res, rej) => {
         if(response.error === true) {
             rej(response.text);
@@ -51,15 +74,79 @@ const getClubs = async (categoryID) => {
 
 
 /** Makes the user follow the selected club. 
-* @param {Number} clubID The id for the club that you want to follow. */
+* @param {Number} clubID The id for the club that you want to follow. 
+* @returns {Bool} Returns whether or not the club was successfully followed. */
 const followClub = async (clubID) => {
-    const response = await superagent.post(`https://d1hmwr991s6qf2.cloudfront.net/v1/user/follow?portal_id=${clubID}`)
-                                    .set('Authorization', 'Bearer xxxxxxxx')
-                                    .set('Content-Type', 'application/x-www-form-urlencoded');
-    console.log(response);
+    const response = await superagent.post(`${Constants.BASE_URL}/v1/user/follow?portal_id=${clubID}`);
+    return response.error;
 }
 
 
+/** Makes the user unfollow the selected club. 
+* @param {Number} clubID The id for the club that you want to unfollow. 
+* @returns {Bool} Returns whether or not the club was successfully unfollowed. */
+const unfollowClub = async (clubID) => {
+    const response = await superagent.post(`${Constants.BASE_URL}/v1/user/unfollow?portal_id=${clubID}`);
+    return response.error;
+}
+
+
+/** Retrieves a list of clubs that the user is following.
+* @returns {Array} Returns an array of club objects that the user is following. */
+const getFollowedClubs = async () => {
+    const response = await superagent.get(`${Constants.BASE_URL}/v1/user/follow`);
+    return new Promise((res, rej) => {
+        if(response.error === true) {
+            rej(response.text);
+        } else {
+            res(response.body);
+        }
+    })
+}
+
+
+/** Retrieves all of the events for a particular club.
+* @param {Number} clubID The id for the club that you want to find events for.
+* @param {String} startDate The start date of the events.
+* @param {String} endDate The end date of the events.
+* @returns {Array} Returns an array of event objects for the specified club. */
+const getEventsForClub = async (clubID, startDate, endDate) => {
+    const response = await superagent.get(`${Constants.BASE_URL}/v1/user/events`)
+                                    .query({
+                                        portal_id: clubID,
+                                        start_date: startDate,
+                                        end_date: endDate
+                                    });
+    return new Promise((res, rej) => {
+        if(response.error === true) {
+            rej(response.text);
+        } else {
+            res(response.body);
+        }
+    })
+}
+
+
+/** Returns information about a given club. 
+* @param {Number} clubID The id for the club that you want to get information about.
+* @returns {Object} Returns an object containing all the important information about a club. */
+const getClubInformation = async (clubID) => {
+    const response = await superagent.get(`${Constants.BASE_URL}/v1/user/portal`)
+                                    .set({
+                                        'Authorization': `Bearer ${Constants.token}`,
+                                        'Content-Type': 'application/x-www-form-urlencode',
+                                    })
+                                    .query({
+                                        portal_id: clubID
+                                    });
+    return new Promise((res, rej) => {
+        if(response.error === true) {
+            rej(response.text);
+        } else {
+            res(response.body);
+        }
+    })
+}
 
 
 
@@ -70,4 +157,8 @@ export default {
     getCategories,
     getClubs,
     followClub,
+    unfollowClub,
+    getFollowedClubs,
+    getEventsForClub,
+    getClubInformation,
 }

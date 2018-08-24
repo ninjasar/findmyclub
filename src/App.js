@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Login from './routes/Login';
 import Dashboard from './routes/Dashboard';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 import { createStore } from 'redux';
 import './fonts/fonts.css';
 import './css/App.css';
