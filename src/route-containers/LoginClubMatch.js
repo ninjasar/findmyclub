@@ -21,7 +21,7 @@ class LoginClubMatch extends Component {
             clubInterests: props.interests || [],
         
             selectedInterest: '',
-            selectedClubs: [],
+            selectedClubs: this.props.clubMatches,
             selectedIntersetColor: 'orange',
 
             clubFilterOveralay: <div></div>
@@ -41,17 +41,16 @@ class LoginClubMatch extends Component {
     *****************************/
 
 	render() {
+        const clubComponents = this.state.selectedClubs.map((val) => {
+            return Maps.mapClubToComponent({ ...val, tagColor: 'cyan' },
+                () => this.didSelectClubCard(val),
+                () => this.didFollowClubCard(val));
+        });
 		return (
 			<div className="LoginClubMatch container">
                 {this.state.clubFilterOveralay}
                 {/* The see more overlay. */}
-                <div className='club-detail-list-view' style={{ 
-                        top: '50%',
-                        left: '50%',
-                        width: '0px',
-                        height: '0px',
-                        visibility: 'hidden'
-                    }}>
+                <div className='club-detail-list-view'>
                     <div className='club-detail-header'>
                         <button className='club-detail-list-back-btn'
                                 onClick={() => {
@@ -77,13 +76,7 @@ class LoginClubMatch extends Component {
                                         ref='club-detail-list-club-list'
                                         orientation={CollectionView.Orientation.vertical}
                                         edgeInsets={['20px', '0px', '20px', '0px']}
-                                        data={
-                                            this.state.selectedClubs.map((val) => {
-                                                return Maps.mapClubToComponent({ ...val, tagColor: 'cyan' }, 
-                                                                                this.didSelectClubCard.bind(this),
-                                                                                this.didFollowClubCard.bind(this));
-                                            })
-                                        }/>
+                            data={clubComponents}/>
                     </div>
                 </div>
 
@@ -145,21 +138,14 @@ class LoginClubMatch extends Component {
     *****************************/
 
     /** What to do when you click on a club card. */
-    didSelectClubCard(ID, Name, tags) {
-        if(this.props.onSelectClub) {
-            const clubs = Object.values(this.state.clubMatches).map((val) => val);
-            const flat = clubs.reduce((acc, x) => acc.concat(x));
-            const _item = flat.filter((val) => val.ID === ID)[0];
-            const item = { ..._item, image: '', tags: 'art', tagColor: 'cyan', followed: false };
-            this.props.onSelectClub(item);
-        }
+    didSelectClubCard(club) {
+        this.props.onSelectClub && this.props.onSelectClub(club);
     }
 
 
     /** What to do when you click on the follow button for a club card. */
-    didFollowClubCard(ID, Name, tags) {
-        console.log(ID);
-        Networking.followClub(ID);
+    didFollowClubCard(club) {
+        Networking.followClub(club.ID);
     }
 
 

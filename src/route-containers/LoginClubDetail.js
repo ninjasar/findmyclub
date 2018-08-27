@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
 import CollectionView from '../components/CollectionView';
 import '../css/containers/LoginClubDetail.css';
+import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
 class LoginClubDetail extends Component {
 
@@ -14,6 +16,7 @@ class LoginClubDetail extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             club: {
                 ID: props.club.ID || '',
@@ -56,14 +59,39 @@ class LoginClubDetail extends Component {
         }
     }
 
-    async componentDidMount() {
-        const intrs = await Networking.getInterests();
-        const categoryName = intrs.filter((val) => val.ID === this.state.club.category)[0];
-        this.setState({
-            club: { ...this.state.club, category: categoryName.Name, umbrella: categoryName.Name }
-        })
+    reloadCategory = async () => {
+        const category = await InterestsAndCategories.getCategoryFromID(this.props.club.CategoryID);
+        this.setState({ category });
     }
 
+    reloadEvents = async () => {
+        const events = await Networking.getEventsForClub(this.props.club.ID, new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 7));
+        this.setState({
+            upcomingEvents: events,
+        });
+    }
+
+    reloadClubDetail = async () => {
+        const clubDetail = await Networking.getClubInformation(this.props.club.ID);
+        this.setState({
+            clubDetail,
+        });
+    }
+
+    reloadFollowedClubs = async () => {
+        this.setState({
+            followedClubs: await Networking.getFollowedClubs(),
+        });
+    }
+
+    async componentDidMount() {
+        await this.reloadCategory();
+        await this.reloadEvents();
+        await this.reloadClubDetail();
+        await this.reloadFollowedClubs();
+
+        debugger
+    }
    
 
 	/****************************
@@ -73,6 +101,9 @@ class LoginClubDetail extends Component {
     *****************************/
 
 	render() {
+        const followingClubIDs = _.map(this.state.followedClubs || [], 'ID');
+        const followed = _.includes(followingClubIDs, this.props.club.ID);
+        const interest = this.state.category && InterestsAndCategories.getInterestFromCategory(this.state.category.Name);
 		return (
 			<div className="LoginClubDetail overlay">
                 <button className='club-detail-close-btn'
@@ -81,19 +112,19 @@ class LoginClubDetail extends Component {
                                 this.props.onClose();
                             }
                         }}><span className='fa fa-times'/></button>
-				<img className='club-detail-background-image' src={this.state.club.image} alt='image-preview'/>
+                <img className='club-detail-background-image' src={this.state.clubDetail && this.state.clubDetail.thumbnail_url} alt='image-preview'/>
 
                 <button className='pill-button club-detail-follow-btn'>
-                    <span className={this.state.club.followed === true ? 'fa fa-check' : 'fa fa-plus'}/>&nbsp;Follow
+                    <span className={followed ? 'fa fa-check' : 'fa fa-plus'}/>&nbsp;Follow
                 </button>
                 <button className='pill-button club-detail-go-to-engage-btn'>
                     <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
                 </button>
 
                 <h1 className='club-detail-title'>{this.state.club.Name}</h1>
-                <p className='club-detail-information'><span>Interest</span> {this.state.club.Name}</p>
-                <p className='club-detail-information'><span>Category</span> {this.state.club.category}</p>
-                <p className='club-detail-information'><span>Umbrella</span> {this.state.club.umbrella}</p>
+                <p className='club-detail-information'><span>Interest</span> {interest && interest.name}</p>
+                <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
+                <p className='club-detail-information'><span>Umbrella</span> ??</p>
 
                 <p className='club-detail-description'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor tellus at sem ornare fermentum. Maecenas et semper nunc, id accumsan ante. Fusce fringilla mi turpis. Donec nec tellus placerat, convallis leo eu, fringilla enim. Maecenas blandit feugiat mi, at porta augue vestibulum sed. Maecenas consectetur egestas mi, ut ultrices risus viverra nec. Donec fringilla dui non ex maximus, vitae finibus nisi egestas.
