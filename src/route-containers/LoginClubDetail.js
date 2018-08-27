@@ -65,7 +65,7 @@ class LoginClubDetail extends Component {
     }
 
     reloadEvents = async () => {
-        const events = await Networking.getEventsForClub(this.props.club.ID, new Date(Date.now() - 3600 * 1000 * 24 * 365), new Date(Date.now() + 3600 * 1000 * 24 * 7));
+        const events = await Networking.getEventsForClub(this.props.club.ID, new Date(Date.now() - 3600 * 1000 * 24 * 1), new Date(Date.now() + 3600 * 1000 * 24 * 7));
         this.setState({
             upcomingEvents: events,
         });
@@ -79,16 +79,19 @@ class LoginClubDetail extends Component {
     }
 
     reloadFollowedClubs = async () => {
+        const followedClubs = await Networking.getFollowedClubs();
+        const followingClubIDs = _.map(followedClubs || [], 'ID');
+        const followed = _.includes(followingClubIDs, this.props.club.ID);
         this.setState({
-            followedClubs: await Networking.getFollowedClubs(),
+            followed,
         });
     }
 
     async componentDidMount() {
-        await this.reloadCategory();
-        await this.reloadEvents();
-        await this.reloadClubDetail();
-        await this.reloadFollowedClubs();
+        this.reloadCategory();
+        this.reloadEvents();
+        this.reloadClubDetail();
+        this.reloadFollowedClubs();
     }
    
 
@@ -99,8 +102,6 @@ class LoginClubDetail extends Component {
     *****************************/
 
 	render() {
-        const followingClubIDs = _.map(this.state.followedClubs || [], 'ID');
-        const followed = _.includes(followingClubIDs, this.props.club.ID);
         const galleryImageSrc = this.state.clubDetail && this.state.clubDetail.picture_url;
         const headerImageSrc = this.state.clubDetail && this.state.clubDetail.header_graphic || galleryImageSrc;
         const links = this.state.clubDetail && this.state.clubDetail.links;
@@ -114,12 +115,12 @@ class LoginClubDetail extends Component {
                         }}><span className='fa fa-times'/></button>
                 <img className='club-detail-background-image' src={headerImageSrc} alt='image-preview'/>
 
-                <button className='pill-button club-detail-follow-btn'>
-                    <span className={followed ? 'fa fa-check' : 'fa fa-plus'}/>&nbsp;Follow
+                <button className='pill-button club-detail-follow-btn' onClick={this.handleFollowClub}>
+                    <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
                 </button>
-                <button className='pill-button club-detail-go-to-engage-btn'>
+                <a className='pill-button club-detail-go-to-engage-btn' href={links && links.web} target='_blank'>
                     <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
-                </button>
+                </a>
 
                 <h1 className='club-detail-title'>{this.state.club.Name}</h1>
                 <p className='club-detail-information'><span>Interest</span> {this.state.category && this.state.category.interest && this.state.category.interest.Name}</p>
@@ -210,9 +211,14 @@ class LoginClubDetail extends Component {
     *                           *
     *****************************/
 
-
-
-
+    handleFollowClub = async () => {
+        if (this.state.followed) {
+            await Networking.unfollowClub(this.props.club.ID);
+        } else {
+            await Networking.followClub(this.props.club.ID);
+        }
+        await this.reloadFollowedClubs();
+    }
 
 	/****************************
     *                           *

@@ -29,7 +29,7 @@ const get = (path) => {
 };
 
 const post = (path) => {
-    return superagent.get(`${Constants.BASE_URL}/${path}`).
+    return superagent.post(`${Constants.BASE_URL}/${path}`).
         set({
             'Authorization': `Bearer ${Constants.token}`,
         });
