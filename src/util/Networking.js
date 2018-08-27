@@ -126,7 +126,6 @@ const getFollowedClubs = async () => {
 * @param {Date} endDate The end date of the events.
 * @returns {Array} Returns an array of event objects for the specified club. */
 const getEventsForClub = async (clubID, startDate, endDate) => {
-    debugger
     const response = await get(`/v1/user/events`)
         .query({
             portal_id: clubID,
@@ -147,9 +146,9 @@ const getEventsForClub = async (clubID, startDate, endDate) => {
 * @returns {Object} Returns an object containing all the important information about a club. */
 const getClubInformation = async (clubID) => {
     const response = await get(`/v1/user/portal`)
-        .set({
-            'Content-Type': 'application/x-www-form-urlencode',
-        })
+        // .set({
+        //     'Content-Type': 'application/x-www-form-urlencode',
+        // })
         .query({
             portal_id: clubID
         });
@@ -161,9 +160,6 @@ const getClubInformation = async (clubID) => {
         }
     })
 }
-
-
-
 
 export default {
     getParameterByName,
