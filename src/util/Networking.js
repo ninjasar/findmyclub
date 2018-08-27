@@ -126,7 +126,6 @@ const getFollowedClubs = async () => {
 * @param {Date} endDate The end date of the events.
 * @returns {Array} Returns an array of event objects for the specified club. */
 const getEventsForClub = async (clubID, startDate, endDate) => {
-    debugger
     const response = await get(`/v1/user/events`)
         .query({
             portal_id: clubID,

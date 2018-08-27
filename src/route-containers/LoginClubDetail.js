@@ -65,7 +65,7 @@ class LoginClubDetail extends Component {
     }
 
     reloadEvents = async () => {
-        const events = await Networking.getEventsForClub(this.props.club.ID, new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 7));
+        const events = await Networking.getEventsForClub(this.props.club.ID, new Date(Date.now() - 3600 * 1000 * 24 * 365), new Date(Date.now() + 3600 * 1000 * 24 * 7));
         this.setState({
             upcomingEvents: events,
         });
@@ -89,8 +89,6 @@ class LoginClubDetail extends Component {
         await this.reloadEvents();
         await this.reloadClubDetail();
         await this.reloadFollowedClubs();
-
-        debugger
     }
    
 
@@ -103,7 +101,9 @@ class LoginClubDetail extends Component {
 	render() {
         const followingClubIDs = _.map(this.state.followedClubs || [], 'ID');
         const followed = _.includes(followingClubIDs, this.props.club.ID);
-        const interest = this.state.category && InterestsAndCategories.getInterestFromCategory(this.state.category.Name);
+        const galleryImageSrc = this.state.clubDetail && this.state.clubDetail.picture_url;
+        const headerImageSrc = this.state.clubDetail && this.state.clubDetail.header_graphic || galleryImageSrc;
+        const links = this.state.clubDetail && this.state.clubDetail.links;
 		return (
 			<div className="LoginClubDetail overlay">
                 <button className='club-detail-close-btn'
@@ -112,7 +112,7 @@ class LoginClubDetail extends Component {
                                 this.props.onClose();
                             }
                         }}><span className='fa fa-times'/></button>
-                <img className='club-detail-background-image' src={this.state.clubDetail && this.state.clubDetail.thumbnail_url} alt='image-preview'/>
+                <img className='club-detail-background-image' src={headerImageSrc} alt='image-preview'/>
 
                 <button className='pill-button club-detail-follow-btn'>
                     <span className={followed ? 'fa fa-check' : 'fa fa-plus'}/>&nbsp;Follow
@@ -122,21 +122,25 @@ class LoginClubDetail extends Component {
                 </button>
 
                 <h1 className='club-detail-title'>{this.state.club.Name}</h1>
-                <p className='club-detail-information'><span>Interest</span> {interest && interest.name}</p>
+                <p className='club-detail-information'><span>Interest</span> {this.state.category && this.state.category.interest && this.state.category.interest.Name}</p>
                 <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
-                <p className='club-detail-information'><span>Umbrella</span> ??</p>
+                <p className='club-detail-information'><span>Umbrella</span> {this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}</p>
 
                 <p className='club-detail-description'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor tellus at sem ornare fermentum. Maecenas et semper nunc, id accumsan ante. Fusce fringilla mi turpis. Donec nec tellus placerat, convallis leo eu, fringilla enim. Maecenas blandit feugiat mi, at porta augue vestibulum sed. Maecenas consectetur egestas mi, ut ultrices risus viverra nec. Donec fringilla dui non ex maximus, vitae finibus nisi egestas.
-                    Fusce ac bibendum augue. In convallis varius diam eu condimentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
+                    {this.state.clubDetail && this.state.clubDetail.description}
                 </p>
 
                 <h3 className='club-detail-portal-title'>Portal Information</h3>
                 <div className='club-detail-portal-information'>
                     <p className='club-detail-portal-information-title'>Website</p>
-                    <a className='club-detail-portal-information-link' href='https://google.com'>https://website.com</a>
+                    {
+                        links && links.web && 
+                        <a className='club-detail-portal-information-link' href={links.web}>{links.web}</a>
+                    }
 
-                    <p className='club-detail-portal-information-title'>Facebook</p>
+                    {
+                        // none of these fields exists in orgsync response
+                        /* <p className='club-detail-portal-information-title'>Facebook</p>
                     <a className='club-detail-portal-information-link' href='https://google.com'>https://facebook.com</a>
 
                     <p className='club-detail-portal-information-title'>Instagram</p>
@@ -149,7 +153,7 @@ class LoginClubDetail extends Component {
                     <p className='club-detail-portal-information-link not-link'>Joe Schmoe</p>
 
                     <p className='club-detail-portal-information-title'>Email</p>
-                    <a className='club-detail-portal-information-link' href='https://google.com'>joeschmoe@nyu.edu</a>
+                    <a className='club-detail-portal-information-link' href='https://google.com'>joeschmoe@nyu.edu</a> */}
                 </div>
 
                 <h3 className='club-detail-events-title'>Upcoming Events</h3>
@@ -179,27 +183,23 @@ class LoginClubDetail extends Component {
                         onClick={() => {
                             this.setState({
                                 maxEvents: this.state.maxEvents === 2 ? -1 : 2
-                            })
-                        }}>See {this.state.maxEvents === 2 ? 'More' : 'Less'}</button>
+                        })
+                    }}>See {this.state.maxEvents === 2 ? 'More' : 'Less'}</button>
 
                 <div className='club-detail-gallery-section'>
                     <h3 className='club-detail-events-title'>Club Gallery</h3>
 
                     <CollectionView className='club-detail-gallery-list'
-                                orientation={CollectionView.Orientation.horizontal}
-                                edgeInsets={['0px', '50px', '0px', '20px']}
-                                data={
-                                    this.state.clubImages.map((val, index) => {
-                                        return (
-                                            <img key={index}
-                                                className='club-detail-gallery-image'
-                                                src={val}
-                                                alt='gallery'/>
-                                        )
-                                    })
-                                }/>
+                        orientation={CollectionView.Orientation.horizontal}
+                        edgeInsets={['0px', '50px', '0px', '20px']}
+                        data={galleryImageSrc && [
+                            <img key={1}
+                                className='club-detail-gallery-image'
+                                src={galleryImageSrc}
+                                alt='gallery' />
+                        ]} />
                 </div>
-			</div>
+            </div>
 		);
 	}
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import CollectionView from '../components/CollectionView';
+import dateformat from 'dateformat';
 
 // club to card
 const mCtC = ({ image, ID, Name, tags, tagColor, followed }, onClubClick, onFollowClick) => {
@@ -149,7 +150,12 @@ export default {
     * @param {Object} _ The event object to use for info gathering.
     * @param {String|Number} key The key used to identify this event component.
     * @param {Function} onClick What to do when an event is clicked. */
-    mapEventToComponent: ({ title, date, host, location }, key, onClick) => {
+    mapEventToComponent: (event, key, onClick) => {
+        const { title, location } = event;
+        const firestDate = (event.dates || [])[0];
+        const starts_at = firestDate && firestDate.starts_at;
+        const date = (starts_at && dateformat(starts_at, 'mmm dd')) || '';
+        const host = ''; // event.category && event.category.name;
         return (
             <div className='event-item' key={key}>
                 <div className='event-left' onClick={() => onClick(title, date, host, key)}>
