@@ -17,6 +17,10 @@ class DashboardClubs extends Component {
         this.state = {
             clubs: [],
 
+            // plain club objects get from 
+            followingClubs: [],
+            clubDetails: [],
+
             umbrellas: ['College of Arts and Science', 'Tisch School of the Arts', 'Stern School of Business',
                         'Gallatain School of Individualized Studies', 'Tandon School of Engineering',
                         'School of Professional Studies'],
@@ -29,21 +33,7 @@ class DashboardClubs extends Component {
      * all the clubs at nyu.
      */
     async componentDidMount() {
-        var allClubs = [];
-
-        // Get all the interests, then all those clubs.
-        const allItrs = await Networking.getInterests();
-        for(var i in allItrs) {
-            const clubs = await Networking.getClubs(allItrs[i].ID);
-            allClubs = allClubs.concat(clubs);
-        }
-
-        // Set the state to all of the clubs.
-        allClubs = allClubs.map((val) => {
-            return { ...val, image: '', tag: 'art', tagColor: 'cyan' }
-        });
-        this.setState({ clubs: allClubs });
-        console.log(allClubs);
+        this.reloadFollowingClubs();
     }
    
 
@@ -55,6 +45,7 @@ class DashboardClubs extends Component {
     *****************************/
 
 	render() {
+        const { clubDetails } = this.state;
 		return (
 			<div className="DashboardClubs dashboard-container">
 				<div className='dashboard-clubs-header'>
@@ -83,8 +74,10 @@ class DashboardClubs extends Component {
                 <CollectionView className='dashboard-clubs-club-list'
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
-                                    this.state.clubs.map((val, index) => {
-                                        return Maps.mapClubToDashboardComponent(val, index, this.didSelectClub.bind(this));
+                                    this.state.followingClubs.map((val, index) => {
+                                        const clubDetail = clubDetails.find((cd) => cd.id == val.ID);
+                                        const image = clubDetail && (clubDetail.picture_url || clubDetail.header_graphic);
+                                        return Maps.mapClubToDashboardComponent({ ...val, ...clubDetail, image }, index, this.didSelectClub.bind(this));
                                     })
                                 }/>
 			</div>
@@ -113,7 +106,25 @@ class DashboardClubs extends Component {
         console.log('Filtered by umbrella');
     }
 
+    async reloadFollowingClubs() {
+        // 1. get all clubs
+        const followingClubs = await Networking.getFollowedClubs();
+        this.setState({
+            followingClubs,
+        });
 
+        // 2. fill in club detail objects
+        // get them one by one in stead of Promise.all so that don't shoot too much network requrests
+        for (const club of followingClubs) {
+            if (this.state.clubDetails.some((clb) => clb.id == club.ID)) {
+                continue;
+            }
+            const clubDetail = await Networking.getClubInformation(club.ID);
+            this.setState({
+                clubDetails: [...this.state.clubDetails, clubDetail],
+            });
+        }
+    }
 
 
 

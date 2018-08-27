@@ -18,44 +18,11 @@ class LoginClubDetail extends Component {
         super(props);
 
         this.state = {
-            club: {
-                ID: props.club.ID || '',
-                Name: props.club.Name || '',
-                image: '',
-                category: props.club.CategoryID || '',
-                umbrella: props.club.CategoryID || 'Umbrella',
-            },
-            upcomingEvents: [{
-                title: 'First Meeting',
-                date: '11 Sep',
-                host: 'NYU Ballroom and Latin Dance Team'
-            },{
-                title: 'First Meeting',
-                date: '11 Sep',
-                host: 'NYU Ballroom and Latin Dance Team'
-            },{
-                title: 'First Meeting',
-                date: '11 Sep',
-                host: 'NYU Ballroom and Latin Dance Team'
-            },{
-                title: 'First Meeting',
-                date: '11 Sep',
-                host: 'NYU Ballroom and Latin Dance Team'
-            },{
-                title: 'First Meeting',
-                date: '11 Sep',
-                host: 'NYU Ballroom and Latin Dance Team'
-            }],
-            clubImages: [
-                require('../images/FindMyClub_Logo.svg'),
-                require('../images/FindMyClub_Logo.svg'),
-                require('../images/FindMyClub_Logo.svg'),
-                require('../images/FindMyClub_Logo.svg'),
-                require('../images/FindMyClub_Logo.svg'),
-                require('../images/FindMyClub_Logo.svg'),
-            ],
-
-            maxEvents: 2
+            upcomingEvents: [],
+            category: undefined,
+            clubDetail: undefined,
+            maxEvents: 2,
+            followed: false,
         }
     }
 
@@ -93,7 +60,6 @@ class LoginClubDetail extends Component {
         this.reloadClubDetail();
         this.reloadFollowedClubs();
     }
-   
 
 	/****************************
     *                           *
@@ -122,7 +88,7 @@ class LoginClubDetail extends Component {
                     <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
                 </a>
 
-                <h1 className='club-detail-title'>{this.state.club.Name}</h1>
+                <h1 className='club-detail-title'>{this.props.club.Name}</h1>
                 <p className='club-detail-information'><span>Interest</span> {this.state.category && this.state.category.interest && this.state.category.interest.Name}</p>
                 <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
                 <p className='club-detail-information'><span>Umbrella</span> {this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}</p>

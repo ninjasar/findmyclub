@@ -195,9 +195,9 @@ export default {
     * @param {Object} club The club object with all the data that needs to be displayed.
     * @param {String|Number} key The key for identifying the component in the collection view. 
     * @param {Function} onClick What to do when you click on a club. */
-    mapClubToDashboardComponent: ({ Name, tag, image, tagColor, ID }, onClick) => {
+    mapClubToDashboardComponent: ({ Name, tag, image, tagColor, ID }, index, onClick) => {
         return (
-            <div className='dashboard-club-item' key={ID} onClick={() => { onClick(ID, Name, tag) } }>
+            <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name, tag) } }>
                 <img src={image} alt='club' className='dashboard-club-item-image'/>
                 <h4 className='dashboard-club-item-title'>{Name}</h4>
                 <div className='dashboard-club-item-tag'>
