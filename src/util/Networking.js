@@ -23,6 +23,7 @@ const getParameterByName = (name, url) => {
 
 const redirectToLoginIfTokenExpires = () => {
     if (shouldExpireToken(Constants.token())) {
+        Constants.clearToken();
         window.location.href = '/';
         return true;
     }
@@ -31,7 +32,8 @@ const redirectToLoginIfTokenExpires = () => {
 
 const get = (path) => {
     if (redirectToLoginIfTokenExpires()) {
-        return;
+        // return a promise that never resolves
+        return new Promise(() => { });
     }
     return superagent.get(`${Constants.BASE_URL}/${path}`).
         set({
@@ -41,7 +43,8 @@ const get = (path) => {
 
 const post = (path) => {
     if (redirectToLoginIfTokenExpires()) {
-        return;
+        // return a promise that never resolves
+        return new Promise(() => { });
     }
     return superagent.post(`${Constants.BASE_URL}/${path}`).
         set({
@@ -135,7 +138,7 @@ const unfollowClub = async (clubID) => {
 const getFollowedClubs = async () => {
     const response = await get(`/v1/user/follow`);
     return new Promise((res, rej) => {
-        if(response.error === true) {
+        if (response.error === true) {
             rej(response.text);
         } else {
             res(response.body);

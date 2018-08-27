@@ -104,18 +104,21 @@ export const interests = {
 }
 
 export const umbrellas = [
-    {
-        id: 106007,
-        name: 'College of Arts & Science',
-    },
-    {
-        id: 106007,
-        name: 'College of Arts & Science',
-    },
-    {
-        id: 106007,
-        name: 'College of Arts & Science',
-    },
+    { id: 78809, name: 'Center for Student Life' },
+    { id: 106007, name: 'College of Arts & Science' },
+    { id: 86331, name: 'College of Dentistry' },
+    { id: 171308, name: 'College of Global Public Health' },
+    { id: 75591, name: 'Gallatin School of Individualized Study' },
+    { id: 89841, name: 'LGBTQ Student Center' },
+    { id: 111059, name: 'Liberal Studies' },
+    { id: 162994, name: 'NYU Rory Meyers College of Nursing' },
+    { id: 89840, name: 'Residential Life & Housing Services' },
+    { id: 89838, name: 'School of Engineering' },
+    { id: 116946, name: 'School of Professional Studies' },
+    { id: 89839, name: 'Silver School of Social Work' },
+    { id: 86332, name: 'Stern Undergraduate' },
+    { id: 53830, name: 'Student Activities Board' },
+    { id: 78810, name: 'Tisch School of the Arts' }, 
 ];
 
 /** Returns the interest associated with a category name.
