@@ -19,7 +19,7 @@ class LoginClubMatch extends Component {
         this.state = {
             clubMatches: props.clubMatches || [],
             clubInterests: props.interests || [],
-        
+            thumbnails: [],
             selectedInterest: '',
             selectedClubs: this.props.clubMatches,
             selectedIntersetColor: 'orange',
@@ -28,127 +28,145 @@ class LoginClubMatch extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         console.log(this.props.clubMatches);
+
+        await this.getClubThumbnails();
     }
-
-
-
+    
 	/****************************
-    *                           *
-    *           RENDER          *
-    *                           *
-    *****************************/
-
-	render() {
+     *                           *
+     *           RENDER          *
+     *                           *
+     *****************************/
+    
+    render() {
         const clubComponents = this.state.selectedClubs.map((val) => {
-            return Maps.mapClubToComponent({ ...val, tagColor: 'cyan' },
-                () => this.didSelectClubCard(val),
-                () => this.didFollowClubCard(val));
+            return Maps.mapClubToComponent({ ...val, image: this.state.thumbnails[val.ID], tagColor: 'cyan' },
+            () => this.didSelectClubCard(val),
+            () => this.didFollowClubCard(val));
         });
 		return (
-			<div className="LoginClubMatch container">
-                {this.state.clubFilterOveralay}
-                {/* The see more overlay. */}
-                <div className='club-detail-list-view'>
-                    <div className='club-detail-header'>
-                        <button className='club-detail-list-back-btn'
-                                onClick={() => {
-                                    this.closeSeeMore();
-                                }}><span className='fa fa-chevron-left'/> Go Back</button>
-                        <button className='pill-button filter-button club-detail-list-filter-btn'
-                                onClick={() => {
-                                    if(this.props.onRefine) {
-                                        this.props.onRefine();
-                                    }
-                                }}>
-                            <p>Refine<span className='fas fa-sliders-h'></span></p>
-                        </button>
-                    </div>
-
-                    <div className='club-detail-body'>
-                        <h1 className='club-detail-list-section-title'>{this.state.selectedInterest}</h1>
-                        <h1 className='club-detail-list-section-subtitle'>
-                            We found <span style={{ color: 'cyan' }}>{this.state.selectedClubs.length} club(s)</span> that match your interest.
-                        </h1>
-
-                        <CollectionView className='club-detail-list-club-list'
-                                        ref='club-detail-list-club-list'
+            <div className="LoginClubMatch container">
+            {this.state.clubFilterOveralay}
+            {/* The see more overlay. */}
+            <div className='club-detail-list-view'>
+            <div className='club-detail-header'>
+            <button className='club-detail-list-back-btn'
+            onClick={() => {
+                this.closeSeeMore();
+            }}><span className='fa fa-chevron-left'/> Go Back</button>
+            <button className='pill-button filter-button club-detail-list-filter-btn'
+            onClick={() => {
+                if(this.props.onRefine) {
+                    this.props.onRefine();
+                }
+            }}>
+            <p>Refine<span className='fas fa-sliders-h'></span></p>
+            </button>
+            </div>
+            
+            <div className='club-detail-body'>
+            <h1 className='club-detail-list-section-title'>{this.state.selectedInterest}</h1>
+            <h1 className='club-detail-list-section-subtitle'>
+            We found <span style={{ color: 'cyan' }}>{this.state.selectedClubs.length} club(s)</span> that match your interest.
+            </h1>
+            
+            <CollectionView className='club-detail-list-club-list'
+            ref='club-detail-list-club-list'
                                         orientation={CollectionView.Orientation.vertical}
                                         edgeInsets={['20px', '0px', '20px', '0px']}
-                            data={clubComponents}/>
-                    </div>
+                                        data={clubComponents}/>
+                                        </div>
                 </div>
-
-
+                
+                
                 {/* The actual club matches page. */}
                 <div className='login-club-matches-header'>
-                    <h1 className='login-club-matches-title'>
-                        {/* <span>{this.state.matchingClubs.length}</span>&nbsp;clubs match your interests perfectly! */}
-                    </h1>
-                    <p className='login-club-matches-subtitle'>Find out more about these by clicking on them!</p>
-
-                    <p className='login-club-matches-button-title'>Still feeling overwhelmed?</p>
-                    <button className='pill-button filter-button'
-                            onClick={() => {
-                                if(this.props.onRefine) {
-                                    this.props.onRefine();
+                <h1 className='login-club-matches-title'>
+                {/* <span>{this.state.matchingClubs.length}</span>&nbsp;clubs match your interests perfectly! */}
+                </h1>
+                <p className='login-club-matches-subtitle'>Find out more about these by clicking on them!</p>
+                
+                <p className='login-club-matches-button-title'>Still feeling overwhelmed?</p>
+                <button className='pill-button filter-button'
+                onClick={() => {
+                    if(this.props.onRefine) {
+                        this.props.onRefine();
                                 }
                             }}>
-                        <p>Refine your search&nbsp;<span className='fas fa-sliders-h'></span></p>
+                            <p>Refine your search&nbsp;<span className='fas fa-sliders-h'></span></p>
                     </button>
-                </div>
-
-                <div className='login-club-matches-body'>
+                    </div>
+                    
+                    <div className='login-club-matches-body'>
                     <CollectionView className='login-club-matches-list'
-                                    ref='login-club-matches-list'
-                                    orientation={CollectionView.Orientation.vertical}
-                                    edgeInsets={['20px', '0px', '30px', '0px']}
-                                    isScrollEnabled={false}
-                                    data={
-                                        this.populateClubs()
-                                    }/>
-
+                    ref='login-club-matches-list'
+                    orientation={CollectionView.Orientation.vertical}
+                    edgeInsets={['20px', '0px', '30px', '0px']}
+                    isScrollEnabled={false}
+                    data={
+                        this.populateClubs()
+                    }/>
+                    
                     <button className='round-rect-button login-club-matches-finish-btn'
-                            onClick={() => {
+                    onClick={() => {
                                 if(this.props.onNext) {
                                     this.props.onNext();
                                 }
                             }}>Finish</button>
                     <button className='login-club-matches-skip-btn'
-                            onClick={() => {
+                    onClick={() => {
                                 if(this.props.onNext) {
                                     this.props.onNext();
                                 }
                             }}>Skip this step</button>
                 </div>
-			</div>
-		);
-	}
+                </div>
+            );
+        }
+        
+        
+        
+        
+        
+        
+        /****************************
+         *                           *
+         *         FUNCTIONS         *
+         *                           *
+         *****************************/
+    
+        async getClubThumbnails () {
+    
+            const thumbnails = {};
+            const promises = this.state.clubMatches.map(async club => {
+                return Networking.getClubInformation(club.ID);
+            });
 
+            const results = await Promise.all(promises);
 
-
-
-
-
-	/****************************
-    *                           *
-    *         FUNCTIONS         *
-    *                           *
-    *****************************/
-
-    /** What to do when you click on a club card. */
-    didSelectClubCard(club) {
-        this.props.onSelectClub && this.props.onSelectClub(club);
-    }
-
-
-    /** What to do when you click on the follow button for a club card. */
-    didFollowClubCard(club) {
-        Networking.followClub(club.ID);
-    }
-
-
+            results.forEach(club => {
+                thumbnails[club.id] = club.picture_url || club.header_graphic || require("../util/Constants").default.clubThumbnailDefaultPath;
+            });
+    
+            this.setState({
+                thumbnails,
+            });
+        }
+        
+        /** What to do when you click on a club card. */
+        didSelectClubCard(club) {
+            this.props.onSelectClub && this.props.onSelectClub(club);
+        }
+        
+        
+        /** What to do when you click on the follow button for a club card. */
+        didFollowClubCard(club) {
+            Networking.followClub(club.ID);
+        }
+        
+        
     /** Shows a view that has all of the clubs related to a particular interest. 
     * @param {String} interestWithClubs The name and clubs associated with a category.
     * @param {String} interestColor The color of the interest highlighting. */
