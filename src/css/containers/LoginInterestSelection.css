@@ -84,11 +84,14 @@
     top: 50px;
     width: 54px;
     font-size: 30px;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    padding-top: 5px;
     border-radius: 100%;
     left: calc(140px / 2 - 15%);
     background-color: #d7d7e1;
+    vertical-align: unset;
+    width: 60px;
+    line-height: 1.5em;
+    height: 55px;
 }
 .interest-title {
     position: absolute;
