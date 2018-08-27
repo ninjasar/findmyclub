@@ -1,5 +1,6 @@
 import superagent from 'superagent';
 import dateformat from 'dateformat';
+import _ from 'lodash';
 import Constants from './Constants';
 import { getInterestFromCategory } from './InterestsAndCategories';
 import * as jwt_decode from 'jwt-decode';
@@ -163,7 +164,14 @@ const getEventsForClub = async (clubID, startDate, endDate) => {
         if (response.error === true) {
             rej(response.text);
         } else {
-            res(response.body);
+            // turn each occurrence of event to single event objects
+            res(_.flatMap(response.body, (event) => {
+                return event.dates.map((date) => {
+                    const eventCopy = JSON.parse(JSON.stringify(event));
+                    eventCopy.date = date;
+                    return eventCopy;
+                });
+            }));
         }
     })
 }
