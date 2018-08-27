@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
+import * as InterestsAndCategories from '../util/InterestsAndCategories';
 import '../css/containers/DashboardClubs.css';
 
 class DashboardClubs extends Component {
@@ -20,11 +22,8 @@ class DashboardClubs extends Component {
             // plain club objects get from 
             followingClubs: [],
             clubDetails: [],
-
-            umbrellas: ['College of Arts and Science', 'Tisch School of the Arts', 'Stern School of Business',
-                        'Gallatain School of Individualized Studies', 'Tandon School of Engineering',
-                        'School of Professional Studies'],
-            umbrellaSearchFocused: false
+            umbrellaSearchFocused: false,
+            selectedUmbrella: undefined,
         }
     }
 
@@ -46,6 +45,7 @@ class DashboardClubs extends Component {
 
 	render() {
         const { clubDetails } = this.state;
+        const selectedUmbrellaName = this.state.selectedUmbrella ? this.state.selectedUmbrella.name : 'All Schools';
 		return (
 			<div className="DashboardClubs dashboard-container">
 				<div className='dashboard-clubs-header'>
@@ -57,14 +57,14 @@ class DashboardClubs extends Component {
                             onBlur={() => {
                                 this.setState({ umbrellaSearchFocused: false })
                             }}>
-                        <span className='fas fa-umbrella'/>&nbsp;All Schools&nbsp;&nbsp;&nbsp;<span className='fa fa-chevron-down'/>
+                        <span className='fas fa-umbrella'/>&nbsp;{selectedUmbrellaName}&nbsp;&nbsp;&nbsp;<span className='fa fa-chevron-down'/>
                     </button>
                 </div>
                 <CollectionView className='dashboard-clubs-umbrellas-list'
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
-                                    this.state.umbrellas.map((val, index) => {
-                                        return Maps.mapUmbrellaToLabelComponent(val, index, this.didSelectUmbrella.bind(this));
+                                    InterestsAndCategories.umbrellas.map((val, index) => {
+                                        return Maps.mapUmbrellaToLabelComponent(val.name, index, this.didSelectUmbrella.bind(this, val));
                                     })
                                 }
                                 style={{
@@ -74,7 +74,14 @@ class DashboardClubs extends Component {
                 <CollectionView className='dashboard-clubs-club-list'
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
-                                    this.state.followingClubs.map((val, index) => {
+                                    this.state.followingClubs
+                                        .filter((club) => {
+                                            if (_.isNil(this.state.selectedUmbrella)) {
+                                                return true;
+                                            }
+                                            return true;
+                                        })
+                                    .map((val, index) => {
                                         const clubDetail = clubDetails.find((cd) => cd.id == val.ID);
                                         const image = clubDetail && (clubDetail.picture_url || clubDetail.header_graphic);
                                         return Maps.mapClubToDashboardComponent({ ...val, ...clubDetail, image }, index, this.didSelectClub.bind(this));
@@ -102,7 +109,10 @@ class DashboardClubs extends Component {
 
 
     /** When you click an umbrella to search through. */
-    didSelectUmbrella() {
+    didSelectUmbrella(umbrella) {
+        this.setState({
+            selectedUmbrella: umbrella,
+        })
         console.log('Filtered by umbrella');
     }
 

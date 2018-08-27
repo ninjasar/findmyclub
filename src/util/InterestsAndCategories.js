@@ -103,6 +103,20 @@ export const interests = {
     }
 }
 
+export const umbrellas = [
+    {
+        id: 106007,
+        name: 'College of Arts & Science',
+    },
+    {
+        id: 106007,
+        name: 'College of Arts & Science',
+    },
+    {
+        id: 106007,
+        name: 'College of Arts & Science',
+    },
+];
 
 /** Returns the interest associated with a category name.
 * @param {String} categoryName The name of the category.
