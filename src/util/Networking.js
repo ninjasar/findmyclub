@@ -2,7 +2,7 @@ import superagent from 'superagent';
 import dateformat from 'dateformat';
 import Constants from './Constants';
 import { getInterestFromCategory } from './InterestsAndCategories';
-
+import * as jwt_decode from 'jwt-decode';
 
 /****************************
 *                           *
@@ -21,21 +21,45 @@ const getParameterByName = (name, url) => {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+const redirectToLoginIfTokenExpires = () => {
+    if (shouldExpireToken(Constants.token())) {
+        window.location.href = '/';
+        return true;
+    }
+    return false;
+};
+
 const get = (path) => {
+    if (redirectToLoginIfTokenExpires()) {
+        return;
+    }
     return superagent.get(`${Constants.BASE_URL}/${path}`).
         set({
-            'Authorization': `Bearer ${Constants.token}`,
+            'Authorization': `Bearer ${Constants.token()}`,
         });
 };
 
 const post = (path) => {
+    if (redirectToLoginIfTokenExpires()) {
+        return;
+    }
     return superagent.post(`${Constants.BASE_URL}/${path}`).
         set({
-            'Authorization': `Bearer ${Constants.token}`,
+            'Authorization': `Bearer ${Constants.token()}`,
         });
 };
 
-
+const shouldExpireToken = (token) => {
+    try {
+        const payload = jwt_decode(token);
+        // 1 minutes before expire
+        return new Date(payload.exp * 1000).getTime() - new Date().getTime() < 60 * 1000;
+    }
+    catch (err) {
+        console.error(err);
+        return true;
+    }
+};
 
 /****************************
 *                           *
@@ -162,6 +186,7 @@ const getClubInformation = async (clubID) => {
 }
 
 export default {
+    shouldExpireToken,
     getParameterByName,
     authenticateUser,
     getCategories,

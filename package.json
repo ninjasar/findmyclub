@@ -5,6 +5,7 @@
   "dependencies": {
     "dateformat": "^3.0.3",
     "jquery": "^3.3.1",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.10",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
