@@ -64,9 +64,11 @@ export default {
                         onClick(ID);
                     }}>
             {/* <img src={image} alt='interest-item' className={props.className + ' interest-image'}/> */}
-            <span className={`${props.className + ' interest-image'}`}>
+            <div className={`${props.className + ' interest-image-circle'}`}>
+            <span className={`${props.className + ' interest-image-emoji'}`}>
                 {emoji}
             </span>
+            </div>
             <h2 className={props.className + ' interest-title'}>{Name}</h2>
         </div>
     },

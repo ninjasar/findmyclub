@@ -57,13 +57,13 @@
 }
 .interest-item {
     width: 140px;
-    height: 180px;
+    /* height: 180px; */
     cursor: pointer;
     margin-left: 5px;
     margin-right: 5px;
     text-align: center;
     border-radius: 10px;
-    padding-right: 10px;
+    /* padding-right: 10px; */
     margin-bottom: 10px;
     align-content: center;
     flex-direction: column;
@@ -79,22 +79,33 @@
 .interest-item:active {
     box-shadow: 3px 3px 30px 1px rgba(0, 0, 0, 0.35);
 }
-.interest-image {
-    position: absolute;
+.interest-image-circle {
     top: 50px;
-    width: 54px;
-    font-size: 30px;
-    padding-top: 5px;
+    /* font-size: 30px; */
+    margin: auto;
     border-radius: 100%;
     left: calc(140px / 2 - 15%);
     background-color: #d7d7e1;
-    vertical-align: unset;
+    /* vertical-align: unset; */
     width: 60px;
+    /* line-height: 1.5em; */
+    height: 60px;
+}
+.interest-image-emoji {
+    /* position: absolute; */
+    /* top: 50px; */
+    /* width: 54px; */
+    font-size: 30px;
+    padding-top: 5px;
+    /* border-radius: 100%; */
+    /* left: calc(140px / 2 - 15%); */
+    /* background-color: #d7d7e1; */
+    vertical-align: unset;
+    /* width: 60px; */
     line-height: 1.5em;
-    height: 55px;
+    /* height: 55px; */
 }
 .interest-title {
-    position: absolute;
     width: 100%;
     top: calc(65%);
     font-size: 1rem;

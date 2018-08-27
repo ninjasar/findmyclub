@@ -1,13 +1,18 @@
 .collectionView {
     position: relative;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     /* height: 100%; */
+    align-items: stretch;
     overflow-y: auto;
     overflow-x: auto;
     text-align: center;
     white-space: nowrap;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    transition: 0.2s;
 }
 
 #popupList::-webkit-scrollbar {
@@ -20,7 +25,7 @@
 }
 
 .collectionView > div {
-    position: relative;
-    display: inline-block;
+    /* position: relative; */
+    /* display: inline-block; */
     text-decoration: none;
 }
