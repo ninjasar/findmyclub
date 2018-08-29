@@ -24,7 +24,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed }, onClubClick, onFoll
                         color: followed === true ? 'white' : '#330d51',
                         backgroundColor: followed === true ? '#330d51' : 'white'
                     }}>
-                    <span className={followed === true ? 'fa fa-check' : 'fa fa-plus'}/> Follow
+                    <span className={followed === true ? 'fa fa-check' : 'fa fa-plus'} /> {followed === true ? 'Followed' : 'Follow' }
                 </div>
             </div>
         </div>

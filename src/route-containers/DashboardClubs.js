@@ -3,6 +3,7 @@ import _ from 'lodash';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
+import * as UIUtil from '../util/UI';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 import '../css/containers/DashboardClubs.css';
 
@@ -84,7 +85,7 @@ class DashboardClubs extends Component {
                             })
                             .map((club, index) => {
                                 const clubDetail = clubDetails.find((cd) => cd.id == club.ID);
-                                const image = clubDetail && (clubDetail.picture_url || clubDetail.header_graphic);
+                                const image = UIUtil.getClubThumbnails(clubDetail);
                                 return Maps.mapClubToDashboardComponent({ ...club, ...clubDetail, image }, index, this.didSelectClub.bind(this));
                             })
                     } />

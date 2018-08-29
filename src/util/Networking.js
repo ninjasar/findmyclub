@@ -36,7 +36,7 @@ const get = (path) => {
         // return a promise that never resolves
         return new Promise(() => { });
     }
-    return superagent.get(`${Constants.BASE_URL}/${path}`).
+    return superagent.get(`${Constants.BASE_URL}${path}`).
         set({
             'Authorization': `Bearer ${Constants.token()}`,
         });
@@ -47,7 +47,7 @@ const post = (path) => {
         // return a promise that never resolves
         return new Promise(() => { });
     }
-    return superagent.post(`${Constants.BASE_URL}/${path}`).
+    return superagent.post(`${Constants.BASE_URL}${path}`).
         set({
             'Authorization': `Bearer ${Constants.token()}`,
         });
