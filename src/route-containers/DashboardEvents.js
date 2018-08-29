@@ -28,7 +28,7 @@ class DashboardEvents extends Component {
     }
     
     reloadEvents = async () => {
-        const startDate = new Date(Date.now() - 1000 * 3600 * 24 * 365);
+        const startDate = new Date(Date.now() - 1000 * 3600 * 24);
         const endDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
         const followedClubs = await Networking.getFollowedClubs();
         const allEvents = await Promise.all(followedClubs.map((club) => Networking.getEventsForClub(club.ID, startDate, endDate)));

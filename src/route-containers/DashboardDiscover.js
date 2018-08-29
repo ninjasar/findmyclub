@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
+
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
 import '../css/containers/DashboardDiscover.css';
+import * as InterestsAndCategories from '../util/InterestsAndCategories';
+import * as UIUtil from '../util/UI';
 
 class DashboardDiscover extends Component {
 
@@ -14,32 +18,23 @@ class DashboardDiscover extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            clubs: [],
 
-            umbrellas: ['College of Arts and Science', 'Tisch School of the Arts', 'Stern School of Business',
-                        'Gallatain School of Individualized Studies', 'Tandon School of Engineering',
-                        'School of Professional Studies'],
+        this.state = {
+            // all categories in format of fmc response
+            allCategories: [],
+
+            // list of all clubs, in format of orgsync response
+            allClubs: [],
+
+            selectedUmbrella: undefined,
+            
+            currentPage: 0,
             umbrellaSearchFocused: false
         }
     }
 
-    async componentDidMount() {
-        var allClubs = [];
-
-        // Get all the interests, then all those clubs.
-        const allItrs = await Networking.getInterests();
-        for(var i in allItrs) {
-            const clubs = await Networking.getClubs(allItrs[i].ID);
-            allClubs = allClubs.concat(clubs);
-        }
-
-        // Set the state to all of the clubs.
-        allClubs = allClubs.map((val) => {
-            return { ...val, image: '', tag: 'art', tagColor: 'cyan' }
-        });
-        this.setState({ clubs: allClubs });
-        console.log(allClubs);
+    componentDidMount() {
+        this.reloadClubs();
     }
 
 
@@ -75,8 +70,8 @@ class DashboardDiscover extends Component {
                 <CollectionView className='dashboard-discover-umbrellas-list'
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
-                                    this.state.umbrellas.map((val, index) => {
-                                        return Maps.mapUmbrellaToLabelComponent(val, index, this.didSelectUmbrella.bind(this));
+                                    InterestsAndCategories.umbrellas.map((umbrella, index) => {
+                                        return Maps.mapUmbrellaToLabelComponent(umbrella.name, index, this.didSelectUmbrella.bind(this, umbrella));
                                     })
                                 }
                                 style={{
@@ -86,8 +81,11 @@ class DashboardDiscover extends Component {
                 <CollectionView className='dashboard-discover-club-list'
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
-                                    this.state.clubs.map((val) => {
-                                        return Maps.mapClubToDashboardComponent(val, this.didSelectClub.bind(this));
+                                    this.filteredClubs().map((club, index) => {
+                                        return Maps.mapClubToDashboardComponent({
+                                            ...club,
+                                            image: UIUtil.getClubThumbnails(),
+                                        }, index, () => this.props.onSelectClub(club)); 
                                     })
                                 }/>
 			</div>
@@ -101,24 +99,31 @@ class DashboardDiscover extends Component {
     *                           *
     *****************************/
 
-    /** What to do when you click on a club. */
-    didSelectClub(ID, Name, tags) {
-        if(this.props.onSelectClub) {
-            const items = this.state.clubs;
-            const item = items.filter((val) => val.ID === ID)[0];
-            this.props.onSelectClub(item);
-        }
-    }
-
-
     /** When you click an umbrella to search through. */
-    didSelectUmbrella() {
-        console.log('Filtered by umbrella');
+    didSelectUmbrella(umbrella) {
+        this.setState({
+            selectedUmbrella: umbrella,
+        });
     }
 
+    reloadClubs = async () => {
+        const allCategories = await Networking.getCategories();
+        this.setState({
+            allCategories,
+        });
 
+        const allClubsArr = await Promise.all(allCategories.map((cat) => Networking.getClubs(cat.ID)));
+        const allClubs = _.flatMap(allClubsArr, (arr) => arr);
+        allClubs.sort();
 
+        this.setState({
+            allClubs,
+        });
+    }
 
+    filteredClubs = () => {
+        return this.state.allClubs;
+    }
 
 
 	/****************************
