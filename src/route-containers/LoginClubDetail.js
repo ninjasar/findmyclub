@@ -7,16 +7,16 @@ import '../css/containers/LoginClubDetail.css';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
 class LoginClubDetail extends Component {
-
+    
 	/****************************
     *                           *
     *            INIT           *
     *                           *
     *****************************/
-
+    
     constructor(props) {
         super(props);
-
+        
         this.state = {
             upcomingEvents: [],
             category: undefined,
@@ -25,26 +25,26 @@ class LoginClubDetail extends Component {
             followed: false,
         }
     }
-
+    
     reloadCategory = async () => {
         const category = await InterestsAndCategories.getCategoryFromID(this.props.club.CategoryID);
         this.setState({ category });
     }
-
+    
     reloadEvents = async () => {
         const events = await Networking.getEventsForClub(this.props.club.ID, new Date(Date.now() - 3600 * 1000 * 24 * 1), new Date(Date.now() + 3600 * 1000 * 24 * 7));
         this.setState({
             upcomingEvents: events,
         });
     }
-
+    
     reloadClubDetail = async () => {
         const clubDetail = await Networking.getClubInformation(this.props.club.ID);
         this.setState({
             clubDetail,
         });
     }
-
+    
     reloadFollowedClubs = async () => {
         const followedClubs = await Networking.getFollowedClubs();
         const followingClubIDs = _.map(followedClubs || [], 'ID');
@@ -53,175 +53,134 @@ class LoginClubDetail extends Component {
             followed,
         });
     }
-
+    
     async componentDidMount() {
         await this.reloadCategory();
         await this.reloadEvents();
         await this.reloadClubDetail();
         await this.reloadFollowedClubs();
     }
-
+    
 	/****************************
     *                           *
     *           RENDER          *
     *                           *
     *****************************/
-
+    
 	render() {
         const galleryImageSrc = this.state.clubDetail && this.state.clubDetail.picture_url;
         const headerImageSrc = this.state.clubDetail && this.state.clubDetail.header_graphic || galleryImageSrc;
         const links = this.state.clubDetail && this.state.clubDetail.links;
 		return (
 			<div className="LoginClubDetail overlay">
-                <button className='club-detail-close-btn'
+                
+                <div className="login-club-detail-top">
+                    <img className='club-detail-background-image' src={headerImageSrc} alt='image-preview'/>
+                    <button 
+                        className='club-detail-close-btn'
                         onClick={() => {
                             if(this.props.onClose) {
                                 this.props.onClose();
                             }
-                        }}><span className='fa fa-times'/></button>
-                <img className='club-detail-background-image' src={headerImageSrc} alt='image-preview'/>
+                        }}><span className='fa fa-times'/>
+                    </button>
 
-                <button className='pill-button club-detail-follow-btn' onClick={this.handleFollowClub}>
-                    <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
-                </button>
-                <a className='pill-button club-detail-go-to-engage-btn' href={links && links.web} target='_blank'>
-                    <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
-                </a>
-
-                <h1 className='club-detail-title'>{this.props.club.Name}</h1>
-                <p className='club-detail-information'><span>Interest</span> {this.state.category && this.state.category.interest && this.state.category.interest.Name}</p>
-                <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
-                <p className='club-detail-information'><span>Umbrella</span> {this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}</p>
-
-                <p className='club-detail-description'>
-                    {this.state.clubDetail && this.state.clubDetail.description}
-                </p>
-
-                <h3 className='club-detail-portal-title'>Portal Information</h3>
-                <div className='club-detail-portal-information'>
-                    <p className='club-detail-portal-information-title'>Website</p>
-                    {
-                        links && links.web && 
-                        <a className='club-detail-portal-information-link' href={links.web}>{links.web}</a>
-                    }
-
-                    {
-                        // none of these fields exists in orgsync response
-                        /* <p className='club-detail-portal-information-title'>Facebook</p>
-                    <a className='club-detail-portal-information-link' href='https://google.com'>https://facebook.com</a>
-
-          <p className="club-detail-portal-information-title">Instagram</p>
-          <a className="club-detail-portal-information-link" href="https://google.com">
-            https://instagram.com
-          </a>
-
-          <p className="club-detail-portal-information-title">Location</p>
-          <p className="club-detail-portal-information-link not-link">
-            Kimmel Center for Student Life
-          </p>
-
-                    <p className='club-detail-portal-information-title'>Email</p>
-                    <a className='club-detail-portal-information-link' href='https://google.com'>joeschmoe@nyu.edu</a> */}
                 </div>
+                
+                <div className="login-club-detail-middle">
 
-                <h3 className='club-detail-events-title'>Upcoming Events</h3>
-                <CollectionView className='club-detail-events-list'
-                                orientation={CollectionView.Orientation.vertical}
-                                edgeInsets={['10px', '0px', '0px', '0px']}
-                                data={
-                                    this.state.upcomingEvents.map((val, index) => {
-                                        return Maps.mapEventToComponent(val, index, (_, __, ___, idx) => {
-                                            if(this.props.onSelectEvent) {
-                                                const items = this.state.upcomingEvents;
-                                                const item = items[idx];
-                                                this.props.onSelectEvent(item);
-                                            } else {
-                                                alert('Nothing here');
-                                            }
-                                        })
-                                    }).filter((_, index) => {
-                                        if(this.state.maxEvents === 2) {
-                                            return index < this.state.maxEvents;
-                                        } else {
-                                            return index;
-                                        }
-                                    })
-                                }/>
-                <button className='club-detail-see-more-btn'
+                    <button className='pill-button club-detail-follow-btn' onClick={this.handleFollowClub}>
+                        <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
+                    </button>
+                    <a className='pill-button club-detail-go-to-engage-btn' href={links && links.web} target='_blank'>
+                        <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
+                    </a>
+                
+                    <h1 className='club-detail-title'>{this.props.club.Name}</h1>
+                    <p className='club-detail-information'><span>Interest</span> {this.state.category && this.state.category.interest && this.state.category.interest}</p>
+                    <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
+                    <p className='club-detail-information'><span>Umbrella</span> {this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}</p>
+                    
+                    <p className='club-detail-description'>
+                        {this.state.clubDetail && this.state.clubDetail.description}
+                    </p>
+                    
+                    <h3 className='club-detail-portal-title'>Portal Information</h3>
+                    <div className='club-detail-portal-information'>
+                        <p className='club-detail-portal-information-title'>Website</p>
+                        {
+                            links && links.web && 
+                            <a className='club-detail-portal-information-link' href={links.web}>{links.web}</a>
+                        }
+                    </div>
+                    
+                    <h3 className='club-detail-events-title'>Upcoming Events</h3>
+                    <CollectionView 
+                        className='club-detail-events-list'
+                        orientation={CollectionView.Orientation.vertical}
+                        edgeInsets={['10px', '0px', '0px', '0px']}
+                        data={
+                            this.state.upcomingEvents.map((val, index) => {
+                                return Maps.mapEventToComponent(val, index, (_, __, ___, idx) => {
+                                    if(this.props.onSelectEvent) {
+                                        const items = this.state.upcomingEvents;
+                                        const item = items[idx];
+                                        this.props.onSelectEvent(item);
+                                    } else {
+                                        alert('Nothing here');
+                                    }
+                                })
+                            }).filter((_, index) => {
+                                if(this.state.maxEvents === 2) {
+                                    return index < this.state.maxEvents;
+                                } else {
+                                    return index;
+                                }
+                            })
+                    }/>
+                    <button 
+                        className='club-detail-see-more-btn'
                         onClick={() => {
                             this.setState({
                                 maxEvents: this.state.maxEvents === 2 ? -1 : 2
-                        })
+                            })
                     }}>See {this.state.maxEvents === 2 ? 'More' : 'Less'}</button>
-
-        <h3 className="club-detail-events-title">Upcoming Events</h3>
-        <CollectionView className="club-detail-events-list" orientation={CollectionView.Orientation.vertical} edgeInsets={["10px", "0px", "0px", "0px"]} data={this.state.upcomingEvents
-            .map((val, index) => {
-              return Maps.mapEventToComponent(
-                val,
-                index,
-                (_, __, ___, idx) => {
-                  if (this.props.onSelectEvent) {
-                    const items = this.state.upcomingEvents;
-                    const item = items[idx];
-                    this.props.onSelectEvent(item);
-                  } else {
-                    alert("Nothing here");
-                  }
-                }
-              );
-            })
-            .filter((_, index) => {
-              if (this.state.maxEvents === 2) {
-                return index < this.state.maxEvents;
-              } else {
-                return index;
-              }
-            })} />
-        <button className="club-detail-see-more-btn" onClick={() => {
-            this.setState({
-              maxEvents: this.state.maxEvents === 2 ? -1 : 2
-            });
-          }}>
-          See {this.state.maxEvents === 2 ? "More" : "Less"}
-        </button>
-
-                    <CollectionView className='club-detail-gallery-list'
-                        orientation={CollectionView.Orientation.horizontal}
-                        edgeInsets={['0px', '50px', '0px', '20px']}
-                        data={galleryImageSrc && [
-                            <img key={1}
-                                className='club-detail-gallery-image'
-                                src={galleryImageSrc}
-                                alt='gallery' />
-                        ]} />
+                    <button className="club-detail-see-more-btn" onClick={() => {
+                        this.setState({
+                            maxEvents: this.state.maxEvents === 2 ? -1 : 2
+                        });
+                    }}>
+                    See {this.state.maxEvents === 2 ? "More" : "Less"}
+                    </button>
+                    
                 </div>
             </div>
-		);
-	}
-
-
-	/****************************
-    *                           *
-    *         FUNCTIONS         *
-    *                           *
-    *****************************/
-
-    handleFollowClub = async () => {
-        if (this.state.followed) {
-            await Networking.unfollowClub(this.props.club.ID);
-        } else {
-            await Networking.followClub(this.props.club.ID);
+            );
         }
-        await this.reloadFollowedClubs();
+        
+        
+        /****************************
+        *                           *
+        *         FUNCTIONS         *
+        *                           *
+        *****************************/
+        
+        handleFollowClub = async () => {
+            if (this.state.followed) {
+                await Networking.unfollowClub(this.props.club.ID);
+            } else {
+                await Networking.followClub(this.props.club.ID);
+            }
+            await this.reloadFollowedClubs();
+        }
+        
+        /****************************
+        *                           *
+        *           STYLES          *
+        *                           *
+        *****************************/
+        
     }
-
-	/****************************
-    *                           *
-    *           STYLES          *
-    *                           *
-    *****************************/
-
-}
-
-export default LoginClubDetail;
+    
+    export default LoginClubDetail;
+    
