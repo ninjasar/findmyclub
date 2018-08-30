@@ -1,6 +1,7 @@
 import React from 'react';
 import CollectionView from '../components/CollectionView';
 import dateformat from 'dateformat';
+import * as UIUtil from '../util/UI';
 
 // club to card
 const mCtC = ({ image, ID, Name, tags, tagColor, followed }, onClubClick, onFollowClick) => {
@@ -177,7 +178,7 @@ export default {
                 <div className='event-right' onClick={() => {
                     console.log('add to calendar');
                 }}>
-                    <div className='event-calendar-area'>
+                    <div className='event-calendar-area' onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>
                         <p className='event-calendar-label'>Add to calendar</p>
                     </div>
