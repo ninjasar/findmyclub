@@ -83,14 +83,14 @@ class Login extends Component {
     *****************************/
 
     /** Transitions to the introduction container. */
-    handleGoToIntroductionContainer() {
+    handleGoToIntroductionContainer = () => {
         this.transitionContainer(<LoginWelcome onNext={this.handleGoToSelectInterests.bind(this)} />);
     }
 
 
     /** Transitions to the view that lets people select their interests. */
-    handleGoToSelectInterests() {
-        this.transitionContainer(<LoginInterestSelection onNext={this.handleGoToMatching.bind(this)}/>);
+    handleGoToSelectInterests = () => {
+        this.transitionContainer(<LoginInterestSelection onNext={this.handleGoToMatching.bind(this)} interest={this.state.interests} />);
     }
 
 
@@ -122,6 +122,7 @@ class Login extends Component {
             onNext={() => {
                 this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)}/>);
             }}
+            onGoBack={this.handleGoToSelectInterests}
             interests={interests}
             clubMatches={matches}/>);
         }

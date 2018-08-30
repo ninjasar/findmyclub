@@ -58,9 +58,7 @@ class LoginClubMatch extends Component {
             <div className='club-detail-list-view'>
             <div className='club-detail-header'>
             <button className='club-detail-list-back-btn'
-            onClick={() => {
-                this.closeSeeMore();
-            }}><span className='fa fa-chevron-left'/> Go Back</button>
+            onClick={() => this.props.onGoBack()}><span className='fa fa-chevron-left'/> Go Back</button>
             <button className='pill-button filter-button club-detail-list-filter-btn'
             onClick={() => {
                 if(this.props.onRefine) {
