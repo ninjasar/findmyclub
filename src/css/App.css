@@ -204,7 +204,7 @@
 	font-family: 'Gotham-Bold';
 }
 .event-info-area {
-	position: absolute;
+	position: relative;
 	top: 0px;
 	width: 50%;
 	height: 100%;
