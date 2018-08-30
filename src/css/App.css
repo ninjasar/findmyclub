@@ -218,12 +218,12 @@
 
 .event-info-area {
     text-align: left;
-	padding: 30px 15px 0;
+	padding: 25px 15px 0;
 }
 
 .event-title {
     font-size: 15px;
-    margin: 0;
+    margin: 0 0 5px;
     color: #323232;
     font-weight: bold;
     font-style: normal;
@@ -235,7 +235,7 @@
 
 .event-subtitle {
 	font-size: 12px;
-	margin: 0 0 12px;
+	margin: 0 0 10px;
     color: #323232;
     font-style: normal;
     font-weight: normal;
@@ -248,7 +248,7 @@
 
 .event-date {
 	font-size: 12px;
-	margin-bottom: 6px;
+	margin: 0 0 5px;
     color: #323232;
     font-style: normal;
     font-weight: normal;
