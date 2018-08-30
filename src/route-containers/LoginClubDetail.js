@@ -69,8 +69,8 @@ class LoginClubDetail extends Component {
     *****************************/
 
 	render() {
-        const galleryImageSrc = UIUtil.getClubThumbnails(this.state.clubDetail);
-        const headerImageSrc = UIUtil.getClubThumbnails(this.state.clubDetail);
+        const galleryImageSrc = UIUtil.getClubThumbnail(this.state.clubDetail);
+        const headerImageSrc = UIUtil.getClubThumbnail(this.state.clubDetail);
         const links = this.state.clubDetail && this.state.clubDetail.links;
 		return (
 			<div className="LoginClubDetail overlay">

@@ -112,7 +112,7 @@ class Dashboard extends Component {
     showEventsTab() {
         this.setState({
             currentContainer: <DashboardEvents onSelectEvent={(item) => {
-                this.showOverlay(<EventDetail onClose={() => this.hideOverlay()}/>);
+                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
             }}/>,
             currentTabIndex: 1,
             tabIndicatorLeft: 33

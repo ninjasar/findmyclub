@@ -35,7 +35,7 @@ class LoginClubMatch extends Component {
         console.log(this.props.clubMatches);
 
         this.reloadFollowingClubs();
-        await this.getClubThumbnails();
+        await this.getClubThumbnail();
     }
     
 	/****************************
@@ -142,7 +142,7 @@ class LoginClubMatch extends Component {
          *                           *
          *****************************/
     
-        async getClubThumbnails () {
+        async getClubThumbnail () {
     
             const thumbnails = {};
             const promises = this.state.clubMatches.map(async club => {
@@ -152,7 +152,7 @@ class LoginClubMatch extends Component {
             const results = await Promise.all(promises);
 
             results.forEach(club => {
-                thumbnails[club.id] = UIUtil.getClubThumbnails(club);
+                thumbnails[club.id] = UIUtil.getClubThumbnail(club);
             });
     
             this.setState({

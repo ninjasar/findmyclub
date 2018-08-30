@@ -85,8 +85,8 @@ class DashboardClubs extends Component {
                             })
                             .map((club, index) => {
                                 const clubDetail = clubDetails.find((cd) => cd.id == club.ID);
-                                const image = UIUtil.getClubThumbnails(clubDetail);
-                                return Maps.mapClubToDashboardComponent({ ...club, ...clubDetail, image }, index, this.didSelectClub.bind(this));
+                                const image = UIUtil.getClubThumbnail(clubDetail);
+                                return Maps.mapClubToDashboardComponent({ ...club, ...clubDetail, image }, index, () => this.props.onSelectClub(club));
                             })
                     } />
             </div>
@@ -99,16 +99,6 @@ class DashboardClubs extends Component {
     *         FUNCTIONS         *
     *                           *
     *****************************/
-
-    /** What to do when you click on a club. */
-    didSelectClub(key, title, tag) {
-        if(this.props.onSelectClub) {
-            const items = this.state.clubs;
-            const item = items[key];
-            this.props.onSelectClub(item);
-        }
-    }
-
 
     /** When you click an umbrella to search through. */
     didSelectUmbrella(umbrella) {

@@ -84,7 +84,7 @@ class DashboardDiscover extends Component {
                                     this.filteredClubs().map((club, index) => {
                                         return Maps.mapClubToDashboardComponent({
                                             ...club,
-                                            image: UIUtil.getClubThumbnails(),
+                                            image: UIUtil.getClubThumbnail(),
                                         }, index, () => this.props.onSelectClub(club)); 
                                     })
                                 }/>
