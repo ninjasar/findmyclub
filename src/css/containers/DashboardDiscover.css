@@ -115,6 +115,7 @@
 }
 .dashboard-club-item {
     position: relative;
+    overflow: hidden;
     width: 100%;
     height: 83px;
     cursor: pointer;
@@ -147,7 +148,6 @@
     position: absolute;
     top: 50px;
     left: 90px;
-    width: 80px;
     font-size: 10px;
     line-height: 1.6;
     font-weight: bold;

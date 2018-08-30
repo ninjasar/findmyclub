@@ -85,8 +85,9 @@ class DashboardClubs extends Component {
                             })
                             .map((club, index) => {
                                 const clubDetail = clubDetails.find((cd) => cd.id == club.ID);
+                                const interest = clubDetail && InterestsAndCategories.getInterestFromCategory(clubDetail.category.name);
                                 const image = UIUtil.getClubThumbnail(clubDetail);
-                                return Maps.mapClubToDashboardComponent({ ...club, ...clubDetail, image }, index, () => this.props.onSelectClub(club));
+                                return Maps.mapClubToDashboardComponent({ ...club, ...clubDetail, image }, interest, index, () => this.props.onSelectClub(club));
                             })
                     } />
             </div>

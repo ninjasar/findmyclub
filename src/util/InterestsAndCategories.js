@@ -2,106 +2,199 @@ import Networking from "./Networking";
 
 export const interests = {
     "Academic": {
-        ID: 0,
-        Name: "Academic",
-        emoji: '✍️',
-        categories: ['Academic Achievement Program', 'Departmental', 'Departmental Clubs','Honors Society']
+        "Color": "#D0021B",
+        "ID": 0,
+        "Name": "Academic",
+        "categories": [
+            "Academic Achievement Program",
+            "Departmental",
+            "Departmental Clubs",
+            "Honors Society"
+        ],
+        "emoji": "✍️"
     },
     "Community Engagement": {
-        ID: 1,
-        Name: "Community Engagement",
-        emoji: '👥',
-        categories: ['Service/Volunteer Work','University Programs and Activities','Mentorship',
-                    'Community Service']
+        "Color": "#F5A623",
+        "ID": 1,
+        "Name": "Community Engagement",
+        "categories": [
+            "Service/Volunteer Work",
+            "University Programs and Activities",
+            "Mentorship",
+            "Community Service"
+        ],
+        "emoji": "👥"
     },
     "Culture": {
-        ID: 2,
-        Name: "Culture",
-        emoji: '🗺',
-        categories: ['Cultural Groups','Multicultural Groups','Languages','International','Cultural']
+        "Color": "#F8E71C",
+        "ID": 2,
+        "Name": "Culture",
+        "categories": [
+            "Cultural Groups",
+            "Multicultural Groups",
+            "Languages",
+            "International",
+            "Cultural"
+        ],
+        "emoji": "🗺"
     },
     "Fraternity & Sorority Life": {
-        ID: 3,
-        Name: "Fraternity & Sorority Life",
-        emoji: '🏛',
-        categories: ['Fraternity Life', 'Sorority Life','Sorority']
-    },
-    "Media & Publication": {
-        ID: 4,
-        Name: "Media & Publication",
-        emoji: '🗞',
-        categories: ['Literary Groups','Student Media','Film + Television','Literary/Publication']
+        "Color": "#7ED321",
+        "ID": 3,
+        "Name": "Fraternity & Sorority Life",
+        "categories": [
+            "Fraternity Life",
+            "Sorority Life",
+            "Sorority"
+        ],
+        "emoji": "🏛"
     },
     "Health Professions & Clinical Interest": {
-        ID: 5,
-        Name: "Health Professions & Clinical Interest",
-        emoji: '🏥',
-        categories: ['Health Professions and Clinical Interests']
+        "Color": "#4A90E2",
+        "ID": 5,
+        "Name": "Health Professions & Clinical Interest",
+        "categories": [
+            "Health Professions and Clinical Interests"
+        ],
+        "emoji": "🏥"
+    },
+    "Media & Publication": {
+        "Color": "#417505",
+        "ID": 4,
+        "Name": "Media & Publication",
+        "categories": [
+            "Literary Groups",
+            "Student Media",
+            "Film + Television",
+            "Literary/Publication"
+        ],
+        "emoji": "🗞"
     },
     "Performance & Arts": {
-        ID: 6,
-        Name: "Performance & Arts",
-        emoji: '🎭',
-        categories: ['Dance','Comedy','Improv','Music','Vocal','Fine Arts','Acting',
-        'Photography','Architecture']
+        "Color": "#10509B",
+        "ID": 6,
+        "Name": "Performance & Arts",
+        "categories": [
+            "Dance",
+            "Comedy",
+            "Improv",
+            "Music",
+            "Vocal",
+            "Fine Arts",
+            "Acting",
+            "Photography",
+            "Architecture"
+        ],
+        "emoji": "🎭"
     },
     "Politics and Advocacy": {
-        ID: 7,
-        Name: "Politics and Advocacy",
-        emoji: '💬',
-        categories: ['Political Groups','Activism and Advocacy','Critique and Discussion']
+        "Color": "#8568DD",
+        "ID": 7,
+        "Name": "Politics and Advocacy",
+        "categories": [
+            "Political Groups",
+            "Activism and Advocacy",
+            "Critique and Discussion"
+        ],
+        "emoji": "💬"
     },
     "Professional Development": {
-        ID: 8,
-        Name: "Professional Development",
-        emoji: '🎓',
-        categories: ['Business','Career-Oriented','Research']
+        "Color": "#5724F2",
+        "ID": 8,
+        "Name": "Professional Development",
+        "categories": [
+            "Business",
+            "Career-Oriented",
+            "Research"
+        ],
+        "emoji": "🎓"
     },
     "Religion and Spirituality": {
-        ID: 9,
-        Name: "Religion and Spirituality",
-        emoji: '💭',
-        categories: ['Religious Groups', 'Atheist/Agnostic/Non-Belief']
+        "Color": "#BD10E0",
+        "ID": 9,
+        "Name": "Religion and Spirituality",
+        "categories": [
+            "Religious Groups",
+            "Atheist/Agnostic/Non-Belief"
+        ],
+        "emoji": "💭"
     },
     "Science and Technology": {
-        ID: 10,
-        Name: "Science and Technology",
-        emoji: '🔬',
-        categories: ['Computer Science','Biology','Chemistry','Physics','Sustainability',
-        'Technology', 'Engineering', 'Computers and Technology', 'Technology']
+        "Color": "#FF7BAC",
+        "ID": 10,
+        "Name": "Science and Technology",
+        "categories": [
+            "Computer Science",
+            "Biology",
+            "Chemistry",
+            "Physics",
+            "Sustainability",
+            "Technology",
+            "Engineering",
+            "Computers and Technology",
+            "Technology"
+        ],
+        "emoji": "🔬"
     },
     "Self-Identity": {
-        ID: 11,
-        Name: "Self-Identity",
-        emoji: '❗️',
-        categories: ['LGBTQ+', 'Race and Ethnicity', 'Gender', 'Humanist','Identity/Cultural']
+        "Color": "#DFCEEB",
+        "ID": 11,
+        "Name": "Self-Identity",
+        "categories": [
+            "LGBTQ+",
+            "Race and Ethnicity",
+            "Gender",
+            "Humanist",
+            "Identity/Cultural"
+        ],
+        "emoji": "❗️"
     },
     "Social": {
-        ID: 12,
-        Name: "Social",
-        emoji: '🗣',
-        categories: ['Social']
+        "Color": "#50E3C2",
+        "ID": 12,
+        "Name": "Social",
+        "categories": [
+            "Social"
+        ],
+        "emoji": "🗣"
     },
     "Sports and Games": {
-        ID: 13,
-        Name: "Sports and Games",
-        emoji: '👟',
-        categories: ['Recreational','Varsity Sports','Intramural Sports','Board and Video Games',
-        'Role-Play','Club-Sports']
+        "Color": "#3CCED9",
+        "ID": 13,
+        "Name": "Sports and Games",
+        "categories": [
+            "Recreational",
+            "Varsity Sports",
+            "Intramural Sports",
+            "Board and Video Games",
+            "Role-Play",
+            "Club-Sports"
+        ],
+        "emoji": "👟"
     },
     "Student Governance": {
-        ID: 14,
-        Name: "Student Governance",
-        emoji: '💼',
-        categories: ['Student Council','Student Government Committees','Business']
+        "Color": "#0295A0",
+        "ID": 14,
+        "Name": "Student Governance",
+        "categories": [
+            "Student Council",
+            "Student Government Committees",
+            "Business"
+        ],
+        "emoji": "💼"
     },
-    "Students with Different Abiilities": {
-        ID: 15,
-        Name: "Students with Different Abiilities",
-        emoji: '🧠',
-        categories: ['Learning Disability', 'Physical Disability','Special Interest']
+    "Students with Different Abilities": {
+        "Color": "#8C480B",
+        "ID": 15,
+        "Name": "Students with Different Abilities",
+        "categories": [
+            "Learning Disability",
+            "Physical Disability",
+            "Special Interest"
+        ],
+        "emoji": "🧠"
     }
-}
+};
 
 export const umbrellas = [
     { id: 78809, name: 'Center for Student Life' },
@@ -128,7 +221,8 @@ export function getInterestFromCategory(categoryName) {
     const matchingInterests = Object.values(interests).filter((interestObj) => {
         return interestObj.categories.map((cat) => cat.toLowerCase()).includes(categoryName.toLowerCase());
     })
-    return matchingInterests[0] || { name: 'Unknown', id: -1 };
+    const interest = matchingInterests[0] || { Name: 'Unknown', id: -1, Color: 'gray' };
+    return interest;
 }
 
 

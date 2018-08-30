@@ -82,10 +82,11 @@ class DashboardDiscover extends Component {
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
                                     this.filteredClubs().map((club, index) => {
+                                        const interest = {};
                                         return Maps.mapClubToDashboardComponent({
                                             ...club,
                                             image: UIUtil.getClubThumbnail(),
-                                        }, index, () => this.props.onSelectClub(club)); 
+                                        }, interest, index, () => this.props.onSelectClub(club)); 
                                     })
                                 }/>
 			</div>
