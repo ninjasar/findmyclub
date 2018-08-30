@@ -1,7 +1,7 @@
 import thumbnailUrl from "../images/defaultClubThumbnail.svg";
 
 export default {
-    CONTAINER_TRANSITION_TIME: 750,
+    CONTAINER_TRANSITION_TIME: 250,
     OVERLAY_TRANSITION_TIME: 350,
     clubThumbnailDefaultPath: thumbnailUrl,
     token: '',
