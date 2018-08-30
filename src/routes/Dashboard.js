@@ -55,7 +55,7 @@ class Dashboard extends Component {
                 
                 <div className='dashboard-top-bar'>
                     <img src={AppLogo} alt='logo' className='dashboard-app-logo'/>
-                    <img src={''} alt='person' className='dashboard-profile-button' onClick={this.showProfile.bind(this)}/>
+                    <img src={require('../images/profile_image.svg')} alt='person' className='dashboard-profile-button' onClick={this.showProfile.bind(this)}/>
                 </div>
                 <div className='dashboard-search-bar-area'>
                     <input type='text' 
@@ -201,7 +201,7 @@ class Dashboard extends Component {
         // 1.) Reset any existing overlay view by animating it away.
         $('.overlay').animate({
             opacity: 0,
-            top: '0px',
+            top: '60px',
             left: '100%',
             width: '0px',
             height: '0px',
@@ -216,7 +216,7 @@ class Dashboard extends Component {
                 $('.overlay').css('height', '0px');
                 $('.overlay').animate({
                     opacity: 1,
-                    top: '0px',
+                    top: '60px',
                     left: '0px',
                     width: '100%',
                     height: '100%'

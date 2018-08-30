@@ -23,7 +23,7 @@ const getParameterByName = (name, url) => {
 }
 
 const redirectToLoginIfTokenExpires = () => {
-    if (shouldExpireToken(Constants.token())) {
+    if (shouldExpireToken()) {
         Constants.clearToken();
         window.location.href = '/';
         return true;
@@ -53,9 +53,12 @@ const post = (path) => {
         });
 };
 
-const shouldExpireToken = (token) => {
+const shouldExpireToken = () => {
     try {
-        const payload = jwt_decode(token);
+        const payload = getJWTPayload();
+        if (!payload) {
+            return true;
+        }
         // 1 minutes before expire
         return new Date(payload.exp * 1000).getTime() - new Date().getTime() < 60 * 1000;
     }
@@ -63,6 +66,10 @@ const shouldExpireToken = (token) => {
         console.error(err);
         return true;
     }
+};
+
+const getJWTPayload = () => {
+    return jwt_decode(Constants.token());
 };
 
 /****************************
@@ -207,4 +214,5 @@ export default {
     getFollowedClubs,
     getEventsForClub,
     getClubInformation,
+    getJWTPayload,
 }
