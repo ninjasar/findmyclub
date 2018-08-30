@@ -36,15 +36,20 @@
 
 .club-card {
 	position: relative;
-	width: 158px;
+	width: 236px;
 	height: 100%;
-	max-height: 320px;
+	max-height: 240px;
 	cursor: pointer;
 	text-align: left;
 	border-radius: 4px;
+	-webkit-transition-duration: 0.2s;
+	-o-transition-duration: 0.2s;
 	transition-duration: 0.2s;
 	background-color: #ffffff;
-	box-shadow: 0 0 10px 4px #e6e9ef;
+	-webkit-box-shadow: 0 0 10px 4px #e6e9ef;
+	overflow-x: auto;
+	border-radius: 5px;
+	box-shadow: 0 0 20px 0px rgba(0,0,0,0.15);
 }
 .club-card:hover {
 	box-shadow: 0 0 20px 8px #d7dae0;
@@ -59,7 +64,10 @@
 	top: 0px;
 	left: 0px;
 	width: 100%;
-	height: 50%;
+	height: 45%;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 	background-color: gray;
 	border-radius: 2px 2px 0px 0px;
@@ -71,23 +79,28 @@
 	object-fit: cover;
 }
 .club-card-title {
-	position: relative;
+	/* position: relative; */
 	top: -5px;
 	left: 8px;
 	font-size: 16px;
 	line-height: 1.1;
 	color: #323232;
 	font-weight: bold;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
+	padding: 0 15px;
 	font-style: normal;
 	margin-bottom: -5px;
 	font-stretch: normal;
 	letter-spacing: normal;
 	font-family: 'Gotham-Bold';
+	line-height: 1.4rem;
 }
 .club-card-tags {
 	position: relative;
-	left: 8px;
+	left: 15px;
 	width: 10px;
 	height: 10px;
 	color: white;
@@ -98,7 +111,7 @@
 }
 .club-card-tags-label {
 	position: relative;
-	left: 12px;
+	left: 25px;
 	color: black;
 	font-size: 12px;
 	user-select: none;
@@ -110,20 +123,27 @@
 	position: relative;
 	width: 80px;
 	padding: 5px;
-    cursor: pointer;
+	cursor: pointer;
 	margin-top: 5px;
-    font-size: 12px;
-    color: #330d51;
+	font-size: 12px;
+	color: #330d51;
 	padding-top: 8px;
-    user-select: none;
-    margin-left: auto;
-    margin-right: auto;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 	border-radius: 25px;
-    font-family: 'Gotham';
-    transition-duration: 0.5s;
-    background-color: #ffffff;
-    border: solid 1px #330d51;
+	font-family: 'Gotham';
+	font-weight: 500;
+	-webkit-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	background-color: #ffffff;
+	border: solid 2px #330d51;
+	bottom: 15px;
 }
 .club-card-follow-button:hover {
     box-shadow: 0 0 10px 4px #340d5121;

@@ -232,7 +232,7 @@
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 65px;
+    height: 75px;
     z-index: 100;
     background-color: white;
     box-shadow: 0 8px 7px -2px rgba(215, 215, 225, 0.42);
@@ -251,7 +251,6 @@
     height: 100%;
     z-index: 1000;
     text-align: left;
-    padding-top: 30px;
     overflow-x: hidden;
     background-color: white;
     animation: detailFadeIn 0.5s ease-in-out;
@@ -259,7 +258,7 @@
 
 .club-detail-list-back-btn {
     position: absolute;
-    top: 20px;
+    top: 25px;
     left: 15px;
     border: none;
     outline: none;
@@ -278,7 +277,7 @@
 
 .club-detail-list-filter-btn {
     position: absolute;
-    top: 20px;
+    top: 25px;
     right: 20px;
     width: 100px;
     height: 30px;
@@ -307,8 +306,8 @@
 }
 .club-detail-list-section-subtitle {
     position: relative;
-    top: 50px;
-    left: 20px;
+    top: 70px;
+    left: 30px;
     font-size: 15px;
     color: #323232;
     line-height: 1.47;
