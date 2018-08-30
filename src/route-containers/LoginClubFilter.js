@@ -4,166 +4,117 @@ import CollectionView from '../components/CollectionView';
 import '../css/containers/LoginClubFilter.css';
 
 class LoginClubFilter extends Component {
-
+    
 	/****************************
     *                           *
     *            INIT           *
     *                           *
     *****************************/
-
+    
     constructor(props) {
+
         super(props);
+
+        const checkedCategories = {};
+        [...new Set(this.props.clubMatches.map(c => c.category))]
+            .forEach(category => {
+                checkedCategories[category] = this.props.selectedClubs.map(sc => sc.category).includes(category);
+            });
+        
         this.state = {
-            interests: props.interests || ['Art', 'Sports', 'Social', 'Tech'],
-            categoriesPerInterest: props.categoriesPerInterest || [{
-                title: 'Dance',
-                interest: 'Art',
-                checked: false
-            },{
-                title: 'Comedy',
-                interest: 'Art',
-                checked: false
-            },{
-                title: 'Improve',
-                interest: 'Art',
-                checked: false
-            },{
-                title: 'Music',
-                interest: 'Art',
-                checked: false
-            },{
-                title: 'Racquet',
-                interest: 'Sports',
-                checked: false
-            },{
-                title: 'Hand',
-                interest: 'Sports',
-                checked: false
-            },{
-                title: 'Foot',
-                interest: 'Sports',
-                checked: false
-            },{
-                title: 'Running',
-                interest: 'Sports',
-                checked: false
-            },{
-                title: 'Frats',
-                interest: 'Social',
-                checked: false
-            },{
-                title: 'Sororities',
-                interest: 'Social',
-                checked: false
-            },{
-                title: 'Eating',
-                interest: 'Social',
-                checked: false
-            },{
-                title: 'Exploring',
-                interest: 'Social',
-                checked: false
-            },{
-                title: 'Museums',
-                interest: 'Social',
-                checked: false
-            },{
-                title: 'Science',
-                interest: 'Tech',
-                checked: false
-            },{
-                title: 'Medicine',
-                interest: 'Tech',
-                checked: false
-            },{
-                title: 'Software',
-                interest: 'Tech',
-                checked: false
-            },{
-                title: 'Hardware',
-                interest: 'Tech',
-                checked: false
-            }]
+            checkedCategories,
         }
     }
-
-
+    
+    
 	/****************************
     *                           *
     *           RENDER          *
     *                           *
     *****************************/
-
+    
 	render() {
 		return (
 			<div className="LoginClubFilter overlay">
-                <button className='login-club-filter-close-btn'
-                        onClick={() => {
-                            if(this.props.onClose) {
-                                this.props.onClose();
-                            }
-                        }}>
+                <button 
+                    className='login-club-filter-close-btn'
+                    onClick={() => {
+                        if(this.props.onClose) {
+                            this.props.onClose();
+                        }
+                    }}
+                >
                     <span className='fa fa-times'/>
                 </button>
-				<h1 className='login-club-filter-title'>Filter</h1>
+                <h1 className='login-club-filter-title'>Filter</h1>
                 <p className='login-club-filter-subtitle'>Check the boxes below to filter your results!</p>
+                
+                <CollectionView 
+                    className='login-club-filters-filter-section'
+                    orientation={CollectionView.Orientation.vertical}
+                    data={
+                        this.props.interests.map((interest, index) => {
+                            let filts = this.props.categories
+                                .filter((cat) => cat.interest === interest.Name)
+                                .map(c => ({ interest: interest.Name, title: c.Name, checked: this.state.checkedCategories[c.Name] }))
 
-                <CollectionView className='login-club-filters-filter-section'
-                                orientation={CollectionView.Orientation.vertical}
-                                data={
-                                    this.state.interests.map((val, index) => {
-                                        const filts = this.state.categoriesPerInterest.filter((val2) => val2.interest === val);
-                                        return Maps.mapInterestToFilters(val, index, filts, this.didToggleFilter.bind(this));
-                                    })
-                                }/>
-                <button className='round-rect-button login-club-filters-filter-btn'
-                        onClick={() => {
-                            if(this.props.onFiltered) {
-                                const onFilters = this.state.categoriesPerInterest.filter((val) => val.checked === true);
-                                this.props.onFiltered(onFilters);
-                            }
-                        }}>
-                        X clubs match your interest!
-                </button>
+                                filts = filts.filter((f, ind) => filts.map(f2 => f2.title).indexOf(f.title) === ind);
+                            return Maps.mapInterestToFilters(interest.Name, index, filts, this.didToggleFilter.bind(this));
+                        })}
+                />
+                <button 
+                    className='round-rect-button login-club-filters-filter-btn'
+                    onClick={() => {
+                        if(this.props.onFiltered) {
+                            this.props.onFiltered(Object.keys(this.state.checkedCategories)
+                                .filter(c => this.state.checkedCategories[c]));
+                        }
+                    }}
+                > See {(this.getMatchingClubsCount() || 0)} Matching Clubs </button>
 			</div>
 		);
 	}
-
-
+    
+    
 	/****************************
     *                           *
     *         FUNCTIONS         *
     *                           *
     *****************************/
-
+    
     /** Handles the action when you click on a filter.
     * @param {Number} selectedIndex The index of the selected filter.
     * @param {String} selectedInterest The name of the interest that goes along with this filter. */
-    didToggleFilter(selectedIndex, selectedInterest) {
-        // 1.) Get the objects in the state.
-        const items = this.state.categoriesPerInterest;
-        const filtered = items.filter((obj) => obj.interest === selectedInterest);
-        const selected = filtered[selectedIndex];
+    didToggleFilter(categoryName) {
         
-        // 2.) Update the selected item.
-        const totalIndex = items.indexOf(selected);
-        selected.checked = !selected.checked;
-
-        // 3.) Reset the state.
-        const updated = items;
-        updated[totalIndex] = selected;
-        this.setState({ categoriesPerInterest: updated });
+        const checkedCategories = {
+            ...this.state.checkedCategories,
+            [categoryName]: !this.state.checkedCategories[categoryName],
+        };
+        
+        this.setState({
+            checkedCategories,
+        });
     }
+    
+    getMatchingClubsCount() {
 
+        const count = this.props.clubMatches
+            .filter(c => Object.keys(this.state.checkedCategories)
+                .filter(cc => this.state.checkedCategories[cc])
+                .includes(c.category))
+            .length;
 
-
-
+        return count;
+    }
+    
+    
 	/****************************
     *                           *
     *           STYLES          *
     *                           *
     *****************************/
-
+    
 }
 
 export default LoginClubFilter;

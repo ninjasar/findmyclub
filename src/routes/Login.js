@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import Constants from '../util/Constants';
 import Networking from '../util/Networking';
+import { interests as potentialInterests } from './../util/InterestsAndCategories';
 
 /* CONTAINERS */
 import LoginLanding from '../route-containers/LoginLanding';
@@ -34,7 +35,11 @@ class Login extends Component {
         super(props);
         this.state = {
             currentContainer: <div className='container'></div>,
-            currentOverlay: <div className='overlay'></div>
+            currentOverlay: <div className='overlay'></div>,
+            matchingClubs: [],
+            selectedClubs: [],
+            selectedInterests: [],
+            categoriesMatchingInterest: [],
         }
     }
 
@@ -77,6 +82,22 @@ class Login extends Component {
     *                           *
     *****************************/
 
+
+    // /** Handles the action when you click on a filter.
+    // * @param {Number} selectedIndex The index of the selected filter.
+    // * @param {String} selectedInterest The name of the interest that goes along with this filter. */
+    // didToggleFilter(categoryName) {
+
+    //     const checkedCategories = {
+    //         ...this.state.checkedCategories,
+    //         [categoryName]: !this.state.checkedCategories[categoryName],
+    //     };
+
+    //     this.setState({
+    //         checkedCategories,
+    //     });
+    // }
+    
     /** Transitions to the introduction container. */
     handleGoToIntroductionContainer() {
         this.transitionContainer(<LoginWelcome onNext={this.handleGoToSelectInterests.bind(this)} />);
@@ -88,6 +109,45 @@ class Login extends Component {
         this.transitionContainer(<LoginInterestSelection onNext={this.handleGoToMatching.bind(this)}/>);
     }
 
+    filterClubs(categoryNames) {
+        this.setState({
+            selectedClubs: this.state.matchingClubs.filter(c => categoryNames.includes(c.category)),
+        }, () => {
+
+            this.loadResultsPage();
+        });
+    }
+
+    loadResultsPage() {
+        this.transitionContainer(<LoginClubMatch 
+            onRefine={() => {
+                this.showOverlay(
+                    <LoginClubFilter
+                        onFiltered={(categoryNames) => {
+                            this.filterClubs(categoryNames);
+                            this.hideOverlay();
+                        }}
+                        onClose={this.hideOverlay.bind(this)}
+                        clubMatches={this.state.matchingClubs}
+                        interests={this.state.selectedInterests}
+                        categories={this.state.categoriesMatchingInterest}
+                        selectedClubs={this.state.selectedClubs}
+                    />);
+                }}
+            onSelectClub={(selectedCard) => {
+                this.showOverlay(<LoginClubDetail club={selectedCard}
+                    onClose={() => this.hideOverlay()}
+                    onSelectEvent={(item) => {
+                        this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                    }} />);
+            }}
+            onNext={() => {
+                this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)} />);
+            }}
+            interests={this.state.selectedInterests}
+            selectedClubs={this.state.selectedClubs}
+            clubMatches={this.state.matchingClubs} />);
+    }
 
     /** Goes to the loading screen for finding clubs with your interests.
     * @param {Array} selectedInterests The array of selected interest objects. */
@@ -98,54 +158,41 @@ class Login extends Component {
         
         // Function to go to the club matches page once you finish the API call that
         // finds the list of clubs matching to the users interests (see directly below).
-        const finished = (interests, matches) => {
-            this.transitionContainer(<LoginClubMatch onRefine={() => {
-                this.showOverlay(<LoginClubFilter onFiltered={(onFilters) => {
-                                                    this.hideOverlay();
-                                                    console.log('Filters that were turned on: ', onFilters);
-                                                }} 
-                                                onClose={this.hideOverlay.bind(this)}/>);
-            }}
-            onSelectClub={(selectedCard) => {
-                this.showOverlay(<LoginClubDetail club={selectedCard} 
-                                                onClose={() => this.hideOverlay()}
-                                                onSelectEvent={(item) => {
-                                                    this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
-                                                }}/>);
-                console.log(selectedCard);
-            }}
-            onNext={() => {
-                this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)}/>);
-            }}
-            interests={interests}
-            clubMatches={matches}/>);
-        }
 
         // Based on the selected interests, get a list of clubs that are associated with that interest.
         // 1.) Look through all of the categories and filter them by the ones that have an interest name
         // that matches one of the selected interests.
-        console.log(selectedInterests);
         const allCategories = await Networking.getCategories();
-        console.log(allCategories);
         const categoriesMatchingInterest = allCategories.filter((cat) => {
             const containing = selectedInterests.filter((selInt) => {
-                console.log("This is an interest: ", selInt);
-                return selInt.Name === cat.interest.Name;
+                return selInt.Name === cat.interest;
             })
             return containing.length > 0;
         })
-        console.log(categoriesMatchingInterest);
 
         // 2.) Now that you have the categories that only include the ones from the selected interests,
         // Use those categories to find the clubs that match the user's interests.
-        const matchingClubs = await Networking.getClubs(Object.values(categoriesMatchingInterest)
-                                                .map((val) => val.ID));
-        console.log(matchingClubs);
-
+        let matchingClubs = await Networking.getClubs(Object.values(categoriesMatchingInterest)
+            .map((val) => val.ID));
 
         // 3.) Now that you have all of the clubs that match the user's preferences, send them over to
         // the club matches page.
-        finished(selectedInterests, matchingClubs);
+
+        matchingClubs = matchingClubs.map(club => 
+            ({
+                ...club,
+                checked: true,
+                category: ( categoriesMatchingInterest.filter(cat => cat.ID == club.CategoryID)[0] || {} ).Name,
+            }));
+        
+        this.setState({
+            matchingClubs,
+            selectedClubs: matchingClubs,
+            categoriesMatchingInterest,
+            selectedInterests
+        });
+
+        this.loadResultsPage(this.state.selectedInterests, this.state.categoriesMatchingInterest, this.state.selectedClubs);
     }
 
 
