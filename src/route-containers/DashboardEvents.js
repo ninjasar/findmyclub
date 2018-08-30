@@ -28,18 +28,12 @@ class DashboardEvents extends Component {
     }
 
     reloadEvents = async () => {
-        // const startDate = new Date(Date.now() - 1000 * 3600 * 24);
-        // const endDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
-        // const followedClubs = await Networking.getFollowedClubs();
-        // const allEvents = await Promise.all(followedClubs.map((club) => Networking.getEventsForClub(club.ID, startDate, endDate)));
-        // const events = _.reduce(allEvents, (events) => events) || [];
-        // events.sort((e1, e2) => new Date(e1.date.starts_at).getTime() - new Date(e2.date.starts_at).getTime());
-        const events = [
-            { title: 'Test Evet', location: 'Test location' },
-            { title: 'Test Evet', location: 'Test location' },
-            { title: 'Test Evet', location: 'Test location' },
-            { title: 'Test Evet', location: 'Test location' },
-        ]
+        const startDate = new Date(Date.now() - 1000 * 3600 * 24);
+        const endDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
+        const followedClubs = await Networking.getFollowedClubs();
+        const allEvents = await Promise.all(followedClubs.map((club) => Networking.getEventsForClub(club.ID, startDate, endDate)));
+        const events = _.reduce(allEvents, (events) => events) || [];
+        events.sort((e1, e2) => new Date(e1.date.starts_at).getTime() - new Date(e2.date.starts_at).getTime());
         this.setState({
             events,
         });
