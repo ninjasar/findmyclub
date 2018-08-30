@@ -150,7 +150,7 @@ class Dashboard extends Component {
     showProfile() {
         this.showOverlay(<DashboardProfile onClose={() => { 
             this.hideOverlay()
-        }}/>);
+        }} />, Constants.OVERLAY_TRANSITION_TIME, undefined, true);
     }
 
 
@@ -197,11 +197,12 @@ class Dashboard extends Component {
     * @param {Component} overlayView The view to display in the overlay. 
     * @param {Number} duration How long the transition should last for. 
     * @param {Function} then What to do when the transition is over. */
-    showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then) {
+    showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then, showTopBar=false) {
+        const top = showTopBar ? '60px' : '0px';
         // 1.) Reset any existing overlay view by animating it away.
         $('.overlay').animate({
             opacity: 0,
-            top: '60px',
+            top,
             left: '100%',
             width: '0px',
             height: '0px',
@@ -216,7 +217,7 @@ class Dashboard extends Component {
                 $('.overlay').css('height', '0px');
                 $('.overlay').animate({
                     opacity: 1,
-                    top: '60px',
+                    top,
                     left: '0px',
                     width: '100%',
                     height: '100%'
