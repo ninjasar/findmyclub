@@ -3,6 +3,7 @@ import $ from 'jquery';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
+import * as UIUtil from '../util/UI';
 import '../css/containers/LoginClubMatch.css';
 import { getCategoryFromID, getInterestFromCategory } from '../util/InterestsAndCategories';
 
@@ -20,6 +21,8 @@ class LoginClubMatch extends Component {
             selectedClubs: props.selectedClubs || [],
             clubMatches: props.clubMatches || [],
             clubInterests: props.interests || [],
+            // list of club objects
+            followingClubs: [],
             thumbnails: [],
             selectedInterest: '',
             selectedIntersetColor: 'orange',
@@ -30,7 +33,8 @@ class LoginClubMatch extends Component {
     async componentDidMount() {
         // console.log(this.props.selectedClubs);
 
-        await this.getClubThumbnails();
+        this.reloadFollowingClubs();
+        await this.getClubThumbnail();
     }
     
 	/****************************
@@ -40,9 +44,9 @@ class LoginClubMatch extends Component {
      *****************************/
     
     render() {
-        
         const clubComponents = this.props.selectedClubs.map((club) => {
-            return Maps.mapClubToComponent({ ...club, image: this.state.thumbnails[club.ID] || require("../util/Constants").default.clubThumbnailDefaultPath, tagColor: club.interestColor},
+            const followed = this.followingClub(club);
+            return Maps.mapClubToComponent({ ...club, image: this.state.thumbnails[club.ID] || require("../util/Constants").default.clubThumbnailDefaultPath, tagColor: club.interestColor, followed },
             () => this.didSelectClubCard(club),
             () => this.didFollowClubCard(club));
         });
@@ -148,7 +152,7 @@ class LoginClubMatch extends Component {
          *                           *
          *****************************/
     
-        async getClubThumbnails () {
+        async getClubThumbnail () {
     
             const thumbnails = {};
             const promises = this.props.selectedClubs.map(async club => {
@@ -158,7 +162,7 @@ class LoginClubMatch extends Component {
             const results = await Promise.all(promises);
 
             results.forEach(club => {
-                thumbnails[club.id] = club.picture_url || club.header_graphic || require("../util/Constants").default.clubThumbnailDefaultPath;
+                thumbnails[club.id] = UIUtil.getClubThumbnail(club);
             });
     
             this.setState({
@@ -173,10 +177,18 @@ class LoginClubMatch extends Component {
         
         
         /** What to do when you click on the follow button for a club card. */
-        didFollowClubCard(club) {
-            Networking.followClub(club.ID);
+        async didFollowClubCard(club) {
+            this.followingClub(club) ? 
+                await Networking.unfollowClub(club.ID) :
+                await Networking.followClub(club.ID);
+            await this.reloadFollowingClubs();
         }
         
+    reloadFollowingClubs = async () => {
+        this.setState({
+            followingClubs: await Networking.getFollowedClubs(),
+        });
+    }
         
     // /** Shows a view that has all of the clubs related to a particular interest. 
     // * @param {String} interestWithClubs The name and clubs associated with a category.
@@ -219,7 +231,9 @@ class LoginClubMatch extends Component {
     //     })
     // }
 
-
+    followingClub = (club) => {
+        return this.state.followingClubs.some((cl) => cl.ID === club.ID);
+    }
 
 
 

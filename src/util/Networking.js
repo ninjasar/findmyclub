@@ -1,8 +1,9 @@
 import superagent from 'superagent';
 import dateformat from 'dateformat';
+import _ from 'lodash';
 import Constants from './Constants';
 import { getInterestFromCategory } from './InterestsAndCategories';
-
+import * as jwt_decode from 'jwt-decode';
 
 /****************************
 *                           *
@@ -21,21 +22,48 @@ const getParameterByName = (name, url) => {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+const redirectToLoginIfTokenExpires = () => {
+    if (shouldExpireToken(Constants.token())) {
+        Constants.clearToken();
+        window.location.href = '/';
+        return true;
+    }
+    return false;
+};
+
 const get = (path) => {
-    return superagent.get(`${Constants.BASE_URL}/${path}`).
+    if (redirectToLoginIfTokenExpires()) {
+        // return a promise that never resolves
+        return new Promise(() => { });
+    }
+    return superagent.get(`${Constants.BASE_URL}${path}`).
         set({
-            'Authorization': `Bearer ${Constants.token}`,
+            'Authorization': `Bearer ${Constants.token()}`,
         });
 };
 
 const post = (path) => {
-    return superagent.post(`${Constants.BASE_URL}/${path}`).
+    if (redirectToLoginIfTokenExpires()) {
+        // return a promise that never resolves
+        return new Promise(() => { });
+    }
+    return superagent.post(`${Constants.BASE_URL}${path}`).
         set({
-            'Authorization': `Bearer ${Constants.token}`,
+            'Authorization': `Bearer ${Constants.token()}`,
         });
 };
 
-
+const shouldExpireToken = (token) => {
+    try {
+        const payload = jwt_decode(token);
+        // 1 minutes before expire
+        return new Date(payload.exp * 1000).getTime() - new Date().getTime() < 60 * 1000;
+    }
+    catch (err) {
+        console.error(err);
+        return true;
+    }
+};
 
 /****************************
 *                           *
@@ -116,7 +144,7 @@ const unfollowClub = async (clubID) => {
 const getFollowedClubs = async () => {
     const response = await get(`/v1/user/follow`);
     return new Promise((res, rej) => {
-        if(response.error === true) {
+        if (response.error === true) {
             rej(response.text);
         } else {
             res(response.body);
@@ -141,7 +169,14 @@ const getEventsForClub = async (clubID, startDate, endDate) => {
         if (response.error === true) {
             rej(response.text);
         } else {
-            res(response.body);
+            // turn each occurrence of event to single event objects
+            res(_.flatMap(response.body, (event) => {
+                return event.dates.map((date) => {
+                    const eventCopy = JSON.parse(JSON.stringify(event));
+                    eventCopy.date = date;
+                    return eventCopy;
+                });
+            }));
         }
     })
 }
@@ -167,6 +202,7 @@ const getClubInformation = async (clubID) => {
 }
 
 export default {
+    shouldExpireToken,
     getParameterByName,
     authenticateUser,
     getCategories,

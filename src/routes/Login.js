@@ -46,9 +46,14 @@ class Login extends Component {
     componentDidMount() {
         // Once you get here, check if the user is already logged in. If so,
         // run the onLogin function to go to the next page.
-        const token = Networking.getParameterByName('token', window.location.toString());
-        if(token !== null) {
-            Constants.token = token;
+        const tokenInURL = Networking.getParameterByName('token', window.location.toString());
+        const tokenInLocalstorage = Constants.token();
+        if (tokenInURL) {
+            Constants.setToken(tokenInURL);
+            window.location.href = '/';
+            return;
+        }
+        if (tokenInLocalstorage !== null) {
             setTimeout(() => {
                 this.transitionContainer(<LoginWelcome onNext={this.handleGoToSelectInterests.bind(this)} />);
             }, 200);

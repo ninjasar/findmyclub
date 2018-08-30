@@ -1,6 +1,7 @@
 import React from 'react';
 import CollectionView from '../components/CollectionView';
 import dateformat from 'dateformat';
+import * as UIUtil from '../util/UI';
 
 // club to card
 const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick) => {
@@ -24,7 +25,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         color: followed === true ? 'white' : '#330d51',
                         backgroundColor: followed === true ? '#330d51' : 'white'
                     }}>
-                    <span className={followed === true ? 'fa fa-check' : 'fa fa-plus'}/> Follow
+                    <span className={followed === true ? 'fa fa-check' : 'fa fa-plus'} /> {followed === true ? 'Followed' : 'Follow' }
                 </div>
             </div>
         </div>
@@ -177,7 +178,7 @@ export default {
                 <div className='event-right' onClick={() => {
                     console.log('add to calendar');
                 }}>
-                    <div className='event-calendar-area'>
+                    <div className='event-calendar-area' onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>
                         <p className='event-calendar-label'>Add to calendar</p>
                     </div>
@@ -197,16 +198,17 @@ export default {
     * @param {Object} club The club object with all the data that needs to be displayed.
     * @param {String|Number} key The key for identifying the component in the collection view. 
     * @param {Function} onClick What to do when you click on a club. */
-    mapClubToDashboardComponent: ({ Name, tag, image, tagColor, ID }, index, onClick) => {
+    mapClubToDashboardComponent: ({ Name, image, ID }, interest, index, onClick) => {
+        interest = interest || {};
         return (
-            <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name, tag) } }>
+            <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }>
                 <img src={image} alt='club' className='dashboard-club-item-image'/>
                 <h4 className='dashboard-club-item-title'>{Name}</h4>
                 <div className='dashboard-club-item-tag'>
                     <div className='dashboard-club-item-tag-bubble'
                         style={{
-                            backgroundColor: tagColor
-                        }}></div>&nbsp;<p>{tag}</p>
+                            backgroundColor: interest.Color
+                        }}></div>&nbsp;<p>{interest.Name}</p>
                 </div>
             </div>
         )

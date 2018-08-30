@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
+import * as UIUtil from '../util/UI';
 import CollectionView from '../components/CollectionView';
 import '../css/containers/LoginClubDetail.css';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
@@ -68,9 +69,10 @@ class LoginClubDetail extends Component {
     *****************************/
     
 	render() {
-        const galleryImageSrc = this.state.clubDetail && this.state.clubDetail.picture_url;
-        const headerImageSrc = this.state.clubDetail && this.state.clubDetail.header_graphic || galleryImageSrc;
+        const galleryImageSrc = UIUtil.getClubThumbnail(this.state.clubDetail);
+        const headerImageSrc = UIUtil.getClubThumbnail(this.state.clubDetail);
         const links = this.state.clubDetail && this.state.clubDetail.links;
+        const interest = this.state.category && this.state.category.interest && this.state.category.interest.Name;
 		return (
 			<div className="LoginClubDetail overlay">
                 
