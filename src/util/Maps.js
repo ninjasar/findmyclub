@@ -203,12 +203,14 @@ export default {
         return (
             <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }>
                 <img src={image} alt='club' className='dashboard-club-item-image'/>
-                <h4 className='dashboard-club-item-title'>{Name}</h4>
-                <div className='dashboard-club-item-tag'>
-                    <div className='dashboard-club-item-tag-bubble'
-                        style={{
-                            backgroundColor: interest.Color
-                        }}></div>&nbsp;<p>{interest.Name}</p>
+                <div className='dashboard-club-item-vert'>
+                    <h4 className='dashboard-club-item-title'>{Name}</h4>
+                    <div className='dashboard-club-item-tag'>
+                        <div className='dashboard-club-item-tag-bubble'
+                            style={{
+                                backgroundColor: interest.Color
+                            }}></div>&nbsp;<p>{interest.Name}</p>
+                    </div>
                 </div>
             </div>
         )

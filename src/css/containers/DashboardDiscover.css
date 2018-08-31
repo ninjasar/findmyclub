@@ -100,15 +100,26 @@
 }
 
 .dashboard-club-item {
-    position: relative;
+    flex-flow: row;
+    align-items: center;
+    display: flex;
     overflow: hidden;
     width: 100%;
     height: 83px;
     cursor: pointer;
     border-bottom: 1px solid #d7d7e1;
+    padding: 4px 15px;
+}
+.dashboard-club-item-vert {
+    display: flex;
+    flex-flow: column;
+    flex-grow: 2;
+    height: 100%;
+    justify-content: space-between;
+    justify-content: flex-end;
+    margin: 10px 20px;
 }
 .dashboard-club-item-image {
-    position: absolute;
     top: 15px;
     left: 20px;
     width: 50px;
@@ -117,9 +128,6 @@
     background-color: #330d51;
 }
 .dashboard-club-item-title {
-    position: absolute;
-    top: 0px;
-    left: 90px;
     font-size: 16px;
     color: #323232;
     text-align: left;
@@ -129,11 +137,12 @@
     font-stretch: normal;
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
+    margin: 0px;
 }
 .dashboard-club-item-tag {
-    position: absolute;
-    top: 50px;
-    left: 90px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
     font-size: 10px;
     line-height: 1.6;
     font-weight: bold;
@@ -144,9 +153,6 @@
     letter-spacing: normal;
 }
 .dashboard-club-item-tag > p {
-    position: relative;
-    left: 15px;
-    bottom: 41px;
     color: #2c2b55;
     text-align: left;
     font-size: 12px;
