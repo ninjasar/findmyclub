@@ -8,6 +8,7 @@
 }
 .dashboard-container {
     position: absolute;
+    width: 100%;
     top: 102px;
     overflow-y: hidden;
     height: calc(100% - 155px);

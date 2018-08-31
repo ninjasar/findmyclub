@@ -218,6 +218,9 @@ export const umbrellas = [
 * @param {String} categoryName The name of the category.
 * @returns {Object} The interest object that comes from the hard-coded json. */
 export function getInterestFromCategory(categoryName) {
+    if (!categoryName) {
+        return undefined;
+    }
     const matchingInterests = Object.values(interests).filter((interestObj) => {
         return interestObj.categories.map((cat) => cat.toLowerCase()).includes(categoryName.toLowerCase());
     })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import LazyLoad from 'react-lazyload';
 
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
@@ -23,8 +24,11 @@ class DashboardDiscover extends Component {
             // all categories in format of fmc response
             allCategories: [],
 
-            // list of all clubs, in format of orgsync response
+            // list of all clubs, in format of fmc response
             allClubs: [],
+
+            // club details, in format of orgsync response
+            clubDetails: {},
 
             selectedUmbrella: undefined,
             
@@ -78,20 +82,27 @@ class DashboardDiscover extends Component {
                                     visibility: this.state.umbrellaSearchFocused === true ? 'visible' : 'hidden'
                                 }}/>
 
-                <CollectionView className='dashboard-discover-club-list'
-                                orientation={CollectionView.Orientation.vertical}
-                                data={
-                                    this.filteredClubs().map((club, index) => {
-                                        const interest = {};
-                                        return Maps.mapClubToDashboardComponent({
+                <div className='dashboard-discover-club-list'>
+                    {
+                        this.filteredClubs().map((club, index) => {
+                            const clubDetail = this.state.clubDetails[club.ID];
+                            const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
+                            return (
+                                <LazyLoad key={club.ID} height={84} overflow>
+                                    {
+                                        Maps.mapClubToDashboardComponent({
                                             ...club,
-                                            image: UIUtil.getClubThumbnail(),
-                                        }, interest, index, () => this.props.onSelectClub(club)); 
-                                    })
-                                }/>
-			</div>
-		);
-	}
+                                            image: UIUtil.getClubThumbnail(this.state.clubDetails[club.ID]),
+                                        }, interest, index, () => this.props.onSelectClub(club))
+                                    }
+                                </LazyLoad>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+        );
+    }
 
 
 	/****************************
@@ -120,6 +131,17 @@ class DashboardDiscover extends Component {
         this.setState({
             allClubs,
         });
+
+        allClubs.forEach(async (club) => {
+            const clubDetail = await Networking.getClubInformation(club.ID);
+            this.setState((state) => ({
+                ...state,
+                clubDetails: {
+                    ...state.clubDetails,
+                    [club.ID]: clubDetail,
+                },
+            }));
+        })
     }
 
     filteredClubs = () => {
