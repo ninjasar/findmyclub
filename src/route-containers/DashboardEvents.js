@@ -4,7 +4,7 @@ import CollectionView from '../components/CollectionView';
 import '../css/containers/DashboardEvents.css';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
-
+import * as UIUtil from '../util/UI';
 
 class DashboardEvents extends Component {
 
@@ -51,7 +51,7 @@ class DashboardEvents extends Component {
                 orientation={CollectionView.Orientation.vertical}
                 edgeInsets={['20px', '0px', '0px', '0px']}
                 data={
-                    this.state.events.map((val, index) => {
+                    UIUtil.filterEventByKeyword(this.state.events, this.props.searchKeyword).map((val, index) => {
                         return Maps.mapEventToComponent(val, index, this.didSelectEvent.bind(this));
                     })
                 } />
@@ -90,8 +90,6 @@ class DashboardEvents extends Component {
             this.props.onSelectEvent(item);
         }
     }
-
-
 
 
 

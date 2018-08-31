@@ -72,6 +72,7 @@ class DashboardClubs extends Component {
                     }} />
 
                 <ClubList
+                    searchKeyword={this.props.searchKeyword}
                     clubs={this.state.followingClubs}
                     filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
                     onSelectClub={this.props.onSelectClub}

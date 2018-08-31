@@ -1,4 +1,6 @@
 import ical from 'ical-generator';
+import _ from 'lodash';
+
 import Constants from './Constants';
 
 /**
@@ -41,4 +43,12 @@ export const exportEventToICal = (event) => {
   document.body.appendChild(element);
   element.click();
   document.body.removeChild(element);
+}
+
+export const filterEventByKeyword = (events, keyword) => {
+  return (events || []).filter((event) => _.includes((event.title || '').toLowerCase(), keyword.toLowerCase()));
+}
+
+export const filterClubsByKeyword = (clubs, keyword) => {
+  return (clubs || []).filter((club) => _.includes((club.Name || '').toLowerCase(), keyword.toLowerCase()));
 }

@@ -12,6 +12,7 @@ export default class ClubList extends React.Component {
   props = {
     clubs: [],
     filterUmbrellaID: undefined,
+    searchKeyword: '',
   };
 
   state = {
@@ -53,7 +54,7 @@ export default class ClubList extends React.Component {
   }
 
   clubsToShow = () => {
-    return this.props.clubs
+    return UIUtil.filterClubsByKeyword(this.props.clubs, this.props.searchKeyword)
       .filter((club) => {
         if (_.isNil(this.props.filterUmbrellaID)) {
           return true;

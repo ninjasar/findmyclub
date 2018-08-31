@@ -29,10 +29,11 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentTab: 'clubs',
             currentContainer: <div className='dashboard-container'></div>,
             currentOverlay: <div className='overlay'></div>,
-            currentTabIndex: 0,
-            tabIndicatorLeft: 0
+            tabIndicatorLeft: 0,
+            searchKeyword: '',
         }
     }
 
@@ -58,16 +59,18 @@ class Dashboard extends Component {
                     <img src={require('../images/profile_image.svg')} alt='person' className='dashboard-profile-button' onClick={this.showProfile.bind(this)}/>
                 </div>
                 <div className='dashboard-search-bar-area'>
-                    <input type='text' 
-                            className='dashboard-search-bar'
-                            placeholder='Search for keywords' />
+                    <input type='text'
+                        className='dashboard-search-bar'
+                        placeholder='Search for keywords'
+                        onChange={this.handleSearchKeywordChange} />
                 </div>
                 
-                {this.state.currentContainer}
+                
+                {this.renderCurrentTab()}
                 
                 <div className='dashboard-tab-bar'>
                     <div className='dashboard-tab-indicator' style={{
-                        left: `${this.state.tabIndicatorLeft}%`
+                        left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
                     }}></div>
                     <div className='dashboard-tab-bar-item' onClick={this.showClubsTab.bind(this)}>
                         <span className='fa fa-user'/>&nbsp;My Clubs
@@ -81,7 +84,61 @@ class Dashboard extends Component {
                 </div>
 			</div>
 		);
-	}
+    }
+
+    getTabIndicatorLeft = (currentTab) => {
+        return {
+            club: 0,
+            event: 33,
+            discover: 67,
+        }[currentTab];
+    }
+    
+    renderCurrentTab = () => {
+        if (this.state.currentTab === 'club') {
+            return (
+                <DashboardClubs
+                    searchKeyword={this.state.searchKeyword}
+                    onSelectClub={(club) => {
+                        this.showOverlay(<ClubDetail club={club}
+                            onSelectEvent={(item) => {
+                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                            }}
+                            onClose={() => {
+                                this.hideOverlay()
+                            }} />);
+                    }} />
+            );
+        } else if (this.state.currentTab === 'event') {
+            return (
+                <DashboardEvents searchKeyword={this.state.searchKeyword} onSelectEvent={(item) => {
+                    this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                }} />
+            );
+        } else {
+            return (
+                <DashboardDiscover
+                    searchKeyword={this.state.searchKeyword}
+                    onSelectClub={(club) => {
+                        this.showOverlay(<ClubDetail club={club}
+                            onSelectEvent={(item) => {
+                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                            }}
+                            onClose={() => {
+                                this.hideOverlay()
+                            }} />);
+                    }}
+                    onRefine={() => {
+                        this.showOverlay(<ClubFilter onClose={() => { this.hideOverlay() }}
+                            onFiltered={(filteredResults) => {
+                                console.log('Filtered: ', filteredResults);
+                                document.body.scroll({ top: 0, behavior: 'instant' });
+                                this.hideOverlay();
+                            }} />);
+                    }} />
+            );
+        }
+    }
 
 
 	/****************************
@@ -93,29 +150,15 @@ class Dashboard extends Component {
     /** Shows the list of clubs the user is part of. */
     showClubsTab() {
         this.setState({
-            currentContainer: <DashboardClubs onSelectClub={(club) => {
-                this.showOverlay(<ClubDetail club={club}
-                                            onSelectEvent={(item) => {
-                                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
-                                            }}
-                                            onClose={() => {
-                                                this.hideOverlay()
-                                            }}/>);
-            }}/>,
-            currentTabIndex: 0,
-            tabIndicatorLeft: 0
-        })
+            currentTab: 'club',
+        });
     }
 
 
     /** Shows the events list. */
     showEventsTab() {
         this.setState({
-            currentContainer: <DashboardEvents onSelectEvent={(item) => {
-                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
-            }}/>,
-            currentTabIndex: 1,
-            tabIndicatorLeft: 33
+            currentTab: 'event',
         })
     }
 
@@ -123,25 +166,7 @@ class Dashboard extends Component {
     /** Shows the discover tab. */
     showDiscoverTab() {
         this.setState({
-            currentContainer: <DashboardDiscover onSelectClub={(club) => {
-                this.showOverlay(<ClubDetail club={club}
-                                            onSelectEvent={(item) => {
-                                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
-                                            }}
-                                            onClose={() => {
-                                                this.hideOverlay()
-                                            }}/>);
-            }}
-            onRefine={() => {
-                this.showOverlay(<ClubFilter onClose={() => { this.hideOverlay() }}
-                                            onFiltered={(filteredResults) => {
-                                                console.log('Filtered: ', filteredResults);
-                                                document.body.scroll({ top: 0, behavior: 'instant' });
-                                                this.hideOverlay();
-                                            }}/>);
-            }}/>,
-            currentTabIndex: 2,
-            tabIndicatorLeft: 67
+            currentTab: 'discover',
         })
     }
 
@@ -153,7 +178,11 @@ class Dashboard extends Component {
         }} />, Constants.OVERLAY_TRANSITION_TIME, undefined, true);
     }
 
-
+    handleSearchKeywordChange = (e) => {
+        this.setState({
+            searchKeyword: e.target.value || '',
+        });
+    }
 
 
 
