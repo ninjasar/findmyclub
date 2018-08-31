@@ -85,7 +85,7 @@
 }
 .filter-item {
     position: relative;
-    width: 50%;
+    width: 100%;
     float: left;
     text-align: left;
     background-color: white;
