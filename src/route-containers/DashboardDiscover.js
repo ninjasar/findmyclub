@@ -54,6 +54,14 @@ class DashboardDiscover extends Component {
                         didSelectUmbrella={this.didSelectUmbrella}
                         selectedUmbrella={this.state.selectedUmbrella}
                     />
+                    <button className='dashboard-discover-filter-btn'
+                        onClick={() => {
+                            if (this.props.onRefine) {
+                                this.props.onRefine();
+                            }
+                        }}>
+                        <span className='fas fa-sliders-h' />
+                    </button>
                 </div>
                 {
                     _.isNil(this.state.allClubs) ?

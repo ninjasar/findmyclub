@@ -27,12 +27,8 @@
     font-family: 'Gotham-Bold';
 }
 .dashboard-discover-filter-btn {
-    position: absolute;
-    top: 15px;
-    right: 5px;
     width: 25px;
     height: 25px;
-    float: right;
     border: none;
     outline: none;
     color: white;
