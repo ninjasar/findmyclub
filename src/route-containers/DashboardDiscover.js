@@ -79,6 +79,7 @@ class DashboardDiscover extends Component {
                                 }}/>
 
                 <ClubList
+                    emptySubtitle='There are no clubs related to your search.'
                     searchKeyword={this.props.searchKeyword}
                     clubs={this.state.allClubs}
                     filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}

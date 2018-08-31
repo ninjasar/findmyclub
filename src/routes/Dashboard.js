@@ -62,7 +62,8 @@ class Dashboard extends Component {
                     <input type='text'
                         className='dashboard-search-bar'
                         placeholder='Search for keywords'
-                        onChange={this.handleSearchKeywordChange} />
+                        onChange={this.handleSearchKeywordChange}
+                        value={this.state.searchKeyword} />
                 </div>
                 
                 
@@ -151,6 +152,7 @@ class Dashboard extends Component {
     showClubsTab() {
         this.setState({
             currentTab: 'club',
+            searchKeyword: '',
         });
     }
 
@@ -159,6 +161,7 @@ class Dashboard extends Component {
     showEventsTab() {
         this.setState({
             currentTab: 'event',
+            searchKeyword: '',
         })
     }
 
@@ -167,6 +170,7 @@ class Dashboard extends Component {
     showDiscoverTab() {
         this.setState({
             currentTab: 'discover',
+            searchKeyword: '',
         })
     }
 

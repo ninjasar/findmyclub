@@ -1,18 +1,22 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
 import _ from 'lodash';
+
 import '../css/ClubList.css';
 
 import Maps from '../util/Maps';
+import * as UIUtil from '../util/UI';
+import EmptyList from '../components/EmptyList';
+
 import Networking from '../util/Networking';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
-import * as UIUtil from '../util/UI';
 
 export default class ClubList extends React.Component {
   props = {
     clubs: [],
     filterUmbrellaID: undefined,
     searchKeyword: '',
+    emptySubtitle: undefined,
   };
 
   state = {
@@ -30,11 +34,22 @@ export default class ClubList extends React.Component {
     this.reloadClubDetails(newClubs);
   }
 
+  renderEmpty = () => {
+    return (
+      <EmptyList subtitle={this.props.emptySubtitle}/>
+    );
+  }
+
   render() {
+    const clubsToShow = this.clubsToShow();
+    if (_.isEmpty(clubsToShow)) {
+      return this.renderEmpty();
+    }
+
     return (
       <div className='club-list'>
         {
-          this.clubsToShow().map((club, index) => {
+          clubsToShow.map((club, index) => {
             const clubDetail = this.state.clubDetails[club.ID];
             const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
             return (

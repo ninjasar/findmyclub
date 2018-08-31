@@ -1,10 +1,14 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
+import _ from 'lodash';
+
 import CollectionView from '../components/CollectionView';
-import '../css/containers/DashboardEvents.css';
-import Maps from '../util/Maps';
-import Networking from '../util/Networking';
+import EmptyList from '../components/EmptyList';
 import * as UIUtil from '../util/UI';
+import Maps from '../util/Maps';
+
+import '../css/containers/DashboardEvents.css';
+
+import Networking from '../util/Networking';
 
 class DashboardEvents extends Component {
 
@@ -46,12 +50,17 @@ class DashboardEvents extends Component {
     *****************************/
 
     renderEvents = () => {
+        const eventsToShow = UIUtil.filterEventByKeyword(this.state.events, this.props.searchKeyword);
+
+        if (_.isEmpty(eventsToShow)) {
+            return <EmptyList subtitle='You don’t have any upcoming events.' />;
+        }
         return (
             <CollectionView className='dashboard-events-event-list'
                 orientation={CollectionView.Orientation.vertical}
                 edgeInsets={['20px', '0px', '0px', '0px']}
                 data={
-                    UIUtil.filterEventByKeyword(this.state.events, this.props.searchKeyword).map((val, index) => {
+                    eventsToShow.map((val, index) => {
                         return Maps.mapEventToComponent(val, index, this.didSelectEvent.bind(this));
                     })
                 } />

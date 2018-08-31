@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+
 import CollectionView from '../components/CollectionView';
 import ClubList from '../components/ClubList';
+
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
-import * as UIUtil from '../util/UI';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
+
 import '../css/containers/DashboardClubs.css';
 
 class DashboardClubs extends Component {
@@ -70,8 +72,8 @@ class DashboardClubs extends Component {
                     style={{
                         visibility: this.state.umbrellaSearchFocused === true ? 'visible' : 'hidden'
                     }} />
-
                 <ClubList
+                    emptySubtitle='You aren’t following any clubs!'
                     searchKeyword={this.props.searchKeyword}
                     clubs={this.state.followingClubs}
                     filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
