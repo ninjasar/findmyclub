@@ -1,6 +1,7 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
 import _ from 'lodash';
+import '../css/ClubList.css';
 
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
