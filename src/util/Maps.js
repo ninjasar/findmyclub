@@ -4,7 +4,7 @@ import dateformat from 'dateformat';
 import * as UIUtil from '../util/UI';
 
 // club to card
-const mCtC = ({ image, ID, Name, tags, tagColor, followed }, onClubClick, onFollowClick) => {
+const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick) => {
     return (
         <div className='club-item' key={ID}>
             <div className='club-card'>
@@ -17,7 +17,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed }, onClubClick, onFoll
                     <div className='club-card-tags' style={{
                         backgroundColor: tagColor 
                     }}></div>
-                    <p className='club-card-tags-label'>{tags}</p>
+                    <p className='club-card-tags-label'>{interest}</p>
                 </div>
                 <div className='club-card-follow-button' 
                     onClick={() => { onFollowClick(ID, Name, tags) }}
@@ -38,7 +38,7 @@ const mFtC = ( { title, checked, interest }, key, onChange) => {
         <div className='filter-item' key={key}>
             <h2 className='filter-item-title'>{title}</h2>
             <div className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'} 
-                onClick={() => { onChange(key, interest) }}>
+                onClick={() => { onChange(title) }}>
                 <span className={checked === true ? 'fa fa-check' : ''}/>
             </div>
         </div>
@@ -95,8 +95,8 @@ export default {
                                 orientation={CollectionView.Orientation.vertical}
                                 edgeInsets={['20px', '0px', '10px', '0px']}
                                 data={
-                                    clubs.map((val) => {
-                                        return mCtC({ ...val, tagColor: 'cyan' }, onClubClick, onFollowClick);
+                                    clubs.map((club) => {
+                                        return mCtC(club, onClubClick, onFollowClick);
                                     }).filter((_, index, __) => {
                                         return index < 2;
                                     })
@@ -132,8 +132,8 @@ export default {
                 <CollectionView className='login-club-filter-section-items'
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
-                                    filters.map((val, index) => {
-                                        return mFtC(val, index, onFilterSelected);
+                                    filters.map((filt, index) => {
+                                        return mFtC(filt, index, onFilterSelected);
                                     })
                                 }/>
             </div>
@@ -176,11 +176,10 @@ export default {
                     </div>
                 </div>
                 <div className='event-right' onClick={() => {
-                    console.log('add to calendar');
                 }}>
                     <div className='event-calendar-area' onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>
-                        <p className='event-calendar-label'>Add to calendar</p>
+                        <p className='event-calendar-label'>Download iCal</p>
                     </div>
                 </div>
 {/*                 
@@ -208,8 +207,8 @@ export default {
                     <div className='dashboard-club-item-tag'>
                         <div className='dashboard-club-item-tag-bubble'
                             style={{
-                                backgroundColor: interest.Color
-                            }}></div>&nbsp;<p>{interest.Name}</p>
+                                backgroundColor: interest.interestColor
+                            }}></div>&nbsp;<p>{interest.interest}</p>
                     </div>
                 </div>
             </div>

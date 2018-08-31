@@ -22,7 +22,6 @@ export default class ClubList extends React.Component {
     };
   }
 
-
   componentDidMount = () => {
     this.onReceiveNewProps({});
   }
@@ -31,9 +30,7 @@ export default class ClubList extends React.Component {
     this.onReceiveNewProps(prevProps);
   }
 
-  onReceiveNewProps = (prevProps) => {
-    console.log('componentDidUpdate');
-    
+  onReceiveNewProps = (prevProps) => {    
     if (prevProps === this.props) {
       return;
     }

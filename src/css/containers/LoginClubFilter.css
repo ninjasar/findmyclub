@@ -84,7 +84,8 @@
     /* background-color: mediumturquoise; */
 }
 .filter-item {
-    width: 50%;
+    position: relative;
+    width: 100%;
     float: left;
     text-align: left;
     background-color: white;

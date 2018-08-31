@@ -98,7 +98,7 @@ const getCategories = async () => {
             res(response.body.map((val) => {
                 return {
                     ...val,
-                    interest: getInterestFromCategory(val.Name)
+                    ...getInterestFromCategory(val.Name)
                 }
             }));
         }
@@ -118,7 +118,12 @@ const getClubs = async (categoryIDs) => {
         if(response.error === true) {
             rej(response.text);
         } else {
-            res(response.body);
+            res(response.body.map((val) => {
+                return {
+                    ...val,
+                    ...getInterestFromCategory(val.Name)
+                }
+            }));
         }
     });
 }
