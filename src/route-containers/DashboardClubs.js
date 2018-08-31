@@ -48,11 +48,12 @@ class DashboardClubs extends Component {
             <div className="DashboardClubs dashboard-container">
                 <div className='dashboard-clubs-header'>
                     <h1 className='dashboard-clubs-title'>My Clubs</h1>
+
+                    <SelectUmbrella
+                        didSelectUmbrella={this.didSelectUmbrella}
+                        selectedUmbrella={this.state.selectedUmbrella}
+                    />
                 </div>
-                <SelectUmbrella
-                    didSelectUmbrella={this.didSelectUmbrella}
-                    selectedUmbrella={this.state.selectedUmbrella}
-                />
                 <ClubList
                     emptySubtitle='You aren’t following any clubs!'
                     searchKeyword={this.props.searchKeyword}

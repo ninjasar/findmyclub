@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import CollectionView from '../components/CollectionView';
+import SelectUmbrella from '../components/SelectUmbrella';
 import ClubList from '../components/ClubList';
+
 import '../css/containers/DashboardDiscover.css';
+
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 import Networking from '../util/Networking';
 import Maps from '../util/Maps';
@@ -49,35 +52,11 @@ class DashboardDiscover extends Component {
 			<div className="DashboardDiscover dashboard-container">
 				<div className='dashboard-discover-header'>
                     <h1 className='dashboard-discover-title'>Discover</h1>
-                    <button className='dashboard-discover-umbrella-btn'
-                            onFocus={() => {
-                                this.setState({ umbrellaSearchFocused: true })
-                            }}
-                            onBlur={() => {
-                                this.setState({ umbrellaSearchFocused: false })
-                            }}>
-                        <span className='fas fa-umbrella'/>&nbsp;All Schools&nbsp;&nbsp;&nbsp;<span className='fa fa-chevron-down'/>
-                    </button>
-                    <button className='dashboard-discover-filter-btn'
-                            onClick={() => {
-                                if(this.props.onRefine) {
-                                    this.props.onRefine();
-                                }
-                            }}>
-                        <span className='fas fa-sliders-h'/>
-                    </button>
+                    <SelectUmbrella
+                        didSelectUmbrella={this.didSelectUmbrella}
+                        selectedUmbrella={this.state.selectedUmbrella}
+                    />
                 </div>
-                <CollectionView className='dashboard-discover-umbrellas-list'
-                                orientation={CollectionView.Orientation.vertical}
-                                data={
-                                    InterestsAndCategories.umbrellas.map((umbrella, index) => {
-                                        return Maps.mapUmbrellaToLabelComponent(umbrella.name, index, () => this.didSelectUmbrella(umbrella));
-                                    })
-                                }
-                                style={{
-                                    visibility: this.state.umbrellaSearchFocused === true ? 'visible' : 'hidden'
-                                }}/>
-
                 <ClubList
                     emptySubtitle='There are no clubs related to your search.'
                     searchKeyword={this.props.searchKeyword}
