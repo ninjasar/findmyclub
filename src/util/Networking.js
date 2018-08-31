@@ -189,10 +189,12 @@ const getEventsForClub = async (clubID, startDate, endDate) => {
     })
 }
 
-/** Returns information about a given club. 
-* @param {Number} clubID The id for the club that you want to get information about.
-* @returns {Object} Returns an object containing all the important information about a club. */
-const getClubInformation = async (clubID) => {
+/**
+ * clubID => clubDetailObject
+ */
+const clubDetailCache = { };
+
+const _getClubInformation = async (clubID) => {
     const response = await get(`/v1/user/portal`)
         // .set({
         //     'Content-Type': 'application/x-www-form-urlencode',
@@ -207,6 +209,19 @@ const getClubInformation = async (clubID) => {
             res(response.body);
         }
     })
+}
+
+/** Returns information about a given club. 
+* @param {Number} clubID The id for the club that you want to get information about.
+* @returns {Object} Returns an object containing all the important information about a club. */
+const getClubInformation = async (clubID, withCache=true) => {
+    if (!withCache) {
+        return _getClubInformation(clubID);
+    }
+    if (!clubDetailCache[clubID]) {
+        clubDetailCache[clubID] = await _getClubInformation(clubID);
+    }
+    return clubDetailCache[clubID];
 }
 
 export default {
