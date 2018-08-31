@@ -34,6 +34,7 @@ class Dashboard extends Component {
             currentOverlay: <div className='overlay'></div>,
             tabIndicatorLeft: 0,
             searchKeyword: '',
+            profileShown: false,
         }
     }
 
@@ -56,7 +57,7 @@ class Dashboard extends Component {
                 
                 <div className='dashboard-top-bar'>
                     <img src={AppLogo} alt='logo' className='dashboard-app-logo'/>
-                    <img src={require('../images/profile_image.svg')} alt='person' className='dashboard-profile-button' onClick={this.showProfile.bind(this)}/>
+                    <img src={require('../images/profile_image.svg')} alt='person' className='dashboard-profile-button' onClick={this.toggleProfile.bind(this)}/>
                 </div>
                 <div className='dashboard-search-bar-area'>
                     <input type='text'
@@ -176,10 +177,17 @@ class Dashboard extends Component {
 
 
     /** Shows the profile overlay. */
-    showProfile() {
-        this.showOverlay(<DashboardProfile onClose={() => { 
-            this.hideOverlay()
-        }} />, Constants.OVERLAY_TRANSITION_TIME, undefined, true);
+    toggleProfile() {
+        if (this.state.profileShown) {
+            this.hideOverlay();
+        } else {
+            this.showOverlay(<DashboardProfile onClose={() => {
+                this.hideOverlay()
+            }} />, Constants.OVERLAY_TRANSITION_TIME, undefined, true);
+        }
+        this.setState((state) => ({
+            profileShown: !state.profileShown,
+        }));
     }
 
     handleSearchKeywordChange = (e) => {
