@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import ClubList from '../components/ClubList';
 import SelectUmbrella from '../components/SelectUmbrella';
+import LoadingBubbles from '../components/LoadingBubbles';
 
 import Networking from '../util/Networking';
 
@@ -19,23 +20,15 @@ class DashboardClubs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clubs: [],
-
             // plain club objects get from 
-            followingClubs: [],
+            followingClubs: undefined,
             selectedUmbrella: undefined,
         }
     }
 
-
-    /** REMEMBER TO CHANGE THIS LATER: This page should only show the clubs that you are part of, not
-     * all the clubs at nyu.
-     */
     async componentDidMount() {
         this.reloadFollowingClubs();
     }
-   
-
 
 	/****************************
     *                           *
@@ -43,7 +36,7 @@ class DashboardClubs extends Component {
     *                           *
     *****************************/
 
-    render() {
+    render = () => {
         return (
             <div className="DashboardClubs dashboard-container">
                 <div className='dashboard-clubs-header'>
@@ -54,17 +47,21 @@ class DashboardClubs extends Component {
                         selectedUmbrella={this.state.selectedUmbrella}
                     />
                 </div>
-                <ClubList
-                    emptySubtitle='You aren’t following any clubs!'
-                    searchKeyword={this.props.searchKeyword}
-                    clubs={this.state.followingClubs}
-                    filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
-                    onSelectClub={this.props.onSelectClub}
-                    />
+                {
+                    _.isNil(this.state.followingClubs) ?
+                        <LoadingBubbles /> :
+                        <ClubList
+                            emptySubtitle='You aren’t following any clubs!'
+                            searchKeyword={this.props.searchKeyword}
+                            clubs={this.state.followingClubs}
+                            filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
+                            onSelectClub={this.props.onSelectClub}
+                        />
+                }
+                
             </div>
         );
     }
-
 
 	/****************************
     *                           *

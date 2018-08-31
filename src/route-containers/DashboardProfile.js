@@ -71,6 +71,7 @@ class DashboardProfile extends Component {
 
     /** What to do when you select an action. */
     handleEditPreference = () => {
+        Storage.clearGuideFinished();
         window.location.href = '/';
     }
 

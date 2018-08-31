@@ -12,19 +12,28 @@ import Networking from '../util/Networking';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
 export default class ClubList extends React.Component {
-  props = {
-    clubs: [],
-    filterUmbrellaID: undefined,
-    searchKeyword: '',
-    emptySubtitle: undefined,
-  };
 
-  state = {
-    // club details, in format of orgsync response
-    clubDetails: {},
-  };
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      // club details, in format of orgsync response
+      clubDetails: {},
+    };
+  }
+
+
+  componentDidMount = () => {
+    this.onReceiveNewProps({});
+  }
+  
   componentDidUpdate(prevProps) {
+    this.onReceiveNewProps(prevProps);
+  }
+
+  onReceiveNewProps = (prevProps) => {
+    console.log('componentDidUpdate');
+    
     if (prevProps === this.props) {
       return;
     }
@@ -43,6 +52,7 @@ export default class ClubList extends React.Component {
   render() {
     const clubsToShow = this.clubsToShow();
     if (_.isEmpty(clubsToShow)) {
+      console.log('hi')
       return this.renderEmpty();
     }
 

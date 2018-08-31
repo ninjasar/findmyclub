@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import CollectionView from '../components/CollectionView';
+import LoadingBubbles from '../components/LoadingBubbles';
 import EmptyList from '../components/EmptyList';
 import * as UIUtil from '../util/UI';
 import Maps from '../util/Maps';
@@ -68,7 +69,7 @@ class DashboardEvents extends Component {
     };
 
     renderLoading = () => {
-        return 'Loading Events';
+        return <LoadingBubbles />
     };
 
     render() {

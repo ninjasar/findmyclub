@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import CollectionView from '../components/CollectionView';
+import LoadingBubbles from '../components/LoadingBubbles';
 import SelectUmbrella from '../components/SelectUmbrella';
 import ClubList from '../components/ClubList';
 
 import '../css/containers/DashboardDiscover.css';
 
-import * as InterestsAndCategories from '../util/InterestsAndCategories';
 import Networking from '../util/Networking';
-import Maps from '../util/Maps';
 
 class DashboardDiscover extends Component {
 
@@ -27,7 +25,7 @@ class DashboardDiscover extends Component {
             allCategories: [],
 
             // list of all clubs, in format of fmc response
-            allClubs: [],
+            allClubs: undefined,
 
             selectedUmbrella: undefined,
             
@@ -57,13 +55,17 @@ class DashboardDiscover extends Component {
                         selectedUmbrella={this.state.selectedUmbrella}
                     />
                 </div>
-                <ClubList
-                    emptySubtitle='There are no clubs related to your search.'
-                    searchKeyword={this.props.searchKeyword}
-                    clubs={this.state.allClubs}
-                    filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
-                    onSelectClub={this.props.onSelectClub}
-                    />
+                {
+                    _.isNil(this.state.allClubs) ?
+                        <LoadingBubbles /> :
+                        <ClubList
+                            emptySubtitle='There are no clubs related to your search.'
+                            searchKeyword={this.props.searchKeyword}
+                            clubs={this.state.allClubs}
+                            filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
+                            onSelectClub={this.props.onSelectClub}
+                        />
+                }
             </div>
         );
     }
