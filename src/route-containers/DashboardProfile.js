@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Maps from '../util/Maps';
 import '../css/containers/DashboardProfile.css';
 import Networking from '../util/Networking';
-import Constants from '../util/Constants';
+import * as Storage from '../util/Storage';
 
 class DashboardProfile extends Component {
 
@@ -75,7 +75,7 @@ class DashboardProfile extends Component {
     }
 
     handleLogout = () => {
-        Constants.clearToken();
+        Storage.clearToken();
         window.location.href = '/';
     }
 

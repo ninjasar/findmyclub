@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import Constants from '../util/Constants';
+import * as Storage from '../util/Storage';
 import Networking from '../util/Networking';
 
 /* CONTAINERS */
@@ -42,13 +43,23 @@ class Login extends Component {
         // Once you get here, check if the user is already logged in. If so,
         // run the onLogin function to go to the next page.
         const tokenInURL = Networking.getParameterByName('token', window.location.toString());
-        const tokenInLocalstorage = Constants.token();
+        // if token is in url, redirect to / to clear token from url
         if (tokenInURL) {
-            Constants.setToken(tokenInURL);
+            Storage.setToken(tokenInURL);
             window.location.href = '/';
             return;
         }
+        
+        if (Networking.shouldExpireToken()) {
+            Storage.clearToken();
+        }
+        const tokenInLocalstorage = Storage.getToken();
         if (tokenInLocalstorage !== null) {
+            // dont go to guide if had already run through guide once
+            if (Storage.getGuideFinished() && !window.location.href.includes('dashboard')) {
+                window.location.href = '/#/dashboard';
+                return;
+            }
             setTimeout(() => {
                 this.transitionContainer(<LoginWelcome onNext={this.handleGoToSelectInterests.bind(this)} />);
             }, 200);

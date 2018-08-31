@@ -2,6 +2,7 @@ import superagent from 'superagent';
 import dateformat from 'dateformat';
 import _ from 'lodash';
 import Constants from './Constants';
+import * as Storage from '../util/Storage';
 import { getInterestFromCategory } from './InterestsAndCategories';
 import * as jwt_decode from 'jwt-decode';
 
@@ -24,7 +25,7 @@ const getParameterByName = (name, url) => {
 
 const redirectToLoginIfTokenExpires = () => {
     if (shouldExpireToken()) {
-        Constants.clearToken();
+        Storage.clearToken();
         window.location.href = '/';
         return true;
     }
@@ -38,7 +39,7 @@ const get = (path) => {
     }
     return superagent.get(`${Constants.BASE_URL}${path}`).
         set({
-            'Authorization': `Bearer ${Constants.token()}`,
+            'Authorization': `Bearer ${Storage.getToken()}`,
         });
 };
 
@@ -49,7 +50,7 @@ const post = (path) => {
     }
     return superagent.post(`${Constants.BASE_URL}${path}`).
         set({
-            'Authorization': `Bearer ${Constants.token()}`,
+            'Authorization': `Bearer ${Storage.getToken()}`,
         });
 };
 
@@ -69,7 +70,7 @@ const shouldExpireToken = () => {
 };
 
 const getJWTPayload = () => {
-    return jwt_decode(Constants.token());
+    return jwt_decode(Storage.getToken());
 };
 
 /****************************
