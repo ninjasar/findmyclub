@@ -1,0 +1,11 @@
+
+.club-list {
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 63px);
+    overflow: auto;
+    position: relative;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* background-color: aquamarine; */
+}

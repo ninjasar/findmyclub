@@ -1,10 +1,14 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
-import CollectionView from '../components/CollectionView';
-import '../css/containers/DashboardEvents.css';
-import Maps from '../util/Maps';
-import Networking from '../util/Networking';
+import _ from 'lodash';
 
+import CollectionView from '../components/CollectionView';
+import EmptyList from '../components/EmptyList';
+import * as UIUtil from '../util/UI';
+import Maps from '../util/Maps';
+
+import '../css/containers/DashboardEvents.css';
+
+import Networking from '../util/Networking';
 
 class DashboardEvents extends Component {
 
@@ -28,18 +32,12 @@ class DashboardEvents extends Component {
     }
 
     reloadEvents = async () => {
-        // const startDate = new Date(Date.now() - 1000 * 3600 * 24);
-        // const endDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
-        // const followedClubs = await Networking.getFollowedClubs();
-        // const allEvents = await Promise.all(followedClubs.map((club) => Networking.getEventsForClub(club.ID, startDate, endDate)));
-        // const events = _.reduce(allEvents, (events) => events) || [];
-        // events.sort((e1, e2) => new Date(e1.date.starts_at).getTime() - new Date(e2.date.starts_at).getTime());
-        const events = [
-            { title: 'Test Evet', location: 'Test location' },
-            { title: 'Test Evet', location: 'Test location' },
-            { title: 'Test Evet', location: 'Test location' },
-            { title: 'Test Evet', location: 'Test location' },
-        ]
+        const startDate = new Date(Date.now() - 1000 * 3600 * 24);
+        const endDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
+        const followedClubs = await Networking.getFollowedClubs();
+        const allEvents = await Promise.all(followedClubs.map((club) => Networking.getEventsForClub(club.ID, startDate, endDate)));
+        const events = _.reduce(allEvents, (events) => events) || [];
+        events.sort((e1, e2) => new Date(e1.date.starts_at).getTime() - new Date(e2.date.starts_at).getTime());
         this.setState({
             events,
         });
@@ -52,12 +50,17 @@ class DashboardEvents extends Component {
     *****************************/
 
     renderEvents = () => {
+        const eventsToShow = UIUtil.filterEventByKeyword(this.state.events, this.props.searchKeyword);
+
+        if (_.isEmpty(eventsToShow)) {
+            return <EmptyList subtitle='You don’t have any upcoming events.' />;
+        }
         return (
             <CollectionView className='dashboard-events-event-list'
                 orientation={CollectionView.Orientation.vertical}
                 edgeInsets={['20px', '0px', '0px', '0px']}
                 data={
-                    this.state.events.map((val, index) => {
+                    eventsToShow.map((val, index) => {
                         return Maps.mapEventToComponent(val, index, this.didSelectEvent.bind(this));
                     })
                 } />
@@ -96,8 +99,6 @@ class DashboardEvents extends Component {
             this.props.onSelectEvent(item);
         }
     }
-
-
 
 
 

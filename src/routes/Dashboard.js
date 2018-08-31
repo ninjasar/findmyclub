@@ -29,10 +29,12 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentTab: 'clubs',
             currentContainer: <div className='dashboard-container'></div>,
             currentOverlay: <div className='overlay'></div>,
-            currentTabIndex: 0,
-            tabIndicatorLeft: 0
+            tabIndicatorLeft: 0,
+            searchKeyword: '',
+            profileShown: false,
         }
     }
 
@@ -55,19 +57,22 @@ class Dashboard extends Component {
                 
                 <div className='dashboard-top-bar'>
                     <img src={AppLogo} alt='logo' className='dashboard-app-logo'/>
-                    <img src={''} alt='person' className='dashboard-profile-button' onClick={this.showProfile.bind(this)}/>
+                    <img src={require('../images/profile_image.svg')} alt='person' className='dashboard-profile-button' onClick={this.toggleProfile.bind(this)}/>
                 </div>
                 <div className='dashboard-search-bar-area'>
-                    <input type='text' 
-                            className='dashboard-search-bar'
-                            placeholder='Search for keywords' />
+                    <input type='text'
+                        className='dashboard-search-bar'
+                        placeholder='Search for keywords'
+                        onChange={this.handleSearchKeywordChange}
+                        value={this.state.searchKeyword} />
                 </div>
                 
-                {this.state.currentContainer}
+                
+                {this.renderCurrentTab()}
                 
                 <div className='dashboard-tab-bar'>
                     <div className='dashboard-tab-indicator' style={{
-                        left: `${this.state.tabIndicatorLeft}%`
+                        left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
                     }}></div>
                     <div className='dashboard-tab-bar-item' onClick={this.showClubsTab.bind(this)}>
                         <span className='fa fa-user'/>&nbsp;My Clubs
@@ -81,7 +86,61 @@ class Dashboard extends Component {
                 </div>
 			</div>
 		);
-	}
+    }
+
+    getTabIndicatorLeft = (currentTab) => {
+        return {
+            club: 0,
+            event: 33,
+            discover: 67,
+        }[currentTab];
+    }
+    
+    renderCurrentTab = () => {
+        if (this.state.currentTab === 'club') {
+            return (
+                <DashboardClubs
+                    searchKeyword={this.state.searchKeyword}
+                    onSelectClub={(club) => {
+                        this.showOverlay(<ClubDetail club={club}
+                            onSelectEvent={(item) => {
+                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                            }}
+                            onClose={() => {
+                                this.hideOverlay()
+                            }} />);
+                    }} />
+            );
+        } else if (this.state.currentTab === 'event') {
+            return (
+                <DashboardEvents searchKeyword={this.state.searchKeyword} onSelectEvent={(item) => {
+                    this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                }} />
+            );
+        } else {
+            return (
+                <DashboardDiscover
+                    searchKeyword={this.state.searchKeyword}
+                    onSelectClub={(club) => {
+                        this.showOverlay(<ClubDetail club={club}
+                            onSelectEvent={(item) => {
+                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                            }}
+                            onClose={() => {
+                                this.hideOverlay()
+                            }} />);
+                    }}
+                    onRefine={() => {
+                        this.showOverlay(<ClubFilter onClose={() => { this.hideOverlay() }}
+                            onFiltered={(filteredResults) => {
+                                console.log('Filtered: ', filteredResults);
+                                document.body.scroll({ top: 0, behavior: 'instant' });
+                                this.hideOverlay();
+                            }} />);
+                    }} />
+            );
+        }
+    }
 
 
 	/****************************
@@ -93,29 +152,17 @@ class Dashboard extends Component {
     /** Shows the list of clubs the user is part of. */
     showClubsTab() {
         this.setState({
-            currentContainer: <DashboardClubs onSelectClub={(club) => {
-                this.showOverlay(<ClubDetail club={club}
-                                            onSelectEvent={(item) => {
-                                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
-                                            }}
-                                            onClose={() => {
-                                                this.hideOverlay()
-                                            }}/>);
-            }}/>,
-            currentTabIndex: 0,
-            tabIndicatorLeft: 0
-        })
+            currentTab: 'club',
+            searchKeyword: '',
+        });
     }
 
 
     /** Shows the events list. */
     showEventsTab() {
         this.setState({
-            currentContainer: <DashboardEvents onSelectEvent={(item) => {
-                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
-            }}/>,
-            currentTabIndex: 1,
-            tabIndicatorLeft: 33
+            currentTab: 'event',
+            searchKeyword: '',
         })
     }
 
@@ -123,37 +170,31 @@ class Dashboard extends Component {
     /** Shows the discover tab. */
     showDiscoverTab() {
         this.setState({
-            currentContainer: <DashboardDiscover onSelectClub={(club) => {
-                this.showOverlay(<ClubDetail club={club}
-                                            onSelectEvent={(item) => {
-                                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()}/>);
-                                            }}
-                                            onClose={() => {
-                                                this.hideOverlay()
-                                            }}/>);
-            }}
-            onRefine={() => {
-                this.showOverlay(<ClubFilter onClose={() => { this.hideOverlay() }}
-                                            onFiltered={(filteredResults) => {
-                                                console.log('Filtered: ', filteredResults);
-                                                document.body.scroll({ top: 0, behavior: 'instant' });
-                                                this.hideOverlay();
-                                            }}/>);
-            }}/>,
-            currentTabIndex: 2,
-            tabIndicatorLeft: 67
+            currentTab: 'discover',
+            searchKeyword: '',
         })
     }
 
 
     /** Shows the profile overlay. */
-    showProfile() {
-        this.showOverlay(<DashboardProfile onClose={() => { 
-            this.hideOverlay()
-        }}/>);
+    toggleProfile() {
+        if (this.state.profileShown) {
+            this.hideOverlay();
+        } else {
+            this.showOverlay(<DashboardProfile onClose={() => {
+                this.hideOverlay()
+            }} />, Constants.OVERLAY_TRANSITION_TIME, undefined, true);
+        }
+        this.setState((state) => ({
+            profileShown: !state.profileShown,
+        }));
     }
 
-
+    handleSearchKeywordChange = (e) => {
+        this.setState({
+            searchKeyword: e.target.value || '',
+        });
+    }
 
 
 
@@ -197,11 +238,12 @@ class Dashboard extends Component {
     * @param {Component} overlayView The view to display in the overlay. 
     * @param {Number} duration How long the transition should last for. 
     * @param {Function} then What to do when the transition is over. */
-    showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then) {
+    showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then, showTopBar=false) {
+        const top = showTopBar ? '60px' : '0px';
         // 1.) Reset any existing overlay view by animating it away.
         $('.overlay').animate({
             opacity: 0,
-            top: '0px',
+            top,
             left: '100%',
             width: '0px',
             height: '0px',
@@ -216,7 +258,7 @@ class Dashboard extends Component {
                 $('.overlay').css('height', '0px');
                 $('.overlay').animate({
                     opacity: 1,
-                    top: '0px',
+                    top,
                     left: '0px',
                     width: '100%',
                     height: '100%'

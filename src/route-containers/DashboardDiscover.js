@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import CollectionView from '../components/CollectionView';
-import Maps from '../util/Maps';
-import Networking from '../util/Networking';
+import SelectUmbrella from '../components/SelectUmbrella';
+import ClubList from '../components/ClubList';
+
 import '../css/containers/DashboardDiscover.css';
+
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
-import * as UIUtil from '../util/UI';
+import Networking from '../util/Networking';
+import Maps from '../util/Maps';
 
 class DashboardDiscover extends Component {
 
@@ -23,7 +26,7 @@ class DashboardDiscover extends Component {
             // all categories in format of fmc response
             allCategories: [],
 
-            // list of all clubs, in format of orgsync response
+            // list of all clubs, in format of fmc response
             allClubs: [],
 
             selectedUmbrella: undefined,
@@ -49,49 +52,21 @@ class DashboardDiscover extends Component {
 			<div className="DashboardDiscover dashboard-container">
 				<div className='dashboard-discover-header'>
                     <h1 className='dashboard-discover-title'>Discover</h1>
-                    <button className='dashboard-discover-umbrella-btn'
-                            onFocus={() => {
-                                this.setState({ umbrellaSearchFocused: true })
-                            }}
-                            onBlur={() => {
-                                this.setState({ umbrellaSearchFocused: false })
-                            }}>
-                        <span className='fas fa-umbrella'/>&nbsp;All Schools&nbsp;&nbsp;&nbsp;<span className='fa fa-chevron-down'/>
-                    </button>
-                    <button className='dashboard-discover-filter-btn'
-                            onClick={() => {
-                                if(this.props.onRefine) {
-                                    this.props.onRefine();
-                                }
-                            }}>
-                        <span className='fas fa-sliders-h'/>
-                    </button>
+                    <SelectUmbrella
+                        didSelectUmbrella={this.didSelectUmbrella}
+                        selectedUmbrella={this.state.selectedUmbrella}
+                    />
                 </div>
-                <CollectionView className='dashboard-discover-umbrellas-list'
-                                orientation={CollectionView.Orientation.vertical}
-                                data={
-                                    InterestsAndCategories.umbrellas.map((umbrella, index) => {
-                                        return Maps.mapUmbrellaToLabelComponent(umbrella.name, index, this.didSelectUmbrella.bind(this, umbrella));
-                                    })
-                                }
-                                style={{
-                                    visibility: this.state.umbrellaSearchFocused === true ? 'visible' : 'hidden'
-                                }}/>
-
-                <CollectionView className='dashboard-discover-club-list'
-                                orientation={CollectionView.Orientation.vertical}
-                                data={
-                                    this.filteredClubs().map((club, index) => {
-                                        const interest = {};
-                                        return Maps.mapClubToDashboardComponent({
-                                            ...club,
-                                            image: UIUtil.getClubThumbnail(),
-                                        }, interest, index, () => this.props.onSelectClub(club)); 
-                                    })
-                                }/>
-			</div>
-		);
-	}
+                <ClubList
+                    emptySubtitle='There are no clubs related to your search.'
+                    searchKeyword={this.props.searchKeyword}
+                    clubs={this.state.allClubs}
+                    filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
+                    onSelectClub={this.props.onSelectClub}
+                    />
+            </div>
+        );
+    }
 
 
 	/****************************
@@ -101,7 +76,7 @@ class DashboardDiscover extends Component {
     *****************************/
 
     /** When you click an umbrella to search through. */
-    didSelectUmbrella(umbrella) {
+    didSelectUmbrella = (umbrella) => {
         this.setState({
             selectedUmbrella: umbrella,
         });
@@ -113,17 +88,12 @@ class DashboardDiscover extends Component {
             allCategories,
         });
 
-        const allClubsArr = await Promise.all(allCategories.map((cat) => Networking.getClubs(cat.ID)));
-        const allClubs = _.flatMap(allClubsArr, (arr) => arr);
+        const allClubs = await Networking.getClubs(_.map(allCategories, 'ID'));
         allClubs.sort();
 
         this.setState({
             allClubs,
         });
-    }
-
-    filteredClubs = () => {
-        return this.state.allClubs;
     }
 
 

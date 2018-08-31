@@ -1,0 +1,30 @@
+.emptylist-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+}
+
+.emptylist-container > p {
+  font-family: Gotham;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: center;
+  color: #dfceeb;
+  margin: 0px;
+}
+
+p.emptylist-title {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}

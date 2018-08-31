@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
-import Networking from '../util/Networking';
 import { interests } from '../util/InterestsAndCategories';
 import '../css/containers/LoginInterestSelection.css';
 
