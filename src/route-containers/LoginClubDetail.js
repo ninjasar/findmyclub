@@ -72,7 +72,7 @@ class LoginClubDetail extends Component {
         const galleryImageSrc = UIUtil.getClubThumbnail(this.state.clubDetail);
         const headerImageSrc = UIUtil.getClubThumbnail(this.state.clubDetail);
         const links = this.state.clubDetail && this.state.clubDetail.links;
-        const interest = this.state.category && this.state.category.interest && this.state.category.interest.Name;
+        const interest = this.state.category && this.state.category.interest;
 		return (
 			<div className="LoginClubDetail overlay">
                 <button className='club-detail-close-btn'
@@ -91,7 +91,14 @@ class LoginClubDetail extends Component {
                 </a>
 
                 <h1 className='club-detail-title'>{this.props.club.Name}</h1>
-                <p className='club-detail-information'><span>Interest</span> {interest}</p>
+                {
+                    interest &&
+                    <p className='club-detail-information club-detail-information-interest'>
+                        <span>Interest</span>
+                        {interest.Name}
+                        <div className='club-detail-interest-dot' style={{ backgroundColor: interest.Color }}>&nbsp;</div>
+                    </p>
+                }
                 <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
                 <p className='club-detail-information'><span>Umbrella</span> {this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}</p>
 

@@ -29,6 +29,7 @@
     z-index: -1;
     height: 200px;
     display: block;
+    object-fit: cover;
     background-color: slategray;
 }
 
