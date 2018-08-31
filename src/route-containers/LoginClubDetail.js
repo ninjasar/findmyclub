@@ -113,7 +113,7 @@ class LoginClubDetail extends Component {
                     <CollectionView 
                         className='club-detail-events-list'
                         orientation={CollectionView.Orientation.vertical}
-                        edgeInsets={['10px', '0px', '0px', '0px']}
+                        edgeInsets={['10px', '0px', '10px', '0px']}
                         data={
                             this.state.upcomingEvents.map((val, index) => {
                                 return Maps.mapEventToComponent(val, index, (_, __, ___, idx) => {
