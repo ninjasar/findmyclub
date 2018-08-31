@@ -55,34 +55,15 @@ class LoginClubMatch extends Component {
             <div className="LoginClubMatch container">
                 {this.state.clubFilterOverlay}
                 {/* The see more overlay. */}
-                <div className='club-detail-list-view'>
-                    <div className='club-detail-header'>
-                        <button className='club-detail-list-back-btn'
-                        onClick={() => {
-                            // this.closeSeeMore();
-                        }}>
-                            <span className='fa fa-chevron-left'/> Go Back</button>
-                        <button className='pill-button filter-button club-detail-list-filter-btn'
-                        onClick={() => {
-                            if(this.props.onRefine) {
-                                this.props.onRefine();
-                            }
-                        }}>
-                        <p>Refine<span className='fas fa-sliders-h'></span></p>
-                        </button>
-                    </div>
+                <div className='club-detail-list-view'> 
                     
                     <div className='club-detail-body'>
-                        <h1 className='club-detail-list-section-title'>{this.state.selectedInterest}</h1>
-                        <h1 className='club-detail-list-section-subtitle'>
-                            We found <span style={{ color: 'cyan' }}>{this.props.selectedClubs.length} club(s)</span> that match your interest.
-                        </h1>
                     
                         <CollectionView 
                             className='club-detail-list-club-list'
                             ref='club-detail-list-club-list'
                             orientation={CollectionView.Orientation.vertical}
-                            edgeInsets={['20px', '0', '0', '0']}
+                            edgeInsets={['170px', '0', '0', '0']}
                             data={clubComponents}
                         />
                     </div>
@@ -92,33 +73,21 @@ class LoginClubMatch extends Component {
                 {/* The actual club matches page. */}
                 <div className='login-club-matches-header'>
                     <h1 className='login-club-matches-title'>
-                        {/* <span>{this.state.matchingClubs.length}</span>&nbsp;clubs match your interests perfectly! */}
+                        {<span>{this.state.clubMatches.length}</span>}&nbsp;clubs match your interests!
                     </h1>
-                    <p className='login-club-matches-subtitle'>Find out more about these by clicking on them!</p>
+                    {/* <p className='login-club-matches-subtitle'>Find out more about these by clicking on them!</p>*/}
                         
-                    <p className='login-club-matches-button-title'>Still feeling overwhelmed?</p>
-                    <button className='pill-button filter-button'
+                    <button className='pill-button filter-button club-detail-list-filter-btn'
                         onClick={() => {
-                        if(this.props.onRefine) {
-                            this.props.onRefine();
-                                    }
-                        }}
-                    >
-                        <p>Refine your search&nbsp;<span className='fas fa-sliders-h'></span></p>
+                            if (this.props.onRefine) {
+                                this.props.onRefine();
+                            }
+                        }}>
+                        <p>Refine your search<span className='fas fa-sliders-h'></span></p>
                     </button>
                 </div>
                         
                 <div className='login-club-matches-body'>
-                    <CollectionView 
-                        className='login-club-matches-list'
-                        ref='login-club-matches-list'
-                        orientation={CollectionView.Orientation.vertical}
-                        edgeInsets={['20px', '0px', '30px', '0px']}
-                        isScrollEnabled={false}
-                        data={
-                            this.populateClubs()
-                        }
-                    />
                         
                     <button 
                         className='round-rect-button login-club-matches-finish-btn'
@@ -130,12 +99,14 @@ class LoginClubMatch extends Component {
                     >
                         Finish
                     </button>
+                    { /*
                         <button className='login-club-matches-skip-btn'
                         onClick={() => {
                                     if(this.props.onNext) {
                                         this.props.onNext();
                                     }
-                                }}>Skip this step</button>
+                                }}>Skip this step
+                    </button> */ }
                 </div>
             </div>
         );
