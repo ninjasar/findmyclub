@@ -31,22 +31,7 @@
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
 }
-.dashboard-clubs-umbrella-btn {
-    position: relative;
-    float: right;
-    border: none;
-    outline: none;
-    padding: 10px;
-    cursor: pointer;
-    margin-top: 12px;
-    user-select: none;
-    margin-right: 20px;
-    border-radius: 3px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 3px 1px rgba(215, 215, 225, 0.56);
-}
+
 .dashboard-clubs-umbrellas-list {
     position: absolute;
     top: 55px;
