@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import CollectionView from '../components/CollectionView';
+import ClubList from '../components/ClubList';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
 import * as UIUtil from '../util/UI';
@@ -22,7 +23,6 @@ class DashboardClubs extends Component {
 
             // plain club objects get from 
             followingClubs: [],
-            clubDetails: [],
             umbrellaSearchFocused: false,
             selectedUmbrella: undefined,
         }
@@ -45,7 +45,6 @@ class DashboardClubs extends Component {
     *****************************/
 
     render() {
-        const { clubDetails } = this.state;
         const selectedUmbrellaName = this.state.selectedUmbrella ? this.state.selectedUmbrella.name : 'All Schools';
         return (
             <div className="DashboardClubs dashboard-container">
@@ -72,24 +71,11 @@ class DashboardClubs extends Component {
                         visibility: this.state.umbrellaSearchFocused === true ? 'visible' : 'hidden'
                     }} />
 
-                <CollectionView className='dashboard-clubs-club-list'
-                    orientation={CollectionView.Orientation.vertical}
-                    data={
-                        this.state.followingClubs
-                            .filter((club) => {
-                                if (_.isNil(this.state.selectedUmbrella)) {
-                                    return true;
-                                }
-                                const clubDetail = clubDetails.find((cd) => cd.id == club.ID);
-                                return clubDetail && clubDetail.Umbrella.id === this.state.selectedUmbrella.id;
-                            })
-                            .map((club, index) => {
-                                const clubDetail = clubDetails.find((cd) => cd.id == club.ID);
-                                const interest = clubDetail && InterestsAndCategories.getInterestFromCategory(clubDetail.category.name);
-                                const image = UIUtil.getClubThumbnail(clubDetail);
-                                return Maps.mapClubToDashboardComponent({ ...club, ...clubDetail, image }, interest, index, () => this.props.onSelectClub(club));
-                            })
-                    } />
+                <ClubList
+                    clubs={this.state.followingClubs}
+                    filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
+                    onSelectClub={this.props.onSelectClub}
+                    />
             </div>
         );
     }
@@ -115,23 +101,9 @@ class DashboardClubs extends Component {
     }
 
     async reloadFollowingClubs() {
-        // 1. get all clubs
-        const followingClubs = await Networking.getFollowedClubs();
         this.setState({
-            followingClubs,
+            followingClubs: await Networking.getFollowedClubs(),
         });
-
-        // 2. fill in club detail objects
-        // get them one by one in stead of Promise.all so that don't shoot too much network requrests
-        for (const club of followingClubs) {
-            if (this.state.clubDetails.some((clb) => clb.id == club.ID)) {
-                continue;
-            }
-            const clubDetail = await Networking.getClubInformation(club.ID);
-            this.setState({
-                clubDetails: [...this.state.clubDetails, clubDetail],
-            });
-        }
     }
 
 

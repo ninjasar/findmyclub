@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import LazyLoad from 'react-lazyload';
 
 import CollectionView from '../components/CollectionView';
-import Maps from '../util/Maps';
-import Networking from '../util/Networking';
+import ClubList from '../components/ClubList';
 import '../css/containers/DashboardDiscover.css';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
-import * as UIUtil from '../util/UI';
+import Networking from '../util/Networking';
+import Maps from '../util/Maps';
 
 class DashboardDiscover extends Component {
 
@@ -26,9 +25,6 @@ class DashboardDiscover extends Component {
 
             // list of all clubs, in format of fmc response
             allClubs: [],
-
-            // club details, in format of orgsync response
-            clubDetails: {},
 
             selectedUmbrella: undefined,
             
@@ -75,31 +71,18 @@ class DashboardDiscover extends Component {
                                 orientation={CollectionView.Orientation.vertical}
                                 data={
                                     InterestsAndCategories.umbrellas.map((umbrella, index) => {
-                                        return Maps.mapUmbrellaToLabelComponent(umbrella.name, index, this.didSelectUmbrella.bind(this, umbrella));
+                                        return Maps.mapUmbrellaToLabelComponent(umbrella.name, index, () => this.didSelectUmbrella(umbrella));
                                     })
                                 }
                                 style={{
                                     visibility: this.state.umbrellaSearchFocused === true ? 'visible' : 'hidden'
                                 }}/>
 
-                <div className='dashboard-discover-club-list'>
-                    {
-                        this.filteredClubs().map((club, index) => {
-                            const clubDetail = this.state.clubDetails[club.ID];
-                            const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
-                            return (
-                                <LazyLoad key={club.ID} height={84} overflow>
-                                    {
-                                        Maps.mapClubToDashboardComponent({
-                                            ...club,
-                                            image: UIUtil.getClubThumbnail(this.state.clubDetails[club.ID]),
-                                        }, interest, index, () => this.props.onSelectClub(club))
-                                    }
-                                </LazyLoad>
-                            );
-                        })
-                    }
-                </div>
+                <ClubList
+                    clubs={this.state.allClubs}
+                    filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
+                    onSelectClub={this.props.onSelectClub}
+                    />
             </div>
         );
     }
@@ -112,7 +95,7 @@ class DashboardDiscover extends Component {
     *****************************/
 
     /** When you click an umbrella to search through. */
-    didSelectUmbrella(umbrella) {
+    didSelectUmbrella = (umbrella) => {
         this.setState({
             selectedUmbrella: umbrella,
         });
@@ -124,28 +107,12 @@ class DashboardDiscover extends Component {
             allCategories,
         });
 
-        const allClubsArr = await Promise.all(allCategories.map((cat) => Networking.getClubs(cat.ID)));
-        const allClubs = _.flatMap(allClubsArr, (arr) => arr);
+        const allClubs = await Networking.getClubs(_.map(allCategories, 'ID'));
         allClubs.sort();
 
         this.setState({
             allClubs,
         });
-
-        allClubs.forEach(async (club) => {
-            const clubDetail = await Networking.getClubInformation(club.ID);
-            this.setState((state) => ({
-                ...state,
-                clubDetails: {
-                    ...state.clubDetails,
-                    [club.ID]: clubDetail,
-                },
-            }));
-        })
-    }
-
-    filteredClubs = () => {
-        return this.state.allClubs;
     }
 
 

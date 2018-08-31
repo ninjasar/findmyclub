@@ -104,18 +104,6 @@
     background-color: #e8e1ed;
 }
 
-
-
-.dashboard-discover-club-list {
-    left: 0px;
-    width: 100%;
-    height: calc(100% - 63px);
-    overflow: auto;
-    position: relative;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    /* background-color: aquamarine; */
-}
 .dashboard-club-item {
     position: relative;
     overflow: hidden;
