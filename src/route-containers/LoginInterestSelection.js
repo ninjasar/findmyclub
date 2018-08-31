@@ -40,7 +40,7 @@ class LoginInterestSelection extends Component {
                 <CollectionView ref='interests-collection-view'
                                 className='login-interests-selections'
                                 orientation={CollectionView.Orientation.vertical}
-                                edgeInsets={['0px', '0px', '30px', '0px']}
+                                edgeInsets={['10px', '0px', '30px', '0px']}
                                 isScrollEnabled={false}
                                 data={
                                     this.state.interests.map((val) => {
