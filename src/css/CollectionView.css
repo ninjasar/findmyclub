@@ -5,7 +5,7 @@
     justify-content: center;
     flex-wrap: wrap;
     /* height: 100%; */
-    align-items: stretch;
+    /* align-items: stretch; */
     overflow-y: auto;
     overflow-x: auto;
     text-align: center;

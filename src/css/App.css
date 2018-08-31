@@ -38,9 +38,9 @@
 
 .club-card {
 	position: relative;
-	width: 236px;
+	width: 160px;
 	height: 100%;
-	max-height: 240px;
+	/* max-height: 210px; */
 	cursor: pointer;
 	text-align: left;
 	border-radius: 4px;
@@ -89,7 +89,7 @@
 	/* position: relative; */
 	top: -5px;
 	left: 8px;
-	font-size: 16px;
+	font-size: 15px;
 	line-height: 1.1;
 	color: #323232;
 	font-weight: bold;
@@ -111,7 +111,7 @@
 	left: 15px;
 	width: 10px;
 	height: 10px;
-	color: white;
+	color: black;
 	font-size: 12px;
 	user-select: none;
 	border-radius: 25px;
@@ -130,30 +130,30 @@
 }
 
 .club-card-follow-button {
-	position: relative;
-	width: 80px;
-	padding: 5px;
-	cursor: pointer;
-	margin-top: 5px;
-	font-size: 12px;
-	color: #330d51;
-	padding-top: 8px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	border-radius: 25px;
-	font-family: 'Gotham';
-	font-weight: 500;
-	-webkit-transition-duration: 0.5s;
-	-o-transition-duration: 0.5s;
-	transition-duration: 0.5s;
-	background-color: #ffffff;
-	border: solid 2px #330d51;
-	bottom: 15px;
+    position: relative;
+    width: 68px;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 10px;
+    color: #330d51;
+    /* padding-top: 8px; */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 25px;
+    font-family: 'Gotham';
+    font-weight: 500;
+    -webkit-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    background-color: #ffffff;
+    border: solid 2px #330d51;
+    bottom: 15px;
 }
 
 .club-card-follow-button:hover {
