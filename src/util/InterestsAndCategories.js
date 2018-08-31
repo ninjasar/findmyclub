@@ -239,26 +239,3 @@ export const umbrellas = [
     { id: 53830, name: 'Student Activities Board' },
     { id: 78810, name: 'Tisch School of the Arts' }, 
 ];
-
-/** Returns the interest associated with a category name.
-* @param {String} categoryName The name of the category.
-* @returns {Object} The interest object that comes from the hard-coded json. */
-export function getInterestFromCategory(categoryName) {
-    const matchingInterests = Object.values(interests).filter((interestObj) => {
-        return interestObj.categories.map((cat) => cat.toLowerCase()).includes(categoryName.toLowerCase());
-    })
-    const interest = matchingInterests[0] || { Name: 'Unknown', id: -1, Color: 'gray' };
-    return interest;
-}
-
-
-/** Finds the category by the given ID. 
-* @param {String} ID The id of the category you're looking for.
-* @returns {Object} Returns a category object. */
-export async function getCategoryFromID(ID) {
-    const allCats = await Networking.getCategories();
-    const filtered = allCats.filter((cat) => cat.ID === ID);
-    
-    if(filtered.length > 0) return filtered[0];
-    else return null;
-}
