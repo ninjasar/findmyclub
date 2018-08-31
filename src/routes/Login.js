@@ -156,7 +156,10 @@ class Login extends Component {
 
     /** Goes to the loading screen for finding clubs with your interests.
     * @param {Array} selectedInterests The array of selected interest objects. */
-    async handleGoToMatching(selectedInterests) {
+    async handleGoToMatching(interests) {
+
+        const selectedInterests = interests.length ? interests : Object.values(potentialInterests);
+        
         // This page itself does not actually do much. Any API calls should be done
         // here in the login page, then when they are done you go to the next page.
         this.transitionContainer(<LoginMatching />);
