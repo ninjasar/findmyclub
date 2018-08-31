@@ -91,13 +91,15 @@ class LoginClubDetail extends Component {
                 
                 <div className="login-club-detail-middle">
 
-                    <button className='pill-button club-detail-follow-btn' onClick={this.handleFollowClub}>
-                        <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
-                    </button>
-                    <a className='pill-button club-detail-go-to-engage-btn' href={links && links.web} target='_blank'>
-                        <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
-                    </a>
-                
+                    <div className="login-club-detail-buttons">
+                        <button className='pill-button club-detail-follow-btn' onClick={this.handleFollowClub}>
+                            <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
+                        </button>
+                        <a className='pill-button club-detail-go-to-engage-btn' href={links && links.web} target='_blank'>
+                            <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
+                        </a>
+                    </div>
+
                     <h1 className='club-detail-title'>{this.props.club.Name}</h1>
                     <p className='club-detail-information'><span>Interest</span> {this.state.category && this.state.category.interest && this.state.category.interest}</p>
                     <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
@@ -106,15 +108,6 @@ class LoginClubDetail extends Component {
                     <p className='club-detail-description'>
                         {this.state.clubDetail && this.state.clubDetail.description}
                     </p>
-                    
-                    <h3 className='club-detail-portal-title'>Portal Information</h3>
-                    <div className='club-detail-portal-information'>
-                        <p className='club-detail-portal-information-title'>Website</p>
-                        {
-                            links && links.web && 
-                            <a className='club-detail-portal-information-link' href={links.web}>{links.web}</a>
-                        }
-                    </div>
                     
                     <h3 className='club-detail-events-title'>Upcoming Events</h3>
                     <CollectionView 
