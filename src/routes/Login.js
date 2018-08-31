@@ -162,7 +162,8 @@ class Login extends Component {
             }}
             interests={this.state.selectedInterests}
             selectedClubs={this.state.selectedClubs}
-            clubMatches={this.state.matchingClubs} />);
+            clubMatches={this.state.matchingClubs} />
+        );
     }
 
     /** Goes to the loading screen for finding clubs with your interests.
@@ -280,13 +281,13 @@ class Login extends Component {
                 // 3.) Animate into the new overlay.
                 $('.overlay').css('opacity', 0);
                 $('.overlay').css('top', '0px');
-                $('.overlay').css('left', '100%');
-                $('.overlay').css('width', '0px');
+                $('.overlay').css('bottom', '100%');
+                $('.overlay').css('width', '100%');
                 $('.overlay').css('height', '0px');
                 $('.overlay').animate({
                     opacity: 1,
                     top: '0px',
-                    left: '0px',
+                    bottom: '0px',
                     width: '100%',
                     height: '100%'
                 },  duration || Constants.OVERLAY_TRANSITION_TIME, () => {
@@ -304,8 +305,8 @@ class Login extends Component {
         $('.overlay').animate({
             opacity: 0,
             top: '0px',
-            left: '100%',
-            width: '0px',
+            bottom: '100%',
+            width: '100%',
             height: '0px',
         }, duration || Constants.OVERLAY_TRANSITION_TIME, () => {
             // 2.) Set the state of the new overlay.
