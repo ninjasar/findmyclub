@@ -15,8 +15,8 @@ class LoginClubFilter extends Component {
 
         super(props);
 
-        const checkedCategories = {};
-        [...new Set(this.props.clubMatches.map(c => c.category))]
+        const checkedCategories = this.props.checkedCategories || {};
+        [...new Set((this.props.clubMatches || []).map(c => c.category))]
             .forEach(category => {
                 checkedCategories[category] = this.props.selectedClubs.map(sc => sc.category).includes(category);
             });
@@ -99,7 +99,7 @@ class LoginClubFilter extends Component {
     
     getMatchingClubsCount() {
 
-        const count = this.props.clubMatches
+        const count = (this.props.clubMatches || [])
             .filter(c => Object.keys(this.state.checkedCategories)
                 .filter(cc => this.state.checkedCategories[cc])
                 .includes(c.category))

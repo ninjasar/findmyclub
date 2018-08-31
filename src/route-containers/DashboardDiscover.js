@@ -24,6 +24,8 @@ class DashboardDiscover extends Component {
             // all categories in format of fmc response
             allCategories: [],
 
+            filteringCategoryNames: [],
+
             // list of all clubs, in format of fmc response
             allClubs: undefined,
 
@@ -54,14 +56,10 @@ class DashboardDiscover extends Component {
                         didSelectUmbrella={this.didSelectUmbrella}
                         selectedUmbrella={this.state.selectedUmbrella}
                     />
-                    <button className='dashboard-discover-filter-btn'
-                        onClick={() => {
-                            if (this.props.onRefine) {
-                                this.props.onRefine();
-                            }
-                        }}>
+                    {/* <button className='dashboard-discover-filter-btn'
+                        onClick={this.handleRefine}>
                         <span className='fas fa-sliders-h' />
-                    </button>
+                    </button> */}
                 </div>
                 {
                     _.isNil(this.state.allClubs) ?
@@ -104,6 +102,20 @@ class DashboardDiscover extends Component {
         this.setState({
             allClubs,
         });
+    }
+
+    handleRefine = () => {
+        // selectedCategories, clubs, onRefineDone
+        const checkedCategories = { };
+        this.state.filteringCategoryNames.forEach((catname) => {
+            checkedCategories[catname] = this.state.allCategories.find((cat) => cat.Name === catname);
+        });
+        this.props.onRefine(
+            checkedCategories,
+            this.state.allCategories,
+            [],
+            (filteringCategoryNames) => this.setState({ filteringCategoryNames }),
+        );
     }
 
 

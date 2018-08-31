@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import _ from 'lodash';
 import Constants from '../util/Constants';
+import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
 /* CONTAINERS */
 import DashboardClubs from '../route-containers/DashboardClubs';
@@ -9,7 +11,7 @@ import DashboardDiscover from '../route-containers/DashboardDiscover';
 /* CONTAINERS */
 
 /* OVERLAYS */
-import ClubFilter from '../route-containers/LoginClubFilter';
+import LoginClubFilter from '../route-containers/LoginClubFilter';
 import ClubDetail from '../route-containers/LoginClubDetail';
 import EventDetail from '../route-containers/DashboardEventDetail';
 import DashboardProfile from '../route-containers/DashboardProfile';
@@ -130,16 +132,28 @@ class Dashboard extends Component {
                                 this.hideOverlay()
                             }} />);
                     }}
-                    onRefine={() => {
-                        this.showOverlay(<ClubFilter onClose={() => { this.hideOverlay() }}
-                            onFiltered={(filteredResults) => {
-                                console.log('Filtered: ', filteredResults);
-                                document.body.scroll({ top: 0, behavior: 'instant' });
-                                this.hideOverlay();
-                            }} />);
+                    onRefine={(selectedCategories, allCategories, clubs, onRefineDone) => {
+                        const filterer = this.getFilterer(selectedCategories, allCategories, clubs, onRefineDone);
+                        this.showOverlay(filterer);
                     }} />
             );
         }
+    }
+
+    getFilterer = (selectedCategories, allCategories, clubs, onRefineDone) => {
+        return (
+            <LoginClubFilter
+                checkedCategories={selectedCategories}
+                onFiltered={(categoryNames) => {
+                    onRefineDone(categoryNames);
+                    this.hideOverlay();
+                }}
+                onClose={this.hideOverlay.bind(this)}
+                interests={_.values(InterestsAndCategories.interests)}
+                categories={allCategories}
+                selectedClubs={clubs}
+            />
+        );
     }
 
 
