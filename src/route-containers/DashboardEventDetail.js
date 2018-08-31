@@ -49,7 +49,7 @@ class DashboardEventDetail extends Component {
                 <img className='event-detail-background-image' src={thumbnail} alt='image-preview'/>
 
                 <button className='pill-button event-detail-calender-btn' onClick={this.handleExportCalendar}>
-                    <span className='fa fa-plus'/>&nbsp;Add to Calendar
+                    <span className='fa fa-plus'/>&nbsp;Download iCal
                 </button>
 
                 <div className='event-detail-date-area'>

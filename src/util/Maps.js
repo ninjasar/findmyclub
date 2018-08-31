@@ -176,11 +176,10 @@ export default {
                     </div>
                 </div>
                 <div className='event-right' onClick={() => {
-                    console.log('add to calendar');
                 }}>
                     <div className='event-calendar-area' onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>
-                        <p className='event-calendar-label'>Add to calendar</p>
+                        <p className='event-calendar-label'>Download iCal</p>
                     </div>
                 </div>
 {/*                 
