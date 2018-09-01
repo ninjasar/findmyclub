@@ -34,17 +34,6 @@ export default class ClubList extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    this.onReceiveNewProps({});
-  }
-  
-  componentDidUpdate(prevProps) {
-    this.onReceiveNewProps(prevProps);
-  }
-
-  onReceiveNewProps = (prevProps) => {    
-  }
-
   renderEmpty = () => {
     return (
       <EmptyList subtitle={this.props.emptySubtitle}/>
