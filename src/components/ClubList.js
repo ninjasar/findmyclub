@@ -11,6 +11,18 @@ import EmptyList from '../components/EmptyList';
 import Networking from '../util/Networking';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
+class Club extends React.Component {
+  state = { clubDetail: undefined };
+
+  componentDidMount = () => {
+    this.props.onComponentDidMount();
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
+
 export default class ClubList extends React.Component {
 
   constructor(props) {
@@ -31,13 +43,6 @@ export default class ClubList extends React.Component {
   }
 
   onReceiveNewProps = (prevProps) => {    
-    if (prevProps === this.props) {
-      return;
-    }
-    const oldClubsIndexed = { };
-    (prevProps.clubs || []).forEach((club) => { oldClubsIndexed[club.ID] = club });
-    const newClubs = this.props.clubs.filter((club) => !oldClubsIndexed[club.ID]);
-    this.reloadClubDetails(newClubs);
   }
 
   renderEmpty = () => {
@@ -49,7 +54,6 @@ export default class ClubList extends React.Component {
   render() {
     const clubsToShow = this.clubsToShow();
     if (_.isEmpty(clubsToShow)) {
-      console.log('hi')
       return this.renderEmpty();
     }
 
@@ -61,12 +65,14 @@ export default class ClubList extends React.Component {
             const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
             return (
               <LazyLoad key={club.ID} height={84} overflow>
-                {
-                  Maps.mapClubToDashboardComponent({
-                    ...club,
-                    image: UIUtil.getClubThumbnail(this.state.clubDetails[club.ID]),
-                  }, interest, index, () => this.props.onSelectClub(club))
-                }
+                <Club club={club} onComponentDidMount={() => this.reloadClubDetail(club.ID)}>
+                  {
+                    Maps.mapClubToDashboardComponent({
+                      ...club,
+                      image: UIUtil.getClubThumbnail(this.state.clubDetails[club.ID]),
+                    }, interest, index, () => this.props.onSelectClub(club))
+                  }
+                </Club>
               </LazyLoad>
             );
           })
@@ -86,19 +92,17 @@ export default class ClubList extends React.Component {
       })
   }
 
-  reloadClubDetails = (clubs) => {
-    clubs.forEach(async (club) => {
-      if (this.state.clubDetails[club.ID]) {
-        return;
-      }
-      const clubDetail = await Networking.getClubInformation(club.ID);
-      this.setState((state) => ({
-        ...state,
-        clubDetails: {
-          ...state.clubDetails,
-          [club.ID]: clubDetail,
-        },
-      }));
-    });
+  reloadClubDetail = async (clubID) => {
+    if (this.state.clubDetails[clubID]) {
+      return;
+    }
+    const clubDetail = await Networking.getClubInformation(clubID);
+    this.setState((state) => ({
+      ...state,
+      clubDetails: {
+        ...state.clubDetails,
+        [clubID]: clubDetail,
+      },
+    }));
   }
 }
