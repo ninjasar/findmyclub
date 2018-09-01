@@ -1,4 +1,4 @@
-import ical from 'ical-generator';
+import ical from '../vendor/ical-generator';
 import _ from 'lodash';
 
 import Constants from './Constants';
