@@ -32,18 +32,6 @@ class DashboardEvents extends Component {
         this.reloadEvents();
     }
 
-    reloadEvents = async () => {
-        const startDate = new Date(Date.now() - 1000 * 3600 * 24);
-        const endDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
-        const followedClubs = await Networking.getFollowedClubs();
-        const allEvents = await Promise.all(followedClubs.map((club) => Networking.getEventsForClub(club.ID, startDate, endDate)));
-        const events = _.reduce(allEvents, (events) => events) || [];
-        events.sort((e1, e2) => new Date(e1.date.starts_at).getTime() - new Date(e2.date.starts_at).getTime());
-        this.setState({
-            events,
-        });
-    }
-
 	/****************************
     *                           *
     *           RENDER          *
@@ -99,6 +87,18 @@ class DashboardEvents extends Component {
             const item = items[index];
             this.props.onSelectEvent(item);
         }
+    }
+
+    reloadEvents = async () => {
+        const startDate = new Date(Date.now() - 1000 * 3600 * 24);
+        const endDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
+        const followedClubs = await Networking.getFollowedClubs();
+        const allEvents = await Promise.all(followedClubs.map((club) => Networking.getEventsForClub(club.ID, startDate, endDate)));
+        const events = _.flatMap(allEvents, (events) => events) || [];
+        events.sort((e1, e2) => new Date(e1.date.starts_at).getTime() - new Date(e2.date.starts_at).getTime());
+        this.setState({
+            events,
+        });
     }
 
 
