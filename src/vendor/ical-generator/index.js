@@ -1,7 +1,7 @@
 /**
  * iCal Generator Entrypoint
  */
-'use strict';
+
 
 
 const ICalCalendar = require('./calendar');

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Maps from '../util/Maps';
 import '../css/containers/DashboardProfile.css';
 import Networking from '../util/Networking';
 import * as Storage from '../util/Storage';

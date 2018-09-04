@@ -15,7 +15,7 @@ import * as jwt_decode from 'jwt-decode';
 /** Returns the query params from a url. */
 const getParameterByName = (name, url) => {
     if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
+    name = name.replace(/[[]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
     if (!results) return null;
@@ -37,8 +37,8 @@ const get = (path) => {
         // return a promise that never resolves
         return new Promise(() => { });
     }
-    return superagent.get(`${Constants.BASE_URL}${path}`).
-        set({
+    return superagent.get(`${Constants.BASE_URL}${path}`)
+        .set({
             'Authorization': `Bearer ${Storage.getToken()}`,
         });
 };
@@ -48,8 +48,8 @@ const post = (path) => {
         // return a promise that never resolves
         return new Promise(() => { });
     }
-    return superagent.post(`${Constants.BASE_URL}${path}`).
-        set({
+    return superagent.post(`${Constants.BASE_URL}${path}`)
+        .set({
             'Authorization': `Bearer ${Storage.getToken()}`,
         });
 };

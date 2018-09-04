@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import Login from './routes/Login';
 import Dashboard from './routes/Dashboard';
-import { HashRouter as Router, Route, Link } from "react-router-dom";
-import { createStore } from 'redux';
+import { HashRouter as Router, Route } from "react-router-dom";
+// import { createStore } from 'redux';
 import './fonts/fonts.css';
 import './css/App.css';
 
 
 
-// Create the redux store
-const defaultState = {
+// // Create the redux store
+// const defaultState = {
     
-}
-const ReduxStore = (state = defaultState, action) => {
-    switch (action.type) {
-        default:
-            break;
-    }
-    return state;
-};
-const store = createStore(ReduxStore);
+// }
+// const ReduxStore = (state = defaultState, action) => {
+//     switch (action.type) {
+//         default:
+//             break;
+//     }
+//     return state;
+// };
+// const store = createStore(ReduxStore);
 
 
 class App extends Component {

@@ -203,6 +203,7 @@ class Login extends Component {
             ({
                 ...club,
                 checked: true,
+                // eslint-disable-next-line eqeqeq
                 category: ( categoriesMatchingInterest.filter(cat => cat.ID == club.CategoryID)[0] || {} ).Name,
             }));
         

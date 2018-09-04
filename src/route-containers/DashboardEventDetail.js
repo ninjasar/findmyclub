@@ -9,12 +9,7 @@ class DashboardEventDetail extends Component {
     *                           *
     *            INIT           *
     *                           *
-    *****************************/
-
-    constructor(props) {
-        super(props);
-    }
-   
+    *****************************/   
 
 	/****************************
     *                           *
@@ -46,7 +41,7 @@ class DashboardEventDetail extends Component {
                                 this.props.onClose();
                             }
                         }}><span className='fa fa-times'/></button>
-                <img className='event-detail-background-image' src={thumbnail} alt='image-preview'/>
+                <img className='event-detail-background-image' src={thumbnail} alt='preview'/>
 
                 <button className='pill-button event-detail-calender-btn' onClick={this.handleExportCalendar}>
                     <span className='fa fa-plus'/>&nbsp;Download iCal

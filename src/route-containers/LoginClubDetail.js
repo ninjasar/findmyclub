@@ -77,7 +77,7 @@ class LoginClubDetail extends Component {
 			<div className="LoginClubDetail overlay">
                 
                 <div className="login-club-detail-top">
-                    <img className='club-detail-background-image' src={headerImageSrc} alt='image-preview'/>
+                    <img className='club-detail-background-image' src={headerImageSrc} alt='preview'/>
                     <button 
                         className='club-detail-close-btn'
                         onClick={() => {

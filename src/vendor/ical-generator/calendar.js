@@ -1,4 +1,4 @@
-'use strict';
+
 
 const moment = require('moment-timezone');
 const ICalTools = require('./_tools');

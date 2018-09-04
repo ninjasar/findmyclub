@@ -9,7 +9,8 @@
   padding-bottom: 50px;
 }
 
-.emptylist-container > p {
+.emptylist-container > p,
+.emptylist-container > span {
   font-family: Gotham;
   font-size: 15px;
   font-style: normal;

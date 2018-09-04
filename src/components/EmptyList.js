@@ -9,7 +9,7 @@ export default class EmptyList extends React.Component {
   render() {
     return (
       <div className='emptylist-container'>
-        <p>😞</p>
+        <span role="img" aria-label='sad'>😞</span>
         <p className='emptylist-title'>No Results</p>
         <p>{this.props.subtitle}</p>
       </div>
