@@ -24,15 +24,10 @@ class DashboardDiscover extends Component {
             // all categories in format of fmc response
             allCategories: [],
 
-            filteringCategoryNames: [],
-
             // list of all clubs, in format of fmc response
             allClubs: undefined,
 
             selectedUmbrella: undefined,
-            
-            currentPage: 0,
-            umbrellaSearchFocused: false
         }
     }
 
@@ -103,21 +98,6 @@ class DashboardDiscover extends Component {
             allClubs,
         });
     }
-
-    handleRefine = () => {
-        // selectedCategories, clubs, onRefineDone
-        const checkedCategories = { };
-        this.state.filteringCategoryNames.forEach((catname) => {
-            checkedCategories[catname] = this.state.allCategories.find((cat) => cat.Name === catname);
-        });
-        this.props.onRefine(
-            checkedCategories,
-            this.state.allCategories,
-            [],
-            (filteringCategoryNames) => this.setState({ filteringCategoryNames }),
-        );
-    }
-
 
 	/****************************
     *                           *

@@ -12,7 +12,9 @@ import Networking from '../util/Networking';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
 class Club extends React.Component {
-  state = { clubDetail: undefined };
+  state = {
+    clubDetail: undefined,
+  };
 
   componentDidMount = () => {
     this.props.onComponentDidMount();
@@ -31,9 +33,16 @@ export default class ClubList extends React.Component {
     this.state = {
       // club details, in format of orgsync response
       clubDetails: {},
+
+      // all categories information to filter by umbrella with
+      umbrellaIDToCategories: { },
     };
   }
 
+  componentDidMount = () => {
+    this.reloadCategories();
+  }
+  
   renderEmpty = () => {
     return (
       <EmptyList subtitle={this.props.emptySubtitle}/>
@@ -45,7 +54,7 @@ export default class ClubList extends React.Component {
     if (_.isEmpty(clubsToShow)) {
       return this.renderEmpty();
     }
-
+    
     return (
       <div className='club-list'>
         {
@@ -71,14 +80,14 @@ export default class ClubList extends React.Component {
   }
 
   clubsToShow = () => {
-    return UIUtil.filterClubsByKeyword(this.props.clubs, this.props.searchKeyword)
-      .filter((club) => {
-        if (_.isNil(this.props.filterUmbrellaID)) {
-          return true;
-        }
-        const clubDetail = this.state.clubDetails[club.ID];
-        return clubDetail && clubDetail.Umbrella.id === this.props.filterUmbrellaID;
-      })
+    // 1. filter by keyword
+    let clubs = UIUtil.filterClubsByKeyword(this.props.clubs, this.props.searchKeyword);
+    // 2. filter by umbrella id
+    if (!_.isNil(this.props.filterUmbrellaID)) {
+      const cats = this.state.umbrellaIDToCategories[this.props.filterUmbrellaID] || { };
+      clubs = clubs.filter((club) => cats[club.CategoryID]);
+    }
+    return clubs;
   }
 
   reloadClubDetail = async (clubID) => {
@@ -93,5 +102,17 @@ export default class ClubList extends React.Component {
         [clubID]: clubDetail,
       },
     }));
+  }
+
+  reloadCategories = async () => {
+    const categories = await Networking.getCategories();
+    const umbrellaIDToCategories = { };
+    categories.forEach((cat) => {
+      if (!_.has(umbrellaIDToCategories, cat.UmbrellaID)) {
+        umbrellaIDToCategories[cat.UmbrellaID] = { };
+      }
+      umbrellaIDToCategories[cat.UmbrellaID][cat.ID] = true;
+    });
+    this.setState({ umbrellaIDToCategories });
   }
 }
