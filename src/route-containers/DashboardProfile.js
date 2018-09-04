@@ -55,10 +55,11 @@ class DashboardProfile extends Component {
     getUserInfo = () => {
         try {
             const jwtPayload = Networking.getJWTPayload();
+            debugger
 
-            const fullName = jwtPayload.email;
+            const fullName = jwtPayload.fullname || jwtPayload.email;
             const firstAffiliation = jwtPayload.affiliation
-                .filter((aff) => aff.affiliation_status === 'current' && aff.affiliation_type === 'student');
+                .filter((aff) => aff.affiliation_status === 'current')[0] || {};
             const school = firstAffiliation.division;
             return { fullName, school };
         }
