@@ -6,6 +6,7 @@ import * as UIUtil from '../util/UI';
 import CollectionView from '../components/CollectionView';
 import '../css/containers/LoginClubDetail.css';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
+import EmptyList from '../components/EmptyList';
 
 class LoginClubDetail extends Component {
     
@@ -91,7 +92,11 @@ class LoginClubDetail extends Component {
                 <div className="login-club-detail-middle">
 
                     <div className="login-club-detail-buttons">
-                        <button className='pill-button club-detail-follow-btn' onClick={this.handleFollowClub}>
+                        <button className='pill-button club-detail-follow-btn' onClick={this.handleFollowClub}
+                                style={{
+                                    color: this.state.followed ? 'white' : '#330d51',
+                                    backgroundColor: this.state.followed ? '#330d51' : 'white'
+                                }}>
                             <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
                         </button>
                         <a className='pill-button club-detail-go-to-engage-btn' href={links && links.web} target='_blank'>
@@ -120,6 +125,7 @@ class LoginClubDetail extends Component {
                         className='club-detail-events-list'
                         orientation={CollectionView.Orientation.vertical}
                         edgeInsets={['10px', '0px', '10px', '0px']}
+                        emptyDataView={<EmptyList subtitle='There are no upcoming events for this club'/>}
                         data={
                             this.state.upcomingEvents.map((val, index) => {
                                 return Maps.mapEventToComponent(val, index, (_, __, ___, idx) => {
@@ -139,20 +145,14 @@ class LoginClubDetail extends Component {
                                 }
                             })
                     }/>
-                    <button 
-                        className='club-detail-see-more-btn'
-                        onClick={() => {
-                            this.setState({
-                                maxEvents: this.state.maxEvents === 2 ? -1 : 2
-                            })
-                    }}>See {this.state.maxEvents === 2 ? 'More' : 'Less'}</button>
-                    <button className="club-detail-see-more-btn" onClick={() => {
+                    
+                    {this.state.upcomingEvents.length > 2 ? <button className="club-detail-see-more-btn" onClick={() => {
                         this.setState({
                             maxEvents: this.state.maxEvents === 2 ? -1 : 2
                         });
                     }}>
                     See {this.state.maxEvents === 2 ? "More" : "Less"}
-                    </button>
+                    </button> : <div></div>}
                     
                 </div>
             </div>

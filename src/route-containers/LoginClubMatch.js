@@ -26,6 +26,7 @@ class LoginClubMatch extends Component {
             selectedIntersetColor: 'orange',
             clubFilterOverlay: <div></div>
         }
+        console.log(this.state);
     }
 
     async componentDidMount() {
@@ -42,11 +43,30 @@ class LoginClubMatch extends Component {
      *****************************/
     
     render() {
-        const clubComponents = this.props.selectedClubs.map((club) => {
-            const followed = this.followingClub(club);
-            return Maps.mapClubToComponent({ ...club, image: this.state.thumbnails[club.ID] || require("../util/Constants").default.clubThumbnailDefaultPath, tagColor: club.interestColor, followed },
-            () => this.didSelectClubCard(club),
-            () => this.didFollowClubCard(club));
+        // const clubComponents = this.props.selectedClubs.map((club) => {
+        //     const followed = this.followingClub(club);
+        //     return Maps.mapClubToComponent({ ...club, image: this.state.thumbnails[club.ID] || require("../util/Constants").default.clubThumbnailDefaultPath, tagColor: club.interestColor, followed },
+        //     () => this.didSelectClubCard(club),
+        //     () => this.didFollowClubCard(club));
+        // });
+        const clubComponents = this.state.clubInterests.map((interest) => {
+            // Get the clubs that match the interest.
+            const clubs = this.props.selectedClubs.filter((club) => {
+                return club.interestID === interest.ID;
+            }).map((club) => {
+                const followed = this.followingClub(club);
+                return {
+                    ...club,
+                    followed: followed,
+                    tagColor: interest.Color,
+                    image: this.state.thumbnails[club.ID] || require("../util/Constants").default.clubThumbnailDefaultPath, 
+                }
+            })
+
+            return Maps.mapInterestWithClubsToComponent(interest, clubs,
+                () => { console.log('See More') },
+                this.didSelectClubCard.bind(this),
+                this.didFollowClubCard.bind(this));
         });
         
 		return (
@@ -93,8 +113,7 @@ class LoginClubMatch extends Component {
                                     if(this.props.onNext) {
                                         this.props.onNext();
                                     }
-                        }}
-                    >
+                        }}>
                         Finish
                     </button>
                     { /*
@@ -115,43 +134,43 @@ class LoginClubMatch extends Component {
         
         
         
-        /****************************
-         *                           *
-         *         FUNCTIONS         *
-         *                           *
-         *****************************/
-    
-        async getClubThumbnail () {
-    
-            const thumbnails = {};
-            const promises = this.props.selectedClubs.map(async club => {
-                return Networking.getClubInformation(club.ID);
-            });
+    /****************************
+     *                           *
+     *         FUNCTIONS         *
+     *                           *
+     *****************************/
 
-            const results = await Promise.all(promises);
+    async getClubThumbnail () {
 
-            results.forEach(club => {
-                thumbnails[club.id] = UIUtil.getClubThumbnail(club);
-            });
+        const thumbnails = {};
+        const promises = this.props.selectedClubs.map(async club => {
+            return Networking.getClubInformation(club.ID);
+        });
+
+        const results = await Promise.all(promises);
+
+        results.forEach(club => {
+            thumbnails[club.id] = UIUtil.getClubThumbnail(club);
+        });
+
+        this.setState({
+            thumbnails,
+        });
+    }
     
-            this.setState({
-                thumbnails,
-            });
-        }
-        
-        /** What to do when you click on a club card. */
-        didSelectClubCard(club) {
-            this.props.onSelectClub && this.props.onSelectClub(club);
-        }
-        
-        
-        /** What to do when you click on the follow button for a club card. */
-        async didFollowClubCard(club) {
-            this.followingClub(club) ? 
-                await Networking.unfollowClub(club.ID) :
-                await Networking.followClub(club.ID);
-            await this.reloadFollowingClubs();
-        }
+    /** What to do when you click on a club card. */
+    didSelectClubCard(club) {
+        this.props.onSelectClub && this.props.onSelectClub(club);
+    }
+    
+    
+    /** What to do when you click on the follow button for a club card. */
+    async didFollowClubCard(club) {
+        this.followingClub(club) ? 
+            await Networking.unfollowClub(club.ID) :
+            await Networking.followClub(club.ID);
+        await this.reloadFollowingClubs();
+    }
         
     reloadFollowingClubs = async () => {
         this.setState({

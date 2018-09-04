@@ -12,12 +12,12 @@
     to { left: 100px; top: 220px; }
 }
 @keyframes bubbleMovement4 {
-    from { left: 200px; top: -100px; }
-    to { left: 180px; top: -80px; }
+    from { left: 20px; top: 150px; }
+    to { left: 18px; top: 120px; }
 }
 @keyframes bubbleMovement5 {
-    from { left: -40px; top: 120px; }
-    to { left: -20px; top: 100px; }
+    from { left: -50px; top: 120px; }
+    to { left: -30px; top: 100px; }
 }
 @keyframes bubbleMovement6 {
     from { left: 10px; }

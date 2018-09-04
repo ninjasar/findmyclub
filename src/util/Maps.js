@@ -2,13 +2,16 @@ import React from 'react';
 import CollectionView from '../components/CollectionView';
 import dateformat from 'dateformat';
 import * as UIUtil from '../util/UI';
+import EmptyList from '../components/EmptyList';
 
 // club to card
 const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick) => {
     return (
         <div className='club-item' key={ID}>
             <div className='club-card'>
-                <div className='club-card-top' onClick={() => { onClubClick(ID, Name, tags) }}>
+                <div className='club-card-top' onClick={() => { onClubClick({ ID, Name, tags,
+                                                                            image, tagColor, followed,
+                                                                            interest }) }}>
                     <div className='club-card-image-area'>
                         <img src={image} alt='club-preview' className='club-card-image'/>
                     </div>
@@ -20,7 +23,9 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                     <p className='club-card-tags-label'>{interest}</p>
                 </div>
                 <div className='club-card-follow-button' 
-                    onClick={() => { onFollowClick(ID, Name, tags) }}
+                    onClick={() => { onFollowClick({ ID, Name, tags,
+                                                    image, tagColor, followed,
+                                                    interest }) }}
                     style={{
                         color: followed === true ? 'white' : '#330d51',
                         backgroundColor: followed === true ? '#330d51' : 'white'
@@ -77,34 +82,34 @@ export default {
 
 
     /** Maps an interest to a cell with clubs inside of it.
-    * @param {String} interestWithClubs Object where the key is the interest name and the value is array of clubs.
+    * @param {Object} interest The interest that you want to create a component for.
+    * @param {Array} clubs The clubs that match the interest.
     * @param {Function} onSeeMore What to do when you click see more (or see less).
     * @param {Function} onClubClick What to do when you click the club card.
     * @param {Function} onFollowClick What to do when you click the follow button. */
-    mapInterestWithClubsToComponent: (interestWithClubs, onSeeMore, onClubClick, onFollowClick) => {
-        const name = interestWithClubs.ID;
-        const clubs = interestWithClubs.clubs;
+    mapInterestWithClubsToComponent: (interest, clubs, onSeeMore, onClubClick, onFollowClick) => {
+        const name = interest.Name;
         return (
             <div className='login-club-matches-category-section' key={name}>
                 <h1 className='login-club-matches-category-section-title'>{name}</h1>
                 <h1 className='login-club-matches-category-section-subtitle'>
-                    We found <span style={{ color: 'cyan' }}>{clubs.length} club(s)</span> that match your interest.
+                    We found <span style={{ color: interest.Color }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 
                 <CollectionView className='login-club-matches-club-list'
                                 orientation={CollectionView.Orientation.vertical}
                                 edgeInsets={['20px', '0px', '10px', '0px']}
+                                emptyDataView={<EmptyList />}
                                 data={
                                     clubs.map((club) => {
-                                        return mCtC(club, onClubClick, onFollowClick);
-                                    }).filter((_, index, __) => {
-                                        return index < 2;
+                                        return mCtC({ ...club }, onClubClick, onFollowClick);
                                     })
                                 }/>
-                <button className='login-club-matches-see-more-btn'
+                                
+                {/* {clubs.length > 0 ? <button className='login-club-matches-see-more-btn'
                         onClick={() => {
                             onSeeMore(clubs);
-                        }}>--- See More ---</button>
+                        }}>--- See More ---</button> : <div></div>} */}
             </div>
         )
     },

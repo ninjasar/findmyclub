@@ -32,18 +32,33 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
+  outline: none;
 }
 
 .dashboard-profile-action-button-primary {
-  background-color: #8568dd;
-  color: #ffffff;
-  border: none;
+    border: none;
+    color: #ffffff;
+    transition-duration: 0.2s;
+    background-color: #8568dd;
+}
+.dashboard-profile-action-button-primary:hover {
+    background-color: #6953ac;
+}
+.dashboard-profile-action-button-primary:active {
+    background-color: #56448d;
 }
 
 .dashboard-profile-action-button-clear {
-  background-color: transparent;
-  border: solid 1px #d7d7e1;
-  color: #626181;
+    color: #626181;
+    background-color: white;
+    transition-duration: 0.2s;
+    border: solid 1px #d7d7e1;
+}
+.dashboard-profile-action-button-clear:hover {
+    background-color: rgb(241, 241, 241);
+}
+.dashboard-profile-action-button-clear:hover {
+    background-color: rgb(206, 206, 206);
 }
 
 .dashboard-profile-back-btn, .dashboard-profile-edit-btn {

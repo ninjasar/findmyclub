@@ -23,14 +23,21 @@
 .login-landing-login-btn {
     width: 140px;
     height: 35px;
-    margin: 0 auto 30px;
-    padding-top: 5px;
-    border-radius: 9px;
     border: none;
-    background-image: linear-gradient(90deg, #561389, #cc6699);
     color: #fff;
-    font-family: 'Gotham-Bold';
+    outline: none;
     font-size: 14px;
+    padding-top: 5px;
+    border-radius: 5px;
+    margin: 0 auto 30px;
+    font-family: 'Gotham-Bold';
+    background-image: linear-gradient(90deg, #561389, #cc6699);
+}
+.login-landing-login-btn:hover {
+    background-image: linear-gradient(100deg, #3f0e64, #9e4f77);
+}
+.login-landing-login-btn:active {
+    background-image: linear-gradient(120deg, #340c53, #7c3e5d);
 }
 
 .login-landing-promotion {

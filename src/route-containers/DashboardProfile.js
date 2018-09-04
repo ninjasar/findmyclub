@@ -55,7 +55,6 @@ class DashboardProfile extends Component {
     getUserInfo = () => {
         try {
             const jwtPayload = Networking.getJWTPayload();
-            debugger
 
             const fullName = jwtPayload.fullname || jwtPayload.email;
             const firstAffiliation = jwtPayload.affiliation

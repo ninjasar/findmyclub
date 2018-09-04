@@ -153,7 +153,7 @@
     transition-duration: 0.5s;
     background-color: #ffffff;
     border: solid 2px #330d51;
-    bottom: 15px;
+    bottom: 0px;
 }
 
 .club-card-follow-button:hover {
@@ -315,4 +315,36 @@
     font-stretch: normal;
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
+}
+
+
+
+.no-results-view-emoji {
+    color: #dfceeb;
+    font-size: 20px;
+    margin-bottom: -5px;
+}
+.no-results-view-title {
+    color: #dfceeb;
+    font-size: 15px;
+    line-height: 1.47;
+    font-weight: bold;
+    user-select: none;
+    font-style: normal;
+    text-align: center;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham-Bold';
+}
+.no-results-view-subtitle {
+    color: #dfceeb;
+    font-size: 14px;
+    line-height: 1.47;
+    font-weight: bold;
+    user-select: none;
+    font-style: normal;
+    text-align: center;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham';
 }

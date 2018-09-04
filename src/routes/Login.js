@@ -3,7 +3,7 @@ import $ from 'jquery';
 import Constants from '../util/Constants';
 import * as Storage from '../util/Storage';
 import Networking from '../util/Networking';
-import { interests as potentialInterests } from './../util/InterestsAndCategories';
+import { interests as potentialInterests, getInterestFromCategory } from './../util/InterestsAndCategories';
 
 /* CONTAINERS */
 import LoginLanding from '../route-containers/LoginLanding';
@@ -206,15 +206,21 @@ class Login extends Component {
                 // eslint-disable-next-line eqeqeq
                 category: ( categoriesMatchingInterest.filter(cat => cat.ID == club.CategoryID)[0] || {} ).Name,
             }));
+        matchingClubs = matchingClubs.map(club => ({
+            ...club,
+            interest: getInterestFromCategory(club.category).interest || "Academic",
+            interestColor: getInterestFromCategory(club.category).interestColor || "cyan",
+            interestID: getInterestFromCategory(club.category).interestID || 0
+        }));
         
         this.setState({
             matchingClubs,
             selectedClubs: matchingClubs,
             categoriesMatchingInterest,
             selectedInterests
+        }, () => {
+            this.loadResultsPage(this.state.selectedInterests, this.state.categoriesMatchingInterest, this.state.selectedClubs);
         });
-
-        this.loadResultsPage(this.state.selectedInterests, this.state.categoriesMatchingInterest, this.state.selectedClubs);
     }
 
 

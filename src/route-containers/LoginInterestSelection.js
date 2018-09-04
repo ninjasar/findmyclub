@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
+import ReactGA from 'react-ga';
+import GACat from '../util/GACategories';
 import { interests } from '../util/InterestsAndCategories';
 import '../css/containers/LoginInterestSelection.css';
 
@@ -65,8 +67,20 @@ class LoginInterestSelection extends Component {
     /** Handles the next action when the user is done selecting their interests. */
     handleFinishSelectingInterests() {
         if(this.props.onNext) {
+            // Trigger an event in Google Analytics for each selected interest.
+            // This lets us know which categories are most clicked on.
             const selected = this.state.interests.filter((val) => val.selected);
+            
+            for(var i in selected) {
+                ReactGA.event({
+                    category: GACat.SelectedInterest,
+                    action: `User selected interest:${selected[i]} `,
+                    label: selected[i]
+                });
+            }
+
             this.props.onNext(selected);
+
         }
     }
 

@@ -7,17 +7,17 @@
 }
 
 .club-detail-close-btn {
-    position: absolute;
-    top: 215px;
+    position: fixed;
+    top: 15px;
     right: 0px;
     border: none;
     outline: none;
     cursor: pointer;
-    font-size: 40px;
+    font-size: 25px;
     background: none;
     z-index: 1000000;
     margin-right: 10px;
-    color: #3c1859;
+    color: lightgray;
     text-decoration: none;
 }
 
