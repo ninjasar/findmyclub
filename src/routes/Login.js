@@ -158,6 +158,7 @@ class Login extends Component {
                     }} />);
             }}
             onNext={() => {
+                Storage.setGuideFinished();
                 this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)} />);
             }}
             interests={this.state.selectedInterests}
