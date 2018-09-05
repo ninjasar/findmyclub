@@ -38,7 +38,7 @@
 
 .club-card {
 	position: relative;
-	width: 160px;
+	/* width: 160px; */
 	height: 100%;
 	/* max-height: 210px; */
 	cursor: pointer;
@@ -306,7 +306,7 @@
 }
 
 .event-calendar-label {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 	color: #330d51;
 	margin: 5px 0 0 ;
     line-height: 1.4;
