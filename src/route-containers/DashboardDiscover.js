@@ -44,7 +44,9 @@ class DashboardDiscover extends Component {
 
 	render() {
 		return (
-			<div className="DashboardDiscover dashboard-container">
+			<div className="DashboardDiscover dashboard-container" style={{
+                top: this.props.searchShowing === true ? '108px' : '70px'
+            }}>
 				<div className='dashboard-discover-header'>
                     <h1 className='dashboard-discover-title'>Discover</h1>
                     <SelectUmbrella
