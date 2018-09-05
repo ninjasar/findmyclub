@@ -105,8 +105,8 @@ class Dashboard extends Component {
                     searchKeyword={this.state.searchKeyword}
                     onSelectClub={(club) => {
                         this.showOverlay(<ClubDetail club={club}
-                            onSelectEvent={(item) => {
-                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                            onSelectEvent={(event) => {
+                                this.showOverlay(<EventDetail event={event} club={club} onClose={() => this.hideOverlay()} />);
                             }}
                             onClose={() => {
                                 this.hideOverlay()
@@ -115,8 +115,8 @@ class Dashboard extends Component {
             );
         } else if (this.state.currentTab === 'event') {
             return (
-                <DashboardEvents searchKeyword={this.state.searchKeyword} onSelectEvent={(item) => {
-                    this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                <DashboardEvents searchKeyword={this.state.searchKeyword} onSelectEvent={(event, club) => {
+                    this.showOverlay(<EventDetail event={event} club={club} onClose={() => this.hideOverlay()} />);
                 }} />
             );
         } else {
@@ -125,8 +125,8 @@ class Dashboard extends Component {
                     searchKeyword={this.state.searchKeyword}
                     onSelectClub={(club) => {
                         this.showOverlay(<ClubDetail club={club}
-                            onSelectEvent={(item) => {
-                                this.showOverlay(<EventDetail event={item} onClose={() => this.hideOverlay()} />);
+                            onSelectEvent={(event) => {
+                                this.showOverlay(<EventDetail event={event} club={club} onClose={() => this.hideOverlay()} />);
                             }}
                             onClose={() => {
                                 this.hideOverlay()
