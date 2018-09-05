@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import ReactGA from 'react-ga';
 import GACat from '../util/GACategories';
+import * as Storage from '../util/Storage';
 import { interests } from '../util/InterestsAndCategories';
 import '../css/containers/LoginInterestSelection.css';
 
@@ -79,6 +81,9 @@ class LoginInterestSelection extends Component {
                 });
             }
 
+            // store this selection
+            Storage.setSelectedInsterest(JSON.stringify(_.map(selected, 'Name')));
+
             this.props.onNext(selected);
         }
     }
@@ -100,11 +105,16 @@ class LoginInterestSelection extends Component {
 
     /** Sets the state with some interests for the user. */
     async populateInterests() {
+        const previousSelection = Storage.getSelectedInsterest();
+        let previousSelectedInterestNames = [];
+        try { previousSelectedInterestNames = JSON.parse(previousSelection); }
+        catch (err) { }
+
         this.setState({
             interests: Object.values(interests).map((val) => {
                 return {
                     ...val,
-                    selected: false
+                    selected: _.includes(previousSelectedInterestNames, val.Name),
                 }
             })
         });
