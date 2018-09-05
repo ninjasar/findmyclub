@@ -71,13 +71,13 @@ class LoginInterestSelection extends Component {
             // This lets us know which categories are most clicked on.
             const selected = this.state.interests.filter((val) => val.selected);
             
-            // for(var i in selected) {
-            //     ReactGA.event({
-            //         category: GACat.SelectedInterest,
-            //         action: `User selected interest:${selected[i]} `,
-            //         label: selected[i]
-            //     });
-            // }
+            for(var i in selected) {
+                ReactGA.event({
+                    category: GACat.SelectedInterest,
+                    action: `User selected interest: ${selected[i].Name} `,
+                    label: selected[i].Name
+                });
+            }
 
             this.props.onNext(selected);
         }

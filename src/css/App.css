@@ -166,11 +166,12 @@
 
 .event-item {
 	display: flex;
-    width: 95%;
+    width: 92%;
     height: 120px;
     cursor: pointer;
     border-radius: 2px;
-	padding: 10px 20px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
     transition-duration: 0.2s;
     background-color: #ffffff;
     box-shadow: 0 0 10px 2px #e6e9ef;

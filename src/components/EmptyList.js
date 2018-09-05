@@ -2,8 +2,12 @@ import React from 'react';
 import '../css/EmptyList.css';
 
 export default class EmptyList extends React.Component {
-	props = {
-		subtitle: '= =',
+	
+	constructor(props) {
+		super(props);
+		this.state = {
+			subtitle: props.subtitle || '= ='
+		}
 	}
 
 	render() {
@@ -11,7 +15,7 @@ export default class EmptyList extends React.Component {
 			<div className='no-results-view'>
 				<p className='no-results-view-emoji'>😞</p>
 				<p className='no-results-view-title'>No Results</p>
-				<p className='no-results-view-subtitle'>{this.props.subtitle}</p>
+				<p className='no-results-view-subtitle'>{this.state.subtitle}</p>
 			</div>
 		)
 	}

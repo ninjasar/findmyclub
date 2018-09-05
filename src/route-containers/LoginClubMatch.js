@@ -3,6 +3,8 @@ import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import Networking from '../util/Networking';
 import * as UIUtil from '../util/UI';
+import ReactGA from 'react-ga';
+import GACat from '../util/GACategories';
 import '../css/containers/LoginClubMatch.css';
 
 class LoginClubMatch extends Component {
@@ -166,10 +168,23 @@ class LoginClubMatch extends Component {
     
     /** What to do when you click on the follow button for a club card. */
     async didFollowClubCard(club) {
-        this.followingClub(club) ? 
-            await Networking.unfollowClub(club.ID) :
-            await Networking.followClub(club.ID);
+        this.followingClub(club) ? await Networking.unfollowClub(club.ID) : await Networking.followClub(club.ID);
         await this.reloadFollowingClubs();
+
+        // Send to GA.
+        if(this.followingClub(club)) {
+            ReactGA.event({
+                category: GACat.FollowedClub,
+                action: `User followed the club: ${club.Name}`,
+                label: club.Name
+            });
+        } else {
+            ReactGA.event({
+                category: GACat.UnfollowedClub,
+                action: `User unfollowed the club: ${club.Name}`,
+                label: club.Name
+            });
+        }
     }
         
     reloadFollowingClubs = async () => {

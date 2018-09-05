@@ -163,7 +163,8 @@ export default {
         const firestDate = (event.dates || [])[0];
         const starts_at = firestDate && firestDate.starts_at;
         const date = (starts_at && dateformat(starts_at, 'mmm dd')) || '';
-        const host = ''; // event.category && event.category.name;
+        const host = event.host; // event.category && event.category.name;
+        console.log(event);
         return (
             <div className='event-item' key={key}>
                 <div className='event-left' onClick={() => onClick(title, date, host, key)}>

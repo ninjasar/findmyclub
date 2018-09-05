@@ -37,6 +37,7 @@
 
 .dashboard-profile-action-button-primary {
     border: none;
+    cursor: pointer;
     color: #ffffff;
     transition-duration: 0.2s;
     background-color: #8568dd;
@@ -50,6 +51,7 @@
 
 .dashboard-profile-action-button-clear {
     color: #626181;
+    cursor: pointer;
     background-color: white;
     transition-duration: 0.2s;
     border: solid 1px #d7d7e1;

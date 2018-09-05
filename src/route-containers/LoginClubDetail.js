@@ -128,7 +128,11 @@ class LoginClubDetail extends Component {
                         emptyDataView={<EmptyList subtitle='There are no upcoming events for this club'/>}
                         data={
                             this.state.upcomingEvents.map((val, index) => {
-                                return Maps.mapEventToComponent(val, index, (_, __, ___, idx) => {
+                                const _val = {
+                                    ...val,
+                                    host: (this.props.club.Name) || "NYU Club"
+                                }
+                                return Maps.mapEventToComponent(_val, index, (_, __, ___, idx) => {
                                     if(this.props.onSelectEvent) {
                                         const items = this.state.upcomingEvents;
                                         const item = items[idx];
