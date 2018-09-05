@@ -34,6 +34,7 @@
     border-radius: 25px;
     text-decoration: none;
     transition-duration: 0.2s;
+    margin-right: 10px;
 }
 
 .club-card {
@@ -82,7 +83,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    object-fit: unset;
+    object-fit: cover;
     background-color: white;
 }
 
@@ -128,6 +129,8 @@
 	border-radius: 25px;
 	display: inline-block;
 	font-family: 'Gotham-Bold';
+    width: 100px;
+    word-wrap: break-word;
 }
 
 .club-card-follow-button {
@@ -205,8 +208,8 @@
 }
 
 .event-date-area {
-    width: 100%;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 6px;
@@ -215,23 +218,25 @@
 
 .event-date-area>p:nth-child(1) {
     position: relative;
-    top: -5px;
-    height: 40%;
+    /* top: -5px; */
+    /* height: 40%; */
     font-size: 25px;
     color: #330d51;
     margin-left: auto;
+    margin: unset;
     margin-right: auto;
+    margin-top: 5px;
     text-align: center;
     font-family: 'Gotham-Bold';
 }
 
 .event-date-area>p:nth-child(2) {
     position: relative;
-    top: -30px;
-    height: 40%;
+    /* top: -30px; */
+    /* height: 40%; */
     font-size: 18px;
     color: #561389;
-    margin-left: auto;
+    margin: unset;
     margin-right: auto;
     text-align: center;
     font-family: 'Gotham-Bold';
@@ -252,6 +257,8 @@
     font-stretch: normal;
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
+    height: 1em;
+    overflow-x: hidden;
 }
 
 .event-subtitle {
@@ -265,6 +272,8 @@
     font-family: 'Gotham';
     letter-spacing: normal;
     text-overflow: ellipsis;
+    height: 1em;
+    overflow-x: hidden;
 }
 
 .event-date {
@@ -277,6 +286,8 @@
     font-stretch: normal;
     font-family: 'Gotham';
     letter-spacing: normal;
+    height: 1em;
+    overflow-x: hidden;
 }
 
 .event-location {
@@ -289,6 +300,8 @@
     font-stretch: normal;
     font-family: 'Gotham';
     letter-spacing: normal;
+    height: 1em;
+    overflow-x: hidden;
 }
 
 .fa-clock,
