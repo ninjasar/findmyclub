@@ -26,9 +26,11 @@
     letter-spacing: normal;
     transition-duration: 0.2s;
 }
+
 .login-club-filter-close-btn:hover {
     color: #c4b6ce;
 }
+
 .login-club-filter-close-btn:active {
     color: #a69aad;
 }
@@ -46,6 +48,7 @@
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
 }
+
 .login-club-filter-subtitle {
     font-size: 15px;
     color: #323232;
@@ -59,14 +62,15 @@
     letter-spacing: normal;
 }
 
-
 .login-club-filter-section {
     margin-bottom: 30px;
 }
+
 .login-club-filters-filter-section {
     width: 100%;
     /* background-color: mediumpurple; */
 }
+
 .login-club-filter-section-title {
     font-size: 20px;
     color: #323232;
@@ -78,11 +82,13 @@
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
 }
+
 .login-club-filter-section-items {
     width: 90vw;
     text-align: left;
     /* background-color: mediumturquoise; */
 }
+
 .filter-item {
     position: relative;
     width: 100%;
@@ -90,7 +96,14 @@
     text-align: left;
     background-color: white;
 }
+
 .filter-item-title {
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding-right: 35px;
+    box-sizing: border-box;
     font-size: 15px;
     color: #323232;
     font-style: normal;
@@ -101,10 +114,12 @@
     display: inline-block;
     letter-spacing: normal;
 }
-.filter-item-checkbox-checked, .filter-item-checkbox-unchecked {
+
+.filter-item-checkbox-checked,
+.filter-item-checkbox-unchecked {
     position: absolute;
     top: 10px;
-    right: 50px;
+    right: 5px;
     width: 20px;
     height: 15px;
     font-size: 12px;
@@ -118,13 +133,16 @@
     transition-duration: 0.2s;
     background-color: #f3edf7;
 }
-.filter-item-checkbox-checked:hover, .filter-item-checkbox-unchecked:hover {
+
+.filter-item-checkbox-checked:hover,
+.filter-item-checkbox-unchecked:hover {
     background-color: #e5d9eb;
 }
-.filter-item-checkbox-checked:active, .filter-item-checkbox-unchecked:active {
+
+.filter-item-checkbox-checked:active,
+.filter-item-checkbox-unchecked:active {
     background-color: #d4c2e0;
 }
-
 
 .login-club-filters-filter-btn {
     position: relative;
