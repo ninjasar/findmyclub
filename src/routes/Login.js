@@ -3,7 +3,7 @@ import $ from 'jquery';
 import Constants from '../util/Constants';
 import * as Storage from '../util/Storage';
 import Networking from '../util/Networking';
-import { interests as potentialInterests, getInterestFromCategory } from './../util/InterestsAndCategories';
+import { interests as potentialInterests, getInterestFromCategory, filterCategoriesByUserSchool } from './../util/InterestsAndCategories';
 
 /* CONTAINERS */
 import LoginLanding from '../route-containers/LoginLanding';
@@ -65,12 +65,10 @@ class Login extends Component {
                 window.location.href = '/#/dashboard';
                 return;
             }
-            setTimeout(() => {
-                this.transitionContainer(<LoginWelcome onNext={this.handleGoToSelectInterests.bind(this)} />);
-            }, 200);
+            setTimeout(this.handleGoToIntroductionContainer, 200);
         } else {
             setTimeout(() => {
-                this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer.bind(this)}/>, 800);
+                this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer}/>, 800);
             }, 200);
         }
     }
@@ -183,18 +181,24 @@ class Login extends Component {
         // Based on the selected interests, get a list of clubs that are associated with that interest.
         // 1.) Look through all of the categories and filter them by the ones that have an interest name
         // that matches one of the selected interests.
-        const allCategories = await Networking.getCategories();
-        const categoriesMatchingInterest = allCategories.filter((cat) => {
+        let categories = await Networking.getCategories();
+        categories = categories.filter((cat) => {
             const containing = selectedInterests.filter((selInt) => {
                 return selInt.Name === cat.interest;
             })
             return containing.length > 0;
-        })
+        });
+
+        // 1.5.) filter by school, only query for categories of current user's  school
+        categories = filterCategoriesByUserSchool(categories);
 
         // 2.) Now that you have the categories that only include the ones from the selected interests,
         // Use those categories to find the clubs that match the user's interests.
-        let matchingClubs = await Networking.getClubs(Object.values(categoriesMatchingInterest)
+        let matchingClubs = await Networking.getClubs(Object.values(categories)
             .map((val) => val.ID));
+        
+
+
 
         // 3.) Now that you have all of the clubs that match the user's preferences, send them over to
         // the club matches page.
@@ -204,7 +208,7 @@ class Login extends Component {
                 ...club,
                 checked: true,
                 // eslint-disable-next-line eqeqeq
-                category: ( categoriesMatchingInterest.filter(cat => cat.ID == club.CategoryID)[0] || {} ).Name,
+                category: (categories.filter(cat => cat.ID == club.CategoryID)[0] || {} ).Name,
             }));
         matchingClubs = matchingClubs.map(club => ({
             ...club,
@@ -216,7 +220,7 @@ class Login extends Component {
         this.setState({
             matchingClubs,
             selectedClubs: matchingClubs,
-            categoriesMatchingInterest,
+            categoriesMatchingInterest: categories,
             selectedInterests
         }, () => {
             this.loadResultsPage(this.state.selectedInterests, this.state.categoriesMatchingInterest, this.state.selectedClubs);

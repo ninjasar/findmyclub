@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Networking from "./Networking";
 
 /** Returns the interest associated with a category name.
@@ -243,3 +244,41 @@ export const umbrellas = [
     { id: 53830, name: 'Student Activities Board' },
     { id: 78810, name: 'Tisch School of the Arts' }, 
 ];
+
+export const registrationSchoolsToUmbrellaID = {
+    "Student Activities Board": 53830,
+    "Center for Student Life": 78809,
+    "Gallatin School of Individualized Study": 75591,
+    "Tisch School of the Arts": 78810,
+    "College of Dentistry": 86331,
+    "Stern Undergraduate": 86332,
+    "Robert F. Wagner Graduate School of Public Service": 89837,
+    "Tandon School of Engineering": 89838,
+    "Silver School of Social Work": 89839,
+    "College of Arts & Science": 106007,
+    "Liberal Studies": 111059,
+    "NYU Steinhardt": 116531,
+    "School of Professional Studies": 116946,
+    "NYU Rory Meyers College of Nursing": 162994,
+    "College of Global Public Health": 171308,
+    "School of Medicine": 174872,
+};
+
+export const filterCategoriesByUserSchool = (categories) => {
+    // 1. get current users school
+    const schoolNames = (Networking.getJWTPayload().affiliation || [])
+        .filter((aff) => aff.affiliation_status === 'current')
+        .map((aff) => aff.division);
+
+    // 2. get umbrella ids of schools
+    const umbrellaIDs = schoolNames
+        .map((schoolName) => registrationSchoolsToUmbrellaID[schoolName])
+        .filter((umid) => !_.isNil(umid));
+    
+    // every one can see clubs from these 2 umbrellas
+    const alwasyShownUmbrellaIDs = [registrationSchoolsToUmbrellaID['Center for Student Life'], registrationSchoolsToUmbrellaID['Student Activities Board']];
+    umbrellaIDs.push(...alwasyShownUmbrellaIDs)
+
+    // 3. filter categories by these umbrella ids
+    return categories.filter((cat) => _.includes(umbrellaIDs, cat.UmbrellaID));
+};
