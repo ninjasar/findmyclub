@@ -51,6 +51,8 @@ class DashboardEvents extends Component {
                 edgeInsets={['20px', '0px', '0px', '0px']}
                 data={
                     eventsToShow.map((event, index) => {
+                        const host = this.state.eventsToClubs[event.id]
+                        event.host = host.Name
                         return Maps.mapEventToComponent(event, index, () => this.didSelectEvent(event));
                     })
                 } />
@@ -94,7 +96,7 @@ class DashboardEvents extends Component {
         const followedClubs = await Networking.getFollowedClubs();
 
         // event id to club objects
-        const eventsToClubs = { };
+        const eventsToClubs = {};
         const allEvents = [];
         await Promise.all(followedClubs.map(async (club) => {
             const events = await Networking.getEventsForClub(club.ID, startDate, endDate);

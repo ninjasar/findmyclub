@@ -242,8 +242,11 @@
 }
 
 .event-title {
-    font-size: 15px;
+    font-size: 14px;
     margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: #323232;
     font-weight: bold;
     font-style: normal;
@@ -255,7 +258,9 @@
 
 .event-subtitle {
 	font-size: 12px;
-	margin: 0 0 10px;
+    margin: 0 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
     color: #323232;
     font-style: normal;
     font-weight: normal;
