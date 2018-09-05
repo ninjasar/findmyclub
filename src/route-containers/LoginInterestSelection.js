@@ -53,8 +53,10 @@ class LoginInterestSelection extends Component {
                                     })
                                 }/>
 
-				<button className='round-rect-button login-interests-finish-btn'
-                        onClick={this.handleFinishSelectingInterests.bind(this)}>Get my results</button>
+                {this.state.interests.some(i => i.selected) && <button 
+                    className='round-rect-button login-interests-finish-btn'
+                    onClick={this.handleFinishSelectingInterests.bind(this)}>Next
+                </button>}
 			</div>
 		);
 	}
