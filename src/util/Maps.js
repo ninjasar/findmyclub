@@ -159,6 +159,7 @@ export default {
     * @param {String|Number} key The key used to identify this event component.
     * @param {Function} onClick What to do when an event is clicked. */
     mapEventToComponent: (event, key, onClick) => {
+        console.log(event)
         const { title, location } = event;
         const firestDate = (event.dates || [])[0];
         const starts_at = firestDate && firestDate.starts_at;
@@ -185,7 +186,7 @@ export default {
                 }}>
                     <div className='event-calendar-area' onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>
-                        <p className='event-calendar-label'>Download iCal</p>
+                        <p className='event-calendar-label'>Add to Calendar</p>
                     </div>
                 </div>
 {/*                 
