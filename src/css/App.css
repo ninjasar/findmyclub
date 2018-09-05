@@ -38,21 +38,21 @@
 }
 
 .club-card {
-	position: relative;
-	/* width: 160px; */
-	height: 100%;
-	/* max-height: 210px; */
-	cursor: pointer;
-	text-align: left;
-	border-radius: 4px;
-	-webkit-transition-duration: 0.2s;
-	-o-transition-duration: 0.2s;
-	transition-duration: 0.2s;
-	background-color: #ffffff;
-	-webkit-box-shadow: 0 0 10px 4px #e6e9ef;
-	overflow-x: auto;
-	border-radius: 5px;
-	box-shadow: 0 0 20px 0px rgba(0,0,0,0.15);
+    position: relative;
+    /* width: 160px; */
+    height: 100%;
+    /* max-height: 210px; */
+    cursor: pointer;
+    text-align: left;
+    border-radius: 4px;
+    -webkit-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 0 10px 4px #e6e9ef;
+    overflow-x: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.15);
 }
 
 .club-card:hover {
@@ -66,17 +66,17 @@
 }
 
 .club-card-image-area {
-	position: relative;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 45%;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-color: gray;
-	border-radius: 2px 2px 0px 0px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 45%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: gray;
+    border-radius: 2px 2px 0px 0px;
 }
 
 .club-card-image {
@@ -88,49 +88,49 @@
 }
 
 .club-card-title {
-	/* position: relative; */
-	top: -5px;
-	left: 8px;
-	font-size: 15px;
-	line-height: 1.1;
-	color: #323232;
-	font-weight: bold;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	padding: 0 15px;
-	font-style: normal;
-	margin-bottom: -5px;
-	font-stretch: normal;
-	letter-spacing: normal;
-	font-family: 'Gotham-Bold';
-	line-height: 1.4rem;
+    /* position: relative; */
+    top: -5px;
+    left: 8px;
+    font-size: 15px;
+    line-height: 1.1;
+    color: #323232;
+    font-weight: bold;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0 15px;
+    font-style: normal;
+    margin-bottom: -5px;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-family: 'Gotham-Bold';
+    line-height: 1.4rem;
 }
 
 .club-card-tags {
-	position: relative;
-	left: 15px;
-	width: 10px;
-	height: 10px;
-	color: black;
-	font-size: 12px;
-	user-select: none;
-	border-radius: 25px;
-	display: inline-block;
+    position: relative;
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    color: black;
+    font-size: 12px;
+    user-select: none;
+    border-radius: 25px;
+    display: inline-block;
 }
 
 .club-card-tags-label {
-	position: relative;
-	left: 25px;
-	color: black;
-	font-size: 12px;
-	user-select: none;
-	border-radius: 25px;
-	display: inline-block;
-	font-family: 'Gotham-Bold';
-    width: 100px;
+    font-family: 'Gotham';
     word-wrap: break-word;
+    width: 100px;
+    position: relative;
+    left: 25px;
+    color: black;
+    font-size: 12px;
+    user-select: none;
+    border-radius: 25px;
+    display: inline-block;
 }
 
 .club-card-follow-button {
@@ -169,16 +169,15 @@
 }
 
 .event-item {
-	display: flex;
+    display: flex;
     width: 92%;
     height: 120px;
     cursor: pointer;
     border-radius: 2px;
     padding: 10px 20px;
-    /* margin-bottom: 20px; */
     transition-duration: 0.2s;
     background-color: #ffffff;
-    box-shadow: 0 0 10px 2px #e6e9ef;
+    border-bottom: solid 1px #d7d7e1;
 }
 
 .event-item:hover {
@@ -191,8 +190,8 @@
 }
 
 .event-left {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
     width: 20%;
     height: 100%;
 }
@@ -244,12 +243,15 @@
 
 .event-info-area {
     text-align: left;
-	padding: 25px 15px 0;
+    padding: 25px 15px 0;
 }
 
 .event-title {
-    font-size: 15px;
+    font-size: 14px;
     margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: #323232;
     font-weight: bold;
     font-style: normal;
@@ -262,8 +264,10 @@
 }
 
 .event-subtitle {
-	font-size: 12px;
-	margin: 0 0 10px;
+    font-size: 12px;
+    margin: 0 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
     color: #323232;
     font-style: normal;
     font-weight: normal;
@@ -277,8 +281,8 @@
 }
 
 .event-date {
-	font-size: 12px;
-	margin: 0 0 5px;
+    font-size: 12px;
+    margin: 0 0 5px;
     color: #323232;
     font-style: normal;
     font-weight: normal;
@@ -291,8 +295,10 @@
 }
 
 .event-location {
-	font-size: 12px;
-	margin: 0;
+    font-size: 12px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
     color: #323232;
     font-style: normal;
     font-weight: normal;
@@ -300,8 +306,8 @@
     font-stretch: normal;
     font-family: 'Gotham';
     letter-spacing: normal;
+    text-overflow: ellipsis;
     height: 1em;
-    overflow: hidden;
 }
 
 .fa-clock,
@@ -321,8 +327,8 @@
 
 .event-calendar-label {
     font-size: 0.7rem;
-	color: #330d51;
-	margin: 5px 0 0 ;
+    color: #330d51;
+    margin: 5px 0 0;
     line-height: 1.4;
     font-weight: bold;
     font-style: normal;
@@ -332,13 +338,12 @@
     font-family: 'Gotham-Bold';
 }
 
-
-
 .no-results-view-emoji {
     color: #dfceeb;
     font-size: 20px;
     margin-bottom: -5px;
 }
+
 .no-results-view-title {
     color: #dfceeb;
     font-size: 15px;
@@ -351,6 +356,7 @@
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
 }
+
 .no-results-view-subtitle {
     color: #dfceeb;
     font-size: 14px;

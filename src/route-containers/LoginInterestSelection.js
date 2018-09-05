@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import _ from 'lodash';
 import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
@@ -18,11 +19,13 @@ class LoginInterestSelection extends Component {
 
     constructor(props) {
         super(props);
+        this.alertRef = React.createRef()
         this.state = {
-            interests: []
+            interests: [],
+            isAlertVisible: false,
         }
     }
-    
+
     componentDidMount() {
         this.populateInterests();
     }
@@ -35,23 +38,25 @@ class LoginInterestSelection extends Component {
     *                           *
     *****************************/
 
-	render() {
-		return (
-			<div className="LoginInterestSelection container">
-                <h2 className='login-interests-title'>What are you most interested in?</h2>
-
+    render() {
+        return (
+            <div className="LoginInterestSelection container">
+                <h2 ref={this.alertRef} className='login-interests-title'>What are you most interested in?</h2>
+                {this.state.isAlertVisible &&
+                    <div style={{ fontFamily: 'Gotham', color: '#c82368' }}>You have to select at least one interest</div>
+                }
                 <CollectionView ref='interests-collection-view'
-                                className='login-interests-selections'
-                                orientation={CollectionView.Orientation.vertical}
-                                edgeInsets={['10px', '0px', '30px', '0px']}
-                                isScrollEnabled={false}
-                                data={
-                                    this.state.interests.map((val) => {
-                                        return Maps.mapInterestToComponent(val, 
-                                                                        { className: 'login-interests' }, 
-                                                                        this.didSelectInterest.bind(this));
-                                    })
-                                }/>
+                    className='login-interests-selections'
+                    orientation={CollectionView.Orientation.vertical}
+                    edgeInsets={['10px', '0px', '30px', '0px']}
+                    isScrollEnabled={false}
+                    data={
+                        this.state.interests.map((val) => {
+                            return Maps.mapInterestToComponent(val,
+                                { className: 'login-interests' },
+                                this.didSelectInterest.bind(this));
+                        })
+                    } />
 
                 {this.state.interests.some(i => i.selected) && <button 
                     className='round-rect-button login-interests-finish-btn'
@@ -70,12 +75,17 @@ class LoginInterestSelection extends Component {
 
     /** Handles the next action when the user is done selecting their interests. */
     handleFinishSelectingInterests() {
-        if(this.props.onNext) {
+        if (this.props.onNext) {
             // Trigger an event in Google Analytics for each selected interest.
             // This lets us know which categories are most clicked on.
             const selected = this.state.interests.filter((val) => val.selected);
-            
-            for(var i in selected) {
+            if (!selected.length) {
+                this.setState({ isAlertVisible: true })
+                const alertNode = ReactDOM.findDOMNode(this.alertRef.current)
+                alertNode.scrollIntoView(true)
+                return
+            }
+            for (var i in selected) {
                 ReactGA.event({
                     category: GACat.SelectedInterest,
                     action: `User selected interest: ${selected[i].Name} `,

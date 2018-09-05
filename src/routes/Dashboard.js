@@ -17,7 +17,7 @@ import EventDetail from '../route-containers/DashboardEventDetail';
 import DashboardProfile from '../route-containers/DashboardProfile';
 /* OVERLAYS */
 
-import AppLogo from '../images/FindMyClub_Logo.svg';
+import AppLogo from '../images/Beta-logo@2x.png';
 import '../css/Dashboard.css';
 
 class Dashboard extends Component {
@@ -59,7 +59,7 @@ class Dashboard extends Component {
                 
                 <div className='dashboard-top-bar'>
                     <img src={AppLogo} alt='logo' className='dashboard-app-logo'/>
-                    <img src={require('../images/profile_image.svg')} alt='person' className='dashboard-profile-button' onClick={this.toggleProfile.bind(this)}/>
+                    <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} alt='person' className='dashboard-profile-button' onClick={this.toggleProfile.bind(this)}/>
                 </div>
                 <div className='dashboard-search-bar-area'>
                     <input type='text'
