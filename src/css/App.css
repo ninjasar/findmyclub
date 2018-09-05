@@ -286,6 +286,8 @@
 .event-location {
     font-size: 12px;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
     color: #323232;
     font-style: normal;
     font-weight: normal;
@@ -293,6 +295,7 @@
     font-stretch: normal;
     font-family: 'Gotham';
     letter-spacing: normal;
+    text-overflow: ellipsis;
 }
 
 .fa-clock,
