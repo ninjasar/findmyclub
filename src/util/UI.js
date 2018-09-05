@@ -56,5 +56,8 @@ export const filterEventByKeyword = (events, keyword) => {
 }
 
 export const filterClubsByKeyword = (clubs, keyword) => {
-	return (clubs || []).filter((club) => _.includes((club.Name + club.interest || '').toLowerCase(), keyword.toLowerCase()));
+	
+	return (clubs || []).filter((club) => {
+		return _.includes((club.Name || '').toLowerCase(), keyword.toLowerCase())
+	});
 }
