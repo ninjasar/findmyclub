@@ -10,8 +10,9 @@
 .dashboard-container {
     position: absolute;
     width: 100%;
-    top: 102px;
+    top: 108px;
     overflow-y: hidden;
+    transition-duration: 0.2s;
     height: calc(100% - 155px);
     /* background-color: lightcoral; */
 }
@@ -27,6 +28,20 @@
     border-bottom: 1px solid #e6e9ef;
 }
 
+.dashboard-toggle-search-btn {
+    position: absolute;
+    top: 20px;
+    left: -5px;
+    border: none;
+    outline: none;
+    color: #561389;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 200;
+    text-decoration: none;
+    font-family: 'Gotham-Bold';
+}
+
 .dashboard-app-logo {
     position: relative;
     height: 40px;
@@ -39,10 +54,10 @@
 
 .dashboard-profile-button {
     position: absolute;
-    top: 10px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
     border-radius: 100%;
     display: inline-block;
@@ -53,24 +68,27 @@
     position: absolute;
     top: 61px;
     width: 100%;
-    height: 40px;
+    /* height: 40px; */
     background-color: white;
+    transition-duration: 0.2s;
     border-bottom: 1px solid #e6e9ef;
 }
 
 .dashboard-search-bar {
     position: relative;
-    top: 7px;
-    width: 80%;
-    height: 25px;
-    border: none;
+    /* top: 7px; */
+    width: 90%;
+    /* height: 25px; */
     outline: none;
+    font-size: 15px;
     background: none;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    text-align: left;
+    padding-left: 20px;
     border-radius: 25px;
     text-decoration: none;
+    transition-duration: 0.2s;
     background-color: #f5f6fa;
 }
 

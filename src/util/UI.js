@@ -43,7 +43,15 @@ export const exportEventToICal = (event) => {
 	});
 	const icsContent = cal.toString();
 	const element = document.createElement('a');
-	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(icsContent));
+	const encoded = encodeURIComponent(icsContent);
+
+	// You will have different data types based on the device.
+	if((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) {
+		element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encoded);
+	} else {
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encoded);
+	}
+
 	element.setAttribute('download', `${event.title}.ics`);
 	element.style.display = 'none';
 	document.body.appendChild(element);

@@ -45,6 +45,7 @@ class LoginClubDetail extends Component {
         this.setState({
             clubDetail,
         });
+        console.log('CLUB DETAIL: ', clubDetail);
     }
     
     reloadFollowedClubs = async () => {
@@ -100,7 +101,7 @@ class LoginClubDetail extends Component {
                             <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
                         </button>
                         <a className='pill-button club-detail-go-to-engage-btn' href={links && links.web} target='_blank'>
-                            <span className='fa fa-sign-out-alt'/>&nbsp;Go to Engage
+                            <span className='fa fa-sign-out-alt'/>&nbsp;Join on Engage
                         </a>
                     </div>
 

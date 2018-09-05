@@ -37,6 +37,7 @@ class Dashboard extends Component {
             tabIndicatorLeft: 0,
             searchKeyword: '',
             profileShown: false,
+            searchBarShowing: false
         }
     }
 
@@ -58,15 +59,32 @@ class Dashboard extends Component {
 				{this.state.currentOverlay}
                 
                 <div className='dashboard-top-bar'>
+                    <button className='dashboard-toggle-search-btn'
+                            onClick={() => {
+                                this.setState({ searchBarShowing: !this.state.searchBarShowing })
+                            }}><span className='fas fa-search'/></button>
                     <img src={AppLogo} alt='logo' className='dashboard-app-logo'/>
                     <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} alt='person' className='dashboard-profile-button' onClick={this.toggleProfile.bind(this)}/>
                 </div>
-                <div className='dashboard-search-bar-area'>
+                <div className='dashboard-search-bar-area'
+                    style={{
+                        position: 'absolute',
+                        // top: this.setState.searchBarShowing === true ? '61px' : '0px',
+                        height: this.state.searchBarShowing === true ? '45px' : '0px',
+                        borderBottom: this.state.searchBarShowing === true ? '1px solid #e6e9ef' : 'none'
+                    }}>
                     <input type='text'
                         className='dashboard-search-bar'
                         placeholder='Search for keywords'
                         onChange={this.handleSearchKeywordChange}
-                        value={this.state.searchKeyword} />
+                        value={this.state.searchKeyword}
+                        style={{
+                            position: 'relative',
+                            top: this.state.searchBarShowing === true ? '7px' : '0px',
+                            height: this.state.searchBarShowing === true ? '25px' : '0px',
+                            visibility: this.state.searchBarShowing === true ? 'visible' : 'hidden',
+                            border: this.setState.searchBarShowing === true ? '1px solid purple' : 'none'
+                        }} />
                 </div>
                 
                 
@@ -102,6 +120,7 @@ class Dashboard extends Component {
         if (this.state.currentTab === 'club') {
             return (
                 <DashboardClubs
+                    searchShowing={this.state.searchBarShowing}
                     searchKeyword={this.state.searchKeyword}
                     onSelectClub={(club) => {
                         this.showOverlay(<ClubDetail club={club}
@@ -115,13 +134,14 @@ class Dashboard extends Component {
             );
         } else if (this.state.currentTab === 'event') {
             return (
-                <DashboardEvents searchKeyword={this.state.searchKeyword} onSelectEvent={(event, club) => {
+                <DashboardEvents searchShowing={this.state.searchBarShowing} searchKeyword={this.state.searchKeyword} onSelectEvent={(event, club) => {
                     this.showOverlay(<EventDetail event={event} club={club} onClose={() => this.hideOverlay()} />);
                 }} />
             );
         } else {
             return (
                 <DashboardDiscover
+                    searchShowing={this.state.searchBarShowing}
                     searchKeyword={this.state.searchKeyword}
                     onSelectClub={(club) => {
                         this.showOverlay(<ClubDetail club={club}

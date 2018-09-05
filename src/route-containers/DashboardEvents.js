@@ -65,7 +65,9 @@ class DashboardEvents extends Component {
 
     render() {
         return (
-            <div className="DashboardEvents dashboard-container">
+            <div className="DashboardEvents dashboard-container" style={{
+                top: this.props.searchShowing === true ? '108px' : '70px'
+            }}>
                 <div className='dashboard-events-header'>
                     <h1 className='dashboard-events-title'>Events</h1>
                 </div>
