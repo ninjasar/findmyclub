@@ -30,6 +30,7 @@ class DashboardProfile extends Component {
                     <span className='fa fa-chevron-left' />
                 </button>
 
+                <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} alt='person' className='dashboard-profile-image' />
                 <h4 className='dashboard-profile-fullname'>{user.fullName}</h4>
                 <p className='dashboard-profile-school'>{user.school}</p>
 

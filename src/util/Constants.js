@@ -1,4 +1,4 @@
-import thumbnailUrl from "../images/defaultClubThumbnail.svg";
+import thumbnailUrl from "../images/FindMyClub_Logo.svg";
 
 
 export default {
