@@ -64,7 +64,7 @@ const shouldExpireToken = () => {
         return new Date(payload.exp * 1000).getTime() - new Date().getTime() < 60 * 1000;
     }
     catch (err) {
-        console.error(err);
+        // console.error(err);
         return true;
     }
 };
