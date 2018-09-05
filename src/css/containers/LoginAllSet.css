@@ -9,6 +9,11 @@
     background-color: white;
 }
 
+.login-allset-content {
+    top: 15%;
+    position: relative;
+}
+
 .login-allset-banner-image-area {
     width: 100vw;
     height: 30%;

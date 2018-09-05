@@ -93,7 +93,7 @@ class LoginClubMatch extends Component {
                 {/* The actual club matches page. */}
                 <div className='login-club-matches-header'>
                     <h1 className='login-club-matches-title'>
-                        {<span>{this.state.clubMatches.length}</span>}&nbsp;clubs match your interests!
+                        {<span>{this.props.selectedClubs.length}</span>}&nbsp;clubs match your interests!
                     </h1>
                     {/* <p className='login-club-matches-subtitle'>Find out more about these by clicking on them!</p>*/}
                         

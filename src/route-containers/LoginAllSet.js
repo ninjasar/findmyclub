@@ -25,11 +25,10 @@ class LoginAllSet extends Component {
                     <img src={BannerImage} alt='All Set' className='login-allset-banner-image'/>
                 </div>
 
-                <p className='login-allset-icon'><span className='far fa-check-circle'/></p>
-                <h3 className='login-allset-header'>You're all set!</h3>
-                <p className='login-allset-description'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae mauris suscipit, aliquet ex vitae, maximus sem. Etiam fringilla justo id leo molestie consectetur. Duis felis odio, sodales a varius a, vulputate vitae diam.
-                </p>
+                <div className='login-allset-content'>
+                    <p className='login-allset-icon'><span className='far fa-check-circle'/></p>
+                    <h3 className='login-allset-header'>You're all set!</h3>
+                </div>
                 <NavLink to='dashboard' className='round-rect-button login-allset-next-btn'>
                     <p>Finish</p>
                 </NavLink>
