@@ -48,7 +48,7 @@ class DashboardEvents extends Component {
         return (
             <CollectionView className='dashboard-events-event-list'
                 orientation={CollectionView.Orientation.vertical}
-                edgeInsets={['20px', '0px', '0px', '0px']}
+                edgeInsets={['0px', '0px', '0px', '0px']}
                 data={
                     eventsToShow.map((event, index) => {
                         return Maps.mapEventToComponent(event, index, () => this.didSelectEvent(event));
