@@ -17,8 +17,8 @@
     background: none;
     z-index: 1000000;
     margin-right: 10px;
-    color: lightgray;
-    text-decoration: none;
+    color: white;
+    text-shadow: 0 0 6px black;
 }
 
 .club-detail-background-image {
@@ -218,8 +218,8 @@
 }
 
 .club-detail-see-more-btn {
-    position: relative;
-    float: right;
+    /* position: relative; */
+    /* float: right; */
     border: none;
     outline: none;
     font-size: 14px;

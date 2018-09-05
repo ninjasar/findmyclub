@@ -19,12 +19,18 @@
 }
 .dashboard-events-title {
     position: relative;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     float: left;
     font-size: 28px;
     color: #330d51;
     font-weight: bold;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     padding-left: 20px;
+    margin-right: 10px;
     font-style: normal;
     line-height: normal;
     font-stretch: normal;
@@ -36,6 +42,6 @@
     position: relative;
     left: 0px;
     width: 100%;
-    height: calc(100% - 90px);
+    /* height: calc(100% - 90px); */
     /* background-color: aquamarine; */
 }

@@ -29,14 +29,14 @@
     z-index: -1;
     height: 200px;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     background-color: slategray;
 }
 
 .event-detail-calender-btn {
     position: relative;
     font-size: 14px;
-    padding-top: 5px;
+    padding: 5px;
     line-height: 1.6;
     color: #330d51;
     margin-top: 20px;
@@ -55,40 +55,51 @@
 }
 
 .event-detail-date-area {
-    position: relative;
-    width: 90px;
-    height: 100px;
+        /* position: relative; */
+    width: 85px;
+    height: 85px;
     margin-top: 30px;
     margin-left: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     border-radius: 6px;
     background-color: white;
     border: solid 1px #dfceeb;
 }
 .event-detail-date-1 {
-    position: relative;
-    bottom: 15px;
+    text-align: center;
+    /* position: relative; */
+    /* bottom: 15px; */
     font-size: 35px;
     font-weight: bold;
     font-style: normal;
-    line-height: normal;
-    padding-left: 28.5px;
+    line-height: 1em;
+    margin: 10px 0 0 0;
+    /* padding-left: 28.5px; */
     font-stretch: normal;
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
 }
 .event-detail-date-2 {
     position: relative;
-    bottom: 40px;
+    /* bottom: 40px; */
     font-size: 25px;
     color: #8568dd;
     font-weight: bold;
     font-style: normal;
-    padding-left: 20px;
-    line-height: normal;
+    /* padding-left: 20px; */
+    text-align: center;
+    line-height: 1em;
+    margin: 0;
     font-stretch: normal;
     letter-spacing: normal;
     font-family: 'Gotham-Bold';
+}
+
+.event-detail-bottom {
+    padding: 10px;
 }
 
 .event-detail-title {
@@ -99,7 +110,7 @@
     font-size: 24px;
     color: #323232;
     font-weight: bold;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 10px;
     font-style: normal;
     line-height: normal;
@@ -117,7 +128,7 @@
     color: #323232;
     font-weight: bold;
     /* padding-top: 20px; */
-    padding-left: 10px;
+    /* padding-left: 10px; */
     font-style: normal;
     line-height: normal;
     font-stretch: normal;
@@ -139,16 +150,17 @@
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2) { 
     .event-detail-host {
-        top: -40px;
+        top: -60px;
     }
 }
 
 .event-detail-event-info-label {
-    position: relative;
+    /* position: relative;  */
     font-size: 24px;
-    margin-top: 40px;
+    margin-top: -30px;
     color: #330d51;
     margin-left: 15px;
+    top: 0;
     font-weight: bold;
     font-style: normal;
     line-height: normal;
@@ -157,10 +169,10 @@
     font-family: 'Gotham-Bold';
 }
 .event-date-label {
-    font-size: 16px;
+    font-size: 14px;
     color: #4a4a4a;
     margin-left: 15px;
-    line-height: 1.08;
+    line-height: 1em;
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
@@ -168,10 +180,10 @@
     letter-spacing: normal;
 }
 .event-location-label {
-    font-size: 16px;
+    font-size: 14px;
     color: #4a4a4a;
     margin-left: 15px;
-    line-height: 1.08;
+    line-height: 1.5em;
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
