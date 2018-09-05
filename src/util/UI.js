@@ -12,6 +12,11 @@ export const getClubThumbnail = (club) => {
 	return club.picture_url || club.header_graphic || Constants.clubThumbnailDefaultPath;
 }
 
+export const getClubHeaderGraphic = (club) => {
+	club = club || {};
+	return club.header_graphic || club.picture_url || Constants.clubThumbnailDefaultPath;
+}
+
 /**
  * try to figure out thumbnail of an event
  * @param {object} event an event object from orgsync api response

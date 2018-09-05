@@ -70,7 +70,7 @@ class LoginClubDetail extends Component {
     *****************************/
     
 	render() {
-        const headerImageSrc = UIUtil.getClubThumbnail(this.state.clubDetail);
+        const headerImageSrc = UIUtil.getClubHeaderGraphic(this.state.clubDetail);
         const links = this.state.clubDetail && this.state.clubDetail.links;
         const interestName = this.state.category && this.state.category.interest;
         const interestColor = this.state.category && this.state.category.interestColor;
