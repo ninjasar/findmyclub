@@ -49,10 +49,13 @@
 
 .club-detail-follow-btn {
     position: relative;
+    width: 140px;
     font-size: 14px;
     padding: 5px 20px;
     line-height: 1.6;
     color: #330d51;
+    margin-right: 4px;
+    margin-left: -8px;
     /* margin-top: 20px; */
     /* margin-left: 20px; */
     font-style: normal;
@@ -67,10 +70,12 @@
 }
 .club-detail-go-to-engage-btn {
     position: relative;
-    font-size: 14px;
-    padding: 5px 20px;
+    width: 120px;
+    font-size: 13px;
+    padding: 10px 20px 5px 20px;
     line-height: 1.6;
     color: #330d51;
+    text-align: center;
     /* margin-top: 20px; */
     /* margin-left: 20px; */
     font-style: normal;
