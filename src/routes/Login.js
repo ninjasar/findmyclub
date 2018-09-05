@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import _ from 'lodash';
 import Constants from '../util/Constants';
 import * as Storage from '../util/Storage';
 import Networking from '../util/Networking';
@@ -60,12 +61,16 @@ class Login extends Component {
         }
         const tokenInLocalstorage = Storage.getToken();
         if (tokenInLocalstorage !== null) {
-            // dont go to guide if had already run through guide once
             if (Storage.getGuideFinished() && !window.location.href.includes('dashboard')) {
+                // dont go to guide if had already run through guide once
                 window.location.href = '/#/dashboard';
-                return;
+            } else if (!_.isNil(Storage.getSelectedInsterest())) {
+                // if user had selected interests, has token in localstoage, but don't have getGuideFinished flag
+                // this is `edit preference`
+                this.handleGoToSelectInterests();
+            } else {
+                setTimeout(this.handleGoToIntroductionContainer, 200);
             }
-            setTimeout(this.handleGoToIntroductionContainer, 200);
         } else {
             setTimeout(() => {
                 this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer}/>, 800);

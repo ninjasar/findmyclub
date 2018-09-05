@@ -82,7 +82,7 @@ class LoginInterestSelection extends Component {
             }
 
             // store this selection
-            Storage.setSelectedInsterest(JSON.stringify(_.map(selected, 'Name')));
+            Storage.setSelectedInsterest(_.map(selected, 'Name'));
 
             this.props.onNext(selected);
         }
@@ -105,16 +105,12 @@ class LoginInterestSelection extends Component {
 
     /** Sets the state with some interests for the user. */
     async populateInterests() {
-        const previousSelection = Storage.getSelectedInsterest();
-        let previousSelectedInterestNames = [];
-        try { previousSelectedInterestNames = JSON.parse(previousSelection); }
-        catch (err) { }
-
+        const previousSelection = Storage.getSelectedInsterest() || [];
         this.setState({
             interests: Object.values(interests).map((val) => {
                 return {
                     ...val,
-                    selected: _.includes(previousSelectedInterestNames, val.Name),
+                    selected: _.includes(previousSelection, val.Name),
                 }
             })
         });
