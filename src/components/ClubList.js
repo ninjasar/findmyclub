@@ -1,5 +1,6 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
+import { forceCheck } from 'react-lazyload';
 import _ from 'lodash';
 
 import '../css/ClubList.css';
@@ -39,6 +40,16 @@ export default class ClubList extends React.Component {
     };
   }
 
+  forceCheckLazyLoad = _.throttle(forceCheck, 100)
+
+  componentDidUpdate = () => {
+    // react-lazyload only lazy render ui when visible content changed by scroll position changes
+    // to handle case that shown clubs are changed without scroll position (i.e. search / filter)
+    // need to perform a force check lazyload whenever new props are received
+    this.forceCheckLazyLoad();
+  }
+  
+
   componentDidMount = () => {
     this.reloadCategories();
   }
@@ -62,7 +73,7 @@ export default class ClubList extends React.Component {
             const clubDetail = this.state.clubDetails[club.ID];
             const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
             return (
-              <LazyLoad key={club.ID} height={84} overflow>
+              <LazyLoad key={club.ID} height={84} overflow placeholder={(<div style={{height: 84}}>{club.Name}</div>)}>
                 <Club club={club} onComponentDidMount={() => this.reloadClubDetail(club.ID)}>
                   {
                     Maps.mapClubToDashboardComponent({
