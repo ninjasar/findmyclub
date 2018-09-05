@@ -99,9 +99,13 @@
     border-radius: 100%;
     background-color: lightgray;
 }
+.dashboard-profile-image {
+    margin: 0 auto;
+    height: 100px;
+    margin-top: 95px;
+}
 .dashboard-profile-fullname {
     position: relative;
-    margin-top: 96px;
     font-size: 22px;
     color: #330d51;
     font-weight: bold;
