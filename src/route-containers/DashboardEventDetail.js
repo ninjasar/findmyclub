@@ -26,8 +26,8 @@ class DashboardEventDetail extends Component {
 	render() {
         const month = dateformat(this.props.event.date.starts_at, 'mmm')
         const day = dateformat(this.props.event.date.starts_at, 'dd');
-        const starts_at = dateformat(this.props.event.date.starts_at, 'yy/mm/dd hh:MM');
-        const ends_at = dateformat(this.props.event.date.ends_at, 'yy/mm/dd hh:MM');
+        const starts_at = dateformat(this.props.event.date.starts_at, 'hh:MM TT');
+        const ends_at = dateformat(this.props.event.date.ends_at, 'hh:MM TT');
         const thumbnail = UIUtil.getEventThumbnail(this.props.event);
         if (!this.props.event) {
             return this.renderLoading();
@@ -52,17 +52,20 @@ class DashboardEventDetail extends Component {
                     <p className='event-detail-date-2'>{month}</p>
                 </div>
 
-                <p className='event-detail-title'>{this.props.event.title}</p>
-                <p className='event-detail-host'>{this.props.event.category.name}</p>
+                <div className='event-detail-bottom'>
 
-                <h1 className='event-detail-event-info-label'>Event Information</h1>
-                <p className='event-date-label'><span className='far fa-clock'/>&nbsp;&nbsp;{starts_at} - {ends_at}</p>
-                <p className='event-location-label'><span className='fas fa-map-marker-alt'/>&nbsp;&nbsp;{this.props.event.location}</p>
-                
-                <h1 className='event-detail-description-label'>Description</h1>
-                <p className='event-detail-description'>
-                    {this.props.event.description}
-                </p>
+                    <p className='event-detail-title'>{this.props.event.title}</p>
+                    <p className='event-detail-host'>{this.props.event.category.name}</p>
+
+                    <h1 className='event-detail-event-info-label'>Event Information</h1>
+                    <p className='event-date-label'><span className='far fa-clock'/>&nbsp;&nbsp;{starts_at} - {ends_at}</p>
+                    <p className='event-location-label'><span className='fas fa-map-marker-alt'/>&nbsp;&nbsp;{this.props.event.location}</p>
+                    
+                    <h1 className='event-detail-description-label'>Description</h1>
+                    <p className='event-detail-description'>
+                        {this.props.event.description}
+                    </p>
+                </div>
 			</div>
 		);
 	}
