@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     /* justify-content: center; */
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     /* height: 100%; */
     /* align-items: stretch; */
