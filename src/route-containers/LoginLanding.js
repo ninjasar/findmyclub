@@ -25,7 +25,7 @@ class LoginLanding extends Component {
         return (
             <div className="LoginLanding container">
                 <img src={Logo} alt="Find My Club" className="login-landing-logo" />
-                <div className="login-landing-text">Find clubs that are right just for you</div>
+                <div className="login-landing-text">Find clubs that are just right for you</div>
                 <button className="login-landing-login-btn"
                     onClick={this.handleLogin.bind(this)}>Login</button>
                 <img src={Promotion} alt="Promotion" className="login-landing-promotion" />
