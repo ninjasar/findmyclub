@@ -8,14 +8,36 @@
 }
 
 .round-rect-button {
-    height: 40px;
+    width: 140px;
+    height: 35px;
     border: none;
+    color: #fff;
     outline: none;
-    color: white;
-    background: none;
-    text-decoration: none;
-    transition-duration: 0.2s;
-    background-color: #561389;
+    font-size: 14px;
+    /* padding-top: 5px; */
+    border-radius: 5px;
+    margin: 0 auto 30px;
+    font-family: 'Gotham-Bold';
+    background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
+    background: -webkit-linear-gradient(to left, #3cced9, #8568dd) !important;
+    background: linear-gradient(to left, #3cced9, #8568dd) !important;
+}
+
+
+.bottom-rect-button {
+    width: 100%;
+    height: 35px;
+    border: none;
+    color: #fff;
+    outline: none;
+    font-size: 16px;
+    /* padding-top: 5px; */
+    /* border-radius: 5px; */
+    /* margin: 0 auto 30px; */
+    font-family: 'Gotham-Bold';
+    background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
+    background: -webkit-linear-gradient(to left, #3cced9, #8568dd) !important;
+    background: linear-gradient(to left, #3cced9, #8568dd) !important;
 }
 
 .round-rect-button:hover {

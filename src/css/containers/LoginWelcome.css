@@ -73,13 +73,11 @@
 }
 
 .login-welcome-login-btn {
-    position: absolute;
+    /* position: absolute; */
     width: 200px;
     bottom: 50px;
     display: block;
     font-size: 14px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
+    margin: 40px auto !important;
     left: calc(100% / 2 - 100px);
 }

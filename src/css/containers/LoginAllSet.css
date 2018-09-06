@@ -86,9 +86,11 @@
 
 .login-allset-next-btn {
     position: absolute;
-    width: 200px;
+    width: 200px !important;
     bottom: 30px;
     display: block;
+    text-decoration: unset;
+    line-height: 2.4em;
     font-size: 14px;
     cursor: default;
     margin-left: auto;

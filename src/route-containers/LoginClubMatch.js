@@ -110,7 +110,7 @@ class LoginClubMatch extends Component {
                 <div className='login-club-matches-body'>
                         
                     <button 
-                        className='round-rect-button login-club-matches-finish-btn'
+                        className='bottom-rect-button login-club-matches-finish-btn'
                         onClick={() => {
                                     if(this.props.onNext) {
                                         this.props.onNext();

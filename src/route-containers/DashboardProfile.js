@@ -35,10 +35,10 @@ class DashboardProfile extends Component {
                 <p className='dashboard-profile-school'>{user.school}</p>
 
                 <div className='dashboard-profile-action-button-container'>
-                    <button className='dashboard-profile-action-button dashboard-profile-action-button-primary' onClick={() => { this.handleEditPreference() }}>
+                    <button className='round-rect-button dashboard-profile-action-button-primary' onClick={() => { this.handleEditPreference() }}>
                         Edit Preferences
                     </button>
-                    <button className='dashboard-profile-action-button dashboard-profile-action-button-clear' onClick={() => { this.handleLogout() }}>
+                    <button className='round-rect-button dashboard-profile-action-button-clear' onClick={() => { this.handleLogout() }}>
                         Log Out
                     </button>
                 </div>

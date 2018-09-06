@@ -30,7 +30,7 @@ class LoginAllSet extends Component {
                     <h3 className='login-allset-header'>You're all set!</h3>
                 </div>
                 <NavLink to='dashboard' className='round-rect-button login-allset-next-btn'>
-                    <p>Finish</p>
+                    Finish
                 </NavLink>
 			</div>
 		);
