@@ -100,9 +100,6 @@ class LoginClubDetail extends Component {
                                 }}>
                             <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
                         </button>
-                        <a className='pill-button club-detail-go-to-engage-btn' href={links && links.web} target='_blank'>
-                            <span className='fa fa-sign-out-alt'/>&nbsp;Join on Engage
-                        </a>
                     </div>
 
                     <h1 className='club-detail-title'>{this.props.club.Name}</h1>
@@ -116,7 +113,8 @@ class LoginClubDetail extends Component {
                     }
                     <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
                     <p className='club-detail-information'><span>Umbrella</span> {this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}</p>
-                    
+                    <p className='club-detail-information'><span>Join Link</span> <a className='club-detail-go-to-engage-link' href={links && links.web} target='_blank'>Join on Engage</a></p>
+                
                     <p className='club-detail-description'>
                         {this.state.clubDetail && this.state.clubDetail.description}
                     </p>
