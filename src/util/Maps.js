@@ -163,7 +163,8 @@ export default {
         const { title, location } = event;
         const firestDate = (event.dates || [])[0];
         const starts_at = firestDate && firestDate.starts_at;
-        const date = (starts_at && dateformat(starts_at, 'mmm dd')) || '';
+        const date = (starts_at && dateformat(starts_at, 'dd mmm')) || '';
+        const time = (starts_at && dateformat(starts_at, 'HH:MM')) || '';
         const host = event.host; // event.category && event.category.name;
         console.log(event);
         return (
@@ -178,8 +179,7 @@ export default {
                     <div className='event-info-area'>
                         <p className='event-title'>{title}</p>
                         <p className='event-subtitle'>{host}</p>
-                        <p className='event-date'><span className='far fa-clock'/>&nbsp;&nbsp;{date}</p>
-                        <p className='event-location'><span className='fas fa-map-marker-alt'/>&nbsp;&nbsp;{location}</p>
+                        <p className='event-date'><span className='far fa-clock'/>&nbsp;&nbsp;{time}</p>
                     </div>
                 </div>
                 <div className='event-right' onClick={() => {
