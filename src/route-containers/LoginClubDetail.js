@@ -8,6 +8,8 @@ import '../css/containers/LoginClubDetail.css';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 import EmptyList from '../components/EmptyList';
 
+const maxEvents = 2;
+
 class LoginClubDetail extends Component {
     
 	/****************************
@@ -23,7 +25,7 @@ class LoginClubDetail extends Component {
             upcomingEvents: [],
             category: undefined,
             clubDetail: undefined,
-            maxEvents: 2,
+            maxEvents,
             followed: false,
         }
     }
@@ -128,36 +130,34 @@ class LoginClubDetail extends Component {
                         edgeInsets={['10px', '0px', '10px', '0px']}
                         emptyDataView={<EmptyList subtitle='There are no upcoming events for this club'/>}
                         data={
-                            this.state.upcomingEvents.map((val, index) => {
-                                const _val = {
-                                    ...val,
-                                    host: (this.props.club.Name) || "NYU Club"
-                                }
-                                return Maps.mapEventToComponent(_val, index, (_, __, ___, idx) => {
-                                    if(this.props.onSelectEvent) {
-                                        const items = this.state.upcomingEvents;
-                                        const item = items[idx];
-                                        this.props.onSelectEvent(item);
-                                    } else {
-                                        alert('Nothing here');
+                            
+                            _.slice(this.state.upcomingEvents, 0, (this.state.maxEvents || this.state.upcomingEvents.length))
+                                .map((val, index) => {
+                                    const _val = {
+                                        ...val,
+                                        host: (this.props.club.Name) || "NYU Club"
                                     }
+                                    return Maps.mapEventToComponent(_val, index, (_, __, ___, idx) => {
+                                        if (this.props.onSelectEvent) {
+                                            const items = this.state.upcomingEvents;
+                                            const item = items[idx];
+                                            this.props.onSelectEvent(item);
+                                        } else {
+                                            alert('Nothing here');
+                                        }
+                                    })
                                 })
-                            }).filter((_, index) => {
-                                if(this.state.maxEvents === 2) {
-                                    return index < this.state.maxEvents;
-                                } else {
-                                    return index;
-                                }
-                            })
                     }/>
                     
-                    {this.state.upcomingEvents.length > 2 ? <button className="club-detail-see-more-btn" onClick={() => {
-                        this.setState({
-                            maxEvents: this.state.maxEvents === 2 ? -1 : 2
-                        });
-                    }}>
-                    See {this.state.maxEvents === 2 ? "More" : "Less"}
-                    </button> : <div></div>}
+                    {this.state.upcomingEvents.length > maxEvents && (
+                        <button className="club-detail-see-more-btn" onClick={() => {
+                            this.setState({
+                                maxEvents: this.state.maxEvents === 0 ? maxEvents : 0,
+                            });
+                        }}>
+                            See {this.state.maxEvents === 0 ? "Less" : "More"}
+                        </button>
+                    )}
                     
                 </div>
             </div>
