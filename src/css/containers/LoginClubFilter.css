@@ -10,7 +10,7 @@
 .login-club-filter-close-btn {
     position: absolute;
     top: 20px;
-    right: 15px;
+    right: 20px;
     border: none;
     outline: none;
     cursor: pointer;
@@ -39,7 +39,7 @@
     position: relative;
     font-size: 28px;
     color: #330d51;
-    margin-top: 50px;
+    margin-top: 30px;
     font-weight: bold;
     text-align: center;
     font-style: normal;
@@ -74,6 +74,7 @@
 .login-club-filter-section-title {
     font-size: 20px;
     color: #323232;
+    max-width: 337px;
     text-align: left;
     font-weight: bold;
     font-style: normal;
@@ -149,10 +150,11 @@
     font-size: 16px;
     color: #ffffff;
     margin-top: 20px;
-    padding-top: 5px;
+    /* padding-top: 5px; */
     font-weight: bold;
     text-align: center;
     font-style: normal;
+    width: 220px !important;
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 50px;
