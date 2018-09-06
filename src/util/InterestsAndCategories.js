@@ -65,7 +65,8 @@ export const interests = {
             "Multicultural Groups",
             "Languages",
             "International",
-            "Cultural"
+            "Cultural",
+            "Pop Culture"
         ],
         "emoji": "🗺"
     },
@@ -114,7 +115,9 @@ export const interests = {
             "Fine Arts",
             "Acting",
             "Photography",
-            "Architecture"
+            "Architecture",
+            "Theater",
+            "Spoken Word"
         ],
         "emoji": "🎭"
     },
