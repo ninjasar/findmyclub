@@ -18,9 +18,9 @@
     border-radius: 5px;
     margin: 0 auto 30px;
     font-family: 'Gotham-Bold';
-    background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
-    background: -webkit-linear-gradient(to left, #3cced9, #8568dd) !important;
-    background: linear-gradient(to left, #3cced9, #8568dd) !important;
+    background: -o-linear-gradient(right, #3cced9, #8568dd);
+    background: -webkit-linear-gradient(to left, #3cced9, #8568dd);
+    background: linear-gradient(to left, #3cced9, #8568dd);
 }
 
 
@@ -193,7 +193,7 @@
 .event-item {
     display: flex;
     width: 92%;
-    height: 120px;
+    height: 80px;
     cursor: pointer;
     border-radius: 2px;
     padding: 10px 20px;
@@ -265,7 +265,7 @@
 
 .event-info-area {
     text-align: left;
-    padding: 25px 15px 0;
+    padding: 10px 15px 0;
 }
 
 .event-title {
@@ -344,7 +344,7 @@
 .fa-calendar-alt {
     font-size: 1rem;
     color: #330d51;
-    padding-top: 40px;
+    padding-top: 12px;
 }
 
 .event-calendar-label {
