@@ -16,7 +16,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         <img src={image} alt='club-preview' className='club-card-image'/>
                     </div>
 
-                    <h3 className='club-card-title'>{Name}</h3>
+                    <h3 className='club-card-title'>{Name.substring(0, 30)}{Name.length > 30 && '...'}</h3>
                     <div className='club-card-tags' style={{
                         backgroundColor: tagColor 
                     }}></div>
@@ -215,7 +215,7 @@ export default {
                         <div className='dashboard-club-item-tag-bubble'
                             style={{
                                 backgroundColor: interest.interestColor
-                            }}></div>&nbsp;<p>{interest.interest}</p>
+                            }}></div>&nbsp;<span>{interest.interest}</span>
                     </div>
                 </div>
             </div>

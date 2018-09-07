@@ -75,9 +75,11 @@
 .login-welcome-login-btn {
     /* position: absolute; */
     width: 200px;
+    height: 40px;
     bottom: 50px;
     display: block;
     font-size: 14px;
+    padding-top: 5px;
     margin: 40px auto !important;
     left: calc(100% / 2 - 100px);
 }

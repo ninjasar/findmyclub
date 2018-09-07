@@ -198,7 +198,7 @@
     .club-item {
         min-width: 160px;
         width: 45%;
-        margin-left: 0px;
+        margin-left: 10px;
         margin-right: 0;
     }
 }
@@ -216,12 +216,19 @@
     margin-right: auto;
     /* margin-bottom: 40px; */
     font-family: 'Gotham';
+    transition-duration: 0.2s;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
     background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
     background: -webkit-gradient(linear, right top, left top, from(#3cced9), to(#8568dd)) !important;
     background: -webkit-linear-gradient(right, #3cced9, #8568dd) !important;
     background: linear-gradient(to left, #3cced9, #8568dd) !important;
+}
+.login-club-matches-finish-btn:hover {
+    color: rgb(221, 221, 221);
+}
+.login-club-matches-finish-btn:active {
+    color: rgb(190, 190, 190);
 }
 
 /* Club Detail View */
@@ -323,9 +330,10 @@
 .club-detail-list-section-title {
     position: relative;
     top: 50px;
-    left: 20px;
+    /* left: 20px; */
     font-size: 18px;
     color: #330d51;
+    text-align: left;
     line-height: 0.89;
     font-weight: bold;
     font-style: normal;
@@ -337,9 +345,10 @@
 .club-detail-list-section-subtitle {
     position: relative;
     top: 70px;
-    left: 30px;
+    /* left: 30px; */
     font-size: 15px;
     color: #323232;
+    text-align: left;
     line-height: 1.47;
     font-style: normal;
     font-weight: normal;
@@ -350,5 +359,7 @@
 
 .club-detail-list-club-list {
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
     animation: longClubListFadeIn 2s ease-in-out;
 }

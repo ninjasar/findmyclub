@@ -23,7 +23,8 @@
 .login-allset-banner-image {
     width: 100%;
     height: 100%;
-    /* border-radius: 0px 0px 60% 60%; */
+    border-radius: 0px 0px 60% 60%;
+    object-fit: cover;
 }
 /* Laptops */
 @media screen 
@@ -31,7 +32,7 @@
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
     .login-allset-banner-image {
-        /* border-radius: 0px 0px 0px 0px; */
+        border-radius: 0px 0px 0px 0px;
     }
 }
 @media screen 
@@ -40,14 +41,14 @@
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) {
     .login-allset-banner-image {
-        /* border-radius: 0px 0px 0px 0px; */
+        border-radius: 0px 0px 0px 0px;
     }
 }
 
 .login-allset-icon {
     font-size: 50px;
     color: #8568dd;
-    margin-top: 0px;
+    margin-top: -50px;
 }
 
 .login-allset-header {
@@ -88,6 +89,7 @@
     position: absolute;
     width: 200px !important;
     bottom: 30px;
+    height: 35px;
     display: block;
     text-decoration: unset;
     line-height: 2.4em;
@@ -95,6 +97,7 @@
     cursor: default;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 7px;
     left: calc(100% / 2 - 100px);
 }
 .login-allset-next-btn > * {

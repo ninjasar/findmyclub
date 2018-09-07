@@ -70,7 +70,7 @@ class Dashboard extends Component {
                     style={{
                         position: 'absolute',
                         // top: this.setState.searchBarShowing === true ? '61px' : '0px',
-                        height: this.state.searchBarShowing === true ? '45px' : '0px',
+                        height: this.state.searchBarShowing === true ? '42px' : '0px',
                         borderBottom: this.state.searchBarShowing === true ? '1px solid #e6e9ef' : 'none'
                     }}>
                     <input type='text'
@@ -81,7 +81,7 @@ class Dashboard extends Component {
                         style={{
                             position: 'relative',
                             top: this.state.searchBarShowing === true ? '7px' : '0px',
-                            height: this.state.searchBarShowing === true ? '25px' : '0px',
+                            height: this.state.searchBarShowing === true ? '26px' : '0px',
                             visibility: this.state.searchBarShowing === true ? 'visible' : 'hidden',
                             border: this.setState.searchBarShowing === true ? '1px solid purple' : 'none'
                         }} />
