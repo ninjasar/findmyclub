@@ -67,7 +67,9 @@ class DashboardEvents extends Component {
         return (
             <div className="DashboardEvents dashboard-container" style={{
                 top: this.props.searchShowing === true ? '108px' : '70px',
-                height: this.props.searchShowing === true ? 'calc(100% - 20px)' : '100%'
+                overflow: 'hidden',
+                WebkitOverflowScrolling: 'touch',
+                height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
             }}>
                 <div className='dashboard-events-header'>
                     <h1 className='dashboard-events-title'>Events</h1>
