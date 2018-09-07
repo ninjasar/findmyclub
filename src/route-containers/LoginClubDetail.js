@@ -88,6 +88,8 @@ class LoginClubDetail extends Component {
                 clubMeetings: ((meetings && address) && (meetings.data && address.data) && meetings.data + "\n" + address.data),
                 clubContact: (contact && contact.data && contact.data.name),
                 clubContactEmail: (email && email.data),
+            }, () => {
+                if(this.state.clubWebsite) { this.setState({ clubWebsite: this.state.clubWebsite.substring(0, 50) }) };
             });
         }
     }
