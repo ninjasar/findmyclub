@@ -83,7 +83,7 @@ class LoginClubMatch extends Component {
                             className='club-detail-list-club-list'
                             ref='club-detail-list-club-list'
                             orientation={CollectionView.Orientation.vertical}
-                            edgeInsets={['170px', '0', '0', '0']}
+                            edgeInsets={['150px', '0', '0', '0']}
                             data={clubComponents}
                         />
                     </div>

@@ -51,7 +51,7 @@
 
 .login-club-matches-title {
     position: relative;
-    font-size: 22px;
+    font-size: 18px;
     color: #330d51;
     margin-top: 30px;
     font-weight: bold;
@@ -143,6 +143,7 @@
     font-size: 14px;
     color: #323232;
     text-align: left;
+    margin-top: -10px;
     line-height: 1.78;
     padding-left: 10px;
     font-style: normal;
