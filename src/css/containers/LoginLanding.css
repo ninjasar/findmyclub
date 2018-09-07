@@ -28,17 +28,21 @@
     outline: none;
     font-size: 14px;
     padding: 5px;
+    padding-top: 7px;
     border-radius: 5px;
     margin: 0 auto 30px;
+    transition-duration: 0.2s;
     font-family: 'Gotham-Bold';
     background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
     background: -webkit-linear-gradient(to left, #3cced9, #8568dd) !important;
     background: linear-gradient(to left, #3cced9, #8568dd) !important;
 }
 .login-landing-login-btn:hover {
+    color: rgb(211, 211, 211);
     background-image: linear-gradient(100deg, #3f0e64, #9e4f77);
 }
 .login-landing-login-btn:active {
+    color: rgb(185, 185, 185);
     background-image: linear-gradient(120deg, #340c53, #7c3e5d);
 }
 

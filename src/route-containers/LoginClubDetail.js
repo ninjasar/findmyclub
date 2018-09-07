@@ -27,6 +27,13 @@ class LoginClubDetail extends Component {
             clubDetail: undefined,
             maxEvents,
             followed: false,
+
+            clubWebsite: undefined,
+            clubFacebook: undefined,
+            clubInstagram: undefined,
+            clubMeetings: undefined,
+            clubContact: undefined,
+            clubContactEmail: undefined,
         }
     }
     
@@ -47,7 +54,6 @@ class LoginClubDetail extends Component {
         this.setState({
             clubDetail,
         });
-        console.log('CLUB DETAIL: ', clubDetail);
     }
     
     reloadFollowedClubs = async () => {
@@ -64,6 +70,26 @@ class LoginClubDetail extends Component {
         await this.reloadEvents();
         await this.reloadClubDetail();
         await this.reloadFollowedClubs();
+        
+        if(this.state.clubDetail) {
+            const portalInfo = this.state.clubDetail.profile_responses;
+            
+            const website = this.state.clubDetail.website_url;
+            const facebook = portalInfo.find((item) => { return item.element.name === 'Facebook' });
+            const insta = portalInfo.find((item) => { return item.element.type === 'Instagram' });
+            const meetings = portalInfo.find((item) => { return item.element.name === 'Meetings' });
+            const address = portalInfo.find((item) => { return item.element.name === 'Address' });
+            const contact = portalInfo.find((item) => { return item.element.name === 'Advisor Name' });
+            const email = portalInfo.find((item) => { return item.element.name === 'Advisor Email' });
+            this.setState({
+                clubWebsite: (website),
+                clubFacebook: (facebook && facebook.data),
+                clubInstagram: (insta),
+                clubMeetings: ((meetings && address) && (meetings.data && address.data) && meetings.data + "\n" + address.data),
+                clubContact: (contact && contact.data && contact.data.name),
+                clubContactEmail: (email && email.data),
+            });
+        }
     }
     
 	/****************************
@@ -120,6 +146,39 @@ class LoginClubDetail extends Component {
                     <p className='club-detail-description'>
                         {this.state.clubDetail && this.state.clubDetail.description}
                     </p>
+
+                    <h3 className='club-detail-portal-title'>Portal Information</h3>
+                    <div className='club-detail-portal-information'>
+                        <p className='club-detail-portal-information-title'>Website</p>
+                        <a className='club-detail-portal-information-link' href={this.state.clubWebsite || "/"}>
+                            {this.state.clubWebsite || "N/A"}
+                        </a>
+
+                        <p className='club-detail-portal-information-title'>Facebook</p>
+                        <a className='club-detail-portal-information-link' href={this.state.clubFacebook || "/"} >
+                            {this.state.clubFacebook || "N/A"}
+                        </a>
+
+                        <p className='club-detail-portal-information-title'>Instagram</p>
+                        <a className='club-detail-portal-information-link' href={this.state.clubInstagram || "/"} >
+                            {this.state.clubInstagram || "N/A"}
+                        </a>
+                        
+                        <p className='club-detail-portal-information-title'>Meetings</p>
+                        <p className='club-detail-portal-information-link not-link'>
+                            {this.state.clubMeetings || "N/A"}
+                        </p>
+
+                        <p className='club-detail-portal-information-title'>Contact</p>
+                        <p className='club-detail-portal-information-link not-link'>
+                            {this.state.clubContact || "N/A"}
+                        </p>
+
+                        <p className='club-detail-portal-information-title'>Email</p>
+                        <a className='club-detail-portal-information-link' href={this.state.clubContactEmail || "/"}>
+                            {this.state.clubContactEmail || "N/A"}
+                        </a>
+                    </div>
                     
                     <h3 className='club-detail-events-title'>Upcoming Events</h3>
                     <CollectionView 

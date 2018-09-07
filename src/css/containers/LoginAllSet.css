@@ -95,6 +95,7 @@
     cursor: default;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 4px;
     left: calc(100% / 2 - 100px);
 }
 .login-allset-next-btn > * {

@@ -36,6 +36,7 @@
 }
 
 .dashboard-profile-action-button-primary {
+    height: 40px;
     border: none;
     cursor: pointer;
     color: #ffffff;
@@ -50,6 +51,9 @@
 }
 
 .dashboard-profile-action-button-clear {
+    position: relative;
+    bottom: 10px;
+    height: 35px;
     color: #626181 !important;
     cursor: pointer;
     background: white !important;
@@ -59,10 +63,10 @@
     border: solid 1px #d7d7e1 !important;
 }
 .dashboard-profile-action-button-clear:hover {
-    background-color: rgb(241, 241, 241);
+    background: rgb(241, 241, 241) !important;
 }
-.dashboard-profile-action-button-clear:hover {
-    background-color: rgb(206, 206, 206);
+.dashboard-profile-action-button-clear:active {
+    background: rgb(224, 224, 224) !important;
 }
 
 .dashboard-profile-back-btn, .dashboard-profile-edit-btn {
