@@ -215,7 +215,7 @@ export default {
                         <div className='dashboard-club-item-tag-bubble'
                             style={{
                                 backgroundColor: interest.interestColor
-                            }}></div>&nbsp;<p>{interest.interest}</p>
+                            }}></div>&nbsp;<span>{interest.interest}</span>
                     </div>
                 </div>
             </div>

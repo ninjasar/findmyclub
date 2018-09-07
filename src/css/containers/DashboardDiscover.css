@@ -112,17 +112,11 @@
     border-bottom: 1px solid #d7d7e1;
 }
 .dashboard-club-item-vert {
-    display: -ms-flexbox;
-    /* display: flex; */
-    -ms-flex-flow: column;
+    display: flex;
     flex-flow: column;
-    -ms-flex-positive: 2;
     /* flex-grow: 2; */
     height: 100%;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -ms-flex-pack: end;
-    justify-content: baseline;
+    justify-content: center;
     margin: 0px 20px;
 }
 .dashboard-club-item-image {
@@ -136,11 +130,10 @@
 .dashboard-club-item-title {
     font-size: 15px;
     color: #323232;
-    height: 2.2rem;
+    height: 2rem;
     text-align: left;
     font-weight: 500;
     font-style: normal;
-    padding-top: 18px;
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
