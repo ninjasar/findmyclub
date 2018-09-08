@@ -45,7 +45,7 @@ class Login extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         // Once you get here, check if the user is already logged in. If so,
         // run the onLogin function to go to the next page.
         const tokenInURL = Networking.getParameterByName('token', window.location.toString());
@@ -64,7 +64,7 @@ class Login extends Component {
             if (Storage.getGuideFinished() && !window.location.href.includes('dashboard')) {
                 // dont go to guide if had already run through guide once
                 window.location.href = '/#/dashboard';
-            } else if (!_.isNil(Storage.getSelectedInsterest())) {
+            } else if (!_.isEmpty(await Networking.getPreferenceInterests())) {
                 // if user had selected interests, has token in localstoage, but don't have getGuideFinished flag
                 // this is `edit preference`
                 this.handleGoToSelectInterests();
