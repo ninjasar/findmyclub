@@ -160,7 +160,7 @@ export default {
     * @param {Function} onClick What to do when an event is clicked. */
     mapEventToComponent: (event, key, onClick) => {
         console.log(event)
-        const { title, location } = event;
+        const { title } = event;
         const firestDate = (event.dates || [])[0];
         const starts_at = firestDate && firestDate.starts_at;
         const date = (starts_at && dateformat(starts_at, 'dd mmm')) || '';

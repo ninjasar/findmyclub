@@ -77,7 +77,6 @@ class DashboardProfile extends Component {
 
     handleLogout = () => {
         Storage.clearToken();
-        Storage.clearSelectedInsterest();
         window.location.href = '/';
     }
 

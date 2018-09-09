@@ -5,9 +5,9 @@ import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import ReactGA from 'react-ga';
 import GACat from '../util/GACategories';
-import * as Storage from '../util/Storage';
 import { interests } from '../util/InterestsAndCategories';
 import '../css/containers/LoginInterestSelection.css';
+import Networking from '../util/Networking';
 
 class LoginInterestSelection extends Component {
 
@@ -74,7 +74,7 @@ class LoginInterestSelection extends Component {
     *****************************/
 
     /** Handles the next action when the user is done selecting their interests. */
-    handleFinishSelectingInterests() {
+    async handleFinishSelectingInterests() {
         if (this.props.onNext) {
             // Trigger an event in Google Analytics for each selected interest.
             // This lets us know which categories are most clicked on.
@@ -94,7 +94,7 @@ class LoginInterestSelection extends Component {
             }
 
             // store this selection
-            Storage.setSelectedInsterest(_.map(selected, 'Name'));
+            await Networking.setPreferenceInterests(_.map(selected, 'Name'));
 
             this.props.onNext(selected);
         }
@@ -117,7 +117,14 @@ class LoginInterestSelection extends Component {
 
     /** Sets the state with some interests for the user. */
     async populateInterests() {
-        const previousSelection = Storage.getSelectedInsterest() || [];
+        // setup default value
+        this.setState({
+            interests: Object.values(interests),
+            selected: false,
+        });
+
+        // set interests with previous selection
+        const previousSelection = await Networking.getPreferenceInterests();
         this.setState({
             interests: Object.values(interests).map((val) => {
                 return {
