@@ -42,11 +42,12 @@
     position: absolute;
     top: 55px;
     right: 20px;
-    width: 135px;
     z-index: 10000;
 }
 
 .dashboard-clubs-umbrellas-list {
+    width: 135px;
+    height: 65vh;
     border-radius: 3px;
     box-shadow: 0 0 3px 1px rgba(215, 215, 225, 0.56);
 }

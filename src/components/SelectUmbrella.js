@@ -24,19 +24,40 @@ export default class SelectUmbrella extends React.Component {
     document.removeEventListener('mousedown', this.handleClickOutside)
   }
 
+  handleClickOutside = (e) => {
+    console.log(this.state)
+    console.log(this.dropDownRef.current)
+    if (this.state.umbrellaSearchFocused && !this.dropDownRef.current.contains(e.target)) {
+      this.setState({ umbrellaSearchFocused: false })
+    }
+  }
+
+  handleUmbrellaSearchClicked = (e) => {
+    if (this.props.selectedUmbrella) {
+      this.props.didSelectUmbrella(undefined);
+      this.setState({
+        umbrellaSearchFocused: false,
+      });
+    } else {
+      this.setState({
+        umbrellaSearchFocused: true,
+      });
+    }
+  }
+
   renderDropdown = () => {
     return (
       <div ref={this.dropDownRef} className='dashboard-clubs-umbrellas-container'>
-        <CollectionView className="dashboard-clubs-umbrellas-list"
-          orientation={CollectionView.Orientation.vertical}
-          data={
-            InterestsAndCategories.umbrellas.map((val, index) => {
-              return Maps.mapUmbrellaToLabelComponent(val.name, index, this.props.didSelectUmbrella.bind(this, val));
-            })
-          }
-          style={{
-            visibility: this.state.umbrellaSearchFocused === true ? 'visible' : 'hidden'
-          }} />
+        {this.state.umbrellaSearchFocused &&
+          <CollectionView className="dashboard-clubs-umbrellas-list"
+            orientation={CollectionView.Orientation.vertical}
+            data={
+              InterestsAndCategories.umbrellas.map((val, index) => {
+                return Maps.mapUmbrellaToLabelComponent(val.name, index, this.props.didSelectUmbrella.bind(this, val));
+              })
+            }
+          />
+        }
       </div>
     )
   }
@@ -68,26 +89,5 @@ export default class SelectUmbrella extends React.Component {
         {this.renderDropdown()}
       </React.Fragment>
     );
-  }
-
-  handleClickOutside = (e) => {
-    console.log(this.state)
-    console.log(this.dropDownRef.current)
-    if (this.state.umbrellaSearchFocused && !this.dropDownRef.current.contains(e.target)) {
-      this.setState({ umbrellaSearchFocused: false })
-    }
-  }
-
-  handleUmbrellaSearchClicked = (e) => {
-    if (this.props.selectedUmbrella) {
-      this.props.didSelectUmbrella(undefined);
-      this.setState({
-        umbrellaSearchFocused: false,
-      });
-    } else {
-      this.setState({
-        umbrellaSearchFocused: true,
-      });
-    }
   }
 }
