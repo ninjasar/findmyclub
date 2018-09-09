@@ -7,6 +7,42 @@ import ReactGA from 'react-ga';
 import GACat from '../util/GACategories';
 import '../css/containers/LoginClubMatch.css';
 
+const TALL_HEADER = '140px'
+const SHORT_HEADER = '75px'
+
+const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled }) => {
+    return (
+        <div style={{ height: isScrolled ? SHORT_HEADER : TALL_HEADER }}
+            className='login-club-matches-header'>
+            <div style={{ height: isScrolled ? '0' : TALL_HEADER }}
+                className='login-club-matches-header-tall'>
+                <h1 className='login-club-matches-title'>
+                    <span>{selectedClubs.length}</span>&nbsp;clubs match your interests!
+                </h1>
+                <button className='pill-button filter-button club-detail-list-filter-btn'
+                    onClick={() => {
+                        if (onRefine) {
+                            onRefine();
+                        }
+                    }}>
+                    <p>Refine your search<span className='fas fa-sliders-h'></span></p>
+                </button>
+            </div>
+            <div className='login-club-matches-header-short'>
+                <span className='login-club-matches-go-back'>&lt;&nbsp; Go back</span>
+                <button className='pill-button filter-button-sm'
+                    onClick={() => {
+                        if (onRefine) {
+                            onRefine();
+                        }
+                    }}>
+                    Refine&nbsp;<span className='fas fa-sliders-h'></span>
+                </button>
+            </div>
+        </div>
+    )
+}
+
 class LoginClubMatch extends Component {
 
 	/****************************
@@ -21,6 +57,7 @@ class LoginClubMatch extends Component {
             selectedClubs: props.selectedClubs || [],
             clubMatches: props.clubMatches || [],
             clubInterests: props.interests || [],
+            isScrolled: false,
             // list of club objects
             followingClubs: [],
             thumbnails: [],
@@ -28,22 +65,29 @@ class LoginClubMatch extends Component {
             selectedIntersetColor: 'orange',
             clubFilterOverlay: <div></div>
         }
-        console.log(this.state);
     }
 
     async componentDidMount() {
-        // console.log(this.props.selectedClubs);
-
         this.reloadFollowingClubs();
         await this.getClubThumbnail();
     }
-    
+
+    handleScroll = (e) => {
+        const scrollTop = e.target.scrollTop
+        const isScrolled = this.state.isScrolled
+        if (scrollTop > 100 && !isScrolled) {
+            this.setState({ isScrolled: true })
+        } else if (scrollTop <= 100 && isScrolled) {
+            this.setState({ isScrolled: false })
+        }
+    }
+
 	/****************************
      *                           *
      *           RENDER          *
      *                           *
      *****************************/
-    
+
     render() {
         // const clubComponents = this.props.selectedClubs.map((club) => {
         //     const followed = this.followingClub(club);
@@ -61,7 +105,7 @@ class LoginClubMatch extends Component {
                     ...club,
                     followed: followed,
                     tagColor: interest.Color,
-                    image: this.state.thumbnails[club.ID] || require("../util/Constants").default.clubThumbnailDefaultPath, 
+                    image: this.state.thumbnails[club.ID] || require("../util/Constants").default.clubThumbnailDefaultPath,
                 }
             })
 
@@ -70,16 +114,15 @@ class LoginClubMatch extends Component {
                 this.didSelectClubCard.bind(this),
                 this.didFollowClubCard.bind(this));
         });
-        
-		return (
-            <div className="LoginClubMatch container">
+
+        return (
+            <div className="LoginClubMatch container"
+                onScroll={this.handleScroll} >
                 {this.state.clubFilterOverlay}
                 {/* The see more overlay. */}
-                <div className='club-detail-list-view'> 
-                    
-                    <div className='club-detail-body'>
-                    
-                        <CollectionView 
+                <div className='club-detail-list-view' >
+                    <div className='club-detail-body' >
+                        <CollectionView
                             className='club-detail-list-club-list'
                             ref='club-detail-list-club-list'
                             orientation={CollectionView.Orientation.vertical}
@@ -88,15 +131,18 @@ class LoginClubMatch extends Component {
                         />
                     </div>
                 </div>
-        
-                    
+
+
                 {/* The actual club matches page. */}
-                <div className='login-club-matches-header'>
+                <ClubMatchesHeader
+                    selectedClubs={this.props.selectedClubs}
+                    isScrolled={this.state.isScrolled}
+                    onRefine={this.props.onRefine}
+                />
+                {/* <div className='login-club-matches-header'>
                     <h1 className='login-club-matches-title'>
                         {<span>{this.props.selectedClubs.length}</span>}&nbsp;clubs match your interests!
                     </h1>
-                    {/* <p className='login-club-matches-subtitle'>Find out more about these by clicking on them!</p>*/}
-                        
                     <button className='pill-button filter-button club-detail-list-filter-btn'
                         onClick={() => {
                             if (this.props.onRefine) {
@@ -105,16 +151,15 @@ class LoginClubMatch extends Component {
                         }}>
                         <p>Refine your search<span className='fas fa-sliders-h'></span></p>
                     </button>
-                </div>
-                        
+                </div> */}
                 <div className='login-club-matches-body'>
-                        
-                    <button 
+
+                    <button
                         className='bottom-rect-button login-club-matches-finish-btn'
                         onClick={() => {
-                                    if(this.props.onNext) {
-                                        this.props.onNext();
-                                    }
+                            if (this.props.onNext) {
+                                this.props.onNext();
+                            }
                         }}>
                         Finish
                     </button>
@@ -130,19 +175,19 @@ class LoginClubMatch extends Component {
             </div>
         );
     }
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
     /****************************
      *                           *
      *         FUNCTIONS         *
      *                           *
      *****************************/
 
-    async getClubThumbnail () {
+    async getClubThumbnail() {
 
         const thumbnails = {};
         const promises = this.props.selectedClubs.map(async club => {
@@ -159,20 +204,20 @@ class LoginClubMatch extends Component {
             thumbnails,
         });
     }
-    
+
     /** What to do when you click on a club card. */
     didSelectClubCard(club) {
         this.props.onSelectClub && this.props.onSelectClub(club);
     }
-    
-    
+
+
     /** What to do when you click on the follow button for a club card. */
     async didFollowClubCard(club) {
         this.followingClub(club) ? await Networking.unfollowClub(club.ID) : await Networking.followClub(club.ID);
         await this.reloadFollowingClubs();
 
         // Send to GA.
-        if(this.followingClub(club)) {
+        if (this.followingClub(club)) {
             ReactGA.event({
                 category: GACat.FollowedClub,
                 action: `User followed the club: ${club.Name}`,
@@ -186,13 +231,13 @@ class LoginClubMatch extends Component {
             });
         }
     }
-        
+
     reloadFollowingClubs = async () => {
         this.setState({
             followingClubs: await Networking.getFollowedClubs(),
         });
     }
-        
+
     // /** Shows a view that has all of the clubs related to a particular interest. 
     // * @param {String} interestWithClubs The name and clubs associated with a category.
     // * @param {String} interestColor The color of the interest highlighting. */
@@ -210,7 +255,7 @@ class LoginClubMatch extends Component {
     //             width: '100%',
     //             height: '100%',
     //         }, '0.2s', () => {
-                
+
     //         });
     //     });
     // }
