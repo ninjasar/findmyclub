@@ -61,13 +61,13 @@ class Login extends Component {
         }
         const tokenInLocalstorage = Storage.getToken();
         if (tokenInLocalstorage !== null) {
-            if (Storage.getGuideFinished() && !window.location.href.includes('dashboard')) {
-                // dont go to guide if had already run through guide once
-                window.location.href = '/#/dashboard';
-            } else if (!_.isEmpty(await Networking.getPreferenceInterests())) {
-                // if user had selected interests, has token in localstoage, but don't have getGuideFinished flag
-                // this is `edit preference`
+            if (Storage.getEditPreference()) {
+                // explicitly set that user is editing preference
                 this.handleGoToSelectInterests();
+            }
+            else if (!_.isEmpty(await Networking.getPreferenceInterests()) && !window.location.href.includes('dashboard')) {
+                // dont go to guide if had already run through guide once (identified by `getPreferenceInterests` not empty)
+                window.location.href = '/#/dashboard';
             } else {
                 setTimeout(this.handleGoToIntroductionContainer, 200);
             }
@@ -161,7 +161,7 @@ class Login extends Component {
                     }} />);
             }}
             onNext={() => {
-                Storage.setGuideFinished();
+                Storage.clearEditPreference();
                 this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)} />);
             }}
             interests={this.state.selectedInterests}
