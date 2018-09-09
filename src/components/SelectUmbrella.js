@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 
 import CollectionView from './CollectionView';
 import Maps from '../util/Maps';
@@ -9,32 +8,64 @@ import '../css/SelectUmbrella.css';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
 export default class SelectUmbrella extends React.Component {
-  state = {
-    umbrellaSearchFocused: false,
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      umbrellaSearchFocused: false,
+    }
+    this.dropDownRef = React.createRef()
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside)
+  }
+
+  handleClickOutside = (e) => {
+    console.log(this.state)
+    console.log(this.dropDownRef.current)
+    if (this.state.umbrellaSearchFocused && !this.dropDownRef.current.contains(e.target)) {
+      this.setState({ umbrellaSearchFocused: false })
+    }
+  }
+
+  handleUmbrellaSearchClicked = (e) => {
+    if (this.props.selectedUmbrella) {
+      this.props.didSelectUmbrella(undefined);
+      this.setState({
+        umbrellaSearchFocused: false,
+      });
+    } else {
+      this.setState({
+        umbrellaSearchFocused: true,
+      });
+    }
+  }
 
   renderDropdown = () => {
     return (
-      <CollectionView className='dashboard-clubs-umbrellas-list'
-        orientation={CollectionView.Orientation.vertical}
-        data={
-          InterestsAndCategories.umbrellas.map((val, index) => {
-            return Maps.mapUmbrellaToLabelComponent(val.name, index, this.props.didSelectUmbrella.bind(this, val));
-          })
+      <div ref={this.dropDownRef} className='dashboard-clubs-umbrellas-container'>
+        {this.state.umbrellaSearchFocused &&
+          <CollectionView className="dashboard-clubs-umbrellas-list"
+            orientation={CollectionView.Orientation.vertical}
+            data={
+              InterestsAndCategories.umbrellas.map((val, index) => {
+                return Maps.mapUmbrellaToLabelComponent(val.name, index, this.props.didSelectUmbrella.bind(this, val));
+              })
+            }
+          />
         }
-        style={{
-          visibility: this.state.umbrellaSearchFocused === true ? 'visible' : 'hidden'
-        }} />
-    );
+      </div>
+    )
   }
 
   renderButton = () => {
     return (
       <button className='dashboard-clubs-umbrella-btn'
-        onFocus={this.handleUmbrellaSearchClicked}
-        onBlur={() => {
-          this.setState({ umbrellaSearchFocused: false })
-        }}>
+        onClick={this.handleUmbrellaSearchClicked} >
         {
           this.props.selectedUmbrella ?
             <React.Fragment>
@@ -58,19 +89,5 @@ export default class SelectUmbrella extends React.Component {
         {this.renderDropdown()}
       </React.Fragment>
     );
-  }
-
-  handleUmbrellaSearchClicked = () => {
-    if (this.props.selectedUmbrella) {
-      $('.dashboard-clubs-umbrella-btn').blur();
-      this.props.didSelectUmbrella(undefined);
-      this.setState({
-        umbrellaSearchFocused: false,
-      });
-    } else {
-      this.setState({
-        umbrellaSearchFocused: true,
-      });
-    }
   }
 }
