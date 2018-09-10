@@ -6,7 +6,6 @@ import * as UIUtil from '../util/UI';
 import ReactGA from 'react-ga';
 import GACat from '../util/GACategories';
 import '../css/containers/LoginClubMatch.css';
-import * as Storage from '../util/Storage';
 
 const TALL_HEADER = '140px'
 const SHORT_HEADER = '75px'
@@ -238,7 +237,6 @@ class LoginClubMatch extends Component {
     }
 
     handleGoBack = () => {
-        Storage.clearGuideFinished();
         window.location.href = '/';
     }
 
