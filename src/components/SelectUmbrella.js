@@ -53,7 +53,12 @@ export default class SelectUmbrella extends React.Component {
             orientation={CollectionView.Orientation.vertical}
             data={
               InterestsAndCategories.umbrellas.map((val, index) => {
-                return Maps.mapUmbrellaToLabelComponent(val.name, index, this.props.didSelectUmbrella.bind(this, val));
+                return Maps.mapUmbrellaToLabelComponent(val.name, index, () => {
+                  this.props.didSelectUmbrella(val);
+                  this.setState({
+                    umbrellaSearchFocused: false,
+                  });
+                });
               })
             }
           />
