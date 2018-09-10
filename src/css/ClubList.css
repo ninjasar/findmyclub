@@ -7,6 +7,4 @@
     overflow: auto;
     position: relative;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    /* background-color: aquamarine; */
 }
