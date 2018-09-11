@@ -230,7 +230,7 @@ const getClubInformation = async (clubID, withCache=true) => {
  * @returns {Promise<[String]>}
  */
 const getPreferenceInterests = async () => {
-    const res = await get(`/v1/user/interests`);
+    const res = await get(`/user/interests`);
     if (res.error) {
         throw res.text;
     } else {
@@ -243,7 +243,7 @@ const getPreferenceInterests = async () => {
  * @param {[String]} interests 
  */
 const setPreferenceInterests = async (interests) => {
-    return post(`/v1/user/interests`).type('form').send({ interests });
+    return post(`/user/interests`).type('form').send({ interests });
 }
 
 export default {
