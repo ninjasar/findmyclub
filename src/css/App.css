@@ -18,9 +18,9 @@
     border-radius: 5px;
     margin: 0 auto 30px;
     font-family: 'Gotham-Bold';
-    background: -o-linear-gradient(right, #3cced9, #8568dd);
-    background: -webkit-linear-gradient(to left, #3cced9, #8568dd);
-    background: linear-gradient(to left, #3cced9, #8568dd);
+    background: -o-linear-gradient(79deg, #561389, #c24785);
+    background: -webkit-linear-gradient(79deg, #561389, #c24785);
+    background: linear-gradient(79deg, #561389, #c24785);
 }
 
 
@@ -35,9 +35,9 @@
     /* border-radius: 5px; */
     /* margin: 0 auto 30px; */
     font-family: 'Gotham-Bold';
-    background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
-    background: -webkit-linear-gradient(to left, #3cced9, #8568dd) !important;
-    background: linear-gradient(to left, #3cced9, #8568dd) !important;
+    background: -o-linear-gradient(79deg, #561389, #c24785) !important;
+    background: -webkit-linear-gradient(79deg, #561389, #c24785) !important;
+    background: linear-gradient(79deg, #561389, #c24785) !important;
 }
 
 .round-rect-button:hover {

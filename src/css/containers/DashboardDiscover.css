@@ -38,7 +38,7 @@
     text-decoration: none;
     transition-duration: 0.2s;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.35);
-    background: linear-gradient(to left, #3cced9, #8568dd);
+    background: linear-gradient(79deg, #561389, #c24785);
 }
 .dashboard-discover-filter-btn:hover {
     box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.35);
