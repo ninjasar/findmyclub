@@ -258,6 +258,7 @@ export const registrationSchoolsToUmbrellaID = {
     "Tandon School of Engineering": 89838,
     "Silver School of Social Work": 89839,
     "College of Arts & Science": 106007,
+    "College of Arts and Science": 106007,
     "Liberal Studies": 111059,
     "NYU Steinhardt": 116531,
     "School of Professional Studies": 116946,

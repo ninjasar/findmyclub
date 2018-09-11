@@ -49,7 +49,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-club-filter-subtitle {
@@ -61,7 +62,7 @@
     text-align: center;
     margin-bottom: 25px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
@@ -84,7 +85,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-club-filter-section-items {
@@ -114,7 +116,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     display: inline-block;
     letter-spacing: normal;
 }
@@ -166,5 +168,6 @@
     font-stretch: normal;
     padding-top: 4px;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }

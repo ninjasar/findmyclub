@@ -18,7 +18,8 @@
     /* padding-top: 5px; */
     border-radius: 5px;
     margin: 0 auto 30px;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     transition-duration: 0.2s;
     background: -o-linear-gradient(right, #3cced9, #8568dd);
     background: -webkit-linear-gradient(to left, #3cced9, #8568dd);
@@ -37,7 +38,8 @@
     /* padding-top: 5px; */
     /* border-radius: 5px; */
     /* margin: 0 auto 30px; */
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
     background: -webkit-linear-gradient(to left, #3cced9, #8568dd) !important;
     background: linear-gradient(to left, #3cced9, #8568dd) !important;
@@ -132,7 +134,8 @@
     margin-bottom: -5px;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     line-height: 1.4rem;
 }
 
@@ -149,7 +152,7 @@
 }
 
 .club-card-tags-label {
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     word-wrap: break-word;
     width: 100px;
     position: relative;
@@ -178,7 +181,7 @@
     margin-right: auto;
     text-align: center;
     border-radius: 25px;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     font-weight: 500;
     -webkit-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
@@ -217,7 +220,8 @@
 
 .event-item-host>span {
     color: #323232;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .event-left {
@@ -257,7 +261,8 @@
     margin-right: auto;
     margin-top: 5px;
     text-align: center;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .event-date-area>p:nth-child(2) {
@@ -269,7 +274,8 @@
     margin: unset;
     margin-right: auto;
     text-align: center;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .event-info-area {
@@ -289,7 +295,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     height: 1em;
     overflow: hidden;
 }
@@ -304,7 +311,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     text-overflow: ellipsis;
     height: 1em;
@@ -319,7 +326,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     height: 1em;
     overflow: hidden;
@@ -335,7 +342,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     text-overflow: ellipsis;
     height: 1em;
@@ -366,7 +373,8 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .no-results-view-emoji {
@@ -385,7 +393,8 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .no-results-view-subtitle {
@@ -398,5 +407,5 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
 }

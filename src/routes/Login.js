@@ -186,28 +186,19 @@ class Login extends Component {
         // Based on the selected interests, get a list of clubs that are associated with that interest.
         // 1.) Look through all of the categories and filter them by the ones that have an interest name
         // that matches one of the selected interests.
-        let categories = await Networking.getCategories();
-        categories = categories.filter((cat) => {
-            const containing = selectedInterests.filter((selInt) => {
-                return selInt.Name === cat.interest;
-            })
-            return containing.length > 0;
+        const allCategories = await Networking.getCategories();
+        let categories = allCategories.filter((cat) => {
+            return selectedInterests.map(i => i.Name).includes(cat.interest);
         });
-
         // 1.5.) filter by school, only query for categories of current user's  school
-        categories = filterCategoriesByUserSchool(categories);
-
+        categories = filterCategoriesByUserSchool(allCategories);
         // 2.) Now that you have the categories that only include the ones from the selected interests,
         // Use those categories to find the clubs that match the user's interests.
         let matchingClubs = await Networking.getClubs(Object.values(categories)
-            .map((val) => val.ID));
+            .map((val) => val.ID) || []);
         
-
-
-
         // 3.) Now that you have all of the clubs that match the user's preferences, send them over to
         // the club matches page.
-
         matchingClubs = matchingClubs.map(club => 
             ({
                 ...club,
@@ -221,7 +212,6 @@ class Login extends Component {
             interestColor: getInterestFromCategory(club.category).interestColor || "cyan",
             interestID: getInterestFromCategory(club.category).interestID || 0
         }));
-        
         this.setState({
             matchingClubs,
             selectedClubs: matchingClubs,

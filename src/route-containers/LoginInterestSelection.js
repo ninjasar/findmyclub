@@ -43,7 +43,7 @@ class LoginInterestSelection extends Component {
             <div className="LoginInterestSelection container">
                 <h2 ref={this.alertRef} className='login-interests-title'>What are you most interested in?</h2>
                 {this.state.isAlertVisible &&
-                    <div style={{ fontFamily: 'Gotham', color: '#c82368' }}>You have to select at least one interest</div>
+                    <div style={{ fontFamily: 'Montserrat', color: '#c82368' }}>You have to select at least one interest</div>
                 }
                 <CollectionView ref='interests-collection-view'
                     className='login-interests-selections'

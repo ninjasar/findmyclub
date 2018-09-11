@@ -3,7 +3,6 @@ import Login from './routes/Login';
 import Dashboard from './routes/Dashboard';
 import { HashRouter as Router, Route } from "react-router-dom";
 // import { createStore } from 'redux';
-import './fonts/fonts.css';
 import './css/App.css';
 
 

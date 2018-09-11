@@ -65,7 +65,8 @@
     font-stretch: normal;
     margin-top: -35px;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-allset-description {
@@ -81,7 +82,7 @@
     font-style: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
