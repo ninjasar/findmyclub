@@ -225,6 +225,27 @@ const getClubInformation = async (clubID, withCache=true) => {
     return clubDetailCache[clubID];
 }
 
+/**
+ * get last selected interests
+ * @returns {Promise<[String]>}
+ */
+const getPreferenceInterests = async () => {
+    const res = await get(`/v1/user/interests`);
+    if (res.error) {
+        throw res.text;
+    } else {
+        return res.body;
+    }
+}
+
+/**
+ * store last selected interests
+ * @param {[String]} interests 
+ */
+const setPreferenceInterests = async (interests) => {
+    return post(`/v1/user/interests`).type('form').send({ interests });
+}
+
 export default {
     shouldExpireToken,
     getParameterByName,
@@ -237,4 +258,6 @@ export default {
     getEventsForClub,
     getClubInformation,
     getJWTPayload,
+    getPreferenceInterests,
+    setPreferenceInterests,
 }

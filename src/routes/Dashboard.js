@@ -101,7 +101,7 @@ class Dashboard extends Component {
                         <span className='fas fa-comments'/>&nbsp;Events
                     </div>
                     <div className='dashboard-tab-bar-item' onClick={this.showDiscoverTab.bind(this)}>
-                        <span className='fas fa-search'/>&nbsp;Discover
+                        <span className='fas fa-search'/>&nbsp;All NYU
                     </div>
                 </div>
 			</div>

@@ -47,7 +47,7 @@
     font-weight: normal;
     border-radius: 11px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     border: 1px solid #330d51;
     background-color: #ffffff;
@@ -80,7 +80,8 @@
     /* padding-left: 28.5px; */
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .event-detail-date-2 {
     position: relative;
@@ -95,7 +96,8 @@
     margin: 0;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .event-detail-bottom {
@@ -117,7 +119,8 @@
     font-stretch: normal;
     display: inline-block;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .event-detail-host {
     position: relative;
@@ -133,7 +136,7 @@
     line-height: normal;
     font-stretch: normal;
     display: inline-block;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     /* background-color: yellowgreen; */
 }
@@ -166,7 +169,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .event-date-label {
     font-size: 14px;
@@ -176,7 +180,7 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 .event-location-label {
@@ -187,7 +191,7 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
@@ -202,7 +206,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .event-detail-description {
     position: relative;
@@ -215,6 +220,6 @@
     font-style: normal;
     margin-bottom: 50px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }

@@ -44,7 +44,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-interests-selections {
@@ -126,7 +127,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-interests-finish-btn {
@@ -141,7 +143,7 @@
     margin-left: auto;
     margin-right: auto;
     /* margin-bottom: 40px; */
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     transition-duration: 0.2s;
     box-shadow: 0 0 20px 0 rgba(0,0,0,0.35);
     -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.35);

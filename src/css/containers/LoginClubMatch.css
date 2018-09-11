@@ -14,11 +14,24 @@
     top: 0px;
     left: 0px;
     width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
     z-index: 100;
     padding-bottom: 25px;
+    padding: 25px 0 25px;
     background-color: white;
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.15);
-    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.15);
+    transition: height 0.3s;
+}
+
+.login-club-matches-header-tall {
+    overflow: hidden;
+    transition: height 0.3s;
+}
+
+.login-club-matches-header-short {
+    padding: 0 20px;
+    text-align: start;
 }
 
 .login-club-matches-body {
@@ -42,7 +55,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     margin-bottom: 30px;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
 }
 
 .login-club-matches-skip-btn:active {
@@ -53,14 +66,14 @@
     position: relative;
     font-size: 18px;
     color: #330d51;
-    margin-top: 30px;
     font-weight: bold;
     font-style: normal;
     text-align: center;
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-club-matches-title>span {
@@ -77,7 +90,7 @@
     padding-right: 40px;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
@@ -91,13 +104,19 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
+.login-club-matches-go-back {
+    line-height: 30px;
+    color: #8568dd;
+    cursor: pointer;
+}
+
+.filter-button-sm,
 .filter-button {
     position: relative;
-    width: 190px;
-    height: 47px;
     border: none;
     color: white;
     font-size: 14px;
@@ -105,6 +124,17 @@
     padding-right: 15px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.35);
     background: linear-gradient(to left, #3cced9, #8568dd);
+}
+
+.filter-button {
+    width: 190px;
+    height: 47px;
+}
+
+.filter-button-sm {
+    float: right;
+    width: 95px;
+    height: 30px;
 }
 
 .filter-button:hover {
@@ -136,7 +166,8 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-club-matches-category-section-subtitle {
@@ -149,13 +180,14 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
 .login-club-matches-category-section-subtitle>span {
     color: #3cced9;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-club-matches-club-list {
@@ -183,7 +215,8 @@
     font-stretch: normal;
     text-decoration: none;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .club-item {
@@ -191,7 +224,7 @@
     text-align: left;
     user-select: none;
     margin-left: 5px;
-	margin-right: 5px;
+    margin-right: 5px;
     margin-bottom: 25px;
 }
 
@@ -216,7 +249,7 @@
     margin-left: auto;
     margin-right: auto;
     /* margin-bottom: 40px; */
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     transition-duration: 0.2s;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
@@ -225,9 +258,11 @@
     background: -webkit-linear-gradient(right, #3cced9, #8568dd) !important;
     background: linear-gradient(to left, #3cced9, #8568dd) !important;
 }
+
 .login-club-matches-finish-btn:hover {
     color: rgb(221, 221, 221);
 }
+
 .login-club-matches-finish-btn:active {
     color: rgb(190, 190, 190);
 }
@@ -307,7 +342,7 @@
     text-align: center;
     font-style: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
@@ -323,11 +358,6 @@
     padding-bottom: 20px;
 }
 
-.club-detail-list-filter-btn>p {
-    /* position: relative; */
-    /* bottom: 5px; */
-}
-
 .club-detail-list-section-title {
     position: relative;
     top: 50px;
@@ -340,7 +370,8 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .club-detail-list-section-subtitle {
@@ -354,7 +385,7 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
