@@ -8,8 +8,9 @@
 }
 
 .login-club-filter-close-btn {
-    position: absolute;
+    position: fixed;
     top: 20px;
+    z-index: 1;
     right: 20px;
     border: none;
     outline: none;
