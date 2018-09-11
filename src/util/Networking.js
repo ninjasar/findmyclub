@@ -82,7 +82,7 @@ const getJWTPayload = () => {
 /** Authenticates the user when the login button is clicked. */
 const authenticateUser = async () => {
     const currentLocation = window.location.toString();
-    debugger
+    // debugger
     const newLocation = `${Constants.AUTH_BASE_URL}/login?redirect=${currentLocation}`;
     window.location = newLocation;
 }
