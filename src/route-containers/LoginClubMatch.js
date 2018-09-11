@@ -28,7 +28,9 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
             </button>
         </div>
         <div className='login-club-matches-header-short'>
-            <span onClick={handleGoBack} className='login-club-matches-go-back'>&lt;&nbsp; Go back</span>
+            <span onClick={handleGoBack} className='login-club-matches-go-back'>
+                <span className='fa fa-chevron-left'/>&nbsp; Go back
+            </span>
             <button className='pill-button filter-button-sm'
                 onClick={() => {
                     if (onRefine) {
@@ -66,7 +68,8 @@ class LoginClubMatch extends Component {
 
     async componentDidMount() {
         this.reloadFollowingClubs();
-        await this.getClubThumbnail();
+        // await this.getClubThumbnail();
+        this.setState({ thumbnails: this.props.thumbnails || [] });
     }
 
     handleScroll = (e) => {

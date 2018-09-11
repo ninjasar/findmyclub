@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import _ from 'lodash';
+import * as UIUtil from '../util/UI';
 import Constants from '../util/Constants';
 import * as Storage from '../util/Storage';
 import Networking from '../util/Networking';
@@ -137,7 +138,7 @@ class Login extends Component {
         });
     }
 
-    loadResultsPage() {
+    loadResultsPage(_, __, ___, thumbnails) {
         this.transitionContainer(<LoginClubMatch 
             onRefine={() => {
                 this.showOverlay(
@@ -166,7 +167,8 @@ class Login extends Component {
             }}
             interests={this.state.selectedInterests}
             selectedClubs={this.state.selectedClubs}
-            clubMatches={this.state.matchingClubs} />
+            clubMatches={this.state.matchingClubs}
+            thumbnails={thumbnails} />
         );
     }
 
@@ -212,13 +214,27 @@ class Login extends Component {
             interestColor: getInterestFromCategory(club.category).interestColor || "cyan",
             interestID: getInterestFromCategory(club.category).interestID || 0
         }));
+
+        // 4.) Load the thumbnails.
+        const thumbnails = {};
+        const promises = matchingClubs.map(async club => {
+            return Networking.getClubInformation(club.ID);
+        });
+        const results = await Promise.all(promises);
+        results.forEach(club => {
+            thumbnails[club.id] = UIUtil.getClubThumbnail(club);
+        });
+
         this.setState({
             matchingClubs,
             selectedClubs: matchingClubs,
             categoriesMatchingInterest: categories,
             selectedInterests
-        }, () => {
-            this.loadResultsPage(this.state.selectedInterests, this.state.categoriesMatchingInterest, this.state.selectedClubs);
+        }, async () => {
+            this.loadResultsPage(this.state.selectedInterests, 
+                                this.state.categoriesMatchingInterest, 
+                                this.state.selectedClubs,
+                                thumbnails);
         });
     }
 
