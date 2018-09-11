@@ -35,7 +35,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .dashboard-clubs-umbrellas-container {
@@ -67,7 +68,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     text-overflow: ellipsis;
     background-color: white;
@@ -75,7 +76,8 @@
 }
 
 .dashboard-umbrella-label:hover {
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     background-color: #e8e1ed;
 }
 

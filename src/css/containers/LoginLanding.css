@@ -15,7 +15,7 @@
 .login-landing-text {
     width: 200px;
     margin: 0 auto 20px;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     font-weight: 700;
     color: #626181;
 }
@@ -32,7 +32,8 @@
     border-radius: 5px;
     margin: 0 auto 30px;
     transition-duration: 0.2s;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
     background: -webkit-linear-gradient(to left, #3cced9, #8568dd) !important;
     background: linear-gradient(to left, #3cced9, #8568dd) !important;
