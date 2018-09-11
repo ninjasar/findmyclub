@@ -66,7 +66,10 @@ class DashboardEvents extends Component {
     render() {
         return (
             <div className="DashboardEvents dashboard-container" style={{
-                top: this.props.searchShowing === true ? '108px' : '70px'
+                top: this.props.searchShowing === true ? '108px' : '70px',
+                overflow: 'hidden',
+                WebkitOverflowScrolling: 'touch',
+                height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
             }}>
                 <div className='dashboard-events-header'>
                     <h1 className='dashboard-events-title'>Events</h1>
@@ -93,7 +96,8 @@ class DashboardEvents extends Component {
     }
 
     reloadEvents = async () => {
-        const startDate = new Date(Date.now() - 1000 * 3600 * 24);
+        const startDate = new Date()
+        startDate.setHours(0, 0, 0, 0)
         const endDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
         const followedClubs = await Networking.getFollowedClubs();
 

@@ -61,7 +61,7 @@
     font-weight: normal;
     border-radius: 11px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     border: 1px solid #330d51;
     background-color: #ffffff;
@@ -81,7 +81,7 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     /* display: inline-block; */
     letter-spacing: normal;
     border: 1px solid #330d51;
@@ -104,7 +104,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .club-detail-information {
     font-size: 13px;
@@ -114,13 +115,14 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 .club-detail-information > span {
     color: #330d51;
     margin-right: 20px;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .club-detail-information-interest {
     display: flex;
@@ -136,7 +138,7 @@
     /* padding-left: 20px; */
     padding-right: 20px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
@@ -146,28 +148,28 @@
     margin-top: 40px;
     font-weight: bold;
     font-style: normal;
-    /* padding-left: 20px; */
+    padding-left: 0px;
     margin-bottom: 25px;
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .club-detail-portal-information {
-    width: calc(100% - 40px);
+    width: 90%;
     text-align: left;
     padding-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 2px;
     padding-bottom: 30px;
     margin-bottom: 100px;
     background-color: #ffffff;
-    -webkit-box-shadow: 0 0 10px 2px #e6e9ef;
     box-shadow: 0 0 10px 2px #e6e9ef;
 }
 .club-detail-portal-information > * {
-    /* padding-left: 20px; */
+    margin-left: 20px;
 }
 .club-detail-portal-information-title {
     font-size: 15px;
@@ -178,20 +180,27 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .club-detail-portal-information-link {
-    font-size: 15px;
+    position: relative;
+    display: block;
     font-weight: 300;
     color: #4d59fe;
+    overflow: hidden;
+    font-size: 0.8rem;
     line-height: 1.47;
     font-weight: bold;
     font-style: normal;
     margin-bottom: 20px;
+    white-space: nowrap;
     font-stretch: normal;
-    font-family: 'Gotham';
+    word-wrap: break-word;
+    font-family: 'Montserrat';
     text-decoration: none;
     letter-spacing: normal;
+    /* background-color: seagreen; */
 }
 .not-link {
     color: #323232;
@@ -207,7 +216,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .club-detail-events-list {
@@ -236,7 +246,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .club-detail-interest-dot {

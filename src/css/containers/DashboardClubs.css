@@ -14,13 +14,13 @@
     flex-flow: row;
     align-items: center;
     justify-content: space-between;
-
     top: 0px;
     width: 100%;
     height: 55px;
     background-color: white;
     border-bottom: 1px solid #e6e9ef;
 }
+
 .dashboard-clubs-title {
     position: relative;
     flex-shrink: 0;
@@ -35,18 +35,24 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
-.dashboard-clubs-umbrellas-list {
+.dashboard-clubs-umbrellas-container {
     position: absolute;
     top: 55px;
     right: 20px;
-    width: 135px;
     z-index: 10000;
+}
+
+.dashboard-clubs-umbrellas-list {
+    width: 135px;
+    height: 60vh;
     border-radius: 3px;
     box-shadow: 0 0 3px 1px rgba(215, 215, 225, 0.56);
 }
+
 .dashboard-umbrella-label {
     width: 100%;
     height: 20px;
@@ -62,22 +68,23 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     text-overflow: ellipsis;
     background-color: white;
     transition-duration: 0.2s;
 }
+
 .dashboard-umbrella-label:hover {
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     background-color: #e8e1ed;
 }
-
 
 .dashboard-clubs-club-list {
     position: relative;
     left: 0px;
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100%);
     /* background-color: aquamarine; */
 }

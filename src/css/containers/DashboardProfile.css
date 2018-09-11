@@ -24,7 +24,7 @@
   height: 29px;
   border-radius: 3px;
   margin: 5px;
-  font-family: Gotham;
+  font-family: 'Montserrat';
   font-size: 12px;
   font-weight: bold;
   font-style: normal;
@@ -36,6 +36,7 @@
 }
 
 .dashboard-profile-action-button-primary {
+    height: 40px;
     border: none;
     cursor: pointer;
     color: #ffffff;
@@ -50,6 +51,9 @@
 }
 
 .dashboard-profile-action-button-clear {
+    position: relative;
+    bottom: 10px;
+    height: 35px;
     color: #626181 !important;
     cursor: pointer;
     background: white !important;
@@ -59,10 +63,10 @@
     border: solid 1px #d7d7e1 !important;
 }
 .dashboard-profile-action-button-clear:hover {
-    background-color: rgb(241, 241, 241);
+    background: rgb(241, 241, 241) !important;
 }
-.dashboard-profile-action-button-clear:hover {
-    background-color: rgb(206, 206, 206);
+.dashboard-profile-action-button-clear:active {
+    background: rgb(224, 224, 224) !important;
 }
 
 .dashboard-profile-back-btn, .dashboard-profile-edit-btn {
@@ -88,7 +92,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
@@ -119,7 +123,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .dashboard-profile-school {
@@ -131,7 +136,7 @@
     margin-top: -15px;
     font-style: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
@@ -181,7 +186,8 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 .dashboard-profile-alert-tag {
     position: relative;

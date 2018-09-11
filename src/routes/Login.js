@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import _ from 'lodash';
+import * as UIUtil from '../util/UI';
 import Constants from '../util/Constants';
 import * as Storage from '../util/Storage';
 import Networking from '../util/Networking';
@@ -45,7 +46,7 @@ class Login extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         // Once you get here, check if the user is already logged in. If so,
         // run the onLogin function to go to the next page.
         const tokenInURL = Networking.getParameterByName('token', window.location.toString());
@@ -61,13 +62,13 @@ class Login extends Component {
         }
         const tokenInLocalstorage = Storage.getToken();
         if (tokenInLocalstorage !== null) {
-            if (Storage.getGuideFinished() && !window.location.href.includes('dashboard')) {
-                // dont go to guide if had already run through guide once
-                window.location.href = '/#/dashboard';
-            } else if (!_.isNil(Storage.getSelectedInsterest())) {
-                // if user had selected interests, has token in localstoage, but don't have getGuideFinished flag
-                // this is `edit preference`
+            if (Storage.getEditPreference()) {
+                // explicitly set that user is editing preference
                 this.handleGoToSelectInterests();
+            }
+            else if (!_.isEmpty(await Networking.getPreferenceInterests()) && !window.location.href.includes('dashboard')) {
+                // dont go to guide if had already run through guide once (identified by `getPreferenceInterests` not empty)
+                window.location.href = '/#/dashboard';
             } else {
                 setTimeout(this.handleGoToIntroductionContainer, 200);
             }
@@ -137,7 +138,7 @@ class Login extends Component {
         });
     }
 
-    loadResultsPage() {
+    loadResultsPage(_, __, ___, thumbnails) {
         this.transitionContainer(<LoginClubMatch 
             onRefine={() => {
                 this.showOverlay(
@@ -161,12 +162,13 @@ class Login extends Component {
                     }} />);
             }}
             onNext={() => {
-                Storage.setGuideFinished();
+                Storage.clearEditPreference();
                 this.transitionContainer(<LoginAllSet onNext={this.handleGoToDashboard.bind(this)} />);
             }}
             interests={this.state.selectedInterests}
             selectedClubs={this.state.selectedClubs}
-            clubMatches={this.state.matchingClubs} />
+            clubMatches={this.state.matchingClubs}
+            thumbnails={thumbnails} />
         );
     }
 
@@ -186,28 +188,19 @@ class Login extends Component {
         // Based on the selected interests, get a list of clubs that are associated with that interest.
         // 1.) Look through all of the categories and filter them by the ones that have an interest name
         // that matches one of the selected interests.
-        let categories = await Networking.getCategories();
-        categories = categories.filter((cat) => {
-            const containing = selectedInterests.filter((selInt) => {
-                return selInt.Name === cat.interest;
-            })
-            return containing.length > 0;
+        const allCategories = await Networking.getCategories();
+        let categories = allCategories.filter((cat) => {
+            return selectedInterests.map(i => i.Name).includes(cat.interest);
         });
-
         // 1.5.) filter by school, only query for categories of current user's  school
-        categories = filterCategoriesByUserSchool(categories);
-
+        categories = filterCategoriesByUserSchool(allCategories);
         // 2.) Now that you have the categories that only include the ones from the selected interests,
         // Use those categories to find the clubs that match the user's interests.
         let matchingClubs = await Networking.getClubs(Object.values(categories)
-            .map((val) => val.ID));
+            .map((val) => val.ID) || []);
         
-
-
-
         // 3.) Now that you have all of the clubs that match the user's preferences, send them over to
         // the club matches page.
-
         matchingClubs = matchingClubs.map(club => 
             ({
                 ...club,
@@ -221,14 +214,27 @@ class Login extends Component {
             interestColor: getInterestFromCategory(club.category).interestColor || "cyan",
             interestID: getInterestFromCategory(club.category).interestID || 0
         }));
-        
+
+        // 4.) Load the thumbnails.
+        const thumbnails = {};
+        const promises = matchingClubs.map(async club => {
+            return Networking.getClubInformation(club.ID);
+        });
+        const results = await Promise.all(promises);
+        results.forEach(club => {
+            thumbnails[club.id] = UIUtil.getClubThumbnail(club);
+        });
+
         this.setState({
             matchingClubs,
             selectedClubs: matchingClubs,
             categoriesMatchingInterest: categories,
             selectedInterests
-        }, () => {
-            this.loadResultsPage(this.state.selectedInterests, this.state.categoriesMatchingInterest, this.state.selectedClubs);
+        }, async () => {
+            this.loadResultsPage(this.state.selectedInterests, 
+                                this.state.categoriesMatchingInterest, 
+                                this.state.selectedClubs,
+                                thumbnails);
         });
     }
 

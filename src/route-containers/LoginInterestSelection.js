@@ -5,9 +5,9 @@ import CollectionView from '../components/CollectionView';
 import Maps from '../util/Maps';
 import ReactGA from 'react-ga';
 import GACat from '../util/GACategories';
-import * as Storage from '../util/Storage';
 import { interests } from '../util/InterestsAndCategories';
 import '../css/containers/LoginInterestSelection.css';
+import Networking from '../util/Networking';
 
 class LoginInterestSelection extends Component {
 
@@ -41,14 +41,18 @@ class LoginInterestSelection extends Component {
     render() {
         return (
             <div className="LoginInterestSelection container">
-                <h2 ref={this.alertRef} className='login-interests-title'>What are you most interested in?</h2>
+                <h2 ref={this.alertRef} 
+                    className='login-interests-title'
+                    role='region' aria-live='Interest Selection'>
+                    What are you most interested in?
+                </h2>
                 {this.state.isAlertVisible &&
-                    <div style={{ fontFamily: 'Gotham', color: '#c82368' }}>You have to select at least one interest</div>
+                    <div role='region' aria-live='Warning' style={{ fontFamily: 'Montserrat', color: '#c82368' }}>You have to select at least one interest</div>
                 }
                 <CollectionView ref='interests-collection-view'
                     className='login-interests-selections'
                     orientation={CollectionView.Orientation.vertical}
-                    edgeInsets={['10px', '0px', '30px', '0px']}
+                    edgeInsets={['0px', '0px', '30px', '0px']}
                     isScrollEnabled={false}
                     data={
                         this.state.interests.map((val) => {
@@ -60,7 +64,8 @@ class LoginInterestSelection extends Component {
 
                 {this.state.interests.some(i => i.selected) && <button 
                     className='bottom-rect-button login-interests-finish-btn'
-                    onClick={this.handleFinishSelectingInterests.bind(this)}>Next
+                    onClick={this.handleFinishSelectingInterests.bind(this)}
+                    role='region' aria-live='Next' aria-label='Click to receive a list of clubs that match your interests'>Next
                 </button>}
 			</div>
 		);
@@ -74,7 +79,7 @@ class LoginInterestSelection extends Component {
     *****************************/
 
     /** Handles the next action when the user is done selecting their interests. */
-    handleFinishSelectingInterests() {
+    async handleFinishSelectingInterests() {
         if (this.props.onNext) {
             // Trigger an event in Google Analytics for each selected interest.
             // This lets us know which categories are most clicked on.
@@ -94,7 +99,7 @@ class LoginInterestSelection extends Component {
             }
 
             // store this selection
-            Storage.setSelectedInsterest(_.map(selected, 'Name'));
+            await Networking.setPreferenceInterests(_.map(selected, 'Name'));
 
             this.props.onNext(selected);
         }
@@ -117,7 +122,14 @@ class LoginInterestSelection extends Component {
 
     /** Sets the state with some interests for the user. */
     async populateInterests() {
-        const previousSelection = Storage.getSelectedInsterest() || [];
+        // setup default value
+        this.setState({
+            interests: Object.values(interests),
+            selected: false,
+        });
+
+        // set interests with previous selection
+        const previousSelection = await Networking.getPreferenceInterests();
         this.setState({
             interests: Object.values(interests).map((val) => {
                 return {

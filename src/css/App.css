@@ -9,11 +9,12 @@
 
 .round-rect-button {
     width: 150px;
-    height: 35px;
+    /* height: 35px; */
     border: none;
     color: #fff;
     outline: none;
     font-size: 14px;
+    user-select: none;
     /* padding-top: 5px; */
     border-radius: 5px;
     margin: 0 auto 30px;
@@ -31,6 +32,7 @@
     color: #fff;
     outline: none;
     font-size: 16px;
+    user-select: none;
     /* padding-top: 5px; */
     /* border-radius: 5px; */
     /* margin: 0 auto 30px; */
@@ -53,10 +55,11 @@
 .pill-button {
     outline: none;
     cursor: pointer;
+    user-select: none;
+    margin-right: 10px;
     border-radius: 25px;
     text-decoration: none;
     transition-duration: 0.2s;
-    margin-right: 10px;
 }
 
 .club-card {
@@ -67,6 +70,8 @@
     cursor: pointer;
     text-align: left;
     border-radius: 4px;
+    margin-right: 10px;
+    margin-left: 10px;
     -webkit-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s;
@@ -113,7 +118,7 @@
     /* position: relative; */
     top: -5px;
     left: 8px;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.1;
     color: #323232;
     font-weight: bold;
@@ -126,7 +131,8 @@
     margin-bottom: -5px;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     line-height: 1.4rem;
 }
 
@@ -143,7 +149,7 @@
 }
 
 .club-card-tags-label {
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     word-wrap: break-word;
     width: 100px;
     position: relative;
@@ -156,7 +162,7 @@
 }
 
 .club-card-follow-button {
-    position: relative;
+    position: absolute;
     width: 68px;
     padding: 5px;
     cursor: pointer;
@@ -172,7 +178,7 @@
     margin-right: auto;
     text-align: center;
     border-radius: 25px;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     font-weight: 500;
     -webkit-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
@@ -180,6 +186,9 @@
     background-color: #ffffff;
     border: solid 2px #330d51;
     bottom: 0px;
+    left: calc(100% / 2 - 40px);
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .club-card-follow-button:hover {
@@ -208,7 +217,8 @@
 
 .event-item-host>span {
     color: #323232;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .event-left {
@@ -248,7 +258,8 @@
     margin-right: auto;
     margin-top: 5px;
     text-align: center;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .event-date-area>p:nth-child(2) {
@@ -260,7 +271,8 @@
     margin: unset;
     margin-right: auto;
     text-align: center;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .event-info-area {
@@ -280,7 +292,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     height: 1em;
     overflow: hidden;
 }
@@ -295,7 +308,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     text-overflow: ellipsis;
     height: 1em;
@@ -310,9 +323,9 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
-    height: 1em;
+    height: 1.2em;
     overflow: hidden;
 }
 
@@ -326,7 +339,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     text-overflow: ellipsis;
     height: 1em;
@@ -357,7 +370,8 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .no-results-view-emoji {
@@ -376,7 +390,8 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .no-results-view-subtitle {
@@ -389,5 +404,5 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
 }

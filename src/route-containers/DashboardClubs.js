@@ -39,7 +39,8 @@ class DashboardClubs extends Component {
     render = () => {
         return (
             <div className="DashboardClubs dashboard-container" style={{
-                top: this.props.searchShowing === true ? '108px' : '70px'
+                top: this.props.searchShowing === true ? '108px' : '70px',
+                height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
             }}>
                 <div className='dashboard-clubs-header'>
                     <h1 className='dashboard-clubs-title'>My Clubs</h1>

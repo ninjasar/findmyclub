@@ -52,7 +52,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-welcome-description {
@@ -68,16 +69,18 @@
     font-style: normal;
     line-height: 1.5;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
 .login-welcome-login-btn {
     /* position: absolute; */
     width: 200px;
+    height: 40px;
     bottom: 50px;
     display: block;
     font-size: 14px;
+    padding-top: 5px;
     margin: 40px auto !important;
     left: calc(100% / 2 - 100px);
 }

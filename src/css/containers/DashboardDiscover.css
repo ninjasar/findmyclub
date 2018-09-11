@@ -3,13 +3,13 @@
     flex-flow: row;
     align-items: center;
     justify-content: space-between;
-
     top: 0px;
     width: 100%;
     height: 55px;
     background-color: white;
     border-bottom: 1px solid #e6e9ef;
 }
+
 .dashboard-discover-title {
     position: relative;
     flex-shrink: 0;
@@ -24,8 +24,10 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
+
 .dashboard-discover-filter-btn {
     width: 25px;
     height: 25px;
@@ -40,9 +42,11 @@
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.35);
     background: linear-gradient(79deg, #561389, #c24785);
 }
+
 .dashboard-discover-filter-btn:hover {
     box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.35);
 }
+
 .dashboard-discover-umbrella-btn {
     position: absolute;
     right: -30px;
@@ -60,6 +64,7 @@
     background-color: #ffffff;
     box-shadow: 0 0 3px 1px rgba(215, 215, 225, 0.56);
 }
+
 .dashboard-discover-umbrellas-list {
     position: absolute;
     top: 55px;
@@ -69,6 +74,7 @@
     border-radius: 3px;
     box-shadow: 0 0 3px 1px rgba(215, 215, 225, 0.56);
 }
+
 .dashboard-umbrella-label {
     width: 100%;
     height: 20px;
@@ -84,14 +90,16 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
     text-overflow: ellipsis;
     background-color: white;
     transition-duration: 0.2s;
 }
+
 .dashboard-umbrella-label:hover {
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
     background-color: #e8e1ed;
 }
 
@@ -111,20 +119,16 @@
     box-sizing: border-box;
     border-bottom: 1px solid #d7d7e1;
 }
+
 .dashboard-club-item-vert {
-    display: -ms-flexbox;
-    /* display: flex; */
-    -ms-flex-flow: column;
+    display: flex;
     flex-flow: column;
-    -ms-flex-positive: 2;
     /* flex-grow: 2; */
     height: 100%;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -ms-flex-pack: end;
-    justify-content: baseline;
+    justify-content: center;
     margin: 0px 20px;
 }
+
 .dashboard-club-item-image {
     width: 50px;
     height: 50px;
@@ -133,27 +137,38 @@
     border-radius: 10px;
     background-color: #330d51;
 }
+
 .dashboard-club-item-title {
     font-size: 15px;
     color: #323232;
-    height: 2.2rem;
+    height: 2.4rem;
+    overflow: hidden;
     text-align: left;
     font-weight: 500;
-    font-style: normal;
-    padding-top: 18px;
-    line-height: normal;
-    font-stretch: normal;
-    letter-spacing: normal;
-    font-family: 'Gotham';
-    text-overflow: ellipsis;
+    line-height: 1.2rem;
+    font-family: 'Montserrat';
     margin: 0px;
-    overflow-wrap: break-word;
-    line-break: auto;
-    word-break: break-word;
-    overflow-x: hidden;
-    word-wrap: break-word;
-    overflow-y: hidden;
+    /* Only Safari and Chrome is supported. Text will be trucated 
+    in other browsers */
+    display: -webkit-box;
+    /*DO NOT remove autoprefixer unless create react app fixes this bug  */
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    -webkit-line-clamp: 2;
 }
+
+/* .dashboard-club-item-title::after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    height: 1.2em;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+} */
+
 .dashboard-club-item-tag {
     display: -ms-flexbox;
     display: flex;
@@ -167,16 +182,18 @@
     font-style: normal;
     border-radius: 10px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
-.dashboard-club-item-tag > p {
+
+.dashboard-club-item-tag>p {
     color: #2c2b55;
     text-align: left;
     font-size: 12px;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     margin-left: 5px;
 }
+
 .dashboard-club-item-tag-bubble {
     width: 8px;
     height: 8px;

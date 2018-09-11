@@ -5,15 +5,14 @@ import Networking from "./Networking";
 * @param {String} categoryName The name of the category.
 * @returns {Object} The interest object that comes from the hard-coded json. */
 export function getInterestFromCategory(categoryName) {
-
     if (!categoryName) {
-        return undefined;    
+        return undefined;
     }
     const matchingInterest = Object.values(interests).filter((interestObj) => {
-        return interestObj.categories.map((cat) => cat.toLowerCase()).includes(categoryName.toLowerCase());
+        return interestObj.categories.map((cat) => cat.toLowerCase()).includes(categoryName.trim().toLowerCase());
     })[0] || {};
 
-    return { 
+    return {
         interest: matchingInterest.Name,
         interestID: matchingInterest.ID,
         interestColor: matchingInterest.Color,
@@ -26,8 +25,8 @@ export function getInterestFromCategory(categoryName) {
 export async function getCategoryFromID(ID) {
     const allCats = await Networking.getCategories();
     const filtered = allCats.filter((cat) => cat.ID === ID);
-    
-    if(filtered.length > 0) return filtered[0];
+
+    if (filtered.length > 0) return filtered[0];
     else return null;
 }
 
@@ -245,7 +244,7 @@ export const umbrellas = [
     { id: 89839, name: 'Silver School of Social Work' },
     { id: 86332, name: 'Stern Undergraduate' },
     { id: 53830, name: 'Student Activities Board' },
-    { id: 78810, name: 'Tisch School of the Arts' }, 
+    { id: 78810, name: 'Tisch School of the Arts' },
 ];
 
 export const registrationSchoolsToUmbrellaID = {
@@ -259,6 +258,7 @@ export const registrationSchoolsToUmbrellaID = {
     "Tandon School of Engineering": 89838,
     "Silver School of Social Work": 89839,
     "College of Arts & Science": 106007,
+    "College of Arts and Science": 106007,
     "Liberal Studies": 111059,
     "NYU Steinhardt": 116531,
     "School of Professional Studies": 116946,
@@ -277,7 +277,7 @@ export const filterCategoriesByUserSchool = (categories) => {
     const umbrellaIDs = schoolNames
         .map((schoolName) => registrationSchoolsToUmbrellaID[schoolName])
         .filter((umid) => !_.isNil(umid));
-    
+
     // every one can see clubs from these 2 umbrellas
     const alwasyShownUmbrellaIDs = [registrationSchoolsToUmbrellaID['Center for Student Life'], registrationSchoolsToUmbrellaID['Student Activities Board']];
     umbrellaIDs.push(...alwasyShownUmbrellaIDs)

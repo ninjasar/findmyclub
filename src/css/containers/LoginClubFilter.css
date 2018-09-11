@@ -8,8 +8,9 @@
 }
 
 .login-club-filter-close-btn {
-    position: absolute;
+    position: fixed;
     top: 20px;
+    z-index: 1;
     right: 20px;
     border: none;
     outline: none;
@@ -37,16 +38,20 @@
 
 .login-club-filter-title {
     position: relative;
+    width: 50%;
     font-size: 28px;
     color: #330d51;
     margin-top: 30px;
     font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     font-style: normal;
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-club-filter-subtitle {
@@ -58,7 +63,7 @@
     text-align: center;
     margin-bottom: 25px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     letter-spacing: normal;
 }
 
@@ -81,7 +86,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .login-club-filter-section-items {
@@ -111,7 +117,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     display: inline-block;
     letter-spacing: normal;
 }
@@ -147,6 +153,7 @@
 
 .login-club-filters-filter-btn {
     position: relative;
+    height: 40px;
     font-size: 16px;
     color: #ffffff;
     margin-top: 20px;
@@ -160,6 +167,8 @@
     margin-bottom: 50px;
     line-height: normal;
     font-stretch: normal;
+    padding-top: 4px;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }

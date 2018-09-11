@@ -71,13 +71,12 @@ class DashboardProfile extends Component {
 
     /** What to do when you select an action. */
     handleEditPreference = () => {
-        Storage.clearGuideFinished();
+        Storage.setEditPreference();
         window.location.href = '/';
     }
 
     handleLogout = () => {
         Storage.clearToken();
-        Storage.clearSelectedInsterest();
         window.location.href = '/';
     }
 

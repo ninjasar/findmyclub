@@ -34,13 +34,14 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
 
 .dashboard-events-event-list {
     position: relative;
     left: 0px;
     width: 100%;
-    /* height: calc(100% - 90px); */
+    height: calc(100% - 60px);
     /* background-color: aquamarine; */
 }
