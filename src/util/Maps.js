@@ -69,14 +69,17 @@ export default {
                     }}
                     onClick={() => {
                         onClick(ID);
-                    }}>
+                    }}
+                    role='button' aria-live='Interest' aria-label={`
+                        Interest Name is ${Name}, This Interest is ${selected === true ? '' : 'not'} selected
+                    `}>
             {/* <img src={image} alt='interest-item' className={props.className + ' interest-image'}/> */}
-            <div className={`${props.className + ' interest-image-circle'}`}>
-            <span className={`${props.className + ' interest-image-emoji'}`}>
+            <div className={`${props.className + ' interest-image-circle'}`} aria-hidden='true'>
+            <span className={`${props.className + ' interest-image-emoji'}`} aria-hidden='true'>
                 {emoji}
             </span>
             </div>
-            <h2 className={props.className + ' interest-title'}>{Name}</h2>
+            <h2 className={props.className + ' interest-title'} aria-hidden='true'>{Name}</h2>
         </div>
     },
 

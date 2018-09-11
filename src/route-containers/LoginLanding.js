@@ -57,9 +57,12 @@ class LoginLanding extends Component {
                 : <div></div> }
 
                 <img src={Logo} alt="Find My Club" className="login-landing-logo" />
-                <div className="login-landing-text">Find clubs that are just right for you</div>
+                <div className="login-landing-text" role='region' aria-live='polite'>
+                    Find clubs that are just right for you
+                </div>
                 <button className="login-landing-login-btn"
-                    onClick={this.handleLogin.bind(this)}>Login</button>
+                    onClick={this.handleLogin.bind(this)}
+                    role='region' aria-live='Login' aria-label='Click to Login'>Login</button>
                 <img src={Promotion} alt="Promotion" className="login-landing-promotion" />
             </div>
         );

@@ -41,9 +41,13 @@ class LoginInterestSelection extends Component {
     render() {
         return (
             <div className="LoginInterestSelection container">
-                <h2 ref={this.alertRef} className='login-interests-title'>What are you most interested in?</h2>
+                <h2 ref={this.alertRef} 
+                    className='login-interests-title'
+                    role='region' aria-live='Interest Selection'>
+                    What are you most interested in?
+                </h2>
                 {this.state.isAlertVisible &&
-                    <div style={{ fontFamily: 'Montserrat', color: '#c82368' }}>You have to select at least one interest</div>
+                    <div role='region' aria-live='Warning' style={{ fontFamily: 'Montserrat', color: '#c82368' }}>You have to select at least one interest</div>
                 }
                 <CollectionView ref='interests-collection-view'
                     className='login-interests-selections'
@@ -60,7 +64,8 @@ class LoginInterestSelection extends Component {
 
                 {this.state.interests.some(i => i.selected) && <button 
                     className='bottom-rect-button login-interests-finish-btn'
-                    onClick={this.handleFinishSelectingInterests.bind(this)}>Next
+                    onClick={this.handleFinishSelectingInterests.bind(this)}
+                    role='region' aria-live='Next' aria-label='Click to receive a list of clubs that match your interests'>Next
                 </button>}
 			</div>
 		);
