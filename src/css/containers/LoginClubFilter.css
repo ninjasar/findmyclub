@@ -69,10 +69,13 @@
 
 .login-club-filter-section {
     margin-bottom: 30px;
+
 }
 
 .login-club-filters-filter-section {
     width: 100%;
+    margin-left: 30px;
+    margin-right: 20px;
     /* background-color: mediumpurple; */
 }
 
