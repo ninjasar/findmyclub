@@ -24,7 +24,7 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -90,7 +90,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
     text-overflow: ellipsis;
     background-color: white;
@@ -98,7 +98,7 @@
 }
 
 .dashboard-umbrella-label:hover {
-    font-family: 'Montserrat';
+    
     font-weight: bold;
     background-color: #e8e1ed;
 }
@@ -146,7 +146,7 @@
     text-align: left;
     font-weight: 500;
     line-height: 1.2rem;
-    font-family: 'Montserrat';
+    
     margin: 0px;
     /* Only Safari and Chrome is supported. Text will be trucated 
     in other browsers */
@@ -182,7 +182,7 @@
     font-style: normal;
     border-radius: 10px;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 
@@ -190,7 +190,7 @@
     color: #2c2b55;
     text-align: left;
     font-size: 12px;
-    font-family: 'Montserrat';
+    
     margin-left: 5px;
 }
 

@@ -47,7 +47,7 @@
     font-weight: normal;
     border-radius: 11px;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
     border: 1px solid #330d51;
     background-color: #ffffff;
@@ -80,7 +80,7 @@
     /* padding-left: 28.5px; */
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 .event-detail-date-2 {
@@ -96,7 +96,7 @@
     margin: 0;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -121,7 +121,7 @@
     white-space: pre-line;
     letter-spacing: normal;
     width: calc(100% - 110px);
-    font-family: 'Montserrat';
+    
     /* background-color: aqua; */
 }
 .event-detail-host {
@@ -136,7 +136,7 @@
     line-height: normal;
     font-stretch: normal;
     display: inline-block;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
     /* background-color: yellowgreen; */
 }
@@ -169,7 +169,7 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 .event-date-label {
@@ -180,7 +180,7 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 .event-location-label {
@@ -191,7 +191,7 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 
@@ -206,7 +206,7 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 .event-detail-description {
@@ -220,6 +220,6 @@
     font-style: normal;
     margin-bottom: 50px;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }

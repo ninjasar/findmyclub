@@ -55,7 +55,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     margin-bottom: 30px;
-    font-family: 'Montserrat';
+    
 }
 
 .login-club-matches-skip-btn:active {
@@ -72,7 +72,7 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -90,7 +90,7 @@
     padding-right: 40px;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 
@@ -104,7 +104,7 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -166,7 +166,7 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -180,13 +180,13 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 
 .login-club-matches-category-section-subtitle>span {
     color: #3cced9;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -215,7 +215,7 @@
     font-stretch: normal;
     text-decoration: none;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -249,7 +249,7 @@
     margin-left: auto;
     margin-right: auto;
     /* margin-bottom: 40px; */
-    font-family: 'Montserrat';
+    
     transition-duration: 0.2s;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
@@ -342,7 +342,7 @@
     text-align: center;
     font-style: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 
@@ -370,7 +370,7 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -385,7 +385,7 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 

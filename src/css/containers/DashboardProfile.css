@@ -24,7 +24,7 @@
   height: 29px;
   border-radius: 3px;
   margin: 5px;
-  font-family: 'Montserrat';
+  
   font-size: 12px;
   font-weight: bold;
   font-style: normal;
@@ -92,7 +92,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 
@@ -123,7 +123,7 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 
@@ -136,7 +136,7 @@
     margin-top: -15px;
     font-style: normal;
     font-stretch: normal;
-    font-family: 'Montserrat';
+    
     letter-spacing: normal;
 }
 
@@ -186,7 +186,7 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Montserrat';
+    
     font-weight: bold;
 }
 .dashboard-profile-alert-tag {

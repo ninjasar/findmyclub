@@ -38,7 +38,6 @@
     padding-left: 20px;
     border-radius: 5px;
     padding-right: 20px;
-    font-family: 'Gotham';
     background-color: white;
     animation: fadein 0.4s ease-out;
     border: 1px solid rgb(217, 174, 242);
@@ -76,7 +75,7 @@
 .login-landing-text {
     width: 200px;
     margin: 0 auto 20px;
-    font-family: 'Montserrat';
+    
     font-weight: 700;
     color: #626181;
     user-select: none;
@@ -93,7 +92,7 @@
     padding-top: 7px;
     border-radius: 5px;
     margin: 0 auto 30px;
-    font-family: 'Gotham-Bold';
+    font-weight: bold;
     background:  linear-gradient(79deg, #561389, #c24785) !important;
     background: -o-linear-gradient(79deg, #561389, #c24785) !important;
     background: -webkit-linear-gradient(79deg, #561389, #c24785) !important;
