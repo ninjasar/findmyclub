@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import React, { Component } from 'react';
 import Login from './routes/Login';
 import Dashboard from './routes/Dashboard';
@@ -45,6 +46,12 @@ class App extends Component {
             trackPath(location.hash);
         });
         trackPath(window.location.hash);
+
+        // Accessibility.
+        window.addEventListener('keypress', (e) => {
+            if(e.keyCode !== 32 && e.keyCode !== 13) return;
+            if(e.target) $(e.target).click();
+        });
    }
 
 	/****************************

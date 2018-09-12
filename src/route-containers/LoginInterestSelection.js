@@ -65,6 +65,7 @@ class LoginInterestSelection extends Component {
                 {this.state.interests.some(i => i.selected) && <button 
                     className='bottom-rect-button login-interests-finish-btn'
                     onClick={this.handleFinishSelectingInterests.bind(this)}
+                    tabIndex={0}
                     role='region' aria-live='Next' aria-label='Click to receive a list of clubs that match your interests'>Next
                 </button>}
 			</div>

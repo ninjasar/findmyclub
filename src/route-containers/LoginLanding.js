@@ -45,14 +45,17 @@ class LoginLanding extends Component {
         return (
             <div className="LoginLanding container">
                 <div className='login-landing-info-btn'
+                    tabIndex={0}
+                    role='button'
                     onClick={() => this.setState({ isShowingBetaInfo: !this.state.isShowingBetaInfo })}>
                     <img className="login-landing-info-icon" src={require('../images/info_icon.svg')} alt="information button" />
                 </div>
                 {this.state.isShowingBetaInfo ?
                     <div className='login-landing-beta-info-area' ref='login-landing-beta-info-area'>
-                        <p className='login-landing-beta-info-title'>Note: this is public beta, experience might change as we continue enhancing the application</p>
+                        <p className='login-landing-beta-info-title' tabIndex={0}>Note: this is public beta, experience might change as we continue enhancing the application</p>
                         <button className='login-landing-beta-info-close-btn'
-                            onClick={() => this.setState({ isShowingBetaInfo: false })}><span className='fa fa-times-circle' /></button>
+                                tabIndex={0}
+                                onClick={() => this.setState({ isShowingBetaInfo: false })}><span className='fa fa-times-circle' /></button>
                     </div>
                     : <div></div>}
 
@@ -62,6 +65,7 @@ class LoginLanding extends Component {
                 </h1>
                 <button className="login-landing-login-btn"
                     onClick={this.handleLogin.bind(this)}
+                    tabIndex={0}
                     role='region' aria-live='Click to login' aria-label='Click to Login'>Login</button>
                 <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion" />
             </div>

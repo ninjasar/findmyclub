@@ -76,7 +76,8 @@ export default {
                     }}
                     role='button' aria-live='Interest' aria-label={`
                         Interest Name is ${Name}, This Interest is ${selected === true ? '' : 'not'} selected
-                    `}>
+                    `}
+                    tabIndex={0}>
             {/* <img src={image} alt='interest-item' className={props.className + ' interest-image'}/> */}
             <div className={`${props.className + ' interest-image-circle'}`} aria-hidden='true'>
             <span className={`${props.className + ' interest-image-emoji'}`} aria-hidden='true'>
