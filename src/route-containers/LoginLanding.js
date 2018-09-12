@@ -46,7 +46,7 @@ class LoginLanding extends Component {
             <div className="LoginLanding container">
                 <div className='login-landing-info-btn'
                     onClick={() => this.setState({ isShowingBetaInfo: !this.state.isShowingBetaInfo })}>
-                    <span className='fa fa-info-circle' />
+                    <img className="login-landing-info-icon" src={require('../images/info_icon.svg')} alt="information button" />
                 </div>
                 {this.state.isShowingBetaInfo ?
                     <div className='login-landing-beta-info-area' ref='login-landing-beta-info-area'>

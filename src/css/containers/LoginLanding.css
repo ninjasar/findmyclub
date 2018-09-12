@@ -10,7 +10,6 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    opacity: 0.5;
     border: none;
     outline: none;
     cursor: pointer;
@@ -18,17 +17,21 @@
     background: none;
     text-decoration: none;
     transition-duration: 0.2s;
-    color: rgb(217, 174, 242);
 }
 
-.login-landing-info-btn:hover {
+.login-landing-info-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* .login-landing-info-btn:hover {
     opacity: 1;
     color: rgb(178, 142, 199);
 }
 
 .login-landing-info-btn:active {
     color: rgb(151, 113, 173);
-}
+} */
 
 .login-landing-beta-info-area {
     position: absolute;
