@@ -4,6 +4,7 @@ import Dashboard from './routes/Dashboard';
 import { HashRouter as Router, Route } from "react-router-dom";
 import ReactGA from 'react-ga';
 import history from './util/history';
+import Networking from './util/Networking';
 import './css/App.css';
 
 
@@ -30,11 +31,12 @@ class App extends Component {
     *****************************/
     constructor() {
         super();
-        ReactGA.initialize('UA-124576805-1', {
-            debug: true
-        });
+        ReactGA.initialize('UA-124576805-1');
 
         const trackPath = (path) => {
+            try { ReactGA.set({ userEmail: Networking.getJWTPayload().email }); }
+            catch (err) { }
+
             ReactGA.set({ page: path });
             ReactGA.pageview(path);
         };
