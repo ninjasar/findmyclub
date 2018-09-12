@@ -15,7 +15,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         interest }) 
                     }}
                     tabIndex={0}
-                    role='region' aria-live='Club Card' aria-label={`Club Title is ${Name}. 
+                    role='region' aria-live='assertive' aria-label={`Club Title is ${Name}. 
                                                                     The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
                         <img src={image} alt='club-preview' className='club-card-image'/>
@@ -75,7 +75,7 @@ export default {
                     onClick={() => {
                         onClick(ID);
                     }}
-                    role='button' aria-live='Interest' aria-label={`
+                    role='button' aria-live='assertive' aria-label={`
                         Interest Name is ${Name}, This Interest is ${selected === true ? '' : 'not'} selected
                     `}
                     tabIndex={0}>
@@ -101,12 +101,12 @@ export default {
         return (
             <div className='login-club-matches-category-section' key={name}>
                 <h1 className='login-club-matches-category-section-title'
-                    role='region' aria-live='Interest Title' aria-label={`Interest Title is ${name}`}
+                    role='region' aria-live='assertive' aria-label={`Interest Title is ${name}`}
                     tabIndex={0}>
                     {name}
                 </h1>
                 <h1 className='login-club-matches-category-section-subtitle'
-                    role='region' aria-live='Number of Clubs'
+                    role='region' aria-live='assertive'
                     tabIndex={0}>
                     We found <span style={{ color: interest.Color }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>

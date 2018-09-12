@@ -23,14 +23,6 @@ class LoginLanding extends Component {
 
     componentDidMount() {
         this.setState({ isShowingBetaInfo: true });
-        setTimeout(() => {
-            $('.login-landing-beta-info-area').animate({
-                opacity: 0
-            }, '0.2s', () => {
-                $('.login-landing-beta-info-area').css('opacity', 1);
-                this.setState({ isShowingBetaInfo: false });
-            });
-        }, 3000);
     }
 
 
@@ -66,7 +58,7 @@ class LoginLanding extends Component {
                 <button className="login-landing-login-btn"
                     onClick={this.handleLogin.bind(this)}
                     tabIndex={0}
-                    role='region' aria-live='Click to login' aria-label='Click to Login'>Login</button>
+                    role='region' aria-live='assertive' aria-label='Click to Login'>Login</button>
                 <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion" />
             </div>
         );

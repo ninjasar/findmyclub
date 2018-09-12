@@ -25,7 +25,7 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                     }
                 }}
                 role='button'
-                aria-live='Refine Search Button'>
+                aria-live='assertive'>
                 <p>Refine your search<span className='fas fa-sliders-h'></span></p>
             </button>
         </div>
@@ -40,7 +40,7 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                     }
                 }}
                 role='button'
-                aria-live='Refine Search Button'
+                aria-live='assertive'
                 tabIndex={isScrolled ? 0 : 1}>
                 Refine&nbsp;<span className='fas fa-sliders-h'></span>
             </button>

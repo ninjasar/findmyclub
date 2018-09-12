@@ -43,11 +43,11 @@ class LoginInterestSelection extends Component {
             <div className="LoginInterestSelection container">
                 <h2 ref={this.alertRef} 
                     className='login-interests-title'
-                    role='region' aria-live='Interest Selection'>
+                    role='region' aria-live='assertive'>
                     What are you most interested in?
                 </h2>
                 {this.state.isAlertVisible &&
-                    <div role='region' aria-live='Warning' style={{ fontFamily: 'Montserrat', color: '#c82368' }}>You have to select at least one interest</div>
+                    <div role='region' aria-live='assertive' style={{ fontFamily: 'Montserrat', color: '#c82368' }}>You have to select at least one interest</div>
                 }
                 <CollectionView ref='interests-collection-view'
                     className='login-interests-selections'
@@ -66,7 +66,7 @@ class LoginInterestSelection extends Component {
                     className='bottom-rect-button login-interests-finish-btn'
                     onClick={this.handleFinishSelectingInterests.bind(this)}
                     tabIndex={0}
-                    role='region' aria-live='Next' aria-label='Click to receive a list of clubs that match your interests'>Next
+                    role='region' aria-live='assertive' aria-label='Click to receive a list of clubs that match your interests'>Next
                 </button>}
 			</div>
 		);
