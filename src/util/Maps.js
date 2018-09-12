@@ -28,6 +28,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                     <p className='club-card-tags-label' aria-hidden={true}>{interest}</p>
                 </div>
                 <div className='club-card-follow-button' 
+                    aria-hidden={true}
                     onClick={() => { onFollowClick({ ID, Name, tags,
                                                     image, tagColor, followed,
                                                     interest }) }}
@@ -35,7 +36,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         color: followed === true ? 'white' : '#330d51',
                         backgroundColor: followed === true ? '#330d51' : 'white'
                     }}>
-                    <span className={followed === true ? 'fa fa-check' : 'fa fa-plus'} /> {followed === true ? 'Followed' : 'Follow' }
+                    <span aria-hidden={true} className={followed === true ? 'fa fa-check' : 'fa fa-plus'} /> {followed === true ? 'Followed' : 'Follow' }
                 </div>
             </div>
         </div>
@@ -183,23 +184,23 @@ export default {
         const host = event.host; // event.category && event.category.name;
         console.log(event);
         return (
-            <div className='event-item' key={key}>
+            <div className='event-item' key={key} tabIndex={0}>
                 <div className='event-left' onClick={() => onClick(title, date, host, key)}>
                     <div className='event-date-area'>
-                        <p>{date.split(" ")[0]}</p>
-                        <p>{date.split(" ")[1]}</p>
+                        <p tabIndex={0}>{date.split(" ")[0]}</p>
+                        <p tabIndex={0}>{date.split(" ")[1]}</p>
                     </div>
                 </div>
                 <div className='event-middle' onClick={() => onClick(title, date, host, key)}>
                     <div className='event-info-area'>
-                        <p className='event-title'>{title}</p>
-                        <p className='event-subtitle'>{host}</p>
-                        <p className='event-date'><span className='far fa-clock'/>&nbsp;&nbsp;{time}</p>
+                        <p tabIndex={0} className='event-title'>{title}</p>
+                        <p tabIndex={0} className='event-subtitle'>{host}</p>
+                        <p tabIndex={0} className='event-date'><span className='far fa-clock'/>&nbsp;&nbsp;{time}</p>
                     </div>
                 </div>
                 <div className='event-right' onClick={() => {
                 }}>
-                    <div className='event-calendar-area' onClick={() => event && UIUtil.exportEventToICal(event)}>
+                    <div tabIndex={0} className='event-calendar-area' onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>
                         <p className='event-calendar-label'>Add to Calendar</p>
                     </div>

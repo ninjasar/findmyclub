@@ -25,6 +25,7 @@
     "start-dev": "REACT_APP_BASE_URL='https://dev.findmyclub.nyu.edu' react-scripts start",
     "deploy-prod": "REACT_APP_BASE_URL='https://findmyclub.nyu.edu' react-scripts build && aws s3 cp build s3://findmyclub-prod-frontend/ --recursive --profile stit",
     "deploy-dev": "REACT_APP_BASE_URL='https://dev.findmyclub.nyu.edu' react-scripts build && aws s3 cp build s3://findmyclub-dev-frontend/ --recursive --profile stit",
+    "deploy-both": "npm run deploy-dev && npm run deploy-prod",
     "eject": "react-scripts eject"
   }
 }
