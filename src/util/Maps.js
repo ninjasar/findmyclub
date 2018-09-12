@@ -14,6 +14,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         image, tagColor, followed,
                         interest }) 
                     }}
+                    tabIndex={0}
                     role='region' aria-live='Club Card' aria-label={`Club Title is ${Name}. 
                                                                     The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
