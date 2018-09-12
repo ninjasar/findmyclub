@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import _ from 'lodash';
+import ReactGA from 'react-ga';
 import Constants from '../util/Constants';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
@@ -185,6 +186,8 @@ class Dashboard extends Component {
 
     /** Shows the list of clubs the user is part of. */
     showClubsTab() {
+        try { ReactGA.pageview(`/dashboard/clubs`); }
+        catch (err) { }
         this.setState({
             currentTab: 'club',
             searchKeyword: '',
@@ -194,6 +197,8 @@ class Dashboard extends Component {
 
     /** Shows the events list. */
     showEventsTab() {
+        try { ReactGA.pageview(`/dashboard/events`); }
+        catch (err) { }
         this.setState({
             currentTab: 'event',
             searchKeyword: '',
@@ -203,6 +208,8 @@ class Dashboard extends Component {
 
     /** Shows the discover tab. */
     showDiscoverTab() {
+        try { ReactGA.pageview(`/dashboard/all_nyu`); }
+        catch (err) { }
         this.setState({
             currentTab: 'discover',
             searchKeyword: '',

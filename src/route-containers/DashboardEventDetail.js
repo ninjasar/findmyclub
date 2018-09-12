@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/containers/DashboardEventDetail.css';
 import dateformat from 'dateformat';
 import * as UIUtil from '../util/UI';
+import ReactGA from 'react-ga';
 
 class DashboardEventDetail extends Component {
 
@@ -10,6 +11,10 @@ class DashboardEventDetail extends Component {
     *            INIT           *
     *                           *
     *****************************/   
+    componentDidMount = () => {
+        try { ReactGA.pageview(`/event/${this.props.event.id}`); }
+        catch (err) { }
+    }
 
 	/****************************
     *                           *
