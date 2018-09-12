@@ -2,6 +2,6 @@ export const setToken = (token) => localStorage.setItem('token', token);
 export const getToken = () => localStorage.getItem('token');
 export const clearToken = () => localStorage.removeItem('token');
 
-export const setGuideFinished = () => localStorage.setItem('guide_finished', true);
-export const getGuideFinished = () => localStorage.getItem('guide_finished');
-export const clearGuideFinished = () => localStorage.removeItem('guide_finished');
+export const setEditPreference = () => localStorage.setItem('edit_preference', true);
+export const getEditPreference = () => localStorage.getItem('edit_preference');
+export const clearEditPreference = () => localStorage.removeItem('edit_preference');

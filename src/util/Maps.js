@@ -9,18 +9,22 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
     return (
         <div className='club-item' key={ID}>
             <div className='club-card'>
-                <div className='club-card-top' onClick={() => { onClubClick({ ID, Name, tags,
-                                                                            image, tagColor, followed,
-                                                                            interest }) }}>
-                    <div className='club-card-image-area'>
+                <div className='club-card-top' 
+                    onClick={() => { onClubClick({ ID, Name, tags,
+                        image, tagColor, followed,
+                        interest }) 
+                    }}
+                    role='region' aria-live='Club Card' aria-label={`Club Title is ${Name}. 
+                                                                    The associated interest is ${interest}.`}>
+                    <div className='club-card-image-area' aria-hidden={true}>
                         <img src={image} alt='club-preview' className='club-card-image'/>
                     </div>
 
-                    <h3 className='club-card-title'>{Name.substring(0, 30)}{Name.length > 30 && '...'}</h3>
+                    <h3 className='club-card-title' aria-hidden={true}>{Name.substring(0, 30)}{Name.length > 30 && '...'}</h3>
                     <div className='club-card-tags' style={{
                         backgroundColor: tagColor 
-                    }}></div>
-                    <p className='club-card-tags-label'>{interest}</p>
+                    }} aria-hidden={true}></div>
+                    <p className='club-card-tags-label' aria-hidden={true}>{interest}</p>
                 </div>
                 <div className='club-card-follow-button' 
                     onClick={() => { onFollowClick({ ID, Name, tags,
@@ -69,14 +73,17 @@ export default {
                     }}
                     onClick={() => {
                         onClick(ID);
-                    }}>
+                    }}
+                    role='button' aria-live='Interest' aria-label={`
+                        Interest Name is ${Name}, This Interest is ${selected === true ? '' : 'not'} selected
+                    `}>
             {/* <img src={image} alt='interest-item' className={props.className + ' interest-image'}/> */}
-            <div className={`${props.className + ' interest-image-circle'}`}>
-            <span className={`${props.className + ' interest-image-emoji'}`}>
+            <div className={`${props.className + ' interest-image-circle'}`} aria-hidden='true'>
+            <span className={`${props.className + ' interest-image-emoji'}`} aria-hidden='true'>
                 {emoji}
             </span>
             </div>
-            <h2 className={props.className + ' interest-title'}>{Name}</h2>
+            <h2 className={props.className + ' interest-title'} aria-hidden='true'>{Name}</h2>
         </div>
     },
 
@@ -91,8 +98,12 @@ export default {
         const name = interest.Name;
         return (
             <div className='login-club-matches-category-section' key={name}>
-                <h1 className='login-club-matches-category-section-title'>{name}</h1>
-                <h1 className='login-club-matches-category-section-subtitle'>
+                <h1 className='login-club-matches-category-section-title'
+                    role='region' aria-live='Interest Title' aria-label={`Interest Title is ${name}`}>
+                    {name}
+                </h1>
+                <h1 className='login-club-matches-category-section-subtitle'
+                    role='region' aria-live='Number of Clubs'>
                     We found <span style={{ color: interest.Color }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 

@@ -35,7 +35,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .dashboard-clubs-umbrellas-container {
@@ -47,7 +48,7 @@
 
 .dashboard-clubs-umbrellas-list {
     width: 135px;
-    height: 65vh;
+    height: 60vh;
     border-radius: 3px;
     box-shadow: 0 0 3px 1px rgba(215, 215, 225, 0.56);
 }
@@ -67,7 +68,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
     text-overflow: ellipsis;
     background-color: white;
@@ -75,7 +76,8 @@
 }
 
 .dashboard-umbrella-label:hover {
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
     background-color: #e8e1ed;
 }
 

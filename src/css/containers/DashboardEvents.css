@@ -34,7 +34,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .dashboard-events-event-list {

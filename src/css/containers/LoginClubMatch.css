@@ -55,7 +55,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     margin-bottom: 30px;
-    font-family: 'Gotham';
+    
 }
 
 .login-club-matches-skip-btn:active {
@@ -72,7 +72,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .login-club-matches-title>span {
@@ -89,7 +90,7 @@
     padding-right: 40px;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
 }
 
@@ -103,7 +104,8 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .login-club-matches-go-back {
@@ -121,7 +123,7 @@
     padding-left: 15px;
     padding-right: 15px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.35);
-    background: linear-gradient(to left, #3cced9, #8568dd);
+    background: linear-gradient(79deg, #561389, #c24785);
 }
 
 .filter-button {
@@ -164,7 +166,8 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .login-club-matches-category-section-subtitle {
@@ -177,13 +180,14 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
 }
 
 .login-club-matches-category-section-subtitle>span {
     color: #3cced9;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .login-club-matches-club-list {
@@ -211,7 +215,8 @@
     font-stretch: normal;
     text-decoration: none;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .club-item {
@@ -244,14 +249,14 @@
     margin-left: auto;
     margin-right: auto;
     /* margin-bottom: 40px; */
-    font-family: 'Gotham';
+    
     transition-duration: 0.2s;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
-    background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
-    background: -webkit-gradient(linear, right top, left top, from(#3cced9), to(#8568dd)) !important;
-    background: -webkit-linear-gradient(right, #3cced9, #8568dd) !important;
-    background: linear-gradient(to left, #3cced9, #8568dd) !important;
+    background: -o-linear-gradient(79deg, #561389, #c24785) !important;
+    background: -webkit-gradient(linear, 79deg, #561389, #c24785) !important;
+    background: -webkit-linear-gradient(79deg, #561389, #c24785) !important;
+    background: linear-gradient(79deg, #561389, #c24785) !important;
 }
 
 .login-club-matches-finish-btn:hover {
@@ -337,7 +342,7 @@
     text-align: center;
     font-style: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
 }
 
@@ -365,7 +370,8 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .club-detail-list-section-subtitle {
@@ -379,7 +385,7 @@
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
 }
 

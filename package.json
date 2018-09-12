@@ -21,9 +21,10 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start-prod": "REACT_APP_BASE_URL='https://findmyclub.nyu.edu' react-scripts start",
+    "start-dev": "REACT_APP_BASE_URL='https://dev.findmyclub.nyu.edu' react-scripts start",
+    "deploy-prod": "REACT_APP_BASE_URL='https://findmyclub.nyu.edu' react-scripts build && aws s3 cp build s3://findmyclub-prod-frontend/ --recursive --profile stit",
+    "deploy-dev": "REACT_APP_BASE_URL='https://dev.findmyclub.nyu.edu' react-scripts build && aws s3 cp build s3://findmyclub-dev-frontend/ --recursive --profile stit",
     "eject": "react-scripts eject"
   }
 }

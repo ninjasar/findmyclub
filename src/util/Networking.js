@@ -37,7 +37,7 @@ const get = (path) => {
         // return a promise that never resolves
         return new Promise(() => { });
     }
-    return superagent.get(`${Constants.BASE_URL}${path}`)
+    return superagent.get(`${Constants.API_BASE_URL}${path}`)
         .set({
             'Authorization': `Bearer ${Storage.getToken()}`,
         });
@@ -48,7 +48,7 @@ const post = (path) => {
         // return a promise that never resolves
         return new Promise(() => { });
     }
-    return superagent.post(`${Constants.BASE_URL}${path}`)
+    return superagent.post(`${Constants.API_BASE_URL}${path}`)
         .set({
             'Authorization': `Bearer ${Storage.getToken()}`,
         });
@@ -82,7 +82,7 @@ const getJWTPayload = () => {
 /** Authenticates the user when the login button is clicked. */
 const authenticateUser = async () => {
     const currentLocation = window.location.toString();
-    const newLocation = `${Constants.BASE_URL}/auth/login?redirect=${currentLocation}`;
+    const newLocation = `${Constants.AUTH_BASE_URL}/login?redirect=${currentLocation}`;
     window.location = newLocation;
 }
 
@@ -90,7 +90,7 @@ const authenticateUser = async () => {
 /** Returns all of the categories from NYU Engage. 
 * @returns {Promise} Will either return an array of category objects or an error. */
 const getCategories = async () => {
-    const response = await superagent.get(`${Constants.BASE_URL}/v1/categories`);
+    const response = await superagent.get(`${Constants.API_BASE_URL}/categories`);
     return new Promise((res, rej) => {
         if(response.error === true) {
             rej(response.text);
@@ -110,7 +110,7 @@ const getCategories = async () => {
 * @param {Array} categoryID The array of ids of the category to look for clubs in. 
 * @returns {Promise} Returns either an array of clubs or an error. */
 const getClubs = async (categoryIDs) => {
-    const response = await superagent.get(`${Constants.BASE_URL}/v1/category_portals`)
+    const response = await superagent.get(`${Constants.API_BASE_URL}/category_portals`)
                                     .query({
                                         category_id: categoryIDs
                                     });
@@ -133,7 +133,7 @@ const getClubs = async (categoryIDs) => {
 * @param {Number} clubID The id for the club that you want to follow. 
 * @returns {Bool} Returns whether or not the club was successfully followed. */
 const followClub = async (clubID) => {
-    const response = await post(`/v1/user/follow?portal_id=${clubID}`);
+    const response = await post(`/user/follow?portal_id=${clubID}`);
     return response.error;
 }
 
@@ -142,7 +142,7 @@ const followClub = async (clubID) => {
 * @param {Number} clubID The id for the club that you want to unfollow. 
 * @returns {Bool} Returns whether or not the club was successfully unfollowed. */
 const unfollowClub = async (clubID) => {
-    const response = await post(`/v1/user/unfollow?portal_id=${clubID}`);
+    const response = await post(`/user/unfollow?portal_id=${clubID}`);
     return response.error;
 }
 
@@ -150,7 +150,7 @@ const unfollowClub = async (clubID) => {
 /** Retrieves a list of clubs that the user is following.
 * @returns {Array} Returns an array of club objects that the user is following. */
 const getFollowedClubs = async () => {
-    const response = await get(`/v1/user/follow`);
+    const response = await get(`/user/follow`);
     return new Promise((res, rej) => {
         if (response.error === true) {
             rej(response.text);
@@ -167,7 +167,7 @@ const getFollowedClubs = async () => {
 * @param {Date} endDate The end date of the events.
 * @returns {Array} Returns an array of event objects for the specified club. */
 const getEventsForClub = async (clubID, startDate, endDate) => {
-    const response = await get(`/v1/user/events`)
+    const response = await get(`/user/events`)
         .query({
             portal_id: clubID,
             start_date: dateformat(startDate, 'yyyy-mm-dd'),
@@ -195,7 +195,7 @@ const getEventsForClub = async (clubID, startDate, endDate) => {
 const clubDetailCache = { };
 
 const _getClubInformation = async (clubID) => {
-    const response = await get(`/v1/user/portal`)
+    const response = await get(`/user/portal`)
         // .set({
         //     'Content-Type': 'application/x-www-form-urlencode',
         // })
@@ -229,7 +229,7 @@ const getClubInformation = async (clubID, withCache=true) => {
  * @returns {Promise<[String]>}
  */
 const getPreferenceInterests = async () => {
-    const res = await get(`/v1/user/interests`);
+    const res = await get(`/user/interests`);
     if (res.error) {
         throw res.text;
     } else {
@@ -242,7 +242,7 @@ const getPreferenceInterests = async () => {
  * @param {[String]} interests 
  */
 const setPreferenceInterests = async (interests) => {
-    return post(`/v1/user/interests`).type('form').send({ interests });
+    return post(`/user/interests`).type('form').send({ interests });
 }
 
 export default {

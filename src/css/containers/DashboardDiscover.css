@@ -24,7 +24,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .dashboard-discover-filter-btn {
@@ -39,7 +40,7 @@
     text-decoration: none;
     transition-duration: 0.2s;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.35);
-    background: linear-gradient(to left, #3cced9, #8568dd);
+    background: linear-gradient(79deg, #561389, #c24785);
 }
 
 .dashboard-discover-filter-btn:hover {
@@ -89,7 +90,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
     text-overflow: ellipsis;
     background-color: white;
@@ -97,7 +98,8 @@
 }
 
 .dashboard-umbrella-label:hover {
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
     background-color: #e8e1ed;
 }
 
@@ -144,7 +146,7 @@
     text-align: left;
     font-weight: 500;
     line-height: 1.2rem;
-    font-family: 'Gotham';
+    
     margin: 0px;
     /* Only Safari and Chrome is supported. Text will be trucated 
     in other browsers */
@@ -180,7 +182,7 @@
     font-style: normal;
     border-radius: 10px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
 }
 
@@ -188,7 +190,7 @@
     color: #2c2b55;
     text-align: left;
     font-size: 12px;
-    font-family: 'Gotham';
+    
     margin-left: 5px;
 }
 

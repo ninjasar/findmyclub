@@ -43,7 +43,8 @@
     padding: 18px;
     -webkit-appearance: unset;
     text-decoration: none;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .dashboard-app-logo {
@@ -131,5 +132,6 @@
     display: inline-block;
     letter-spacing: normal;
     background-color: white;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }

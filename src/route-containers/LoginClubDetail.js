@@ -7,6 +7,7 @@ import CollectionView from '../components/CollectionView';
 import '../css/containers/LoginClubDetail.css';
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 import EmptyList from '../components/EmptyList';
+import ReactGA from 'react-ga';
 
 const maxEvents = 2;
 
@@ -66,6 +67,9 @@ class LoginClubDetail extends Component {
     }
     
     async componentDidMount() {
+        try { ReactGA.pageview(`/club/${this.props.club.ID}`); }
+        catch (err) { }
+
         await this.reloadCategory();
         await this.reloadEvents();
         await this.reloadClubDetail();

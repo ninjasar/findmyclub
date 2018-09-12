@@ -1,3 +1,7 @@
+* {
+    font-family: 'Montserrat';
+}
+
 .App {
     text-align: center;
 }
@@ -14,14 +18,14 @@
     color: #fff;
     outline: none;
     font-size: 14px;
+    user-select: none;
     /* padding-top: 5px; */
     border-radius: 5px;
     margin: 0 auto 30px;
-    font-family: 'Gotham-Bold';
-    transition-duration: 0.2s;
-    background: -o-linear-gradient(right, #3cced9, #8568dd);
-    background: -webkit-linear-gradient(to left, #3cced9, #8568dd);
-    background: linear-gradient(to left, #3cced9, #8568dd);
+    font-weight: bold;
+    background: -o-linear-gradient(79deg, #561389, #c24785);
+    background: -webkit-linear-gradient(79deg, #561389, #c24785);
+    background: linear-gradient(79deg, #561389, #c24785);
 }
 
 
@@ -32,13 +36,14 @@
     color: #fff;
     outline: none;
     font-size: 16px;
+    user-select: none;
     /* padding-top: 5px; */
     /* border-radius: 5px; */
     /* margin: 0 auto 30px; */
-    font-family: 'Gotham-Bold';
-    background: -o-linear-gradient(right, #3cced9, #8568dd) !important;
-    background: -webkit-linear-gradient(to left, #3cced9, #8568dd) !important;
-    background: linear-gradient(to left, #3cced9, #8568dd) !important;
+    font-weight: bold;
+    background: -o-linear-gradient(79deg, #561389, #c24785) !important;
+    background: -webkit-linear-gradient(79deg, #561389, #c24785) !important;
+    background: linear-gradient(79deg, #561389, #c24785) !important;
 }
 
 .round-rect-button:hover {
@@ -54,10 +59,11 @@
 .pill-button {
     outline: none;
     cursor: pointer;
+    user-select: none;
+    margin-right: 10px;
     border-radius: 25px;
     text-decoration: none;
     transition-duration: 0.2s;
-    margin-right: 10px;
 }
 
 .club-card {
@@ -129,7 +135,8 @@
     margin-bottom: -5px;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
     line-height: 1.4rem;
 }
 
@@ -146,7 +153,7 @@
 }
 
 .club-card-tags-label {
-    font-family: 'Gotham';
+    
     word-wrap: break-word;
     width: 100px;
     position: relative;
@@ -175,7 +182,7 @@
     margin-right: auto;
     text-align: center;
     border-radius: 25px;
-    font-family: 'Gotham';
+    
     font-weight: 500;
     -webkit-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
@@ -214,7 +221,8 @@
 
 .event-item-host>span {
     color: #323232;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .event-left {
@@ -254,7 +262,8 @@
     margin-right: auto;
     margin-top: 5px;
     text-align: center;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .event-date-area>p:nth-child(2) {
@@ -266,7 +275,8 @@
     margin: unset;
     margin-right: auto;
     text-align: center;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .event-info-area {
@@ -286,7 +296,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
     height: 1em;
     overflow: hidden;
 }
@@ -301,7 +312,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
     text-overflow: ellipsis;
     height: 1em;
@@ -316,9 +327,9 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
-    height: 1em;
+    height: 1.2em;
     overflow: hidden;
 }
 
@@ -332,7 +343,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
     text-overflow: ellipsis;
     height: 1em;
@@ -363,7 +374,8 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .no-results-view-emoji {
@@ -382,7 +394,8 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .no-results-view-subtitle {
@@ -395,5 +408,5 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham';
+    
 }

@@ -18,10 +18,12 @@ export default class SelectUmbrella extends React.Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside)
+    document.addEventListener('touchstart', this.handleClickOutside)
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside)
+    document.removeEventListener('touchend', this.handleClickOutside)
   }
 
   handleClickOutside = (e) => {
@@ -53,7 +55,12 @@ export default class SelectUmbrella extends React.Component {
             orientation={CollectionView.Orientation.vertical}
             data={
               InterestsAndCategories.umbrellas.map((val, index) => {
-                return Maps.mapUmbrellaToLabelComponent(val.name, index, this.props.didSelectUmbrella.bind(this, val));
+                return Maps.mapUmbrellaToLabelComponent(val.name, index, () => {
+                  this.props.didSelectUmbrella(val);
+                  this.setState({
+                    umbrellaSearchFocused: false,
+                  });
+                });
               })
             }
           />

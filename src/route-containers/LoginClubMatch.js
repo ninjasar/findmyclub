@@ -6,7 +6,6 @@ import * as UIUtil from '../util/UI';
 import ReactGA from 'react-ga';
 import GACat from '../util/GACategories';
 import '../css/containers/LoginClubMatch.css';
-import * as Storage from '../util/Storage';
 
 const TALL_HEADER = '140px'
 const SHORT_HEADER = '75px'
@@ -29,7 +28,9 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
             </button>
         </div>
         <div className='login-club-matches-header-short'>
-            <span onClick={handleGoBack} className='login-club-matches-go-back'>&lt;&nbsp; Go back</span>
+            <span onClick={handleGoBack} className='login-club-matches-go-back'>
+                <span className='fa fa-chevron-left'/>&nbsp; Go back
+            </span>
             <button className='pill-button filter-button-sm'
                 onClick={() => {
                     if (onRefine) {
@@ -67,7 +68,8 @@ class LoginClubMatch extends Component {
 
     async componentDidMount() {
         this.reloadFollowingClubs();
-        await this.getClubThumbnail();
+        // await this.getClubThumbnail();
+        this.setState({ thumbnails: this.props.thumbnails || [] });
     }
 
     handleScroll = (e) => {
@@ -238,7 +240,6 @@ class LoginClubMatch extends Component {
     }
 
     handleGoBack = () => {
-        Storage.clearGuideFinished();
         window.location.href = '/';
     }
 

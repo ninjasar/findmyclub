@@ -20,7 +20,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .LoginMatching > p {
@@ -33,6 +34,6 @@
     padding-right: 60px;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
 }

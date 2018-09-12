@@ -8,8 +8,9 @@
 }
 
 .login-club-filter-close-btn {
-    position: absolute;
+    position: fixed;
     top: 20px;
+    z-index: 1;
     right: 20px;
     border: none;
     outline: none;
@@ -49,7 +50,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .login-club-filter-subtitle {
@@ -61,16 +63,19 @@
     text-align: center;
     margin-bottom: 25px;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     letter-spacing: normal;
 }
 
 .login-club-filter-section {
     margin-bottom: 30px;
+
 }
 
 .login-club-filters-filter-section {
     width: 100%;
+    margin-left: 30px;
+    margin-right: 20px;
     /* background-color: mediumpurple; */
 }
 
@@ -84,7 +89,8 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
 
 .login-club-filter-section-items {
@@ -114,7 +120,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    font-family: 'Gotham';
+    
     display: inline-block;
     letter-spacing: normal;
 }
@@ -166,5 +172,6 @@
     font-stretch: normal;
     padding-top: 4px;
     letter-spacing: normal;
-    font-family: 'Gotham-Bold';
+    
+    font-weight: bold;
 }
