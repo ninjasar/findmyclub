@@ -44,26 +44,26 @@ class LoginLanding extends Component {
     render() {
         return (
             <div className="LoginLanding container">
-                <div className='login-landing-info-btn' 
+                <div className='login-landing-info-btn'
                     onClick={() => this.setState({ isShowingBetaInfo: !this.state.isShowingBetaInfo })}>
-                        <span className='fa fa-info-circle'/>
+                    <span className='fa fa-info-circle' />
                 </div>
-                { this.state.isShowingBetaInfo ? 
+                {this.state.isShowingBetaInfo ?
                     <div className='login-landing-beta-info-area' ref='login-landing-beta-info-area'>
                         <p className='login-landing-beta-info-title'>Note: this is public beta, experience might change as we continue enhancing the application</p>
                         <button className='login-landing-beta-info-close-btn'
-                                onClick={() => this.setState({ isShowingBetaInfo: false })}><span className='fa fa-times-circle'/></button>
+                            onClick={() => this.setState({ isShowingBetaInfo: false })}><span className='fa fa-times-circle' /></button>
                     </div>
-                : <div></div> }
+                    : <div></div>}
 
-                <img src={Logo} alt="Find My Club" className="login-landing-logo" />
-                <div className="login-landing-text" role='region' aria-live='polite'>
+                <img src={Logo} alt="Find My Club Logo" className="login-landing-logo" />
+                <h1 className="login-landing-text" role='region' aria-live='polite'>
                     Find clubs that are just right for you
-                </div>
+                </h1>
                 <button className="login-landing-login-btn"
                     onClick={this.handleLogin.bind(this)}
-                    role='region' aria-live='Login' aria-label='Click to Login'>Login</button>
-                <img src={Promotion} alt="Promotion" className="login-landing-promotion" />
+                    role='region' aria-live='Click to login' aria-label='Click to Login'>Login</button>
+                <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion" />
             </div>
         );
     }
