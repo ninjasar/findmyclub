@@ -8,7 +8,7 @@ import EmptyList from '../components/EmptyList';
 const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick) => {
     return (
         <div className='club-item' key={ID}>
-            <div className='club-card'>
+            <div className='club-card' tabIndex={0}>
                 <div className='club-card-top' 
                     onClick={() => { onClubClick({ ID, Name, tags,
                         image, tagColor, followed,
@@ -100,11 +100,13 @@ export default {
         return (
             <div className='login-club-matches-category-section' key={name}>
                 <h1 className='login-club-matches-category-section-title'
-                    role='region' aria-live='Interest Title' aria-label={`Interest Title is ${name}`}>
+                    role='region' aria-live='Interest Title' aria-label={`Interest Title is ${name}`}
+                    tabIndex={0}>
                     {name}
                 </h1>
                 <h1 className='login-club-matches-category-section-subtitle'
-                    role='region' aria-live='Number of Clubs'>
+                    role='region' aria-live='Number of Clubs'
+                    tabIndex={0}>
                     We found <span style={{ color: interest.Color }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 

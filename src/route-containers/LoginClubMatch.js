@@ -23,7 +23,9 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                     if (onRefine) {
                         onRefine();
                     }
-                }}>
+                }}
+                role='button'
+                aria-live='Refine Search Button'>
                 <p>Refine your search<span className='fas fa-sliders-h'></span></p>
             </button>
         </div>
@@ -36,7 +38,9 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                     if (onRefine) {
                         onRefine();
                     }
-                }}>
+                }}
+                role='button'
+                aria-live='Refine Search Button'>
                 Refine&nbsp;<span className='fas fa-sliders-h'></span>
             </button>
         </div>
