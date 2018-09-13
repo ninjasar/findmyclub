@@ -60,10 +60,6 @@ class Login extends Component {
         if (Networking.shouldExpireToken()) {
             Storage.clearToken();
         }
-
-        this.transitionContainer(<LoginLanding onLogin={this.handleGoToIntroductionContainer} />, 800);
-        return;
-
         const tokenInLocalstorage = Storage.getToken();
         if (tokenInLocalstorage !== null) {
             if (Storage.getEditPreference()) {
