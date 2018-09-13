@@ -22,7 +22,7 @@ class LoginLanding extends Component {
     }
 
     componentDidMount() {
-        // this.setState({ isShowingBetaInfo: true });
+        this.setState({ isShowingBetaInfo: true });
     }
 
 
@@ -40,7 +40,7 @@ class LoginLanding extends Component {
                     tabIndex={0}
                     role='button'
                     onClick={() => this.setState({ isShowingBetaInfo: !this.state.isShowingBetaInfo })}>
-                    {/* <img className="login-landing-info-icon" src={require('../images/info_icon.svg')} alt="information button" /> */}
+                    <img className="login-landing-info-icon" src={require('../images/info_icon.svg')} alt="information button" />
                 </div>
                 {this.state.isShowingBetaInfo ?
                     <div className='login-landing-beta-info-area' ref='login-landing-beta-info-area'>
