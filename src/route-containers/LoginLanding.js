@@ -57,23 +57,10 @@ class LoginLanding extends Component {
                 </h1>
                 <button className="login-landing-login-btn"
                     ref={(loginButton) => this.loginButton = loginButton}
-                    onClick={() => {
-                        this.shakeTimeout && clearTimeout(this.shakeTimeout);
-                        this.shakeTimeout = setTimeout(() => {
-                            this.loginButton.classList.remove('shaking');
-                        }, 500);
-                        this.loginButton.classList.add('shaking');
-                    }}
-                    // onClick={this.handleLogin.bind(this)}
+                    onClick={this.handleLogin.bind(this)}
                     tabIndex={0}
-                    role='region' aria-live='assertive' aria-label='Click to Login'>Coming Soon</button>
-                <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion"
-                    onClick={() => {
-                        this.loginClickCounter = (this.loginClickCounter || 0) + 1;
-                        if (this.loginClickCounter === 3) {
-                            this.handleLogin();
-                        }
-                    }}/>
+                    role='region' aria-live='assertive' aria-label='Click to Login'>Login</button>
+                <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion"/>
             </div>
         );
     }
