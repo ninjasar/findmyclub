@@ -1,5 +1,6 @@
 * {
-    font-family: 'Montserrat';
+    /* font-family: "Gotham SSm A"; */
+    font-family: 'Montserrat'
 }
 
 .App {
@@ -57,7 +58,7 @@
 }
 
 .pill-button {
-    outline: none;
+    /* outline: none; */
     cursor: pointer;
     user-select: none;
     margin-right: 10px;

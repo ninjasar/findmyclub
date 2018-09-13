@@ -23,7 +23,9 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                     if (onRefine) {
                         onRefine();
                     }
-                }}>
+                }}
+                role='button'
+                aria-live='assertive'>
                 <p>Refine your search<span className='fas fa-sliders-h'></span></p>
             </button>
         </div>
@@ -36,7 +38,10 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                     if (onRefine) {
                         onRefine();
                     }
-                }}>
+                }}
+                role='button'
+                aria-live='assertive'
+                tabIndex={isScrolled ? 0 : 1}>
                 Refine&nbsp;<span className='fas fa-sliders-h'></span>
             </button>
         </div>
@@ -156,6 +161,9 @@ class LoginClubMatch extends Component {
                 <div className='login-club-matches-body'>
 
                     <button
+                        role='button'
+                        aria-live='polite'
+                        aria-label='Click to Finish Selecting Clubs'
                         className='bottom-rect-button login-club-matches-finish-btn'
                         onClick={() => {
                             if (this.props.onNext) {

@@ -96,6 +96,8 @@ class LoginClubDetail extends Component {
                 if(this.state.clubWebsite) { this.setState({ clubWebsite: this.state.clubWebsite.substring(0, 50) }) };
             });
         }
+
+        this.refs['club-detail-close-btn'].focus();
     }
     
 	/****************************
@@ -113,80 +115,103 @@ class LoginClubDetail extends Component {
 			<div className="LoginClubDetail overlay">
                 
                 <div className="login-club-detail-top">
-                    <img className='club-detail-background-image' src={headerImageSrc} alt='preview'/>
+                    <img aria-hidden={true} className='club-detail-background-image' src={headerImageSrc} alt='preview'/>
                     <button 
+                        tabIndex={0}
+                        ref='club-detail-close-btn'
                         className='club-detail-close-btn'
+                        role='button'
+                        aria-live='polite'
+                        aria-label='Close Club Detail Button'
                         onClick={() => {
                             if(this.props.onClose) {
                                 this.props.onClose();
                             }
-                        }}><span className='fa fa-times'/>
+                        }}><span aria-hidden={true} className='fa fa-times'/>
                     </button>
                 </div>
                 
                 <div className="login-club-detail-middle">
 
                     <div className="login-club-detail-buttons">
-                        <button className='pill-button club-detail-follow-btn' onClick={this.handleFollowClub}
+                        <button className='pill-button club-detail-follow-btn' 
+                                onClick={this.handleFollowClub}
+                                role='button'
+                                aria-live='polite'
+                                aria-label={`Follow the club ${this.state.clubDetail && this.state.clubDetail.Name}`}
                                 style={{
                                     color: this.state.followed ? 'white' : '#330d51',
                                     backgroundColor: this.state.followed ? '#330d51' : 'white'
                                 }}>
-                            <span className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
+                            <span aria-hidden={true} className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} />&nbsp;{this.state.followed ? 'Followed' : 'Follow'}
                         </button>
                     </div>
 
                     <h1 className='club-detail-title'>{this.props.club.Name}</h1>
                     {
                         (this.state.category) &&
-                        <p className='club-detail-information club-detail-information-interest'>
-                            <span>Interest</span>
+                        <p className='club-detail-information club-detail-information-interest'
+                            role='region'
+                            aria-live='polite'
+                            aria-label={`Interest: ${interestName}`}>
+                            <span tabIndex={0} aria-hidden={true}>Interest</span>
                             {interestName}
                             <div className='club-detail-interest-dot' style={{ backgroundColor: interestColor }}>&nbsp;</div>
                         </p>
                     }
-                    <p className='club-detail-information'><span>Category</span> {this.state.category && this.state.category.Name}</p>
-                    <p className='club-detail-information'><span>Umbrella</span> {this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}</p>
-                    <p className='club-detail-information'><span>Join Link</span> <a className='club-detail-go-to-engage-link' href={links && links.web} target='_blank'>Join on Engage</a></p>
+                    <p tabIndex={0} className='club-detail-information'
+                        role='region'
+                        aria-live='polite'
+                        aria-label={`Category: ${this.state.category && this.state.category.Name}`}><span aria-hidden={true}>Category</span> {this.state.category && this.state.category.Name}</p>
+                    <p tabIndex={0} className='club-detail-information'
+                        role='region'
+                        aria-live='polite'
+                        aria-label={`Umbrella: ${this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}`}><span aria-hidden={true}>Umbrella</span> {this.state.clubDetail && this.state.clubDetail.Umbrella && this.state.clubDetail.Umbrella.name}</p>
+                    <p className='club-detail-information'
+                        role='button'
+                        aria-live='polite'
+                        aria-label={`Click to go to NYU Engage`}><span aria-hidden={true} tabIndex={0}>Join Link</span> <a className='club-detail-go-to-engage-link' href={links && links.web} target='_blank'>Join on Engage</a></p>
                 
-                    <p className='club-detail-description'>
+                    <p className='club-detail-description' tabIndex={0}
+                        role='region'
+                        aria-live='polite'>
                         {this.state.clubDetail && this.state.clubDetail.description}
                     </p>
 
-                    <h3 className='club-detail-portal-title'>Portal Information</h3>
+                    <h3 className='club-detail-portal-title' tabIndex={0}>Portal Information</h3>
                     <div className='club-detail-portal-information'>
-                        <p className='club-detail-portal-information-title'>Website</p>
+                        <p className='club-detail-portal-information-title' tabIndex={0}>Website</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubWebsite || "/"}>
                             {this.state.clubWebsite || "N/A"}
                         </a>
 
-                        <p className='club-detail-portal-information-title'>Facebook</p>
+                        <p className='club-detail-portal-information-title' tabIndex={0}>Facebook</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubFacebook || "/"} >
                             {this.state.clubFacebook || "N/A"}
                         </a>
 
-                        <p className='club-detail-portal-information-title'>Instagram</p>
+                        <p className='club-detail-portal-information-title' tabIndex={0}>Instagram</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubInstagram || "/"} >
                             {this.state.clubInstagram || "N/A"}
                         </a>
                         
-                        <p className='club-detail-portal-information-title'>Meetings</p>
+                        <p className='club-detail-portal-information-title' tabIndex={0}>Meetings</p>
                         <p className='club-detail-portal-information-link not-link'>
                             {this.state.clubMeetings || "N/A"}
                         </p>
 
-                        <p className='club-detail-portal-information-title'>Contact</p>
+                        <p className='club-detail-portal-information-title' tabIndex={0}>Contact</p>
                         <p className='club-detail-portal-information-link not-link'>
                             {this.state.clubContact || "N/A"}
                         </p>
 
-                        <p className='club-detail-portal-information-title'>Email</p>
+                        <p className='club-detail-portal-information-title' tabIndex={0}>Email</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubContactEmail || "/"}>
                             {this.state.clubContactEmail || "N/A"}
                         </a>
                     </div>
                     
-                    <h3 className='club-detail-events-title'>Upcoming Events</h3>
+                    <h3 className='club-detail-events-title' tabIndex={0}>Upcoming Events</h3>
                     <CollectionView 
                         className='club-detail-events-list'
                         orientation={CollectionView.Orientation.vertical}
@@ -214,10 +239,14 @@ class LoginClubDetail extends Component {
                     
                     {this.state.upcomingEvents.length > maxEvents && (
                         <button className="club-detail-see-more-btn" onClick={() => {
-                            this.setState({
-                                maxEvents: this.state.maxEvents === 0 ? maxEvents : 0,
-                            });
-                        }}>
+                                this.setState({
+                                    maxEvents: this.state.maxEvents === 0 ? maxEvents : 0,
+                                });
+                            }} 
+                            tabIndex={0}
+                            role='button'
+                            aria-live='polite'
+                            aria-label='Click to see more or fewer events'>
                             See {this.state.maxEvents === 0 ? "Less" : "More"}
                         </button>
                     )}
