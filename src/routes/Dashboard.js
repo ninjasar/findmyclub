@@ -18,7 +18,7 @@ import EventDetail from '../route-containers/DashboardEventDetail';
 import DashboardProfile from '../route-containers/DashboardProfile';
 /* OVERLAYS */
 
-import AppLogo from '../images/Beta-logo@2x.png';
+import AppLogo from '../images/FindMyClub_Logo.svg';
 import '../css/Dashboard.css';
 
 class Dashboard extends Component {

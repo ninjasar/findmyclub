@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import Networking from '../util/Networking';
 
-import Logo from '../images/Beta-logo@2x.png';
+import Logo from '../images/FindMyClub_Logo.svg';
 import Promotion from '../images/findMyClubPromotion.png'
 import '../css/containers/LoginLanding.css';
 
