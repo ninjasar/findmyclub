@@ -61,9 +61,24 @@ class LoginLanding extends Component {
                     Find clubs that are just right for you
                 </div>
                 <button className="login-landing-login-btn"
-                    onClick={this.handleLogin.bind(this)}
-                    role='region' aria-live='Login' aria-label='Click to Login'>Login</button>
-                <img src={Promotion} alt="Promotion" className="login-landing-promotion" />
+                    ref={(loginButton) => this.loginButton = loginButton}
+                    onClick={() => {
+                        this.shakeTimeout && clearTimeout(this.shakeTimeout);
+                        this.shakeTimeout = setTimeout(() => {
+                            this.loginButton.classList.remove('shaking');
+                        }, 500);
+                        this.loginButton.classList.add('shaking');
+                    }}
+                    // onClick={this.handleLogin.bind(this)}
+                    role='region' aria-live='Login' aria-label='Click to Login'>Coming Soon</button>
+                <img src={Promotion} alt="Promotion" className="login-landing-promotion" 
+                    onClick={() => {
+                        this.loginClickCounter = (this.loginClickCounter || 0) + 1;
+                        if (this.loginClickCounter === 3) {
+                            this.handleLogin();
+                        }
+                    }}
+                />
             </div>
         );
     }
