@@ -67,13 +67,7 @@ class LoginLanding extends Component {
                     // onClick={this.handleLogin.bind(this)}
                     tabIndex={0}
                     role='region' aria-live='assertive' aria-label='Click to Login'>Coming Soon</button>
-                <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion"
-                    onClick={() => {
-                        this.loginClickCounter = (this.loginClickCounter || 0) + 1;
-                        if (this.loginClickCounter === 3) {
-                            this.handleLogin();
-                        }
-                    }}/>
+                <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion"/>
             </div>
         );
     }
