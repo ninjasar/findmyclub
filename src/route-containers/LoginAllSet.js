@@ -11,6 +11,10 @@ class LoginAllSet extends Component {
     *                           *
     *****************************/
 
+    componentDidMount() {
+        document.title = 'Find My Club | All Set';
+    }
+
 
 	/****************************
     *                           *

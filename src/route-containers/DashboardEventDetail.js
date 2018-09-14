@@ -50,20 +50,20 @@ class DashboardEventDetail extends Component {
                         ref='event-detail-close-btn'
                         role='button'
                         aria-live='assertive'
-                        aria-label='Click to close Event Detail'
+                        aria-label='Close Button: Click to close Event Detail'
                         onClick={() => {
                             if(this.props.onClose) {
                                 this.props.onClose();
                             }
                         }}><span className='fa fa-times'/></button>
-                <img className='event-detail-background-image' src={thumbnail} alt='Event Preview Image'/>
+                <img className='event-detail-background-image' src={thumbnail} alt=''/>
 
                 <button className='pill-button event-detail-calender-btn' onClick={this.handleExportCalendar}
-                        role='button' aria-live='assertive' aria-label='Click to download to calendar'>
+                        role='button' aria-live='assertive' aria-label='Calendar Button: Click to download to calendar'>
                     <span className='fa fa-plus'/>&nbsp;Download iCal
                 </button>
 
-                <div className='event-detail-date-area' role='region' aria-live='polite' aria-label={`Date: ${month}, ${day}`}>
+                <div className='event-detail-date-area' role='region' aria-live='polite' aria-label={`Date of Event: ${month}, ${day}`}>
                     <p aria-hidden={true} className='event-detail-date-1'>{day}</p>
                     <p aria-hidden={true} className='event-detail-date-2'>{month}</p>
                 </div>
@@ -91,8 +91,14 @@ class DashboardEventDetail extends Component {
                         aria-live='polite'
                         aria-label={`Event Location: ${this.props.event.location}`}><span className='fas fa-map-marker-alt'/>&nbsp;&nbsp;{this.props.event.location}</p>
                     
-                    <h1 className='event-detail-description-label'>Description</h1>
-                    <p className='event-detail-description'>
+                    <h1 className='event-detail-description-label'
+                        role='region'
+                        aria-live='polite'
+                        aria-label='Header: Description'>Description</h1>
+                    <p className='event-detail-description'
+                        role='region'
+                        aria-live='polite'
+                        aria-label={`${this.props.event.description}`}>
                         {this.props.event.description}
                     </p>
                 </div>

@@ -28,6 +28,7 @@ class DashboardClubs extends Component {
 
     async componentDidMount() {
         this.reloadFollowingClubs();
+        document.title = 'Find My Club | Dashboard Clubs';
     }
 
 	/****************************

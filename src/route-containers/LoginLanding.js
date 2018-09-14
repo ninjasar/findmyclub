@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import Networking from '../util/Networking';
 
-import Logo from '../images/Beta-logo@2x.png';
+import Logo from '../images/Beta-logo-NEW.png';
 import Promotion from '../images/findMyClubPromotion.png'
 import '../css/containers/LoginLanding.css';
 
@@ -39,11 +39,11 @@ class LoginLanding extends Component {
                 <div className='login-landing-info-btn'
                     tabIndex={0}
                     role='button'
-                    aria-label='Info Button: Click for information about this beta'
+                    aria-label='Info Button: Click for tooltips'
                     onClick={() => this.setState({ isShowingBetaInfo: !this.state.isShowingBetaInfo })}>
                     <img className="login-landing-info-icon" 
                         src={require('../images/info_icon.svg')} 
-                        alt="information button"
+                        alt="Tooltip"
                         aria-hidden={true} />
                 </div>
                 {this.state.isShowingBetaInfo ?
@@ -68,7 +68,7 @@ class LoginLanding extends Component {
                 <button className="login-landing-login-btn"
                     ref={(loginButton) => this.loginButton = loginButton}
                     onClick={this.handleLogin.bind(this)}
-                    tabIndex={0}
+                    tabIndex={1}
                     role='button' 
                     aria-live='assertive' 
                     aria-label='Button: Click to Login'>Login</button>

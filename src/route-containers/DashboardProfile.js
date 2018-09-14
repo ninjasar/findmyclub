@@ -11,6 +11,16 @@ class DashboardProfile extends Component {
     *                           *
     *****************************/
 
+    componentDidMount() {
+        document.title = 'Find My Club | Dashboard Profile';
+    }
+    
+    componentWillUnmount() {
+        document.title = 'Find My Club | Dashboard';
+    }
+
+
+
 	/****************************
     *                           *
     *           RENDER          *

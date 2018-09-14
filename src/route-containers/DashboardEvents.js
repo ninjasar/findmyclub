@@ -31,6 +31,7 @@ class DashboardEvents extends Component {
 
     componentWillMount = () => {
         this.reloadEvents();
+        document.title = 'Find My Club | Dashboard Events';
     }
 
 	/****************************

@@ -33,6 +33,7 @@ class DashboardDiscover extends Component {
 
     componentDidMount() {
         this.reloadClubs();
+        document.title = 'Find My Club | Dashboard All NYU';
     }
 
 

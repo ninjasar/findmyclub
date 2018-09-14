@@ -18,7 +18,7 @@ import EventDetail from '../route-containers/DashboardEventDetail';
 import DashboardProfile from '../route-containers/DashboardProfile';
 /* OVERLAYS */
 
-import AppLogo from '../images/Beta-logo@2x.png';
+import AppLogo from '../images/Beta-logo-NEW.png';
 import '../css/Dashboard.css';
 
 class Dashboard extends Component {
@@ -44,6 +44,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.showClubsTab();
+        document.title = 'Find My Club | Dashboard';
     }
 
 

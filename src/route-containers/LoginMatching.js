@@ -10,6 +10,10 @@ class LoginMatching extends Component {
     *                           *
     *****************************/
 
+    componentDidMount() {
+        document.title = 'Find My Club | Matching';
+    }
+
 
 	/****************************
     *                           *

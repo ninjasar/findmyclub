@@ -28,6 +28,7 @@ class LoginInterestSelection extends Component {
 
     componentDidMount() {
         this.populateInterests();
+        document.title = 'Find My Club | Interest Selection';
     }
 
 

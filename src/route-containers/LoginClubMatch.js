@@ -81,6 +81,8 @@ class LoginClubMatch extends Component {
         this.reloadFollowingClubs();
         // await this.getClubThumbnail();
         this.setState({ thumbnails: this.props.thumbnails || [] });
+
+        document.title = 'Find My Club | Club Matches';
     }
 
     handleScroll = (e) => {
