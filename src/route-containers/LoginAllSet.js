@@ -27,12 +27,14 @@ class LoginAllSet extends Component {
 
                 <div className='login-allset-content'>
                     <p className='login-allset-icon'><span className='far fa-check-circle'/></p>
-                    <h3 className='login-allset-header'>You're all set!</h3>
-                    <p className='login-allset-description'>We have collected your chosen clubs in another page. Click "Finish" below
+                    <h3 className='login-allset-header' tabIndex={0}>You're all set!</h3>
+                    <p className='login-allset-description' tabIndex={0}>We have collected your chosen clubs in another page. Click "Finish" below
                         to see them!
                     </p>
                 </div>
-                <NavLink to='dashboard' className='round-rect-button login-allset-next-btn'>
+                <NavLink to='dashboard' 
+                        className='round-rect-button login-allset-next-btn'
+                        tabIndex={0}>
                     Finish
                 </NavLink>
 			</div>

@@ -12,7 +12,6 @@ class LoginClubFilter extends Component {
     *****************************/
     
     constructor(props) {
-
         super(props);
 
         const checkedCategories = this.props.checkedCategories || {};
@@ -25,6 +24,11 @@ class LoginClubFilter extends Component {
             checkedCategories,
         }
     }
+
+    componentDidMount() {
+        this.refs['login-club-filter-close-btn'].focus();
+    }
+
     
     
 	/****************************
@@ -36,8 +40,10 @@ class LoginClubFilter extends Component {
 	render() {
 		return (
 			<div className="LoginClubFilter overlay">
-                <button 
+                <button
+                    ref='login-club-filter-close-btn'
                     className='login-club-filter-close-btn'
+                    tabIndex={0}
                     onClick={() => {
                         if(this.props.onClose) {
                             this.props.onClose();
@@ -46,8 +52,8 @@ class LoginClubFilter extends Component {
                 >
                     <span className='fa fa-times'/>
                 </button>
-                <h1 className='login-club-filter-title'>Filter</h1>
-                <p className='login-club-filter-subtitle'>Check the boxes below to filter your results!</p>
+                <h1 className='login-club-filter-title' tabIndex={0}>Filter</h1>
+                <p className='login-club-filter-subtitle' tabIndex={0}>Check the boxes below to filter your results!</p>
                 
                 <CollectionView 
                     className='login-club-filters-filter-section'
@@ -63,6 +69,7 @@ class LoginClubFilter extends Component {
                         })}
                 />
                 <button 
+                    tabIndex={0}
                     className='round-rect-button login-club-filters-filter-btn'
                     onClick={() => {
                         if(this.props.onFiltered) {

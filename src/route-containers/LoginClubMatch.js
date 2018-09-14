@@ -13,26 +13,30 @@ const SHORT_HEADER = '75px'
 const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }) =>
     <div style={{ height: isScrolled ? SHORT_HEADER : TALL_HEADER }}
         className='login-club-matches-header'>
-        <div style={{ height: isScrolled ? '0' : TALL_HEADER }}
-            className='login-club-matches-header-tall'>
-            <h1 className='login-club-matches-title'>
-                <span>{selectedClubs.length}</span>&nbsp;clubs match your interests!
-                </h1>
-            <button className='pill-button filter-button club-detail-list-filter-btn'
-                onClick={() => {
-                    if (onRefine) {
-                        onRefine();
-                    }
-                }}
-                role='button'
-                aria-live='assertive'>
-                <p>Refine your search<span className='fas fa-sliders-h'></span></p>
-            </button>
-        </div>
+        {!isScrolled &&
+            <div style={{ height: isScrolled ? '0' : TALL_HEADER }}
+                className='login-club-matches-header-tall'>
+                <h1 className='login-club-matches-title' role='region' aria-live='polite' aria-label={`${selectedClubs.length} clubs match your interests!`}>
+                    <span>{selectedClubs.length}</span>&nbsp;clubs match your interests!
+                    </h1>
+                <button className='pill-button filter-button club-detail-list-filter-btn'
+                    onClick={() => {
+                        if (onRefine) {
+                            onRefine();
+                        }
+                    }}
+                    role='button'
+                    aria-live='assertive'
+                    aria-label='Refine your search button'>
+                    <p>Refine your search<span className='fas fa-sliders-h'></span></p>
+                </button>
+            </div>
+        }
+        
         <div className='login-club-matches-header-short'>
             <span onClick={handleGoBack} className='login-club-matches-go-back'>
-                <span className='fa fa-chevron-left'/>&nbsp; Go back
-            </span>
+                <span className='fa fa-chevron-left' />&nbsp; Go back
+    </span>
             <button className='pill-button filter-button-sm'
                 onClick={() => {
                     if (onRefine) {
@@ -41,10 +45,12 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                 }}
                 role='button'
                 aria-live='assertive'
+                aria-label='Refine Search Button'
                 tabIndex={isScrolled ? 0 : 1}>
                 Refine&nbsp;<span className='fas fa-sliders-h'></span>
             </button>
         </div>
+
     </div>
 
 class LoginClubMatch extends Component {
@@ -126,7 +132,7 @@ class LoginClubMatch extends Component {
                 {this.state.clubFilterOverlay}
                 {/* The see more overlay. */}
                 <div className='club-detail-list-view' >
-                    <div className='club-detail-body' >
+                    <div className='club-detail-body' role='region' aria-live='assertive'>
                         <CollectionView
                             className='club-detail-list-club-list'
                             ref='club-detail-list-club-list'

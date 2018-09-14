@@ -47,8 +47,12 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
 const mFtC = ( { title, checked, interest }, key, onChange) => {
     return (
         <div className='filter-item' key={key}>
-            <h2 className='filter-item-title'>{title}</h2>
-            <div className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'} 
+            <h2 className='filter-item-title' tabIndex={0}>{title}</h2>
+            <div tabIndex={0} 
+                className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'} 
+                role='button'
+                aria-live='assertive'
+                aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
                 onClick={() => { onChange(title) }}>
                 <span className={checked === true ? 'fa fa-check' : ''}/>
             </div>
@@ -148,7 +152,7 @@ export default {
     mapInterestToFilters: (interest, key, filters, onFilterSelected) => {
         return (
             <div className='login-club-filter-section' key={key}>
-                <h1 className='login-club-filter-section-title'>{interest}</h1>
+                <h1 className='login-club-filter-section-title' tabIndex={0}>{interest}</h1>
 
                 <CollectionView className='login-club-filter-section-items'
                                 orientation={CollectionView.Orientation.vertical}
