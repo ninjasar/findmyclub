@@ -64,7 +64,7 @@ class Dashboard extends Component {
                             tabIndex={0}
                             role='button'
                             aria-live='assertive'
-                            aria-label='Click to open the search bar'
+                            aria-label='Search Button: Click to open the search bar'
                             onClick={() => {
                                 this.setState({ searchBarShowing: !this.state.searchBarShowing })
                             }}><span className='fas fa-search'/></button>
@@ -75,7 +75,7 @@ class Dashboard extends Component {
                         tabIndex={0}
                         role='button'
                         aria-live='assertive'
-                        aria-label='Click to go to your profile'
+                        aria-label='Profile Button: Click to go to your profile'
                         onClick={this.toggleProfile.bind(this)}/>
                 </div>
                 <div className='dashboard-search-bar-area'
@@ -88,6 +88,7 @@ class Dashboard extends Component {
                     <input type='text'
                         className='dashboard-search-bar'
                         placeholder='Search for keywords'
+                        aria-label='Search Bar: Edit to search for clubs and events'
                         onChange={this.handleSearchKeywordChange}
                         value={this.state.searchKeyword}
                         style={{

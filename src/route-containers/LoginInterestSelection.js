@@ -43,7 +43,7 @@ class LoginInterestSelection extends Component {
             <div className="LoginInterestSelection container">
                 <h2 ref={this.alertRef} 
                     className='login-interests-title'
-                    role='region' aria-live='assertive'>
+                    role='region' aria-live='assertive' aria-label='Title: What are you most interested in?'>
                     What are you most interested in?
                 </h2>
                 {this.state.isAlertVisible &&
@@ -66,7 +66,10 @@ class LoginInterestSelection extends Component {
                     className='bottom-rect-button login-interests-finish-btn'
                     onClick={this.handleFinishSelectingInterests.bind(this)}
                     tabIndex={0}
-                    role='region' aria-live='assertive' aria-label='Click to receive a list of clubs that match your interests'>Next
+                    role='button' 
+                    aria-live='assertive'
+                    aria-label='Finish Button: Click to receive a list of clubs that match your interests'>
+                    Next
                 </button>}
 			</div>
 		);

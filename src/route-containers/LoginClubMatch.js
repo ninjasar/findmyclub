@@ -27,15 +27,15 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                     }}
                     role='button'
                     aria-live='assertive'
-                    aria-label='Refine your search button'>
+                    aria-label='Refine Button: Click to refine your search button'>
                     <p>Refine your search<span className='fas fa-sliders-h'></span></p>
                 </button>
             </div>
         }
         
-        <div className='login-club-matches-header-short'>
-            <span onClick={handleGoBack} className='login-club-matches-go-back'>
-                <span className='fa fa-chevron-left' />&nbsp; Go back
+        <div className='login-club-matches-header-short' role='button' aria-label='Back Button: Click to go back to the interests selection page'>
+            <span aria-hidden={true} onClick={handleGoBack} className='login-club-matches-go-back'>
+                <span aria-hidden={true} className='fa fa-chevron-left' />&nbsp; Go back
     </span>
             <button className='pill-button filter-button-sm'
                 onClick={() => {
@@ -45,7 +45,7 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                 }}
                 role='button'
                 aria-live='assertive'
-                aria-label='Refine Search Button'
+                aria-label='Refine Button: Click to refine your search button'
                 tabIndex={isScrolled ? 0 : 1}>
                 Refine&nbsp;<span className='fas fa-sliders-h'></span>
             </button>

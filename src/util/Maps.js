@@ -15,7 +15,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         interest }) 
                     }}
                     tabIndex={0}
-                    role='region' aria-live='assertive' aria-label={`Club Title is ${Name}. 
+                    role='button' aria-live='assertive' aria-label={`Club Title is ${Name}. 
                                                                     The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
                         <img src={image} alt='club-preview' className='club-card-image'/>
@@ -106,14 +106,15 @@ export default {
         return (
             <div className='login-club-matches-category-section' key={name}>
                 <h1 className='login-club-matches-category-section-title'
-                    role='region' aria-live='assertive' aria-label={`Interest Title is ${name}`}
+                    role='region' aria-live='assertive' aria-label={`Interest Title: ${name}`}
                     tabIndex={0}>
                     {name}
                 </h1>
                 <h1 className='login-club-matches-category-section-subtitle'
                     role='region' aria-live='assertive'
+                    aria-label={`We found ${clubs.length} club(s) that match your interest.`}
                     tabIndex={0}>
-                    We found <span style={{ color: interest.Color }}>{clubs.length} club(s)</span> that match your interest.
+                    We found <span aria-hidden={true} style={{ color: interest.Color }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 
                 <CollectionView className='login-club-matches-club-list'
@@ -213,7 +214,7 @@ export default {
                     <div tabIndex={0} 
                         role='button'
                         aria-live='polite'
-                        aria-label='Click to add event to calendar.'
+                        aria-label={`Click to add the event ${title} to calendar.`}
                         className='event-calendar-area' 
                         onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>

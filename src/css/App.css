@@ -46,7 +46,7 @@
     background: linear-gradient(79deg, #561389, #c24785) !important;
 }
 
-.round-rect-button:hover {
+/* .round-rect-button:hover {
     color: rgb(211, 211, 211);
     background-color: #330d51;
 }
@@ -54,7 +54,7 @@
 .round-rect-button:active {
     color: rgb(194, 194, 194);
     background-color: #200635;
-}
+} */
 
 .pill-button {
     /* outline: none; */
