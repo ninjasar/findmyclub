@@ -122,7 +122,7 @@ class LoginClubDetail extends Component {
                         className='club-detail-close-btn'
                         role='button'
                         aria-live='polite'
-                        aria-label='Close Club Detail Button'
+                        aria-label='Click to close Club Detail Button'
                         onClick={() => {
                             if(this.props.onClose) {
                                 this.props.onClose();
@@ -138,7 +138,7 @@ class LoginClubDetail extends Component {
                                 onClick={this.handleFollowClub}
                                 role='button'
                                 aria-live='polite'
-                                aria-label={`Follow the club ${this.state.clubDetail && this.state.clubDetail.Name}`}
+                                aria-label={`Click to follow or unfollow the club ${(this.state.club && this.state.club.Name) || ""}`}
                                 style={{
                                     color: this.state.followed ? 'white' : '#330d51',
                                     backgroundColor: this.state.followed ? '#330d51' : 'white'
@@ -154,8 +154,9 @@ class LoginClubDetail extends Component {
                         <p className='club-detail-information club-detail-information-interest'
                             role='region'
                             aria-live='polite'
+                            tabIndex={0}
                             aria-label={`Interest: ${interestName}`}>
-                            <span tabIndex={0} aria-hidden={true}>Interest</span>
+                            <span aria-hidden={true}>Interest</span>
                             {interestName}
                             <div className='club-detail-interest-dot' style={{ backgroundColor: interestColor }}>&nbsp;</div>
                         </p>
@@ -184,32 +185,32 @@ class LoginClubDetail extends Component {
                     <div className='club-detail-portal-information'>
                         <p className='club-detail-portal-information-title' tabIndex={0}>Website</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubWebsite || "/"}>
-                            {this.state.clubWebsite || "N/A"}
+                            {this.state.clubWebsite || "Not Available"}
                         </a>
 
                         <p className='club-detail-portal-information-title' tabIndex={0}>Facebook</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubFacebook || "/"} >
-                            {this.state.clubFacebook || "N/A"}
+                            {this.state.clubFacebook || "Not Available"}
                         </a>
 
                         <p className='club-detail-portal-information-title' tabIndex={0}>Instagram</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubInstagram || "/"} >
-                            {this.state.clubInstagram || "N/A"}
+                            {this.state.clubInstagram || "Not Available"}
                         </a>
                         
                         <p className='club-detail-portal-information-title' tabIndex={0}>Meetings</p>
                         <p className='club-detail-portal-information-link not-link' tabIndex={0}>
-                            {this.state.clubMeetings || "N/A"}
+                            {this.state.clubMeetings || "Not Available"}
                         </p>
 
                         <p className='club-detail-portal-information-title' tabIndex={0}>Contact</p>
                         <p className='club-detail-portal-information-link not-link' tabIndex={0}>
-                            {this.state.clubContact || "N/A"}
+                            {this.state.clubContact || "Not Available"}
                         </p>
 
                         <p className='club-detail-portal-information-title' tabIndex={0}>Email</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubContactEmail || "/"}>
-                            {this.state.clubContactEmail || "N/A"}
+                            {this.state.clubContactEmail || "Not Available"}
                         </a>
                     </div>
                     

@@ -61,11 +61,22 @@ class Dashboard extends Component {
                 
                 <div className='dashboard-top-bar'>
                     <button className='dashboard-toggle-search-btn'
+                            tabIndex={0}
+                            role='button'
+                            aria-live='assertive'
+                            aria-label='Click to open the search bar'
                             onClick={() => {
                                 this.setState({ searchBarShowing: !this.state.searchBarShowing })
                             }}><span className='fas fa-search'/></button>
-                    <img src={AppLogo} alt='logo' className='dashboard-app-logo'/>
-                    <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} alt='person' className='dashboard-profile-button' onClick={this.toggleProfile.bind(this)}/>
+                    <img src={AppLogo} alt='FindMyClub Logo' className='dashboard-app-logo'/>
+                    <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} 
+                        alt='Click to go to your profile' 
+                        className='dashboard-profile-button'
+                        tabIndex={0}
+                        role='button'
+                        aria-live='assertive'
+                        aria-label='Click to go to your profile'
+                        onClick={this.toggleProfile.bind(this)}/>
                 </div>
                 <div className='dashboard-search-bar-area'
                     style={{
@@ -95,13 +106,28 @@ class Dashboard extends Component {
                     <div className='dashboard-tab-indicator' style={{
                         left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
                     }}></div>
-                    <div className='dashboard-tab-bar-item' onClick={this.showClubsTab.bind(this)}>
+                    <div className='dashboard-tab-bar-item'
+                        role='button'
+                        aria-live='assertive'
+                        aria-label='Click to go to the My Clubs Tab'
+                        tabIndex={0}
+                        onClick={this.showClubsTab.bind(this)}>
                         <span className='fa fa-user'/>&nbsp;My Clubs
                     </div>
-                    <div className='dashboard-tab-bar-item' onClick={this.showEventsTab.bind(this)}>
+                    <div className='dashboard-tab-bar-item' 
+                        role='button'
+                        aria-live='assertive'
+                        aria-label='Click to go to the Events Tab'
+                        tabIndex={0}
+                        onClick={this.showEventsTab.bind(this)}>
                         <span className='fas fa-comments'/>&nbsp;Events
                     </div>
-                    <div className='dashboard-tab-bar-item' onClick={this.showDiscoverTab.bind(this)}>
+                    <div className='dashboard-tab-bar-item' 
+                        role='button'
+                        aria-live='assertive'
+                        aria-label='Click to go to the All NYU Tab'
+                        tabIndex={0}
+                        onClick={this.showDiscoverTab.bind(this)}>
                         <span className='fas fa-search'/>&nbsp;All NYU
                     </div>
                 </div>

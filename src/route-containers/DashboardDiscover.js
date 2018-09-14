@@ -49,7 +49,11 @@ class DashboardDiscover extends Component {
                 height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
             }}>
 				<div className='dashboard-discover-header'>
-                    <h1 className='dashboard-discover-title'>All NYU</h1>
+                    <h1 className='dashboard-discover-title'
+                        role='heading'
+                        aria-live='assertive'
+                        aria-label='Header: All NYU'
+                        tabIndex={0}>All NYU</h1>
                     <SelectUmbrella
                         didSelectUmbrella={this.didSelectUmbrella}
                         selectedUmbrella={this.state.selectedUmbrella}

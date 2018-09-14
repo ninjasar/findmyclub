@@ -43,7 +43,11 @@ class DashboardClubs extends Component {
                 height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
             }}>
                 <div className='dashboard-clubs-header'>
-                    <h1 className='dashboard-clubs-title'>My Clubs</h1>
+                    <h1 className='dashboard-clubs-title' 
+                        role='region'
+                        aria-live='assertive'
+                        aria-label='Header: My Clubs'
+                        tabIndex={0}>My Clubs</h1>
 
                     <SelectUmbrella
                         didSelectUmbrella={this.didSelectUmbrella}

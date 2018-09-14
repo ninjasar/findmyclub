@@ -23,7 +23,7 @@ export default class SelectUmbrella extends React.Component {
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside)
-    document.removeEventListener('touchend', this.handleClickOutside)
+    document.removeEventListener('touchstart', this.handleClickOutside)
   }
 
   handleClickOutside = (e) => {
@@ -72,7 +72,11 @@ export default class SelectUmbrella extends React.Component {
   renderButton = () => {
     return (
       <button className='dashboard-clubs-umbrella-btn'
-        onClick={this.handleUmbrellaSearchClicked} >
+        onClick={this.handleUmbrellaSearchClicked}
+        role='button'
+        aria-live='assertive'
+        aria-label='Click to filter by school'
+        tabIndex={0}>
         {
           this.props.selectedUmbrella ?
             <React.Fragment>

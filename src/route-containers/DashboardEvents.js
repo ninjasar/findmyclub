@@ -43,7 +43,11 @@ class DashboardEvents extends Component {
         const eventsToShow = UIUtil.filterEventByKeyword(this.state.events, this.props.searchKeyword);
 
         if (_.isEmpty(eventsToShow)) {
-            return <EmptyList subtitle='You don’t have any upcoming events.' />;
+            return <EmptyList role='button'
+                            aria-live='polite'
+                            tabIndex={0} 
+                            aria-label="You don't have any upcoming events."
+                            subtitle='You don’t have any upcoming events.' />;
         }
         return (
             <CollectionView className='dashboard-events-event-list'
@@ -60,7 +64,10 @@ class DashboardEvents extends Component {
     };
 
     renderLoading = () => {
-        return <LoadingBubbles />
+        return <LoadingBubbles role='region'
+                                aria-live='assertive'
+                                aria-label='Loading events. Please wait.'
+                                tabIndex={0}/>
     };
 
     render() {
@@ -72,7 +79,11 @@ class DashboardEvents extends Component {
                 height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
             }}>
                 <div className='dashboard-events-header'>
-                    <h1 className='dashboard-events-title'>Events</h1>
+                    <h1 className='dashboard-events-title'
+                        role='heading'
+                        aria-live='assertive'
+                        aria-label='Header: Events'
+                        tabIndex={0}>Events</h1>
                 </div>
                 {
                     _.isNil(this.state.events) ? this.renderLoading() : this.renderEvents()

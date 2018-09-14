@@ -188,8 +188,14 @@ export default {
         const host = event.host; // event.category && event.category.name;
         console.log(event);
         return (
-            <div className='event-item' key={key} tabIndex={0}>
-                <div className='event-left' onClick={() => onClick(title, date, host, key)}>
+            <div className='event-item' key={key}>
+                <div className='event-left' onClick={() => onClick(title, date, host, key)}  
+                    tabIndex={0} 
+                    role='button' 
+                    aria-live='polite'
+                    aria-label={`
+                        Event called ${title}. This event is hosted by ${host} and takes place ${time}.
+                    `}>
                     <div className='event-date-area'>
                         <p tabIndex={0}>{date.split(" ")[0]}</p>
                         <p tabIndex={0}>{date.split(" ")[1]}</p>
@@ -204,7 +210,12 @@ export default {
                 </div>
                 <div className='event-right' onClick={() => {
                 }}>
-                    <div tabIndex={0} className='event-calendar-area' onClick={() => event && UIUtil.exportEventToICal(event)}>
+                    <div tabIndex={0} 
+                        role='button'
+                        aria-live='polite'
+                        aria-label='Click to add event to calendar.'
+                        className='event-calendar-area' 
+                        onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>
                         <p className='event-calendar-label'>Add to Calendar</p>
                     </div>
@@ -227,12 +238,18 @@ export default {
     mapClubToDashboardComponent: ({ Name, image, ID }, interest, index, onClick) => {
         interest = interest || {};
         return (
-            <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }>
-                <img src={image} alt='club' className='dashboard-club-item-image'/>
-                <div className='dashboard-club-item-vert'>
-                    <h4 className='dashboard-club-item-title'>{Name}</h4>
-                    <div className='dashboard-club-item-tag'>
-                        <div className='dashboard-club-item-tag-bubble'
+            <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }
+                tabIndex={0}
+                role='button'
+                aria-live='assertive'
+                aria-label={`
+                    Club name is ${Name} and its associated interest is ${interest.interest}.
+                `}>
+                <img aria-hidden={true} src={image} alt='club' className='dashboard-club-item-image'/>
+                <div aria-hidden={true} className='dashboard-club-item-vert'>
+                    <h4 aria-hidden={true} className='dashboard-club-item-title'>{Name}</h4>
+                    <div aria-hidden={true} className='dashboard-club-item-tag'>
+                        <div aria-hidden={true} className='dashboard-club-item-tag-bubble'
                             style={{
                                 backgroundColor: interest.interestColor
                             }}></div>&nbsp;<span>{interest.interest}</span>
@@ -249,7 +266,11 @@ export default {
     * @param {Function} onClick What to do when you click the label. */
     mapUmbrellaToLabelComponent: (umbrellaName, key, onClick) => {
         return (
-            <div className='dashboard-umbrella-label' key={key} onClick={onClick}>
+            <div className='dashboard-umbrella-label' key={key} onClick={onClick}
+                role='button'
+                aria-live='assertive'
+                aria-label={umbrellaName}
+                tabIndex={0}>
                 {umbrellaName.substring(0, 18) + '...'}
             </div>
         )
