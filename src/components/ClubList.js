@@ -67,19 +67,22 @@ export default class ClubList extends React.Component {
     }
     
     return (
-      <div className='club-list'>
+      <div className='club-list' role='list' tabIndex={-1}>
         {
           clubsToShow.map((club, index) => {
             const clubDetail = this.state.clubDetails[club.ID];
             const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
             return (
               <LazyLoad key={club.ID} height={84} overflow placeholder={(<div style={{height: 84}}>{club.Name}</div>)}>
-                <Club club={club} onComponentDidMount={() => this.reloadClubDetail(club.ID)}>
+                <Club role='listitem' club={club} onComponentDidMount={() => this.reloadClubDetail(club.ID)}>
                   {
                     Maps.mapClubToDashboardComponent({
                       ...club,
                       image: UIUtil.getClubThumbnail(this.state.clubDetails[club.ID]),
-                    }, interest, index, () => this.props.onSelectClub(club))
+                    }, interest, 
+                    index, 
+                    () => this.props.onSelectClub(club), 
+                    this.props.overlayShowing)
                   }
                 </Club>
               </LazyLoad>

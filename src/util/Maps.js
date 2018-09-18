@@ -178,8 +178,9 @@ export default {
     /** Maps an upcoming event object to a component. 
     * @param {Object} _ The event object to use for info gathering.
     * @param {String|Number} key The key used to identify this event component.
-    * @param {Function} onClick What to do when an event is clicked. */
-    mapEventToComponent: (event, key, onClick) => {
+    * @param {Function} onClick What to do when an event is clicked.
+    * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
+    mapEventToComponent: (event, key, onClick, overlayShowing) => {
         console.log(event)
         const { title } = event;
         const firestDate = (event.dates || [])[0];
@@ -191,27 +192,27 @@ export default {
         return (
             <div className='event-item' key={key}>
                 <div className='event-left' onClick={() => onClick(title, date, host, key)}  
-                    tabIndex={0} 
+                    tabIndex={overlayShowing ? - 1 : 0} 
                     role='button' 
                     aria-live='polite'
                     aria-label={`
                         Event called ${title}. This event is hosted by ${host} and takes place ${time}.
                     `}>
                     <div className='event-date-area'>
-                        <p tabIndex={0}>{date.split(" ")[0]}</p>
-                        <p tabIndex={0}>{date.split(" ")[1]}</p>
+                        <p tabIndex={overlayShowing ? - 1 : 0}>{date.split(" ")[0]}</p>
+                        <p tabIndex={overlayShowing ? - 1 : 0}>{date.split(" ")[1]}</p>
                     </div>
                 </div>
                 <div className='event-middle' onClick={() => onClick(title, date, host, key)}>
                     <div className='event-info-area'>
-                        <p tabIndex={0} className='event-title'>{title}</p>
-                        <p tabIndex={0} className='event-subtitle'>{host}</p>
-                        <p tabIndex={0} className='event-date'><span className='far fa-clock'/>&nbsp;&nbsp;{time}</p>
+                        <p tabIndex={overlayShowing ? - 1 : 0} className='event-title'>{title}</p>
+                        <p tabIndex={overlayShowing ? - 1 : 0} className='event-subtitle'>{host}</p>
+                        <p tabIndex={overlayShowing ? - 1 : 0} className='event-date'><span className='far fa-clock'/>&nbsp;&nbsp;{time}</p>
                     </div>
                 </div>
                 <div className='event-right' onClick={() => {
                 }}>
-                    <div tabIndex={0} 
+                    <div tabIndex={overlayShowing ? - 1 : 0} 
                         role='button'
                         aria-live='polite'
                         aria-label={`Click to add the event ${title} to calendar.`}
@@ -235,12 +236,13 @@ export default {
     /** Maps a club object to a dashboard component.
     * @param {Object} club The club object with all the data that needs to be displayed.
     * @param {String|Number} key The key for identifying the component in the collection view. 
-    * @param {Function} onClick What to do when you click on a club. */
-    mapClubToDashboardComponent: ({ Name, image, ID }, interest, index, onClick) => {
+    * @param {Function} onClick What to do when you click on a club. 
+    * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
+    mapClubToDashboardComponent: ({ Name, image, ID }, interest, index, onClick, overlayShowing) => {
         interest = interest || {};
         return (
             <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }
-                tabIndex={0}
+                tabIndex={overlayShowing ? -1 : 0}
                 role='button'
                 aria-live='assertive'
                 aria-label={`
@@ -264,14 +266,15 @@ export default {
     /** Maps an umbrella to a component with just at text label. 
     * @param {String} umbrellaName The name of the umbrella.
     * @param {String|Number} key The key for identifying the component in the collection view.
-    * @param {Function} onClick What to do when you click the label. */
-    mapUmbrellaToLabelComponent: (umbrellaName, key, onClick) => {
+    * @param {Function} onClick What to do when you click the label.
+    * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
+    mapUmbrellaToLabelComponent: (umbrellaName, key, onClick, overlayShowing) => {
         return (
             <div className='dashboard-umbrella-label' key={key} onClick={onClick}
                 role='button'
                 aria-live='assertive'
                 aria-label={umbrellaName}
-                tabIndex={0}>
+                tabIndex={overlayShowing ? - 1 : 0}>
                 {umbrellaName.substring(0, 18) + '...'}
             </div>
         )

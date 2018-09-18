@@ -10,6 +10,7 @@ import Maps from '../util/Maps';
 import '../css/containers/DashboardEvents.css';
 
 import Networking from '../util/Networking';
+import Globals from '../util/Globals';
 
 class DashboardEvents extends Component {
 
@@ -32,6 +33,13 @@ class DashboardEvents extends Component {
     componentWillMount = () => {
         this.reloadEvents();
         document.title = 'Find My Club | Dashboard Events';
+
+        if(!this.state.events || this.state.events.length === 0) {
+            Globals.searchDisabled = true;
+        } else {
+            Globals.searchDisabled = false;
+        }
+        this.props.parent.forceUpdate();
     }
 
 	/****************************
@@ -46,7 +54,7 @@ class DashboardEvents extends Component {
         if (_.isEmpty(eventsToShow)) {
             return <EmptyList role='button'
                             aria-live='polite'
-                            tabIndex={0} 
+                            tabIndex={this.props.overlayShowing ? - 1 : 0} 
                             aria-label="You don't have any upcoming events."
                             subtitle='You don’t have any upcoming events.' />;
         }
@@ -58,7 +66,7 @@ class DashboardEvents extends Component {
                     eventsToShow.map((event, index) => {
                         const host = this.state.eventsToClubs[event.id]
                         event.host = host.Name
-                        return Maps.mapEventToComponent(event, index, () => this.didSelectEvent(event));
+                        return Maps.mapEventToComponent(event, index, () => this.didSelectEvent(event), this.state.overlayShowing);
                     })
                 } />
         );
@@ -68,7 +76,7 @@ class DashboardEvents extends Component {
         return <LoadingBubbles role='region'
                                 aria-live='assertive'
                                 aria-label='Loading events. Please wait.'
-                                tabIndex={0}/>
+                                tabIndex={this.props.overlayShowing ? - 1 : 0}/>
     };
 
     render() {
@@ -84,7 +92,7 @@ class DashboardEvents extends Component {
                         role='heading'
                         aria-live='assertive'
                         aria-label='Header: Events'
-                        tabIndex={0}>Events</h1>
+                        tabIndex={this.props.overlayShowing ? - 1 : 0}>Events</h1>
                 </div>
                 {
                     _.isNil(this.state.events) ? this.renderLoading() : this.renderEvents()

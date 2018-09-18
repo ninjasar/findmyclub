@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import $ from 'jquery';
 
 import LoadingBubbles from '../components/LoadingBubbles';
 import SelectUmbrella from '../components/SelectUmbrella';
@@ -8,6 +9,7 @@ import ClubList from '../components/ClubList';
 import '../css/containers/DashboardDiscover.css';
 
 import Networking from '../util/Networking';
+import Globals from '../util/Globals';
 
 class DashboardDiscover extends Component {
 
@@ -31,9 +33,16 @@ class DashboardDiscover extends Component {
         }
     }
 
-    componentDidMount() {
-        this.reloadClubs();
+    async componentDidMount() {
+        await this.reloadClubs();
         document.title = 'Find My Club | Dashboard All NYU';
+
+        if(!this.state.allClubs) {
+            Globals.searchDisabled = true;
+        } else {
+            Globals.searchDisabled = false;
+        }
+        this.props.parent.forceUpdate();
     }
 
 

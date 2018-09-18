@@ -13,6 +13,7 @@ class DashboardProfile extends Component {
 
     componentDidMount() {
         document.title = 'Find My Club | Dashboard Profile';
+        this.refs['dashboard-profile-back-btn'].focus();
     }
     
     componentWillUnmount() {
@@ -38,22 +39,26 @@ class DashboardProfile extends Component {
                         }
                     }}
                     role='button'
-                    aria-label='Back Button: Click to close the profile'>
+                    aria-label='Back Button: Click to close the profile'
+                    ref='dashboard-profile-back-btn'
+                    tabIndex={0}>
                     <span aria-hidden={true} className='fa fa-chevron-left' />
                 </button>
 
-                <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} alt='' className='dashboard-profile-image' />
-                <h4 className='dashboard-profile-fullname'>{user.fullName}</h4>
-                <p className='dashboard-profile-school'>{user.school}</p>
+                <img tabIndex={-1} src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} alt='' className='dashboard-profile-image' />
+                <h4 tabIndex={0} className='dashboard-profile-fullname'>{user.fullName}</h4>
+                <p tabIndex={0} className='dashboard-profile-school'>{user.school}</p>
 
                 <div className='dashboard-profile-action-button-container'>
                     <button className='round-rect-button dashboard-profile-action-button-primary' onClick={() => { this.handleEditPreference() }}
                             role='button'
+                            tabIndex={0}
                             aria-label='Button: Click to go to the edit preferences page'>
                         Edit Preferences
                     </button>
                     <button className='round-rect-button dashboard-profile-action-button-clear' onClick={() => { this.handleLogout() }}
                             role='button'
+                            tabIndex={0}
                             aria-label='Button: Click to logout and go to the home page'>
                         Log Out
                     </button>

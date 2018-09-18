@@ -20,6 +20,7 @@ import DashboardProfile from '../route-containers/DashboardProfile';
 
 import AppLogo from '../images/Beta-logo-NEW.png';
 import '../css/Dashboard.css';
+import Globals from '../util/Globals';
 
 class Dashboard extends Component {
 
@@ -38,13 +39,20 @@ class Dashboard extends Component {
             tabIndicatorLeft: 0,
             searchKeyword: '',
             profileShown: false,
-            searchBarShowing: false
+            searchBarShowing: false,
+            showingOverlay: false
         }
     }
 
     componentDidMount() {
         this.showClubsTab();
         document.title = 'Find My Club | Dashboard';
+    }
+
+    componentDidUpdate() {
+        console.log(Globals.searchDisabled);
+        this.refs['dashboard-toggle-search-btn'].style.opacity = Globals.searchDisabled === true ? '0.4' : '1';
+        this.refs['dashboard-toggle-search-btn'].style.cursor = Globals.searchDisabled === true ? 'default' : 'pointer';
     }
 
 
@@ -61,21 +69,24 @@ class Dashboard extends Component {
 				{this.state.currentOverlay}
                 
                 <div className='dashboard-top-bar'>
-                    <button className='dashboard-toggle-search-btn'
-                            tabIndex={0}
-                            role='button'
-                            aria-live='assertive'
-                            aria-label='Search Button: Click to open the search bar'
-                            onClick={() => {
-                                this.setState({ searchBarShowing: !this.state.searchBarShowing })
-                            }}><span className='fas fa-search'/></button>
-                    <img src={AppLogo} alt='FindMyClub Logo' className='dashboard-app-logo'/>
-                    <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} 
-                        alt='Click to go to your profile' 
-                        className='dashboard-profile-button'
-                        tabIndex={0}
+                    <div className='dashboard-toggle-search-btn'
+                        ref='dashboard-toggle-search-btn'
+                        tabIndex={this.state.showingOverlay ? -1 : 0}
                         role='button'
-                        aria-live='assertive'
+                        aria-live='polite'
+                        aria-label='Search Button: Click to open the search bar'
+                        onClick={() => {
+                            if(Globals.searchDisabled === true) return;
+                            this.setState({ searchBarShowing: !this.state.searchBarShowing })
+                        }}
+                        ><span aria-hidden={true} className='fas fa-search'/></div>
+                    <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo'/>
+                    <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} 
+                        alt='' 
+                        className='dashboard-profile-button'
+                        tabIndex={this.state.overlayShowing ? - 1 : 0}
+                        role='button'
+                        aria-live='polite'
                         aria-label='Profile Button: Click to go to your profile'
                         onClick={this.toggleProfile.bind(this)}/>
                 </div>
@@ -89,6 +100,7 @@ class Dashboard extends Component {
                     <input type='text'
                         className='dashboard-search-bar'
                         placeholder='Search for keywords'
+                        tabIndex={this.state.showingOverlay ? -1 : 0}
                         aria-label='Search Bar: Edit to search for clubs and events'
                         onChange={this.handleSearchKeywordChange}
                         value={this.state.searchKeyword}
@@ -98,12 +110,23 @@ class Dashboard extends Component {
                             height: this.state.searchBarShowing === true ? '26px' : '0px',
                             visibility: this.state.searchBarShowing === true ? 'visible' : 'hidden',
                             border: this.setState.searchBarShowing === true ? '1px solid purple' : 'none'
+                        }}
+                        onKeyPress={(e) => {
+                            if(e.keyCode !== 32 && e.keyCode !== 13) return;
+                            if(this.state.currentTab === 'clubs') {
+                                this.refs['dashboard-clubs-view'].focus();
+                            } else if(this.state.currentTab === 'event') {
+                                this.refs['dashboard-events-view'].focus();
+                            } else {
+                                this.refs['dashboard-discover-view'].focus();
+                            }
                         }} />
                 </div>
                 
                 
                 {this.renderCurrentTab()}
                 
+
                 <div className='dashboard-tab-bar'>
                     <div className='dashboard-tab-indicator' style={{
                         left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
@@ -112,7 +135,7 @@ class Dashboard extends Component {
                         role='button'
                         aria-live='assertive'
                         aria-label='Click to go to the My Clubs Tab'
-                        tabIndex={0}
+                        tabIndex={this.state.showingOverlay ? -1 : 0}
                         onClick={this.showClubsTab.bind(this)}>
                         <span className='fa fa-user'/>&nbsp;My Clubs
                     </div>
@@ -120,7 +143,7 @@ class Dashboard extends Component {
                         role='button'
                         aria-live='assertive'
                         aria-label='Click to go to the Events Tab'
-                        tabIndex={0}
+                        tabIndex={this.state.showingOverlay ? -1 : 0}
                         onClick={this.showEventsTab.bind(this)}>
                         <span className='fas fa-comments'/>&nbsp;Events
                     </div>
@@ -128,7 +151,7 @@ class Dashboard extends Component {
                         role='button'
                         aria-live='assertive'
                         aria-label='Click to go to the All NYU Tab'
-                        tabIndex={0}
+                        tabIndex={this.state.showingOverlay ? -1 : 0}
                         onClick={this.showDiscoverTab.bind(this)}>
                         <span className='fas fa-search'/>&nbsp;All NYU
                     </div>
@@ -149,6 +172,9 @@ class Dashboard extends Component {
         if (this.state.currentTab === 'club') {
             return (
                 <DashboardClubs
+                    ref='dashboard-clubs-view'
+                    parent={this}
+                    overlayShowing={this.state.overlayShowing}
                     searchShowing={this.state.searchBarShowing}
                     searchKeyword={this.state.searchKeyword}
                     onSelectClub={(club) => {
@@ -163,13 +189,22 @@ class Dashboard extends Component {
             );
         } else if (this.state.currentTab === 'event') {
             return (
-                <DashboardEvents searchShowing={this.state.searchBarShowing} searchKeyword={this.state.searchKeyword} onSelectEvent={(event, club) => {
+                <DashboardEvents 
+                    ref='dashboard-events-view'
+                    parent={this}
+                    overlayShowing={this.state.overlayShowing}
+                    searchShowing={this.state.searchBarShowing} 
+                    searchKeyword={this.state.searchKeyword} 
+                    onSelectEvent={(event, club) => {
                     this.showOverlay(<EventDetail event={event} club={club} onClose={() => this.hideOverlay()} />);
                 }} />
             );
         } else {
             return (
                 <DashboardDiscover
+                    ref='dashboard-discover-view'
+                    parent={this}
+                    overlayShowing={this.state.overlayShowing}
                     searchShowing={this.state.searchBarShowing}
                     searchKeyword={this.state.searchKeyword}
                     onSelectClub={(club) => {
@@ -309,6 +344,7 @@ class Dashboard extends Component {
     * @param {Function} then What to do when the transition is over. */
     showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then, showTopBar=false) {
         const top = showTopBar ? '60px' : '0px';
+        this.setState({ showingOverlay: true });
         // 1.) Reset any existing overlay view by animating it away.
         $('.overlay').animate({
             opacity: 0,
@@ -343,6 +379,7 @@ class Dashboard extends Component {
     * @param {Function} then What to do after the view has animated away. 
     * @param {Number} duration How long the transition should last. */
     hideOverlay(then, duration = Constants.OVERLAY_TRANSITION_TIME) {
+        this.setState({ showingOverlay: false });
         $('.overlay').animate({
             opacity: 0,
             top: '0px',
