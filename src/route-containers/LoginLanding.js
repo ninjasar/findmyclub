@@ -4,6 +4,7 @@ import Networking from '../util/Networking';
 
 import Logo from '../images/FindMyClub_Logo.svg';
 import Promotion from '../images/findMyClubPromotion.png'
+import nyuLogo from '../images/FMC_NYU_logo.png'
 import '../css/containers/LoginLanding.css';
 
 class LoginLanding extends Component {
@@ -36,6 +37,7 @@ class LoginLanding extends Component {
     render() {
         return (
             <div className="LoginLanding container">
+                <img className='login-landing-nyu-logo' src={nyuLogo} alt='NYU logo' />
                 <div className='login-landing-info-btn'
                     tabIndex={0}
                     role='button'
@@ -46,8 +48,8 @@ class LoginLanding extends Component {
                     <div className='login-landing-beta-info-area' ref='login-landing-beta-info-area'>
                         <p className='login-landing-beta-info-title' tabIndex={0}>Note: this is public beta, experience might change as we continue enhancing the application</p>
                         <button className='login-landing-beta-info-close-btn'
-                                tabIndex={0}
-                                onClick={() => this.setState({ isShowingBetaInfo: false })}><span className='fa fa-times-circle' /></button>
+                            tabIndex={0}
+                            onClick={() => this.setState({ isShowingBetaInfo: false })}><span className='fa fa-times-circle' /></button>
                     </div>
                     : <div></div>}
 
@@ -67,7 +69,7 @@ class LoginLanding extends Component {
                     // onClick={this.handleLogin.bind(this)}
                     tabIndex={0}
                     role='region' aria-live='assertive' aria-label='Coming Soon'>Coming Soon</button>
-                <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion"/>
+                <img src={Promotion} alt="Mobile landing page view" className="login-landing-promotion" />
             </div>
         );
     }
