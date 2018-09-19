@@ -1,6 +1,10 @@
 * {
     /* font-family: "Gotham SSm A"; */
-    font-family: 'Montserrat'
+    font-family: 'Montserrat';
+}
+*:focus, input:focus, select:focus, button:focus {
+    outline: 2px solid #8568dd !important;
+    overflow: -moz-hidden-unscrollable;
 }
 
 .App {
