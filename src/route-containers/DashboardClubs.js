@@ -42,8 +42,6 @@ class DashboardClubs extends Component {
 
 
 
-
-
 	/****************************
     *                           *
     *           RENDER          *
@@ -55,11 +53,11 @@ class DashboardClubs extends Component {
             <div className="DashboardClubs dashboard-container" style={{
                 top: this.props.searchShowing === true ? '108px' : '70px',
                 height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
-            }} tabIndex={this.props.overlayShowing ? - 1 : 0}>
+            }}>
                 <div className='dashboard-clubs-header' tabIndex={-1}>
                     <h1 className='dashboard-clubs-title' 
                         aria-label='Header: My Clubs'
-                        tabIndex={this.props.overlayShowing ? -1 : 0}>My Clubs</h1>
+                        tabIndex={this.props.overlayShowing ? -1 : -1}>My Clubs</h1>
 
                     <SelectUmbrella
                         overlayShowing={this.props.overlayShowing}

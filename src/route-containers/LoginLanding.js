@@ -60,20 +60,19 @@ class LoginLanding extends Component {
                     </div>
                     : <div></div>}
 
-                <img src={Logo} alt="" className="login-landing-logo" />
-                <h1 className="login-landing-text" role='region' aria-live='polite'
-                    aria-label='Description: Find clubs that are just right for you'>
-                    Find clubs that are just right for you
-                </h1>
-                <button className="login-landing-login-btn"
-                    ref={(loginButton) => this.loginButton = loginButton}
-                    onClick={this.handleLogin.bind(this)}
-                    tabIndex={1}
-                    role='button' 
-                    aria-live='assertive' 
-                    aria-label='Button: Click to Login'>Login</button>
-                <img src={Promotion} alt="" className="login-landing-promotion"
-                    aria-label='Find My Club Landing Page Image Preview'/>
+                <main>
+                    <img src={Logo} alt="" className="login-landing-logo" />
+                    <h1 className="login-landing-text">
+                        Find clubs that are just right for you
+                    </h1>
+                    <button className="login-landing-login-btn"
+                        ref={(loginButton) => this.loginButton = loginButton}
+                        onClick={this.handleLogin.bind(this)}
+                        tabIndex={1}
+                        role='button'
+                        aria-label='Button: Click to Login'>Login</button>
+                    <img src={Promotion} alt="Find My Club Landing Page Image Preview" className="login-landing-promotion"/>
+                </main>
             </div>
         );
     }

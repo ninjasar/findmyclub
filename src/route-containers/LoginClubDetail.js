@@ -148,7 +148,7 @@ class LoginClubDetail extends Component {
                     </div>
 
                     <h1 className='club-detail-title' tabIndex={0}
-                        role='heading' aria-live='assertive' aria-label={`Club Title: ${this.props.club.Name}`}>{this.props.club.Name}</h1>
+                        role='heading' aria-label={`Club Title: ${this.props.club.Name}`}>{this.props.club.Name}</h1>
                     {
                         (this.state.category) &&
                         <p className='club-detail-information club-detail-information-interest'
@@ -181,7 +181,7 @@ class LoginClubDetail extends Component {
                     </p>
 
                     <h3 className='club-detail-portal-title' tabIndex={0}
-                        role='heading' aria-live='assertive' aria-label='Portal Information'>Portal Information</h3>
+                        role='heading' aria-label='Portal Information'>Portal Information</h3>
                     <div className='club-detail-portal-information'>
                         <p className='club-detail-portal-information-title' tabIndex={0}>Website</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubWebsite || "/"}>

@@ -15,7 +15,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         interest }) 
                     }}
                     tabIndex={overlayShowing ? - 1 : 0}
-                    role='button' aria-live='assertive' aria-label={`Club Title is ${Name}. 
+                    role='button' aria-label={`Club Title is ${Name}. 
                                                                     The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
                         <img src={image} alt='club-preview' className='club-card-image'/>
@@ -51,7 +51,6 @@ const mFtC = ( { title, checked, interest }, key, onChange) => {
             <div tabIndex={0} 
                 className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'} 
                 role='button'
-                aria-live='assertive'
                 aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
                 onClick={() => { onChange(title) }}>
                 <span className={checked === true ? 'fa fa-check' : ''}/>
@@ -80,7 +79,7 @@ export default {
                     onClick={() => {
                         onClick(ID);
                     }}
-                    role='button' aria-live='assertive' aria-label={`
+                    role='button' aria-label={`
                         Interest Name is ${Name}, This Interest is ${selected === true ? '' : 'not'} selected
                     `}
                     tabIndex={0}>
@@ -246,7 +245,6 @@ export default {
             <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }
                 tabIndex={overlayShowing ? -1 : 0}
                 role='button'
-                aria-live='assertive'
                 aria-label={`
                     Club name is ${Name} and its associated interest is ${interest.interest}.
                 `}>
@@ -274,9 +272,8 @@ export default {
         return (
             <div className='dashboard-umbrella-label' key={key} onClick={onClick}
                 role='button'
-                aria-live='assertive'
                 aria-label={umbrellaName}
-                tabIndex={overlayShowing ? - 1 : 0}>
+                tabIndex={overlayShowing ? - 1 : -1}>
                 {umbrellaName.substring(0, 18) + '...'}
             </div>
         )

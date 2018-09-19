@@ -29,10 +29,10 @@ class LoginWelcome extends Component {
                     <img src={BannerImage} alt='' className='login-welcome-banner-image'/>
                 </div>
 
-                <h3 className='login-welcome-header'
+                <h1 className='login-welcome-header'
                     tabIndex={0}
                     role='region'
-                    aria-label='Welcome to Find My Club!'>Welcome to <br/>Find My Club!</h3>
+                    aria-label='Welcome to Find My Club!'>Welcome to <br/>Find My Club!</h1>
                 <p className='login-welcome-description'
                     tabIndex={0}
                     role='region'>

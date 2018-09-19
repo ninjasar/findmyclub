@@ -138,7 +138,6 @@ class Dashboard extends Component {
                         }}></div>
                         <div className='dashboard-tab-bar-item'
                             role='button'
-                            aria-live='assertive'
                             aria-label='Click to go to the My Clubs Tab'
                             tabIndex={this.state.showingOverlay ? -1 : 0}
                             onClick={this.showClubsTab.bind(this)}>
@@ -146,7 +145,6 @@ class Dashboard extends Component {
                         </div>
                         <div className='dashboard-tab-bar-item' 
                             role='button'
-                            aria-live='assertive'
                             aria-label='Click to go to the Events Tab'
                             tabIndex={this.state.showingOverlay ? -1 : 0}
                             onClick={this.showEventsTab.bind(this)}>
@@ -154,7 +152,6 @@ class Dashboard extends Component {
                         </div>
                         <div className='dashboard-tab-bar-item' 
                             role='button'
-                            aria-live='assertive'
                             aria-label='Click to go to the All NYU Tab'
                             tabIndex={this.state.showingOverlay ? -1 : 0}
                             onClick={this.showDiscoverTab.bind(this)}>
