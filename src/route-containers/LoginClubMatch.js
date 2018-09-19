@@ -10,13 +10,13 @@ import '../css/containers/LoginClubMatch.css';
 const TALL_HEADER = '140px'
 const SHORT_HEADER = '75px'
 
-const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }) =>
+const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack, overlayShowing}) =>
     <div style={{ height: isScrolled ? SHORT_HEADER : TALL_HEADER }}
         className='login-club-matches-header'>
         {!isScrolled &&
             <div style={{ height: isScrolled ? '0' : TALL_HEADER }}
                 className='login-club-matches-header-tall'>
-                <h1 className='login-club-matches-title' role='region' aria-live='polite' aria-label={`${selectedClubs.length} clubs match your interests!`}>
+                <h1 className='login-club-matches-title' role='region' aria-label={`${selectedClubs.length} clubs match your interests!`}>
                     <span>{selectedClubs.length}</span>&nbsp;clubs match your interests!
                     </h1>
                 <button className='pill-button filter-button club-detail-list-filter-btn'
@@ -26,7 +26,6 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                         }
                     }}
                     role='button'
-                    aria-live='assertive'
                     aria-label='Refine Button: Click to refine your search button'>
                     <p>Refine your search<span className='fas fa-sliders-h'></span></p>
                 </button>
@@ -44,9 +43,8 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack }
                     }
                 }}
                 role='button'
-                aria-live='assertive'
                 aria-label='Refine Button: Click to refine your search button'
-                tabIndex={isScrolled ? 0 : 1}>
+                tabIndex={isScrolled && overlayShowing ? 0 : 1}>
                 Refine&nbsp;<span className='fas fa-sliders-h'></span>
             </button>
         </div>
@@ -125,7 +123,8 @@ class LoginClubMatch extends Component {
             return Maps.mapInterestWithClubsToComponent(interest, clubs,
                 () => { console.log('See More') },
                 this.didSelectClubCard.bind(this),
-                this.didFollowClubCard.bind(this));
+                this.didFollowClubCard.bind(this),
+                );
         });
 
         return (
@@ -134,7 +133,7 @@ class LoginClubMatch extends Component {
                 {this.state.clubFilterOverlay}
                 {/* The see more overlay. */}
                 <div className='club-detail-list-view' >
-                    <div className='club-detail-body' role='region' aria-live='assertive'>
+                    <div className='club-detail-body' role='region'>
                         <CollectionView
                             className='club-detail-list-club-list'
                             ref='club-detail-list-club-list'
@@ -152,6 +151,7 @@ class LoginClubMatch extends Component {
                     isScrolled={this.state.isScrolled}
                     onRefine={this.props.onRefine}
                     handleGoBack={this.handleGoBack}
+                    overlayShowing={this.props.overlayShowing}
                 />
                 {/* <div className='login-club-matches-header'>
                     <h1 className='login-club-matches-title'>
@@ -171,7 +171,7 @@ class LoginClubMatch extends Component {
                     <button
                         role='button'
                         aria-live='polite'
-                        aria-label='Click to Finish Selecting Clubs'
+                        aria-label='Finish Button: Click to Finish Selecting Clubs'
                         className='bottom-rect-button login-club-matches-finish-btn'
                         onClick={() => {
                             if (this.props.onNext) {
@@ -199,10 +199,10 @@ class LoginClubMatch extends Component {
 
 
     /****************************
-     *                           *
-     *         FUNCTIONS         *
-     *                           *
-     *****************************/
+    *                           *
+    *         FUNCTIONS         *
+    *                           *
+    *****************************/
 
     async getClubThumbnail() {
 

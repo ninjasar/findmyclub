@@ -94,9 +94,11 @@ class DashboardEvents extends Component {
                         aria-label='Header: Events'
                         tabIndex={this.props.overlayShowing ? - 1 : 0}>Events</h1>
                 </div>
-                {
-                    _.isNil(this.state.events) ? this.renderLoading() : this.renderEvents()
-                }
+                <main>
+                    {
+                        _.isNil(this.state.events) ? this.renderLoading() : this.renderEvents()
+                    }
+                </main>
             </div>
         );
     }

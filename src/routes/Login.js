@@ -43,6 +43,7 @@ class Login extends Component {
             selectedClubs: [],
             selectedInterests: [],
             categoriesMatchingInterest: [],
+            overlayShowing: false
         }
     }
 
@@ -139,7 +140,8 @@ class Login extends Component {
     }
 
     loadResultsPage(_, __, ___, thumbnails) {
-        this.transitionContainer(<LoginClubMatch 
+        this.transitionContainer(
+        <LoginClubMatch 
             onRefine={() => {
                 this.showOverlay(
                     <LoginClubFilter
@@ -168,7 +170,8 @@ class Login extends Component {
             interests={this.state.selectedInterests}
             selectedClubs={this.state.selectedClubs}
             clubMatches={this.state.matchingClubs}
-            thumbnails={thumbnails} />
+            thumbnails={thumbnails}
+            overlayShowing={this.state.overlayShowing} />
         );
     }
 
@@ -291,6 +294,7 @@ class Login extends Component {
     * @param {Number} duration How long the transition should last for. 
     * @param {Function} then What to do when the transition is over. */
     showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then) {
+        this.setState({ overlayShowing: true });
         // 1.) Reset any existing overlay view by animating it away.
         $('.overlay').animate({
             opacity: 0,
@@ -325,6 +329,7 @@ class Login extends Component {
     * @param {Function} then What to do after the view has animated away. 
     * @param {Number} duration How long the transition should last. */
     hideOverlay(then, duration = Constants.OVERLAY_TRANSITION_TIME) {
+        this.setState({ overlayShowing: false });
         $('.overlay').animate({
             opacity: 0,
             top: '0px',

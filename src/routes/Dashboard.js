@@ -68,94 +68,100 @@ class Dashboard extends Component {
 			<div className="Dashboard">
 				{this.state.currentOverlay}
                 
-                <div className='dashboard-top-bar'>
-                    <div className='dashboard-toggle-search-btn'
-                        ref='dashboard-toggle-search-btn'
-                        tabIndex={this.state.showingOverlay ? -1 : 0}
-                        role='button'
-                        aria-live='polite'
-                        aria-label='Search Button: Click to open the search bar'
-                        onClick={() => {
-                            if(Globals.searchDisabled === true) return;
-                            this.setState({ searchBarShowing: !this.state.searchBarShowing })
-                        }}
-                        ><span aria-hidden={true} className='fas fa-search'/></div>
-                    <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo'/>
-                    <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} 
-                        alt='' 
-                        className='dashboard-profile-button'
-                        tabIndex={this.state.overlayShowing ? - 1 : 0}
-                        role='button'
-                        aria-live='polite'
-                        aria-label='Profile Button: Click to go to your profile'
-                        onClick={this.toggleProfile.bind(this)}/>
-                </div>
-                <div className='dashboard-search-bar-area'
-                    style={{
-                        position: 'absolute',
-                        // top: this.setState.searchBarShowing === true ? '61px' : '0px',
-                        height: this.state.searchBarShowing === true ? '42px' : '0px',
-                        borderBottom: this.state.searchBarShowing === true ? '1px solid #e6e9ef' : 'none'
-                    }}>
-                    <input type='text'
-                        className='dashboard-search-bar'
-                        placeholder='Search for keywords'
-                        tabIndex={this.state.showingOverlay ? -1 : 0}
-                        aria-label='Search Bar: Edit to search for clubs and events'
-                        onChange={this.handleSearchKeywordChange}
-                        value={this.state.searchKeyword}
+                <header>
+                    <div className='dashboard-top-bar'>
+                        <div className='dashboard-toggle-search-btn'
+                            ref='dashboard-toggle-search-btn'
+                            tabIndex={this.state.showingOverlay ? -1 : 0}
+                            role='button'
+                            aria-live='polite'
+                            aria-label='Search Button: Click to open the search bar'
+                            onClick={() => {
+                                if(Globals.searchDisabled === true) return;
+                                this.setState({ searchBarShowing: !this.state.searchBarShowing })
+                            }}
+                            ><span aria-hidden={true} className='fas fa-search'/></div>
+                        <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo'/>
+                        <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} 
+                            alt='' 
+                            className='dashboard-profile-button'
+                            tabIndex={this.state.overlayShowing ? - 1 : 0}
+                            role='button'
+                            aria-live='polite'
+                            aria-label='Profile Button: Click to go to your profile'
+                            onClick={this.toggleProfile.bind(this)}/>
+                    </div>
+                    <div className='dashboard-search-bar-area'
                         style={{
-                            position: 'relative',
-                            top: this.state.searchBarShowing === true ? '7px' : '0px',
-                            height: this.state.searchBarShowing === true ? '26px' : '0px',
-                            visibility: this.state.searchBarShowing === true ? 'visible' : 'hidden',
-                            border: this.setState.searchBarShowing === true ? '1px solid purple' : 'none'
-                        }}
-                        onKeyPress={(e) => {
-                            if(e.keyCode !== 32 && e.keyCode !== 13) return;
-                            if(this.state.currentTab === 'clubs') {
-                                this.refs['dashboard-clubs-view'].focus();
-                            } else if(this.state.currentTab === 'event') {
-                                this.refs['dashboard-events-view'].focus();
-                            } else {
-                                this.refs['dashboard-discover-view'].focus();
-                            }
-                        }} />
-                </div>
+                            position: 'absolute',
+                            // top: this.setState.searchBarShowing === true ? '61px' : '0px',
+                            height: this.state.searchBarShowing === true ? '42px' : '0px',
+                            borderBottom: this.state.searchBarShowing === true ? '1px solid #e6e9ef' : 'none'
+                        }}>
+                        <form role='search'>
+                            <input type='text'
+                                className='dashboard-search-bar'
+                                placeholder='Search for keywords'
+                                tabIndex={this.state.showingOverlay ? -1 : 0}
+                                aria-label='Search Bar: Edit to search for clubs and events'
+                                onChange={this.handleSearchKeywordChange}
+                                value={this.state.searchKeyword}
+                                style={{
+                                    position: 'relative',
+                                    top: this.state.searchBarShowing === true ? '7px' : '0px',
+                                    height: this.state.searchBarShowing === true ? '26px' : '0px',
+                                    visibility: this.state.searchBarShowing === true ? 'visible' : 'hidden',
+                                    border: this.setState.searchBarShowing === true ? '1px solid purple' : 'none'
+                                }}
+                                onKeyPress={(e) => {
+                                    if(e.keyCode !== 32 && e.keyCode !== 13) return;
+                                    if(this.state.currentTab === 'clubs') {
+                                        this.refs['dashboard-clubs-view'].focus();
+                                    } else if(this.state.currentTab === 'event') {
+                                        this.refs['dashboard-events-view'].focus();
+                                    } else {
+                                        this.refs['dashboard-discover-view'].focus();
+                                    }
+                                }} />
+                        </form>
+                    </div>
+                </header>
                 
                 
                 {this.renderCurrentTab()}
                 
 
-                <div className='dashboard-tab-bar'>
-                    <div className='dashboard-tab-indicator' style={{
-                        left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
-                    }}></div>
-                    <div className='dashboard-tab-bar-item'
-                        role='button'
-                        aria-live='assertive'
-                        aria-label='Click to go to the My Clubs Tab'
-                        tabIndex={this.state.showingOverlay ? -1 : 0}
-                        onClick={this.showClubsTab.bind(this)}>
-                        <span className='fa fa-user'/>&nbsp;My Clubs
+                <nav>
+                    <div className='dashboard-tab-bar'>
+                        <div className='dashboard-tab-indicator' style={{
+                            left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
+                        }}></div>
+                        <div className='dashboard-tab-bar-item'
+                            role='button'
+                            aria-live='assertive'
+                            aria-label='Click to go to the My Clubs Tab'
+                            tabIndex={this.state.showingOverlay ? -1 : 0}
+                            onClick={this.showClubsTab.bind(this)}>
+                            <span className='fa fa-user'/>&nbsp;My Clubs
+                        </div>
+                        <div className='dashboard-tab-bar-item' 
+                            role='button'
+                            aria-live='assertive'
+                            aria-label='Click to go to the Events Tab'
+                            tabIndex={this.state.showingOverlay ? -1 : 0}
+                            onClick={this.showEventsTab.bind(this)}>
+                            <span className='fas fa-comments'/>&nbsp;Events
+                        </div>
+                        <div className='dashboard-tab-bar-item' 
+                            role='button'
+                            aria-live='assertive'
+                            aria-label='Click to go to the All NYU Tab'
+                            tabIndex={this.state.showingOverlay ? -1 : 0}
+                            onClick={this.showDiscoverTab.bind(this)}>
+                            <span className='fas fa-search'/>&nbsp;All NYU
+                        </div>
                     </div>
-                    <div className='dashboard-tab-bar-item' 
-                        role='button'
-                        aria-live='assertive'
-                        aria-label='Click to go to the Events Tab'
-                        tabIndex={this.state.showingOverlay ? -1 : 0}
-                        onClick={this.showEventsTab.bind(this)}>
-                        <span className='fas fa-comments'/>&nbsp;Events
-                    </div>
-                    <div className='dashboard-tab-bar-item' 
-                        role='button'
-                        aria-live='assertive'
-                        aria-label='Click to go to the All NYU Tab'
-                        tabIndex={this.state.showingOverlay ? -1 : 0}
-                        onClick={this.showDiscoverTab.bind(this)}>
-                        <span className='fas fa-search'/>&nbsp;All NYU
-                    </div>
-                </div>
+                </nav>
 			</div>
 		);
     }

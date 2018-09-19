@@ -5,16 +5,16 @@ import * as UIUtil from '../util/UI';
 import EmptyList from '../components/EmptyList';
 
 // club to card
-const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick) => {
+const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick, overlayShowing) => {
     return (
         <div className='club-item' key={ID}>
-            <div className='club-card' tabIndex={0}>
+            <div className='club-card' tabIndex={overlayShowing ? - 1 : 0}>
                 <div className='club-card-top' 
                     onClick={() => { onClubClick({ ID, Name, tags,
                         image, tagColor, followed,
                         interest }) 
                     }}
-                    tabIndex={0}
+                    tabIndex={overlayShowing ? - 1 : 0}
                     role='button' aria-live='assertive' aria-label={`Club Title is ${Name}. 
                                                                     The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
@@ -100,20 +100,21 @@ export default {
     * @param {Array} clubs The clubs that match the interest.
     * @param {Function} onSeeMore What to do when you click see more (or see less).
     * @param {Function} onClubClick What to do when you click the club card.
-    * @param {Function} onFollowClick What to do when you click the follow button. */
-    mapInterestWithClubsToComponent: (interest, clubs, onSeeMore, onClubClick, onFollowClick) => {
+    * @param {Function} onFollowClick What to do when you click the follow button.
+    * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
+    mapInterestWithClubsToComponent: (interest, clubs, onSeeMore, onClubClick, onFollowClick, overlayShowing) => {
         const name = interest.Name;
         return (
             <div className='login-club-matches-category-section' key={name}>
                 <h1 className='login-club-matches-category-section-title'
-                    role='region' aria-live='assertive' aria-label={`Interest Title: ${name}`}
-                    tabIndex={0}>
+                    role='region' aria-label={`Interest Title: ${name}`}
+                    tabIndex={overlayShowing ? - 1 : 0}>
                     {name}
                 </h1>
                 <h1 className='login-club-matches-category-section-subtitle'
-                    role='region' aria-live='assertive'
+                    role='region'
                     aria-label={`We found ${clubs.length} club(s) that match your interest.`}
-                    tabIndex={0}>
+                    tabIndex={overlayShowing ? - 1 : 0}>
                     We found <span aria-hidden={true} style={{ color: interest.Color }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 
@@ -140,7 +141,8 @@ export default {
     * @param {Object} club The club that is to be displayed. 
     * @param {String|Number} key The key to use for this list item.
     * @param {Function} onClubClick What to do when you click the club card.
-    * @param {Function} onFollowClick What to do when you click the follow button. */
+    * @param {Function} onFollowClick What to do when you click the follow button.
+    * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
     mapClubToComponent: mCtC,
 
 

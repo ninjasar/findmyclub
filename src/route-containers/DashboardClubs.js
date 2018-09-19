@@ -40,6 +40,10 @@ class DashboardClubs extends Component {
         this.props.parent.forceUpdate();
     }
 
+
+
+
+    
 	/****************************
     *                           *
     *           RENDER          *
@@ -54,8 +58,6 @@ class DashboardClubs extends Component {
             }}>
                 <div className='dashboard-clubs-header' tabIndex={-1}>
                     <h1 className='dashboard-clubs-title' 
-                        role='region'
-                        aria-live='assertive'
                         aria-label='Header: My Clubs'
                         tabIndex={this.props.overlayShowing ? -1 : 0}>My Clubs</h1>
 
@@ -65,18 +67,20 @@ class DashboardClubs extends Component {
                         selectedUmbrella={this.state.selectedUmbrella}
                     />
                 </div>
-                {
-                    _.isNil(this.state.followingClubs) ?
-                        <LoadingBubbles /> :
-                        <ClubList
-                            overlayShowing={this.props.overlayShowing}
-                            emptySubtitle='You aren’t following any clubs!'
-                            searchKeyword={this.props.searchKeyword}
-                            clubs={this.state.followingClubs}
-                            filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
-                            onSelectClub={this.props.onSelectClub}
-                        />
-                }
+                <main>
+                    {
+                        _.isNil(this.state.followingClubs) ?
+                            <LoadingBubbles /> :
+                            <ClubList
+                                overlayShowing={this.props.overlayShowing}
+                                emptySubtitle='You aren’t following any clubs!'
+                                searchKeyword={this.props.searchKeyword}
+                                clubs={this.state.followingClubs}
+                                filterUmbrellaID={this.state.selectedUmbrella && this.state.selectedUmbrella.id}
+                                onSelectClub={this.props.onSelectClub}
+                            />
+                    }
+                </main>
                 
             </div>
         );
