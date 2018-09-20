@@ -67,7 +67,7 @@ export default class ClubList extends React.Component {
     }
     
     return (
-      <div className='club-list' role='list' tabIndex={-1}>
+      <div className='club-list' role='list'>
         {
           clubsToShow.map((club, index) => {
             const clubDetail = this.state.clubDetails[club.ID];
