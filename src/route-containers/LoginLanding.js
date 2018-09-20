@@ -4,6 +4,7 @@ import Networking from '../util/Networking';
 
 import Logo from '../images/Beta-logo-NEW.png';
 import Promotion from '../images/findMyClubPromotion.png'
+import nyuLogo from '../images/FMC_NYU_logo.png'
 import '../css/containers/LoginLanding.css';
 
 class LoginLanding extends Component {
@@ -36,6 +37,7 @@ class LoginLanding extends Component {
     render() {
         return (
             <div className="LoginLanding container">
+                <img className='login-landing-nyu-logo' src={nyuLogo} alt='NYU logo' />
                 <div className='login-landing-info-btn'
                     tabIndex={0}
                     role='button'
