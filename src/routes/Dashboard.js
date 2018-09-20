@@ -26,6 +26,7 @@ class Dashboard extends Component {
 
 	/****************************
     *                           *
+
     *            INIT           *
     *                           *
     *****************************/
@@ -67,7 +68,7 @@ class Dashboard extends Component {
 		return (
 			<div className="Dashboard">
 				{this.state.currentOverlay}
-                
+
                 <header>
                     <div className='dashboard-top-bar'>
                         <div className='dashboard-toggle-search-btn'
@@ -82,8 +83,8 @@ class Dashboard extends Component {
                             }}
                             ><span aria-hidden={true} className='fas fa-search'/></div>
                         <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo'/>
-                        <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} 
-                            alt='' 
+                        <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')}
+                            alt=''
                             className='dashboard-profile-button'
                             tabIndex={this.state.overlayShowing ? - 1 : 0}
                             role='button'
@@ -126,16 +127,18 @@ class Dashboard extends Component {
                         </form>
                     </div>
                 </header>
-                
-                
+
+
                 {this.renderCurrentTab()}
-                
+
 
                 <nav>
+
                     <div className='dashboard-tab-bar'>
-                        <div className='dashboard-tab-indicator' style={{
-                            left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
-                        }}></div>
+                      <div className='dashboard-tab-indicator' style={{
+                          left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
+                      }}></div>
+                      <div className="dashboard-tab-bar-items-contain">
                         <div className='dashboard-tab-bar-item'
                             role='button'
                             aria-label='Click to go to the My Clubs Tab'
@@ -143,20 +146,21 @@ class Dashboard extends Component {
                             onClick={this.showClubsTab.bind(this)}>
                             <span className='fa fa-user'/>&nbsp;My Clubs
                         </div>
-                        <div className='dashboard-tab-bar-item' 
+                        <div className='dashboard-tab-bar-item'
                             role='button'
                             aria-label='Click to go to the Events Tab'
                             tabIndex={this.state.showingOverlay ? -1 : 0}
                             onClick={this.showEventsTab.bind(this)}>
                             <span className='fas fa-comments'/>&nbsp;Events
                         </div>
-                        <div className='dashboard-tab-bar-item' 
+                        <div className='dashboard-tab-bar-item'
                             role='button'
                             aria-label='Click to go to the All NYU Tab'
                             tabIndex={this.state.showingOverlay ? -1 : 0}
                             onClick={this.showDiscoverTab.bind(this)}>
                             <span className='fas fa-search'/>&nbsp;All NYU
                         </div>
+                      </div>
                     </div>
                 </nav>
 			</div>
@@ -170,7 +174,7 @@ class Dashboard extends Component {
             discover: 67,
         }[currentTab];
     }
-    
+
     renderCurrentTab = () => {
         if (this.state.currentTab === 'club') {
             return (
@@ -192,12 +196,12 @@ class Dashboard extends Component {
             );
         } else if (this.state.currentTab === 'event') {
             return (
-                <DashboardEvents 
+                <DashboardEvents
                     ref='dashboard-events-view'
                     parent={this}
                     overlayShowing={this.state.overlayShowing}
-                    searchShowing={this.state.searchBarShowing} 
-                    searchKeyword={this.state.searchKeyword} 
+                    searchShowing={this.state.searchBarShowing}
+                    searchKeyword={this.state.searchKeyword}
                     onSelectEvent={(event, club) => {
                     this.showOverlay(<EventDetail event={event} club={club} onClose={() => this.hideOverlay()} />);
                 }} />
@@ -342,8 +346,8 @@ class Dashboard extends Component {
 
 
     /** Brings up an overlay view on top of the current container.
-    * @param {Component} overlayView The view to display in the overlay. 
-    * @param {Number} duration How long the transition should last for. 
+    * @param {Component} overlayView The view to display in the overlay.
+    * @param {Number} duration How long the transition should last for.
     * @param {Function} then What to do when the transition is over. */
     showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then, showTopBar=false) {
         const top = showTopBar ? '60px' : '0px';
@@ -378,8 +382,8 @@ class Dashboard extends Component {
     }
 
 
-    /** Hides the currently displaying overlay. 
-    * @param {Function} then What to do after the view has animated away. 
+    /** Hides the currently displaying overlay.
+    * @param {Function} then What to do after the view has animated away.
     * @param {Number} duration How long the transition should last. */
     hideOverlay(then, duration = Constants.OVERLAY_TRANSITION_TIME) {
         this.setState({ showingOverlay: false });
