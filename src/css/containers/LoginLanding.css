@@ -32,6 +32,13 @@
     height: 22px;
 }
 
+.login-landing-nyu-logo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 70px;
+}
+
 /* .login-landing-info-btn:hover {
     opacity: 1;
     color: rgb(178, 142, 199);
@@ -143,16 +150,16 @@
 }
 
 .shaking {
-  animation: shake 0.1s cubic-bezier(.36,.07,.19,.97) infinite;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
+    animation: shake 0.1s cubic-bezier(.36, .07, .19, .97) infinite;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
 
 @keyframes shake {
-  30% {
-    transform: translate3d(-2px, 0, 0);
-  }
-  70% {
-    transform: translate3d(2px, 0, 0);
-  }
+    30% {
+        transform: translate3d(-2px, 0, 0);
+    }
+    70% {
+        transform: translate3d(2px, 0, 0);
+    }
 }

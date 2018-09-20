@@ -5,6 +5,7 @@ import Networking from '../util/Networking';
 import Logo from '../images/FindMyClub_NEWLOGO.svg';
 import NyuLogo from '../images/FMC_NYU_logo.png';
 import Promotion from '../images/findMyClubPromotion.png'
+import nyuLogo from '../images/FMC_NYU_logo.png'
 import '../css/containers/LoginLanding.css';
 
 class LoginLanding extends Component {
