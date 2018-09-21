@@ -15,7 +15,7 @@ class DashboardProfile extends Component {
         document.title = 'Find My Club | Dashboard Profile';
         this.refs['dashboard-profile-back-btn'].focus();
     }
-    
+
     componentWillUnmount() {
         document.title = 'Find My Club | Dashboard';
     }
@@ -62,6 +62,19 @@ class DashboardProfile extends Component {
                             aria-label='Button: Click to logout and go to the home page'>
                         Log Out
                     </button>
+                    <div className='dashboard-profile-accessibility-information'
+                        role='information'
+                        tabIndex={0}
+                        aria-label='accessibility information'>
+                      If you have trouble filling out the form,<br/>
+                            send your request to<br/>
+                      <a role='link'
+                        tabIndex={0}
+                        aria-label='Link: Click to go to accessibility information'
+                        href="https://www.nyu.edu/footer/accessibility.html">
+                        https://www.nyu.edu/footer/accessibility.html
+                      </a>
+                    </div>
                 </div>
             </div>
 		);

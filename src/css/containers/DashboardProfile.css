@@ -24,7 +24,7 @@
   height: 29px;
   border-radius: 3px;
   margin: 5px;
-  
+
   font-size: 12px;
   font-weight: bold;
   font-style: normal;
@@ -91,7 +91,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    
+
     letter-spacing: normal;
 }
 
@@ -122,7 +122,7 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    
+
     font-weight: bold;
 }
 
@@ -135,7 +135,7 @@
     margin-top: -15px;
     font-style: normal;
     font-stretch: normal;
-    
+
     letter-spacing: normal;
 }
 
@@ -185,9 +185,25 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    
+
     font-weight: bold;
 }
+
+.dashboard-profile-accessibility-information {
+  font-size: 13px;
+  position: absolute;
+  bottom: 100px;
+  line-height: 1.5;
+}
+
+.dashboard-profile-accessibility-information a {
+  text-decoration: none;
+  color: #8568dd;
+}
+.dashboard-profile-accessibility-information a:focus {
+  background-color: white;
+}
+
 .dashboard-profile-alert-tag {
     position: relative;
     width: 50px;

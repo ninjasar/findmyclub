@@ -18,9 +18,8 @@ import EventDetail from '../route-containers/DashboardEventDetail';
 import DashboardProfile from '../route-containers/DashboardProfile';
 /* OVERLAYS */
 
-import AppLogo from '../images/Beta-logo-NEW.png';
+import AppLogo from '../images/FindMyClub_NEWLOGO.svg';
 import '../css/Dashboard.css';
-import Globals from '../util/Globals';
 
 class Dashboard extends Component {
 
@@ -41,7 +40,8 @@ class Dashboard extends Component {
             searchKeyword: '',
             profileShown: false,
             searchBarShowing: false,
-            showingOverlay: false
+            showingOverlay: false,
+            searchDisabled: false,
         }
     }
 
@@ -51,9 +51,9 @@ class Dashboard extends Component {
     }
 
     componentDidUpdate() {
-        console.log(Globals.searchDisabled);
-        this.refs['dashboard-toggle-search-btn'].style.opacity = Globals.searchDisabled === true ? '0.4' : '1';
-        this.refs['dashboard-toggle-search-btn'].style.cursor = Globals.searchDisabled === true ? 'default' : 'pointer';
+        const searchDisabled = this.state.searchDisabled
+        this.refs['dashboard-toggle-search-btn'].style.opacity = searchDisabled ? '0.4' : '1';
+        this.refs['dashboard-toggle-search-btn'].style.cursor = searchDisabled ? 'default' : 'pointer';
     }
 
 
@@ -64,10 +64,10 @@ class Dashboard extends Component {
     *                           *
     *****************************/
 
-	render() {
-		return (
-			<div className="Dashboard">
-				{this.state.currentOverlay}
+    render() {
+        return (
+            <div className="Dashboard">
+                {this.state.currentOverlay}
 
                 <header>
                     <div className='dashboard-top-bar'>
@@ -78,11 +78,11 @@ class Dashboard extends Component {
                             aria-live='polite'
                             aria-label='Search Button: Click to open the search bar'
                             onClick={() => {
-                                if(Globals.searchDisabled === true) return;
+                                if (this.state.searchDisabled === true) return;
                                 this.setState({ searchBarShowing: !this.state.searchBarShowing })
                             }}
-                            ><span aria-hidden={true} className='fas fa-search'/></div>
-                        <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo'/>
+                        ><span aria-hidden={true} className='fas fa-search' /></div>
+                        <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo' />
                         <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')}
                             alt=''
                             className='dashboard-profile-button'
@@ -90,7 +90,7 @@ class Dashboard extends Component {
                             role='button'
                             aria-live='polite'
                             aria-label='Profile Button: Click to go to your profile'
-                            onClick={this.toggleProfile.bind(this)}/>
+                            onClick={this.toggleProfile.bind(this)} />
                     </div>
                     <div className='dashboard-search-bar-area'
                         style={{
@@ -115,10 +115,10 @@ class Dashboard extends Component {
                                     border: this.setState.searchBarShowing === true ? '1px solid purple' : 'none'
                                 }}
                                 onKeyPress={(e) => {
-                                    if(e.keyCode !== 32 && e.keyCode !== 13) return;
-                                    if(this.state.currentTab === 'clubs') {
+                                    if (e.keyCode !== 32 && e.keyCode !== 13) return;
+                                    if (this.state.currentTab === 'clubs') {
                                         this.refs['dashboard-clubs-view'].focus();
-                                    } else if(this.state.currentTab === 'event') {
+                                    } else if (this.state.currentTab === 'event') {
                                         this.refs['dashboard-events-view'].focus();
                                     } else {
                                         this.refs['dashboard-discover-view'].focus();
@@ -135,36 +135,36 @@ class Dashboard extends Component {
                 <nav>
 
                     <div className='dashboard-tab-bar'>
-                      <div className='dashboard-tab-indicator' style={{
-                          left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
-                      }}></div>
-                      <div className="dashboard-tab-bar-items-contain">
-                        <div className='dashboard-tab-bar-item'
-                            role='button'
-                            aria-label='Click to go to the My Clubs Tab'
-                            tabIndex={this.state.showingOverlay ? -1 : 0}
-                            onClick={this.showClubsTab.bind(this)}>
-                            <span className='fa fa-user'/>&nbsp;My Clubs
+                        <div className='dashboard-tab-indicator' style={{
+                            left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`
+                        }}></div>
+                        <div className="dashboard-tab-bar-items-contain">
+                            <div className='dashboard-tab-bar-item'
+                                role='button'
+                                aria-label='Click to go to the My Clubs Tab'
+                                tabIndex={this.state.showingOverlay ? -1 : 0}
+                                onClick={this.showClubsTab.bind(this)}>
+                                <span className='fa fa-user' />&nbsp;My Clubs
                         </div>
-                        <div className='dashboard-tab-bar-item'
-                            role='button'
-                            aria-label='Click to go to the Events Tab'
-                            tabIndex={this.state.showingOverlay ? -1 : 0}
-                            onClick={this.showEventsTab.bind(this)}>
-                            <span className='fas fa-comments'/>&nbsp;Events
+                            <div className='dashboard-tab-bar-item'
+                                role='button'
+                                aria-label='Click to go to the Events Tab'
+                                tabIndex={this.state.showingOverlay ? -1 : 0}
+                                onClick={this.showEventsTab.bind(this)}>
+                                <span className='fas fa-comments' />&nbsp;Events
                         </div>
-                        <div className='dashboard-tab-bar-item'
-                            role='button'
-                            aria-label='Click to go to the All NYU Tab'
-                            tabIndex={this.state.showingOverlay ? -1 : 0}
-                            onClick={this.showDiscoverTab.bind(this)}>
-                            <span className='fas fa-search'/>&nbsp;All NYU
+                            <div className='dashboard-tab-bar-item'
+                                role='button'
+                                aria-label='Click to go to the All NYU Tab'
+                                tabIndex={this.state.showingOverlay ? -1 : 0}
+                                onClick={this.showDiscoverTab.bind(this)}>
+                                <span className='fas fa-search' />&nbsp;All NYU
                         </div>
-                      </div>
+                        </div>
                     </div>
                 </nav>
-			</div>
-		);
+            </div>
+        );
     }
 
     getTabIndicatorLeft = (currentTab) => {
@@ -180,10 +180,10 @@ class Dashboard extends Component {
             return (
                 <DashboardClubs
                     ref='dashboard-clubs-view'
-                    parent={this}
                     overlayShowing={this.state.overlayShowing}
                     searchShowing={this.state.searchBarShowing}
                     searchKeyword={this.state.searchKeyword}
+                    setSearchDisabled={this.setSearchDisabled}
                     onSelectClub={(club) => {
                         this.showOverlay(<ClubDetail club={club}
                             onSelectEvent={(event) => {
@@ -198,22 +198,22 @@ class Dashboard extends Component {
             return (
                 <DashboardEvents
                     ref='dashboard-events-view'
-                    parent={this}
                     overlayShowing={this.state.overlayShowing}
                     searchShowing={this.state.searchBarShowing}
                     searchKeyword={this.state.searchKeyword}
+                    setSearchDisabled={this.setSearchDisabled}
                     onSelectEvent={(event, club) => {
-                    this.showOverlay(<EventDetail event={event} club={club} onClose={() => this.hideOverlay()} />);
-                }} />
+                        this.showOverlay(<EventDetail event={event} club={club} onClose={() => this.hideOverlay()} />);
+                    }} />
             );
         } else {
             return (
                 <DashboardDiscover
                     ref='dashboard-discover-view'
-                    parent={this}
                     overlayShowing={this.state.overlayShowing}
                     searchShowing={this.state.searchBarShowing}
                     searchKeyword={this.state.searchKeyword}
+                    setSearchDisabled={this.setSearchDisabled}
                     onSelectClub={(club) => {
                         this.showOverlay(<ClubDetail club={club}
                             onSelectEvent={(event) => {
@@ -307,8 +307,10 @@ class Dashboard extends Component {
         });
     }
 
-
-
+    setSearchDisabled = (isDisabled) => {
+        console.log('set search disabled: ', isDisabled)
+        this.setState({ searchDisabled: isDisabled })
+    }
 	/****************************
     *                           *
     *           STYLES          *
@@ -338,7 +340,7 @@ class Dashboard extends Component {
                 $('.dashboard-container').animate({
                     opacity: 1
                 }, duration || Constants.CONTAINER_TRANSITION_TIME, () => {
-                    if(then) then();
+                    if (then) then();
                 });
             })
         })
@@ -349,7 +351,7 @@ class Dashboard extends Component {
     * @param {Component} overlayView The view to display in the overlay.
     * @param {Number} duration How long the transition should last for.
     * @param {Function} then What to do when the transition is over. */
-    showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then, showTopBar=false) {
+    showOverlay(overlayView, duration = Constants.OVERLAY_TRANSITION_TIME, then, showTopBar = false) {
         const top = showTopBar ? '60px' : '0px';
         this.setState({ showingOverlay: true });
         // 1.) Reset any existing overlay view by animating it away.
@@ -374,8 +376,8 @@ class Dashboard extends Component {
                     left: '0px',
                     width: '100%',
                     height: '100%'
-                },  duration || Constants.OVERLAY_TRANSITION_TIME, () => {
-                    if(then) then();
+                }, duration || Constants.OVERLAY_TRANSITION_TIME, () => {
+                    if (then) then();
                 })
             });
         });
@@ -396,7 +398,7 @@ class Dashboard extends Component {
         }, duration || Constants.OVERLAY_TRANSITION_TIME, () => {
             // 2.) Set the state of the new overlay.
             this.setState({ currentOverlay: <div className='overlay'></div> }, () => {
-                if(then) then();
+                if (then) then();
             });
         });
     }
