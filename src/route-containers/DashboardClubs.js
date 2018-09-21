@@ -22,7 +22,7 @@ class DashboardClubs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // plain club objects get from 
+            // plain club objects get from
             followingClubs: undefined,
             selectedUmbrella: undefined,
         }
@@ -62,6 +62,7 @@ class DashboardClubs extends Component {
                         overlayShowing={this.props.overlayShowing}
                         didSelectUmbrella={this.didSelectUmbrella}
                         selectedUmbrella={this.state.selectedUmbrella}
+                        aria-label='Select which school you would like to search for clubs in'
                     />
                 </div>
                 <main>
