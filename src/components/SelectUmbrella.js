@@ -72,15 +72,9 @@ export default class SelectUmbrella extends React.Component {
 			<button className='dashboard-clubs-umbrella-btn'
 					onClick={this.handleUmbrellaSearchClicked}
 					aria-label={
-<<<<<<< HEAD
 						this.props.selectedUmbrella ? 
 							`Umbrella Filter Button: The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` : 
 							`Umbrella Filter Button: Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected.`
-=======
-						this.props.selectedUmbrella ?
-							`The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` :
-							`Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected.`
->>>>>>> 2024a540a031b930b692731d34805eece4948774
 					}
 					tabIndex={this.props.overlayShowing ? -1 : 0}>
 					{
