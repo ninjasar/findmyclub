@@ -22,7 +22,7 @@ class DashboardClubs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // plain club objects get from 
+            // plain club objects get from
             followingClubs: undefined,
             selectedUmbrella: undefined,
         }
@@ -55,7 +55,7 @@ class DashboardClubs extends Component {
                 height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
             }}>
                 <div className='dashboard-clubs-header' tabIndex={-1}>
-                    <h1 className='dashboard-clubs-title' 
+                    <h1 className='dashboard-clubs-title'
                         aria-label='Header: My Clubs'
                         tabIndex={this.props.overlayShowing ? -1 : -1}>My Clubs</h1>
 
@@ -63,6 +63,7 @@ class DashboardClubs extends Component {
                         overlayShowing={this.props.overlayShowing}
                         didSelectUmbrella={this.didSelectUmbrella}
                         selectedUmbrella={this.state.selectedUmbrella}
+                        aria-label='Select which school you would like to search for clubs in'
                     />
                 </div>
                 <main>
@@ -79,7 +80,7 @@ class DashboardClubs extends Component {
                             />
                     }
                 </main>
-                
+
             </div>
         );
     }
