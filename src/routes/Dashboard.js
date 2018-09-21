@@ -18,7 +18,7 @@ import EventDetail from '../route-containers/DashboardEventDetail';
 import DashboardProfile from '../route-containers/DashboardProfile';
 /* OVERLAYS */
 
-import AppLogo from '../images/Beta-logo-NEW.png';
+import AppLogo from '../images/FindMyClub_NEWLOGO.svg';
 import '../css/Dashboard.css';
 import Globals from '../util/Globals';
 
