@@ -74,18 +74,18 @@ export default class SelectUmbrella extends React.Component {
 			<button className='dashboard-clubs-umbrella-btn'
 					onClick={this.handleUmbrellaSearchClicked}
 					aria-label={
-						this.props.selectedUmbrella ? 
-							`The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` : 
+						this.props.selectedUmbrella ?
+							`The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` :
 							`Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected.`
 					}
-					tabIndex={this.props.overlayShowing ? -1 : -1}>
+					tabIndex={this.props.overlayShowing ? -1 : 0}>
 					{
 						this.props.selectedUmbrella ?
-							<React.Fragment tabIndex={-1}>
+							<React.Fragment /*tabIndex={-1}*/>
 								<span className='dashboard-clubs-umbrella-btn-content'>{this.props.selectedUmbrella.name}&nbsp;&nbsp;&nbsp;</span>
 								<span className='fa fa-times-circle' />
 							</React.Fragment> :
-							<React.Fragment tabIndex={-1}>
+							<React.Fragment /*tabIndex={-1}*/>
 								<span className='fas fa-umbrella' />
 								<span className='dashboard-clubs-umbrella-btn-content'>&nbsp;All Schools&nbsp;&nbsp;&nbsp;</span>
 								<span className='fa fa-chevron-down' />
@@ -97,7 +97,7 @@ export default class SelectUmbrella extends React.Component {
 
 	render() {
 		return (
-			<React.Fragment tabIndex={-1}>
+			<React.Fragment /*tabIndex={-1}*/>
 				{this.renderButton()}
 				{this.state.umbrellaSearchFocused && this.renderDropdown()}
 			</React.Fragment>
