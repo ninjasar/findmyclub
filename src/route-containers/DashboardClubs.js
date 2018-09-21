@@ -29,18 +29,17 @@ class DashboardClubs extends Component {
     }
 
     async componentDidMount() {
-        await this.reloadFollowingClubs();
+        const followingClubs = await Networking.getFollowedClubs()
         document.title = 'Find My Club | Dashboard Clubs';
-
-        if(!this.state.followingClubs || this.state.followingClubs.length === 0) {
-            Globals.searchDisabled = true;
+        if (!followingClubs || followingClubs.length === 0) {
+            console.log('club is calling')
+            this.props.setSearchDisabled(true)
         } else {
-            Globals.searchDisabled = false;
+            console.log('club is calling')
+            this.props.setSearchDisabled(false)
         }
-        this.props.parent.forceUpdate();
+        this.setState({ followingClubs })
     }
-
-
 
 	/****************************
     *                           *
@@ -97,14 +96,6 @@ class DashboardClubs extends Component {
             selectedUmbrella: umbrella,
         });
     }
-
-    async reloadFollowingClubs() {
-        this.setState({
-            followingClubs: await Networking.getFollowedClubs(),
-        });
-    }
-
-
 
 	/****************************
     *                           *
