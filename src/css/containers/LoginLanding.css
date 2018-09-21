@@ -18,9 +18,25 @@
     transition-duration: 0.2s;
 }
 
+.login-landing-app-name {
+  color: #561389;
+  font-weight: 800;
+  font-family: Gotham;
+  padding: 0;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
 .login-landing-info-icon {
     width: 22px;
     height: 22px;
+}
+
+.login-landing-nyu-logo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 70px;
 }
 
 /* .login-landing-info-btn:hover {
@@ -74,18 +90,29 @@
     text-decoration: none;
     display: inline-block;
 }
+.login-landing-nyuLogo {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    border: none;
+    width: 70px;
+    font-size: 15px;
+    background: none;
+    text-decoration: none;
+    display: inline-block;
+}
 
 .login-landing-logo {
     display: block;
-    width: 200px;
+    width: 70px;
     user-select: none;
-    margin: 15% auto 20px;
+    margin: 18% auto 20px;
 }
 
 .login-landing-text {
     width: 200px;
     margin: 0 auto 20px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     color: #626181;
     user-select: none;
@@ -98,7 +125,7 @@
     color: #fff;
     font-size: 14px;
     padding: 5px;
-    padding-top: 7px;
+    padding-top: 5px;
     border-radius: 5px;
     margin: 0 auto 30px;
     font-weight: bold;
@@ -123,16 +150,16 @@
 }
 
 .shaking {
-  animation: shake 0.1s cubic-bezier(.36,.07,.19,.97) infinite;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
+    animation: shake 0.1s cubic-bezier(.36, .07, .19, .97) infinite;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
 
 @keyframes shake {
-  30% {
-    transform: translate3d(-2px, 0, 0);
-  }
-  70% {
-    transform: translate3d(2px, 0, 0);
-  }
+    30% {
+        transform: translate3d(-2px, 0, 0);
+    }
+    70% {
+        transform: translate3d(2px, 0, 0);
+    }
 }

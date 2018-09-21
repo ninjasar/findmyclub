@@ -2,8 +2,10 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import Networking from '../util/Networking';
 
-import Logo from '../images/Beta-logo-NEW.png';
+import Logo from '../images/FindMyClub_NEWLOGO.svg';
+import NyuLogo from '../images/FMC_NYU_logo.png';
 import Promotion from '../images/findMyClubPromotion.png'
+import nyuLogo from '../images/FMC_NYU_logo.png'
 import '../css/containers/LoginLanding.css';
 
 class LoginLanding extends Component {
@@ -36,13 +38,16 @@ class LoginLanding extends Component {
     render() {
         return (
             <div className="LoginLanding container">
+              <div className='login-landing-nyuLogo'>
+                <img src={NyuLogo} alt='nyu logo' width='70px'/>
+              </div>
                 <div className='login-landing-info-btn'
                     tabIndex={0}
                     role='button'
                     aria-label='Info Button: Click for tooltips'
                     onClick={() => this.setState({ isShowingBetaInfo: !this.state.isShowingBetaInfo })}>
-                    <img className="login-landing-info-icon" 
-                        src={require('../images/info_icon.svg')} 
+                    <img className="login-landing-info-icon"
+                        src={require('../images/info_icon.svg')}
                         alt="Tooltip"
                         aria-hidden={true} />
                 </div>
@@ -62,8 +67,9 @@ class LoginLanding extends Component {
 
                 <main>
                     <img src={Logo} alt="" className="login-landing-logo" />
+                    <h2 className="login-landing-app-name">Find My Club</h2>
                     <h1 className="login-landing-text">
-                        Find clubs that are just right for you
+                        Find clubs that are just right for you.
                     </h1>
                     <button className="login-landing-login-btn"
                         ref={(loginButton) => this.loginButton = loginButton}
