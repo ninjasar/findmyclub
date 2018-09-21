@@ -26,7 +26,7 @@ class LoginAllSet extends Component {
 		return (
 			<div className="LoginAllSet container">
 				<div className='login-allset-banner-image-area' aria-hidden={true}>
-                    <img src={BannerImage} alt='All Set' className='login-allset-banner-image'/>
+                    <img src={BannerImage} alt='' className='login-allset-banner-image'/>
                 </div>
 
                 <div className='login-allset-content'>
