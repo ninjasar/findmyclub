@@ -101,11 +101,18 @@
     display: inline-block;
 }
 
+.login-landing-main {
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  top: 100px;
+}
+
 .login-landing-logo {
     display: block;
     width: 70px;
     user-select: none;
-    margin: 18% auto 20px;
+    margin: 0 auto 20px;
 }
 
 .login-landing-text {

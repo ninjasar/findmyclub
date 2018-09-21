@@ -38,7 +38,7 @@ class LoginLanding extends Component {
     render() {
         return (
             <div className="LoginLanding container">
-              <main>
+              <main className="login-landing-main">
                   <img src={Logo} alt="" className="login-landing-logo" />
                   <h1 className="login-landing-app-name">Find My Club</h1>
                   <h2 className="login-landing-text">
