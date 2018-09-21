@@ -115,7 +115,7 @@ class LoginClubDetail extends Component {
 			<div className="LoginClubDetail overlay">
                 
                 <div className="login-club-detail-top">
-                    <img aria-hidden={true} className='club-detail-background-image' src={headerImageSrc} alt='preview'/>
+                    <img aria-hidden={true} className='club-detail-background-image' src={headerImageSrc} alt=''/>
                     <button 
                         tabIndex={0}
                         ref='club-detail-close-btn'

@@ -18,7 +18,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                     role='button' aria-label={`Club Title is ${Name}. 
                                                                     The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
-                        <img src={image} alt='club-preview' className='club-card-image'/>
+                        <img src={image} alt='' className='club-card-image'/>
                     </div>
 
                     <h3 className='club-card-title' aria-hidden={true}>{Name.substring(0, 30)}{Name.length > 30 && '...'}</h3>
@@ -248,7 +248,7 @@ export default {
                 aria-label={`
                     Club name is ${Name} and its associated interest is ${interest.interest}.
                 `}>
-                <img aria-hidden={true} src={image} alt='club' className='dashboard-club-item-image'/>
+                <img aria-hidden={true} src={image} alt='' className='dashboard-club-item-image'/>
                 <div aria-hidden={true} className='dashboard-club-item-vert'>
                     <h4 aria-hidden={true} className='dashboard-club-item-title'>{Name}</h4>
                     <div aria-hidden={true} className='dashboard-club-item-tag'>
@@ -286,7 +286,7 @@ export default {
     mapInterestToProfileComponent: ({ id, title, image }, onClick) => {
         return (
             <div className='profile-interest' onClick={() => { onClick(id, title) }}>
-                <img src={image} alt='alt'/>
+                <img src={image} alt=''/>
             </div>
         )
     }

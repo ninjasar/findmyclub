@@ -39,12 +39,12 @@ class LoginLanding extends Component {
         return (
             <div className="LoginLanding container">
               <div className='login-landing-nyuLogo'>
-                <img src={NyuLogo} alt='nyu logo' width='70px'/>
+                <img src={NyuLogo} alt='' width='70px'/>
               </div>
                 <div className='login-landing-info-btn'
                     tabIndex={0}
                     role='button'
-                    aria-label='Info Button: Click for tooltips'
+                    aria-label='Information'
                     onClick={() => this.setState({ isShowingBetaInfo: !this.state.isShowingBetaInfo })}>
                     <img className="login-landing-info-icon"
                         src={require('../images/info_icon.svg')}
@@ -77,7 +77,7 @@ class LoginLanding extends Component {
                         tabIndex={1}
                         role='button'
                         aria-label='Button: Click to Login'>Login</button>
-                    <img src={Promotion} alt="Find My Club Landing Page Image Preview" className="login-landing-promotion"/>
+                    <img src={Promotion} alt="" className="login-landing-promotion"/>
                 </main>
             </div>
         );
