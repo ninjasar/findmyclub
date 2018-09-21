@@ -214,7 +214,8 @@ class LoginClubDetail extends Component {
                         </a>
                     </div>
                     
-                    <h3 className='club-detail-events-title' tabIndex={0}>Upcoming Events</h3>
+                    <h3 className='club-detail-events-title' tabIndex={0}
+                        aria-label={this.state.upcomingEvents.length <= 0 ? `There are no upcoming events for this club.` : `Upcoming Events`}>Upcoming Events</h3>
                     <CollectionView 
                         className='club-detail-events-list'
                         orientation={CollectionView.Orientation.vertical}
