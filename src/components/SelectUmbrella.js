@@ -11,7 +11,7 @@ export default class SelectUmbrella extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			umbrellaSearchFocused: false,
+			umbrellaSearchFocused: true,
 		}
 		this.dropDownRef = React.createRef()
 	}
@@ -35,15 +35,13 @@ export default class SelectUmbrella extends React.Component {
 	}
 
 	handleUmbrellaSearchClicked = (e) => {
-		if (this.props.selectedUmbrella) {
+		if(this.props.selectedUmbrella) {
 			this.props.didSelectUmbrella(undefined);
-			this.setState({
-				umbrellaSearchFocused: false,
-			});
+		}
+		if(this.state.umbrellaSearchFocused === true) {
+			this.setState({ umbrellaSearchFocused: false });
 		} else {
-			this.setState({
-				umbrellaSearchFocused: true,
-			});
+			this.setState({ umbrellaSearchFocused: true });
 		}
 	}
 
@@ -75,8 +73,8 @@ export default class SelectUmbrella extends React.Component {
 					onClick={this.handleUmbrellaSearchClicked}
 					aria-label={
 						this.props.selectedUmbrella ? 
-							`The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` : 
-							`Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected.`
+							`Umbrella Filter Button: The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` : 
+							`Umbrella Filter Button: Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected.`
 					}
 					tabIndex={this.props.overlayShowing ? -1 : -1}>
 					{
