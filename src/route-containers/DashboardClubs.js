@@ -32,10 +32,8 @@ class DashboardClubs extends Component {
         const followingClubs = await Networking.getFollowedClubs()
         document.title = 'Find My Club | Dashboard Clubs';
         if (!followingClubs || followingClubs.length === 0) {
-            console.log('club is calling')
             this.props.setSearchDisabled(true)
         } else {
-            console.log('club is calling')
             this.props.setSearchDisabled(false)
         }
         this.setState({ followingClubs })

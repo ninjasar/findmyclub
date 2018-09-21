@@ -308,7 +308,6 @@ class Dashboard extends Component {
     }
 
     setSearchDisabled = (isDisabled) => {
-        console.log('set search disabled: ', isDisabled)
         this.setState({ searchDisabled: isDisabled })
     }
 	/****************************
