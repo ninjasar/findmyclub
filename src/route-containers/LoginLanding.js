@@ -38,6 +38,20 @@ class LoginLanding extends Component {
     render() {
         return (
             <div className="LoginLanding container">
+              <main>
+                  <img src={Logo} alt="" className="login-landing-logo" />
+                  <h1 className="login-landing-app-name">Find My Club</h1>
+                  <h2 className="login-landing-text">
+                      Find clubs that are just right for you.
+                  </h2>
+                  <button className="login-landing-login-btn"
+                      ref={(loginButton) => this.loginButton = loginButton}
+                      onClick={this.handleLogin.bind(this)}
+                      tabIndex={0}
+                      role='button'
+                      aria-label='Button: Click to Login'>Login</button>
+                  <img src={Promotion} alt="" className="login-landing-promotion"/>
+              </main>
               <div className='login-landing-nyuLogo'>
                 <img src={NyuLogo} alt='' width='70px'/>
               </div>
@@ -64,21 +78,6 @@ class LoginLanding extends Component {
                                 onClick={() => this.setState({ isShowingBetaInfo: false })}><span aria-hidden={true} className='fa fa-times-circle' /></button>
                     </div>
                     : <div></div>}
-
-                <main>
-                    <img src={Logo} alt="" className="login-landing-logo" />
-                    <h1 className="login-landing-app-name">Find My Club</h1>
-                    <h2 className="login-landing-text">
-                        Find clubs that are just right for you.
-                    </h2>
-                    <button className="login-landing-login-btn"
-                        ref={(loginButton) => this.loginButton = loginButton}
-                        onClick={this.handleLogin.bind(this)}
-                        tabIndex={0}
-                        role='button'
-                        aria-label='Button: Click to Login'>Login</button>
-                    <img src={Promotion} alt="" className="login-landing-promotion"/>
-                </main>
             </div>
         );
     }
