@@ -11,7 +11,7 @@ export default class SelectUmbrella extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			umbrellaSearchFocused: true,
+			umbrellaSearchFocused: false,
 		}
 		this.dropDownRef = React.createRef()
 	}
