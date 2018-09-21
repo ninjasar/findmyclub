@@ -16,7 +16,7 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .dashboard-profile-action-button {
@@ -108,7 +108,7 @@
 .dashboard-profile-image {
     margin: 0 auto;
     height: 100px;
-    margin-top: 95px;
+    margin-top: 70px;
 }
 .dashboard-profile-fullname {
     position: relative;
