@@ -67,14 +67,14 @@ class LoginLanding extends Component {
 
                 <main>
                     <img src={Logo} alt="" className="login-landing-logo" />
-                    <h2 className="login-landing-app-name">Find My Club</h2>
-                    <h1 className="login-landing-text">
+                    <h1 className="login-landing-app-name">Find My Club</h1>
+                    <h2 className="login-landing-text">
                         Find clubs that are just right for you.
-                    </h1>
+                    </h2>
                     <button className="login-landing-login-btn"
                         ref={(loginButton) => this.loginButton = loginButton}
                         onClick={this.handleLogin.bind(this)}
-                        tabIndex={1}
+                        tabIndex={0}
                         role='button'
                         aria-label='Button: Click to Login'>Login</button>
                     <img src={Promotion} alt="" className="login-landing-promotion"/>
