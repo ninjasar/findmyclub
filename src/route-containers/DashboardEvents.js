@@ -30,16 +30,18 @@ class DashboardEvents extends Component {
         }
     }
 
-    componentWillMount = () => {
-        this.reloadEvents();
+    async componentDidMount() {
+        const [eventsToClubs, allEvents] = await this.reloadEvents()
+        this.setState({
+            eventsToClubs,
+            events: allEvents,
+        });
         document.title = 'Find My Club | Dashboard Events';
-
-        if(!this.state.events || this.state.events.length === 0) {
-            Globals.searchDisabled = true;
+        if (!allEvents || allEvents.length === 0) {
+            this.props.setSearchDisabled(true)
         } else {
-            Globals.searchDisabled = false;
+            this.props.setSearchDisabled(false)
         }
-        this.props.parent.forceUpdate();
     }
 
 	/****************************
@@ -53,10 +55,10 @@ class DashboardEvents extends Component {
 
         if (_.isEmpty(eventsToShow)) {
             return <EmptyList role='button'
-                            aria-live='polite'
-                            tabIndex={this.props.overlayShowing ? - 1 : 0} 
-                            aria-label="You don't have any upcoming events."
-                            subtitle='You don’t have any upcoming events.' />;
+                aria-live='polite'
+                tabIndex={this.props.overlayShowing ? - 1 : 0}
+                aria-label="You don't have any upcoming events."
+                subtitle='You don’t have any upcoming events.' />;
         }
         return (
             <CollectionView className='dashboard-events-event-list'
@@ -74,8 +76,8 @@ class DashboardEvents extends Component {
 
     renderLoading = () => {
         return <LoadingBubbles role='region'
-                                aria-label='Loading events. Please wait.'
-                                tabIndex={this.props.overlayShowing ? - 1 : 0}/>
+            aria-label='Loading events. Please wait.'
+            tabIndex={this.props.overlayShowing ? - 1 : 0} />
     };
 
     render() {
@@ -132,10 +134,7 @@ class DashboardEvents extends Component {
             allEvents.push(...events);
         }));
         allEvents.sort((e1, e2) => new Date(e1.date.starts_at).getTime() - new Date(e2.date.starts_at).getTime());
-        this.setState({
-            eventsToClubs,
-            events: allEvents,
-        });
+        return [eventsToClubs, allEvents]
     }
 
 

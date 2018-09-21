@@ -34,15 +34,17 @@ class DashboardDiscover extends Component {
     }
 
     async componentDidMount() {
-        await this.reloadClubs();
+        const allClubs = await this.reloadClubs();
         document.title = 'Find My Club | Dashboard All NYU';
 
-        if(!this.state.allClubs) {
-            Globals.searchDisabled = true;
+        if (!allClubs) {
+            this.props.setSearchDisabled(true)
         } else {
-            Globals.searchDisabled = false;
+            this.props.setSearchDisabled(false)
         }
-        this.props.parent.forceUpdate();
+        this.setState({
+            allClubs,
+        })
     }
 
 
@@ -52,13 +54,13 @@ class DashboardDiscover extends Component {
     *                           *
     *****************************/
 
-	render() {
-		return (
-			<div className="DashboardDiscover dashboard-container" style={{
+    render() {
+        return (
+            <div className="DashboardDiscover dashboard-container" style={{
                 top: this.props.searchShowing === true ? '108px' : '70px',
                 height: this.props.searchShowing === true ? 'calc(100% - 170px)' : 'calc(100% - 120px)'
             }}>
-				<div className='dashboard-discover-header'>
+                <div className='dashboard-discover-header'>
                     <h1 className='dashboard-discover-title'
                         role='heading'
                         aria-label='Header: All NYU'
@@ -112,9 +114,7 @@ class DashboardDiscover extends Component {
         const allClubs = await Networking.getClubs(_.map(allCategories, 'ID'));
         allClubs.sort();
 
-        this.setState({
-            allClubs,
-        });
+        return allClubs
     }
 
 	/****************************
