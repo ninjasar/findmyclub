@@ -67,17 +67,24 @@ export default class SelectUmbrella extends React.Component {
 		)
 	}
 
+	handleKeyPress = (event) => {
+  if(event.key == 'Enter'){
+    console.log('enter press here! ')
+  }
+}
+
+
 	renderButton = () => {
 		return (
-			<button className='dashboard-clubs-umbrella-btn'
+			<div className='dashboard-clubs-umbrella-btn'
 					onClick={this.handleUmbrellaSearchClicked}
-					onKeyPress={this.handleUmbrellaSearchClicked}
 					aria-label={
 						this.props.selectedUmbrella ?
 							`Umbrella Filter Button: The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` :
 							`Umbrella Filter Button: Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected.`
 					}
-					tabIndex={this.props.overlayShowing ? -1 : 0}>
+					tabIndex={this.props.overlayShowing ? -1 : 0}
+					role='button'>
 					{
 						this.props.selectedUmbrella ?
 							<React.Fragment /*tabIndex={-1}*/>
@@ -90,7 +97,7 @@ export default class SelectUmbrella extends React.Component {
 								<span className='fa fa-chevron-down' />
 							</React.Fragment>
 					}
-			</button>
+			</div>
 		);
 	}
 

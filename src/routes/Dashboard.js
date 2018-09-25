@@ -83,7 +83,7 @@ class Dashboard extends Component {
                             }}
                         ><span aria-hidden={true} className='fas fa-search' /></div>
                         <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo' />
-                        <img src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')}
+                        <img src={require('../images/profile_image.png')}
                             alt=''
                             className='dashboard-profile-button'
                             tabIndex={this.state.overlayShowing ? - 1 : 0}
