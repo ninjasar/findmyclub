@@ -274,7 +274,7 @@ export default {
             <div className='dashboard-umbrella-label' key={key} onClick={onClick}
                 role='button'
                 aria-label={umbrellaName}
-                tabIndex={overlayShowing ? - 1 : -1}>
+                tabIndex={overlayShowing ? -1 : 0}>
                 {umbrellaName.substring(0, 18) + '...'}
             </div>
         )

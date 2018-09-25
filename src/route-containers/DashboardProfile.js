@@ -70,13 +70,13 @@ class DashboardProfile extends Component {
                         <div className='dashboard-profile-accessibility-information-title-holder'>
                             <h3 className='dashboard-profile-accessibility-information-title'>Accessibility</h3>
                         </div>
-                      If you have trouble filling out the form,<br/>
-                            send your request to<br/>
+                        If you are having trouble using the Find My Club features, please&nbsp; 
                       <a role='link'
                         tabIndex={0}
                         aria-label='Link: Click to go to accessibility information'
                         href="https://www.nyu.edu/footer/accessibility.html">
-                        Accessibility
+                        share with us your 
+                        feedback and requests.
                       </a>
                     </div>
                 </div>

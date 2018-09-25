@@ -69,9 +69,8 @@ export default class SelectUmbrella extends React.Component {
 
 	renderButton = () => {
 		return (
-			<button className='dashboard-clubs-umbrella-btn'
+			<div className='dashboard-clubs-umbrella-btn'
 					onClick={this.handleUmbrellaSearchClicked}
-					onKeyPress={this.handleUmbrellaSearchClicked}
 					aria-label={
 						this.props.selectedUmbrella ?
 							`Umbrella Filter Button: The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` :
@@ -90,7 +89,7 @@ export default class SelectUmbrella extends React.Component {
 								<span className='fa fa-chevron-down' />
 							</React.Fragment>
 					}
-			</button>
+			</div>
 		);
 	}
 
