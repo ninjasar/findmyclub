@@ -190,18 +190,48 @@
 }
 
 .dashboard-profile-accessibility-information {
-  font-size: 13px;
-  position: absolute;
-  bottom: 100px;
-  line-height: 1.5;
+    position: absolute;
+    width: 80%;
+    bottom: 100px;
+    padding: 15px;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #330d51;
+    box-decoration-break: slice;
 }
-
+.dashboard-profile-accessibility-information-title-holder {
+    position: absolute;
+    top: -24px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+.dashboard-profile-accessibility-information-title {
+    position: relative;
+    width: 120px;
+    font-size: 15px;
+    line-height: 1.2;
+    color: #330d51;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    background-color: white;
+}
 .dashboard-profile-accessibility-information a {
-  text-decoration: none;
-  color: #8568dd;
+    text-decoration: none;
+    color: #8568dd;
 }
 .dashboard-profile-accessibility-information a:focus {
-  background-color: white;
+    background-color: white;
 }
 
 .dashboard-profile-alert-tag {

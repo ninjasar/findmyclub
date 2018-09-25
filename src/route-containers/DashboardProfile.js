@@ -62,10 +62,14 @@ class DashboardProfile extends Component {
                             aria-label='Button: Click to logout and go to the home page'>
                         Log Out
                     </button>
+
                     <div className='dashboard-profile-accessibility-information'
                         role='information'
                         tabIndex={0}
                         aria-label='accessibility information'>
+                        <div className='dashboard-profile-accessibility-information-title-holder'>
+                            <h3 className='dashboard-profile-accessibility-information-title'>Accessibility</h3>
+                        </div>
                       If you have trouble filling out the form,<br/>
                             send your request to<br/>
                       <a role='link'

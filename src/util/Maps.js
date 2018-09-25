@@ -107,14 +107,15 @@ export default {
             <div className='login-club-matches-category-section' key={name}>
                 <h1 className='login-club-matches-category-section-title'
                     role='region' aria-label={`Interest Title: ${name}`}
-                    tabIndex={overlayShowing ? - 1 : 0}>
+                    tabIndex={overlayShowing ? - 1 : 0}
+                    onClick={() => { document.getElementsByClassName('login-club-matches-category-section-title')[0].blur(); }}>
                     {name}
                 </h1>
                 <h1 className='login-club-matches-category-section-subtitle'
                     role='region'
                     aria-label={`We found ${clubs.length} club(s) that match your interest.`}
                     tabIndex={overlayShowing ? - 1 : 0}>
-                    We found <span aria-hidden={true} style={{ color: interest.Color }}>{clubs.length} club(s)</span> that match your interest.
+                    We found <span aria-hidden={true} style={{ color: '#8061DB' }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 
                 <CollectionView className='login-club-matches-club-list'
