@@ -75,34 +75,6 @@
     box-shadow: 0 0 3px 1px rgba(215, 215, 225, 0.56);
 }
 
-.dashboard-umbrella-label {
-    width: 100%;
-    height: 20px;
-    padding: 5px;
-    font-size: 12px;
-    cursor: pointer;
-    color: #330d51;
-    text-align: left;
-    padding-top: 15px;
-    user-select: none;
-    font-style: normal;
-    padding-left: 10px;
-    font-weight: normal;
-    line-height: normal;
-    font-stretch: normal;
-    
-    letter-spacing: normal;
-    text-overflow: ellipsis;
-    background-color: white;
-    transition-duration: 0.2s;
-}
-
-.dashboard-umbrella-label:hover {
-    
-    font-weight: bold;
-    background-color: #e8e1ed;
-}
-
 .dashboard-club-item {
     width: 100%;
     height: 100px;

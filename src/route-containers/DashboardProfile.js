@@ -62,17 +62,21 @@ class DashboardProfile extends Component {
                             aria-label='Button: Click to logout and go to the home page'>
                         Log Out
                     </button>
+
                     <div className='dashboard-profile-accessibility-information'
                         role='information'
                         tabIndex={0}
                         aria-label='accessibility information'>
-                      If you have trouble filling out the form,<br/>
-                            send your request to<br/>
+                        <div className='dashboard-profile-accessibility-information-title-holder'>
+                            <h3 className='dashboard-profile-accessibility-information-title'>Accessibility</h3>
+                        </div>
+                        If you are having trouble using the Find My Club features, please&nbsp; 
                       <a role='link'
                         tabIndex={0}
                         aria-label='Link: Click to go to accessibility information'
                         href="https://www.nyu.edu/footer/accessibility.html">
-                        Accessibility
+                        share with us your 
+                        feedback and requests.
                       </a>
                     </div>
                 </div>

@@ -15,9 +15,8 @@
     font-size: 25px;
     background: none;
     z-index: 1000000;
+    color: #8061DB;
     margin-right: 10px;
-    color: white;
-    text-shadow: 0 0 6px black;
 }
 
 .club-detail-background-image {
