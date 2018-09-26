@@ -9,13 +9,13 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
     return (
         <div className='club-item' key={ID}>
             <div className='club-card' tabIndex={overlayShowing ? - 1 : 0}>
-                <div className='club-card-top' 
+                <div className='club-card-top'
                     onClick={() => { onClubClick({ ID, Name, tags,
                         image, tagColor, followed,
-                        interest }) 
+                        interest })
                     }}
                     tabIndex={overlayShowing ? - 1 : 0}
-                    role='button' aria-label={`Club Title is ${Name}. 
+                    role='button' aria-label={`Club Title is ${Name}.
                                                                     The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
                         <img src={image} alt='' className='club-card-image'/>
@@ -23,11 +23,11 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
 
                     <h3 className='club-card-title' aria-hidden={true}>{Name.substring(0, 30)}{Name.length > 30 && '...'}</h3>
                     <div className='club-card-tags' style={{
-                        backgroundColor: tagColor 
+                        backgroundColor: tagColor
                     }} aria-hidden={true}></div>
                     <p className='club-card-tags-label' aria-hidden={true}>{interest}</p>
                 </div>
-                <div className='club-card-follow-button' 
+                <div className='club-card-follow-button'
                     aria-hidden={true}
                     onClick={() => { onFollowClick({ ID, Name, tags,
                                                     image, tagColor, followed,
@@ -48,8 +48,8 @@ const mFtC = ( { title, checked, interest }, key, onChange) => {
     return (
         <div className='filter-item' key={key}>
             <h2 className='filter-item-title' tabIndex={0}>{title}</h2>
-            <div tabIndex={0} 
-                className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'} 
+            <div tabIndex={0}
+                className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
                 role='button'
                 aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
                 onClick={() => { onChange(title) }}>
@@ -67,10 +67,10 @@ export default {
 
     /** Maps an interest object to a component.
     * @param {Object} _ The data to populate the component with.
-    * @param {Object} props Any other properties that need to be passed to the rendered component. 
+    * @param {Object} props Any other properties that need to be passed to the rendered component.
     * @param {Function} onClick What should happen when you click on this item. */
     mapInterestToComponent: ({ ID, Name, emoji, selected }, props, onClick) => {
-        return <div key={ID} 
+        return <div key={ID}
                     className={props.className + ' interest-item'}
                     style={{
                         backgroundColor: selected ? '#f3edf7' : 'unset',
@@ -127,7 +127,7 @@ export default {
                                         return mCtC({ ...club }, onClubClick, onFollowClick);
                                     })
                                 }/>
-                                
+
                 {/* {clubs.length > 0 ? <button className='login-club-matches-see-more-btn'
                         onClick={() => {
                             onSeeMore(clubs);
@@ -138,7 +138,7 @@ export default {
 
 
     /** Maps a club to a card style component.
-    * @param {Object} club The club that is to be displayed. 
+    * @param {Object} club The club that is to be displayed.
     * @param {String|Number} key The key to use for this list item.
     * @param {Function} onClubClick What to do when you click the club card.
     * @param {Function} onFollowClick What to do when you click the follow button.
@@ -147,8 +147,8 @@ export default {
 
 
 
-    /** Maps an interest to section of a collection view that lets you select filters. 
-    * @param {String} interest Array of strings with the name of the interest. 
+    /** Maps an interest to section of a collection view that lets you select filters.
+    * @param {String} interest Array of strings with the name of the interest.
     * @param {String|Number} key The key to use for this list item.
     * @param {Array} filters Array of the names of filters that are associated with this interest.
     * @param {Function} onFilterSelected What to do when you select a filter. */
@@ -177,7 +177,7 @@ export default {
     mapFilterToComponent: mFtC,
 
 
-    /** Maps an upcoming event object to a component. 
+    /** Maps an upcoming event object to a component.
     * @param {Object} _ The event object to use for info gathering.
     * @param {String|Number} key The key used to identify this event component.
     * @param {Function} onClick What to do when an event is clicked.
@@ -193,9 +193,9 @@ export default {
         console.log(event);
         return (
             <div className='event-item' key={key}>
-                <div className='event-left' onClick={() => onClick(title, date, host, key)}  
-                    tabIndex={overlayShowing ? - 1 : 0} 
-                    role='button' 
+                <div className='event-left' onClick={() => onClick(title, date, host, key)}
+                    tabIndex={overlayShowing ? - 1 : 0}
+                    role='button'
                     aria-live='polite'
                     aria-label={`
                         Event called ${title}. This event is hosted by ${host} and takes place ${time}.
@@ -214,17 +214,17 @@ export default {
                 </div>
                 <div className='event-right' onClick={() => {
                 }}>
-                    <div tabIndex={overlayShowing ? - 1 : 0} 
+                    <div tabIndex={overlayShowing ? - 1 : 0}
                         role='button'
                         aria-live='polite'
                         aria-label={`Click to add the event ${title} to calendar.`}
-                        className='event-calendar-area' 
+                        className='event-calendar-area'
                         onClick={() => event && UIUtil.exportEventToICal(event)}>
                         <span className='fas fa-calendar-alt'/>
                         <p className='event-calendar-label'>Add to Calendar</p>
                     </div>
                 </div>
-{/*                 
+{/*
                 <h1 className='event-item-date-1'>{date.split(" ")[0]}</h1>
                 <h3 className='event-item-date-2'>{date.split(" ")[1]}</h3>
 
@@ -237,21 +237,21 @@ export default {
 
     /** Maps a club object to a dashboard component.
     * @param {Object} club The club object with all the data that needs to be displayed.
-    * @param {String|Number} key The key for identifying the component in the collection view. 
-    * @param {Function} onClick What to do when you click on a club. 
+    * @param {String|Number} key The key for identifying the component in the collection view.
+    * @param {Function} onClick What to do when you click on a club.
     * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
     mapClubToDashboardComponent: ({ Name, image, ID }, interest, index, onClick, overlayShowing) => {
         interest = interest || {};
         return (
             <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }
-                tabIndex={overlayShowing ? -1 : 0}
+                // tabIndex={overlayShowing ? -1 : 0}
                 role='button'
                 aria-label={`
                     Club name is ${Name} and its associated interest is ${interest.interest}.
                 `}>
                 <img aria-hidden={true} src={image} alt='' className='dashboard-club-item-image'/>
                 <div aria-hidden={true} className='dashboard-club-item-vert'>
-                    <h4 aria-hidden={true} className='dashboard-club-item-title'>{Name}</h4>
+                    <h4 aria-hidden={true} className='dashboard-club-item-title' role='link' tabIndex='0'>{Name}</h4>
                     <div aria-hidden={true} className='dashboard-club-item-tag'>
                         <div aria-hidden={true} className='dashboard-club-item-tag-bubble'
                             style={{
@@ -264,7 +264,7 @@ export default {
     },
 
 
-    /** Maps an umbrella to a component with just at text label. 
+    /** Maps an umbrella to a component with just at text label.
     * @param {String} umbrellaName The name of the umbrella.
     * @param {String|Number} key The key for identifying the component in the collection view.
     * @param {Function} onClick What to do when you click the label.
@@ -281,7 +281,7 @@ export default {
     },
 
 
-    /** Maps an interest to a small component that can be clicked on to show the associated tags. 
+    /** Maps an interest to a small component that can be clicked on to show the associated tags.
     * @param {Object} interest The interest object to display.
     * @param {Function} onClick What to do when you click on this item. */
     mapInterestToProfileComponent: ({ id, title, image }, onClick) => {
