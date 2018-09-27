@@ -8,7 +8,9 @@ import EmptyList from '../components/EmptyList';
 const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick, overlayShowing) => {
     return (
         <div className='club-item' key={ID}>
-            <div className='club-card' tabIndex={overlayShowing ? - 1 : 0}>
+            <div className='club-card'
+            // tabIndex={overlayShowing ? - 1 : 0}
+            >
                 <div className='club-card-top'
                     onClick={() => { onClubClick({ ID, Name, tags,
                         image, tagColor, followed,
@@ -28,6 +30,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                     <p className='club-card-tags-label' aria-hidden={true}>{interest}</p>
                 </div>
                 <div className='club-card-follow-button'
+                   tabIndex={overlayShowing ? - 1 : 0}
                     aria-hidden={true}
                     onClick={() => { onFollowClick({ ID, Name, tags,
                                                     image, tagColor, followed,
