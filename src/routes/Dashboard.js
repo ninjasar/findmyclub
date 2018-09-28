@@ -54,7 +54,7 @@ class Dashboard extends Component {
         const searchDisabled = this.state.searchDisabled
         this.refs['dashboard-toggle-search-btn'].style.opacity = searchDisabled ? '0.4' : '1';
         this.refs['dashboard-toggle-search-btn'].style.cursor = searchDisabled ? 'default' : 'pointer';
-        
+
         if(this.state.searchBarShowing === true) {
             setTimeout(() => {
                 this.refs['dashboard-search-bar'].focus();
@@ -89,14 +89,13 @@ class Dashboard extends Component {
                             }}
                         ><span aria-hidden={true} className='fas fa-search' /></div>
                         <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo' />
-                        <img src={require('../images/profile_image.png')}
-                            alt=''
-                            className='dashboard-profile-button'
-                            tabIndex={this.state.overlayShowing ? - 1 : 0}
-                            role='button'
-                            aria-live='polite'
-                            aria-label='Profile Button: Click to go to your profile'
-                            onClick={this.toggleProfile.bind(this)} />
+                        <div tabIndex={-1} className='dashboard-profile-button'
+                          tabIndex={this.state.overlayShowing ? - 1 : 0}
+                          role='button'
+                          aria-live='polite'
+                          aria-label='Profile Button: Click to go to your profile'
+                          onClick={this.toggleProfile.bind(this)}>	&#x1F60E;</div>
+
                     </div>
                     <div className='dashboard-search-bar-area'
                         style={{

@@ -51,8 +51,8 @@ class DashboardProfile extends Component {
                     tabIndex={0}>
                     <span aria-hidden={true} className='fa fa-chevron-left' />
                 </button>
-
-                <img tabIndex={-1} src={require('../images/profile_image.png')} alt='' className='dashboard-profile-image' />
+                <div tabIndex={-1} className='dashboard-profile-image'>	&#x1F60E;</div>
+                {/* <img tabIndex={-1} src={require('../images/profile_image.png')} alt=''  /> */}
                 <h4 tabIndex={0} className='dashboard-profile-fullname'>{user.fullName}</h4>
                 <p tabIndex={0} className='dashboard-profile-school'>{user.school}</p>
 

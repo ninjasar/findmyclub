@@ -121,6 +121,7 @@
       margin: 0 auto;
       height: 70px;
       margin-top: 65px;
+      font-size: 70px;
   }
 }
 @media only screen and (min-width: 600px){
@@ -128,6 +129,7 @@
       margin: 0 auto;
       height: 100px;
       margin-top: 70px;
+      font-size: 100px;
   }
 }
 
