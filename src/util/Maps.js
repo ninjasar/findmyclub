@@ -8,7 +8,7 @@ import EmptyList from '../components/EmptyList';
 // club to card
 const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick, overlayShowing) => {
     return (
-        <div className='club-item' key={ID}>
+        <div className='club-item' tabIndex={0} key={ID}>
             <div className='club-card'
             // tabIndex={overlayShowing ? - 1 : 0}
             >
@@ -17,7 +17,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         image, tagColor, followed,
                         interest })
                     }}
-                    tabIndex={overlayShowing ? - 1 : 0}
+                    // tabIndex={overlayShowing ? - 1 : 0}
                     role='button' aria-label={`Club Title is ${Name}.
                                                                     The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
@@ -246,7 +246,7 @@ export default {
         interest = interest || {};
         return (
             <div className='dashboard-club-item'
-                key={index} 
+                key={index}
                 onClick={() => { onClick(ID, Name) } }
                 tabIndex={overlayShowing ? -1 : 0}
                 // tabIndex={overlayShowing ? -1 : 0}
