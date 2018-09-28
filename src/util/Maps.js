@@ -247,15 +247,11 @@ export default {
     mapClubToDashboardComponent: ({ Name, image, ID }, interest, index, onClick, overlayShowing) => {
         interest = interest || {};
         return (
-<<<<<<< HEAD
             <div className='dashboard-club-item'
                 key={index} 
                 onClick={() => { onClick(ID, Name) } }
                 tabIndex={overlayShowing ? -1 : 0}
-=======
-            <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }
                 // tabIndex={overlayShowing ? -1 : 0}
->>>>>>> e0f83872af5b5ef24b9a1065faa25882cd8bd51b
                 role='button'
                 aria-label={`
                     Club name is ${Name} and its associated interest is ${interest.interest}.
