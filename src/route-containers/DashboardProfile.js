@@ -52,7 +52,7 @@ class DashboardProfile extends Component {
                     <span aria-hidden={true} className='fa fa-chevron-left' />
                 </button>
 
-                <img tabIndex={-1} src={require('../images/profile_image_smiling-face-with-sunglasses_1f60e.png')} alt='' className='dashboard-profile-image' />
+                <img tabIndex={-1} src={require('../images/profile_image.png')} alt='' className='dashboard-profile-image' />
                 <h4 tabIndex={0} className='dashboard-profile-fullname'>{user.fullName}</h4>
                 <p tabIndex={0} className='dashboard-profile-school'>{user.school}</p>
 
@@ -73,17 +73,22 @@ class DashboardProfile extends Component {
                     <div className='dashboard-profile-accessibility-information'
                         role='information'
                         tabIndex={0}
-                        aria-label='accessibility information'>
+                        aria-label='support information'>
                         <div className='dashboard-profile-accessibility-information-title-holder'>
-                            <h3 className='dashboard-profile-accessibility-information-title'>Accessibility</h3>
+                            <h3 className='dashboard-profile-accessibility-information-title'>Support</h3>
                         </div>
-                        If you are having trouble using the Find My Club features, please&nbsp; 
                       <a role='link'
                         tabIndex={0}
                         aria-label='Link: Click to go to accessibility information'
                         href="https://www.nyu.edu/footer/accessibility.html">
-                        share with us your 
-                        feedback and requests.
+                        Accessibility Link
+                      </a>
+                      <br></br>
+                      <a role='link'
+                      tabIndex={0}
+                      aria-label = 'Link:Click to send an email to our support team'
+                      href="mailto:it-stit@nyu.edu?Subject=Inquiry%20about%20Find%20My%20Club">
+                      Email Us
                       </a>
                     </div>
                 </div>

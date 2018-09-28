@@ -67,6 +67,13 @@ export default class SelectUmbrella extends React.Component {
 		)
 	}
 
+	handleKeyPress = (event) => {
+  if(event.key == 'Enter'){
+    console.log('enter press here! ')
+  }
+}
+
+
 	renderButton = () => {
 		return (
 			<div className='dashboard-clubs-umbrella-btn'
@@ -76,7 +83,8 @@ export default class SelectUmbrella extends React.Component {
 							`Umbrella Filter Button: The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` :
 							`Umbrella Filter Button: Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected.`
 					}
-					tabIndex={this.props.overlayShowing ? -1 : 0}>
+					tabIndex={this.props.overlayShowing ? -1 : 0}
+					role='button'>
 					{
 						this.props.selectedUmbrella ?
 							<React.Fragment /*tabIndex={-1}*/>

@@ -4,13 +4,13 @@ import CollectionView from '../components/CollectionView';
 import '../css/containers/LoginClubFilter.css';
 
 class LoginClubFilter extends Component {
-    
+
 	/****************************
     *                           *
     *            INIT           *
     *                           *
     *****************************/
-    
+
     constructor(props) {
         super(props);
 
@@ -19,7 +19,7 @@ class LoginClubFilter extends Component {
             .forEach(category => {
                 checkedCategories[category] = this.props.selectedClubs.map(sc => sc.category).includes(category);
             });
-        
+
         this.state = {
             checkedCategories,
         }
@@ -29,14 +29,14 @@ class LoginClubFilter extends Component {
         this.refs['login-club-filter-close-btn'].focus();
     }
 
-    
-    
+
+
 	/****************************
     *                           *
     *           RENDER          *
     *                           *
     *****************************/
-    
+
 	render() {
 		return (
 			<div className="LoginClubFilter overlay"
@@ -61,8 +61,8 @@ class LoginClubFilter extends Component {
                 </button>
                 <h1 className='login-club-filter-title' tabIndex={0}>Filter</h1>
                 <p className='login-club-filter-subtitle' tabIndex={0}>Check the boxes below to filter your results!</p>
-                
-                <CollectionView 
+
+                <CollectionView
                     className='login-club-filters-filter-section'
                     orientation={CollectionView.Orientation.vertical}
                     data={
@@ -75,9 +75,9 @@ class LoginClubFilter extends Component {
                             return Maps.mapInterestToFilters(interest.Name, index, filts, this.didToggleFilter.bind(this));
                         })}
                 />
-                <button 
+                <button
                     tabIndex={0}
-                    className='round-rect-button login-club-filters-filter-btn'
+                    className='round-rect-button  '
                     onClick={() => {
                         if(this.props.onFiltered) {
                             this.props.onFiltered(Object.keys(this.state.checkedCategories)
@@ -88,29 +88,29 @@ class LoginClubFilter extends Component {
 			</div>
 		);
 	}
-    
-    
+
+
 	/****************************
     *                           *
     *         FUNCTIONS         *
     *                           *
     *****************************/
-    
+
     /** Handles the action when you click on a filter.
     * @param {Number} selectedIndex The index of the selected filter.
     * @param {String} selectedInterest The name of the interest that goes along with this filter. */
     didToggleFilter(categoryName) {
-        
+
         const checkedCategories = {
             ...this.state.checkedCategories,
             [categoryName]: !this.state.checkedCategories[categoryName],
         };
-        
+
         this.setState({
             checkedCategories,
         });
     }
-    
+
     getMatchingClubsCount() {
 
         const count = (this.props.clubMatches || [])
@@ -121,14 +121,14 @@ class LoginClubFilter extends Component {
 
         return count;
     }
-    
-    
+
+
 	/****************************
     *                           *
     *           STYLES          *
     *                           *
     *****************************/
-    
+
 }
 
 export default LoginClubFilter;

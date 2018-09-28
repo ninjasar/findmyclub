@@ -3,7 +3,7 @@
     /* font-family: 'Montserrat'; */
 }
 *:focus, input:focus, select:focus, button:focus {
-    outline: 2px solid #8568dd !important;
+    outline: 3px solid #3dbbdb !important;
     overflow: -moz-hidden-unscrollable;
 }
 
@@ -139,7 +139,7 @@
     margin-bottom: -5px;
     font-stretch: normal;
     letter-spacing: normal;
-    
+
     font-weight: bold;
     line-height: 1.4rem;
 }
@@ -157,7 +157,7 @@
 }
 
 .club-card-tags-label {
-    
+
     word-wrap: break-word;
     width: 100px;
     position: relative;
@@ -186,7 +186,7 @@
     margin-right: auto;
     text-align: center;
     border-radius: 25px;
-    
+
     font-weight: 500;
     -webkit-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
@@ -225,7 +225,7 @@
 
 .event-item-host>span {
     color: #323232;
-    
+
     font-weight: bold;
 }
 
@@ -266,7 +266,7 @@
     margin-right: auto;
     margin-top: 5px;
     text-align: center;
-    
+
     font-weight: bold;
 }
 
@@ -279,7 +279,7 @@
     margin: unset;
     margin-right: auto;
     text-align: center;
-    
+
     font-weight: bold;
 }
 
@@ -300,7 +300,7 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    
+
     font-weight: bold;
     height: 1em;
     overflow: hidden;
@@ -316,7 +316,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    
+
     letter-spacing: normal;
     text-overflow: ellipsis;
     height: 1em;
@@ -331,7 +331,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    
+
     letter-spacing: normal;
     height: 1.2em;
     overflow: hidden;
@@ -347,7 +347,7 @@
     font-weight: normal;
     line-height: normal;
     font-stretch: normal;
-    
+
     letter-spacing: normal;
     text-overflow: ellipsis;
     height: 1em;
@@ -378,7 +378,7 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    
+
     font-weight: bold;
 }
 
@@ -398,7 +398,7 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    
+
     font-weight: bold;
 }
 
@@ -412,5 +412,5 @@
     text-align: center;
     font-stretch: normal;
     letter-spacing: normal;
-    
+
 }

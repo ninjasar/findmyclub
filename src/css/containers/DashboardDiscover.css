@@ -24,7 +24,7 @@
     line-height: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    
+
     font-weight: bold;
 }
 
@@ -118,9 +118,9 @@
     text-align: left;
     font-weight: 500;
     line-height: 1.2rem;
-    
+
     margin: 0px;
-    /* Only Safari and Chrome is supported. Text will be trucated 
+    /* Only Safari and Chrome is supported. Text will be trucated
     in other browsers */
     display: -webkit-box;
     /*DO NOT remove autoprefixer unless create react app fixes this bug  */
@@ -154,7 +154,7 @@
     font-style: normal;
     border-radius: 10px;
     font-stretch: normal;
-    
+
     letter-spacing: normal;
 }
 
@@ -162,7 +162,7 @@
     color: #2c2b55;
     text-align: left;
     font-size: 12px;
-    
+
     margin-left: 5px;
 }
 

@@ -1,6 +1,6 @@
 .DashboardProfile {
-    top: 60px;
-    display: flex;
+    top: 0px;
+    display: 6flex;
     flex-flow: column;
     z-index: 100000;
     margin-left: auto;
@@ -9,6 +9,7 @@
     overflow-x: hidden;
     background-color: white;
     border-top: solid 1px #e6e9ef;
+    overflow-y: scroll;
 }
 
 .dashboard-profile-action-button-container {
@@ -62,6 +63,14 @@
     transition-duration: 0.2s;
     border: solid 1px #d7d7e1 !important;
 }
+@media only screen and (max-width: 600px){
+    .dashboard-profile-action-button-clear {
+      margin-bottom:170px !important;
+    }
+}
+
+
+
 .dashboard-profile-action-button-clear:hover {
     background: rgb(241, 241, 241) !important;
 }
@@ -74,6 +83,7 @@
     cursor: pointer;
     background: none;
     text-decoration: none;
+    margin-bottom: 5px;
 }
 
 .dashboard-profile-back-btn {
@@ -105,11 +115,24 @@
     border-radius: 100%;
     background-color: lightgray;
 }
-.dashboard-profile-image {
-    margin: 0 auto;
-    height: 100px;
-    margin-top: 70px;
+
+@media only screen and (max-width: 600px){
+  .dashboard-profile-image {
+      margin: 0 auto;
+      height: 70px;
+      margin-top: 65px;
+  }
 }
+@media only screen and (min-width: 600px){
+  .dashboard-profile-image {
+      margin: 0 auto;
+      height: 100px;
+      margin-top: 70px;
+  }
+}
+
+
+
 .dashboard-profile-fullname {
     position: relative;
     font-size: 22px;
@@ -190,9 +213,7 @@
 }
 
 .dashboard-profile-accessibility-information {
-    position: absolute;
     width: 80%;
-    bottom: 100px;
     padding: 15px;
     font-size: 13px;
     line-height: 1.5;
@@ -201,6 +222,20 @@
     border: 1px solid #330d51;
     box-decoration-break: slice;
 }
+
+@media only screen and (max-width: 600px){
+  .dashboard-profile-accessibility-information {
+      position: relative;
+      bottom: 100px;
+  }
+}
+@media only screen and (min-width: 600px){
+  .dashboard-profile-accessibility-information {
+      position: fixed;
+      bottom: 50px;
+  }
+}
+
 .dashboard-profile-accessibility-information-title-holder {
     position: absolute;
     top: -24px;
@@ -229,6 +264,8 @@
 .dashboard-profile-accessibility-information a {
     text-decoration: none;
     color: #8568dd;
+    display: inline-block;
+    margin-top: 5px;
 }
 .dashboard-profile-accessibility-information a:focus {
     background-color: white;

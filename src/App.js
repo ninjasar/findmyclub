@@ -12,7 +12,7 @@ import './css/App.css';
 
 // // Create the redux store
 // const defaultState = {
-    
+
 // }
 // const ReduxStore = (state = defaultState, action) => {
 //     switch (action.type) {
