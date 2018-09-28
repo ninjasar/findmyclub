@@ -53,8 +53,7 @@ class DashboardClubs extends Component {
             }}>
                 <div className='dashboard-clubs-header' tabIndex={-1}>
                     <h1 className='dashboard-clubs-title'
-                        aria-label='Header: My Clubs'
-                        tabIndex={this.props.overlayShowing ? -1 : 0}>My Clubs</h1>
+                        aria-label='Header: My Clubs'>My Clubs</h1>
 
                     <SelectUmbrella
                         overlayShowing={this.props.overlayShowing}

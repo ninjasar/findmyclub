@@ -147,8 +147,7 @@ class LoginClubDetail extends Component {
                         </button>
                     </div>
 
-                    <h1 className='club-detail-title' tabIndex={0}
-                        role='heading' aria-label={`Club Title: ${this.props.club.Name}`}>{this.props.club.Name}</h1>
+                    <h1 className='club-detail-title' role='heading' aria-label={`Club Title: ${this.props.club.Name}`}>{this.props.club.Name}</h1>
                     {
                         (this.state.category) &&
                         <p className='club-detail-information club-detail-information-interest'

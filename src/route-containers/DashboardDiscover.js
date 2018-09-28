@@ -63,8 +63,7 @@ class DashboardDiscover extends Component {
                 <div className='dashboard-discover-header'>
                     <h1 className='dashboard-discover-title'
                         role='heading'
-                        aria-label='Header: All NYU'
-                        tabIndex={0}>All NYU</h1>
+                        aria-label='Header: All NYU'>All NYU</h1>
                     <SelectUmbrella
                         didSelectUmbrella={this.didSelectUmbrella}
                         selectedUmbrella={this.state.selectedUmbrella}

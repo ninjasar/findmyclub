@@ -51,7 +51,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
 const mFtC = ( { title, checked, interest }, key, onChange) => {
     return (
         <div className='filter-item' key={key}>
-            <h2 className='filter-item-title' tabIndex={0}>{title}</h2>
+            <h2 className='filter-item-title'>{title}</h2>
             <div tabIndex={0}
                 className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
                 role='button'
@@ -111,14 +111,12 @@ export default {
             <div className='login-club-matches-category-section' key={name}>
                 <h1 className='login-club-matches-category-section-title'
                     role='region' aria-label={`Interest Title: ${name}`}
-                    tabIndex={overlayShowing ? - 1 : 0}
                     onClick={() => { document.getElementsByClassName('login-club-matches-category-section-title')[0].blur(); }}>
                     {name}
                 </h1>
                 <h1 className='login-club-matches-category-section-subtitle'
                     role='region'
-                    aria-label={`We found ${clubs.length} club(s) that match your interest.`}
-                    tabIndex={overlayShowing ? - 1 : 0}>
+                    aria-label={`We found ${clubs.length} club(s) that match your interest.`} >
                     We found <span aria-hidden={true} style={{ color: '#8061DB' }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 
@@ -159,7 +157,7 @@ export default {
     mapInterestToFilters: (interest, key, filters, onFilterSelected) => {
         return (
             <div className='login-club-filter-section' key={key}>
-                <h1 className='login-club-filter-section-title' tabIndex={0}>{interest}</h1>
+                <h1 className='login-club-filter-section-title'>{interest}</h1>
 
                 <CollectionView className='login-club-filter-section-items'
                                 orientation={CollectionView.Orientation.vertical}

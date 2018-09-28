@@ -111,7 +111,7 @@ class Dashboard extends Component {
                                 className='dashboard-search-bar'
                                 placeholder='Search for keywords'
                                 tabIndex={this.state.showingOverlay ? -1 : 0}
-                                aria-label='Search Bar: Edit to search for clubs and events'
+                                aria-label={`Search Bar: Edit to search for clubs and events. Current Text: ${this.state.searchKeyword}`}
                                 onChange={this.handleSearchKeywordChange}
                                 value={this.state.searchKeyword}
                                 style={{

@@ -81,7 +81,7 @@ class DashboardProfile extends Component {
                         tabIndex={0}
                         aria-label='Link: Click to go to accessibility information'
                         href="https://www.nyu.edu/footer/accessibility.html">
-                        Accessibility Link
+                        Accessibility
                       </a>
                       <br></br>
                       <a role='link'

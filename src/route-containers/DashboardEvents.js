@@ -76,8 +76,7 @@ class DashboardEvents extends Component {
 
     renderLoading = () => {
         return <LoadingBubbles role='region'
-            aria-label='Loading events. Please wait.'
-            tabIndex={this.props.overlayShowing ? - 1 : 0} />
+            aria-label='Loading events. Please wait.' />
     };
 
     render() {
@@ -91,8 +90,7 @@ class DashboardEvents extends Component {
                 <div className='dashboard-events-header'>
                     <h1 className='dashboard-events-title'
                         role='heading'
-                        aria-label='Header: Events'
-                        tabIndex={this.props.overlayShowing ? - 1 : 0}>Events</h1>
+                        aria-label='Header: Events'>Events</h1>
                 </div>
                 <main>
                     {
