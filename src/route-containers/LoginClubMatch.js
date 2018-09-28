@@ -32,10 +32,15 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack, 
             </div>
         }
         
-        <div className='login-club-matches-header-short' role='button' aria-label='Back Button: Click to go back to the interests selection page'>
-            <span aria-hidden={true} onClick={handleGoBack} className='login-club-matches-go-back'>
+        <div className='login-club-matches-header-short'>
+            <span tabIndex={0} 
+                aria-hidden={true} 
+                onClick={handleGoBack} 
+                className='login-club-matches-go-back'
+                role='button' 
+                aria-label='Back Button: Click to go back to the interests selection page'>
                 <span aria-hidden={true} className='fa fa-chevron-left' />&nbsp; Go back
-    </span>
+            </span>
             <button className='pill-button filter-button-sm'
                 onClick={() => {
                     if (onRefine) {

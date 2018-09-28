@@ -54,6 +54,12 @@ class Dashboard extends Component {
         const searchDisabled = this.state.searchDisabled
         this.refs['dashboard-toggle-search-btn'].style.opacity = searchDisabled ? '0.4' : '1';
         this.refs['dashboard-toggle-search-btn'].style.cursor = searchDisabled ? 'default' : 'pointer';
+        
+        if(this.state.searchBarShowing === true) {
+            setTimeout(() => {
+                this.refs['dashboard-search-bar'].focus();
+            }, 200);
+        }
     }
 
 
@@ -101,6 +107,7 @@ class Dashboard extends Component {
                         }}>
                         <form role='search'>
                             <input type='text'
+                                ref='dashboard-search-bar'
                                 className='dashboard-search-bar'
                                 placeholder='Search for keywords'
                                 tabIndex={this.state.showingOverlay ? -1 : 0}
@@ -133,7 +140,6 @@ class Dashboard extends Component {
 
 
                 <nav>
-
                     <div className='dashboard-tab-bar'>
                         <div className='dashboard-tab-indicator' style={{
                             left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`

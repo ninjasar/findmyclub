@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import React from 'react';
 import CollectionView from '../components/CollectionView';
 import dateformat from 'dateformat';
@@ -243,12 +244,21 @@ export default {
     mapClubToDashboardComponent: ({ Name, image, ID }, interest, index, onClick, overlayShowing) => {
         interest = interest || {};
         return (
-            <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }
+            <div className='dashboard-club-item'
+                key={index} 
+                onClick={() => { onClick(ID, Name) } }
                 tabIndex={overlayShowing ? -1 : 0}
                 role='button'
                 aria-label={`
                     Club name is ${Name} and its associated interest is ${interest.interest}.
-                `}>
+                `}
+                onKeyDown={(e) => {
+                    if(e.keyCode === 27) {
+                        // Un-focus the selected club item.
+                        $('.dashboard-club-item').blur();
+                        $('.club-list').blur();
+                    }
+                }}>
                 <img aria-hidden={true} src={image} alt='' className='dashboard-club-item-image'/>
                 <div aria-hidden={true} className='dashboard-club-item-vert'>
                     <h4 aria-hidden={true} className='dashboard-club-item-title'>{Name}</h4>

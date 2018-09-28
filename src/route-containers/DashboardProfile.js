@@ -31,7 +31,14 @@ class DashboardProfile extends Component {
     render() {
         const user = this.getUserInfo();
         return (
-            <div className="DashboardProfile overlay">
+            <div className="DashboardProfile overlay"
+                onKeyDown={e => {
+                    if(e.keyCode === 27) {
+                        if (this.props.onClose) {
+                            this.props.onClose();
+                        }
+                    }
+                }}>
                 <button className='dashboard-profile-back-btn'
                     onClick={() => {
                         if (this.props.onClose) {

@@ -39,7 +39,14 @@ class LoginClubFilter extends Component {
     
 	render() {
 		return (
-			<div className="LoginClubFilter overlay">
+			<div className="LoginClubFilter overlay"
+                onKeyDown={e => {
+                    if(e.keyCode === 27) {
+                        if(this.props.onClose) {
+                            this.props.onClose();
+                        }
+                    }
+                }}>
                 <button
                     ref='login-club-filter-close-btn'
                     className='login-club-filter-close-btn'
