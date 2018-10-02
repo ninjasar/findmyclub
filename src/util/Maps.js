@@ -263,7 +263,7 @@ export default {
                 }}>
                 <img aria-hidden={true} src={image} alt='' className='dashboard-club-item-image'/>
                 <div aria-hidden={true} className='dashboard-club-item-vert'>
-                    <h4 aria-hidden={true} className='dashboard-club-item-title' role='link' tabIndex='0'>{Name}</h4>
+                    <h4 aria-hidden={true} className='dashboard-club-item-title dashboard-line-clamp' role='link' tabIndex='0'>{Name}</h4>
                     <div aria-hidden={true} className='dashboard-club-item-tag'>
                         <div aria-hidden={true} className='dashboard-club-item-tag-bubble'
                             style={{
