@@ -252,7 +252,7 @@ export default {
                 // tabIndex={overlayShowing ? -1 : 0}
                 role='button'
                 aria-label={`
-                    Club name is ${Name} and its associated interest is ${interest.interest}.
+                    ${Name} and its associated interest is ${interest.interest}.
                 `}
                 onKeyDown={(e) => {
                     if(e.keyCode === 27) {

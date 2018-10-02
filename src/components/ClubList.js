@@ -100,7 +100,7 @@ export default class ClubList extends React.Component {
     }
     
     return (
-      <div className='club-list' role='list' tabIndex="0" aria-label='Club List: Press Enter to explore details of the list'>
+      <div className='club-list' role='list' tabIndex="0" aria-label='Club List: Press Enter to enter the list, up and down to explore every item, Tab to skip.'>
         {
           clubsToShow.map((club, index) => {
             const clubDetail = this.state.clubDetails[club.ID];

@@ -116,8 +116,8 @@ export default class SelectUmbrella extends React.Component {
 					onClick={this.handleUmbrellaSearchClicked}
 					aria-label={
 						this.props.selectedUmbrella ?
-							`Umbrella Filter Button: The currently selected umbrella is ${this.props.selectedUmbrella.name}. Click to change.` :
-							`Umbrella Filter Button: Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected.`
+							`Umbrella Filter Button: The currently selected umbrella is ${this.props.selectedUmbrella.name}. Press Enter to change, Tab to skip.` :
+							`Umbrella Filter Button: Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected. Press Enter, Up and Down to change, Tab to skip.`
 					}
 					tabIndex={this.props.overlayShowing ? -1 : 0}
 					role='button'>
