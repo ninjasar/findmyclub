@@ -49,33 +49,24 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
 // filter to component
 const mFtC = ( { title, checked, interest }, key, onChange) => {
     return (
-<<<<<<< HEAD
-           <div className='filter-item' key={key}>
-            <label className='filter-item-title' tabIndex={0}>
-            {title}
-            </label>
-            <input tabIndex={0} name={title} type="checkbox"  class=""/>
-            <span className={checked === true ? 'fa fa-check' : ''}/>
-            {/*}
-                // className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
-                // role='button'
-                // aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
-                // onClick={() => { onChange(title) }}
-                // <span className={checked === true ? 'fa fa-check' : ''}/>
-            // </input> */}
-          </div>
-=======
         <div className='filter-item' key={key}>
-            <h2 className='filter-item-title'>{title}</h2>
-            <div tabIndex={0}
-                className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
+            <label className='filter-item-title' tabIndex={0}>{title}</label>
+            <input tabIndex={0} 
+                    name={title} 
+                    type="checkbox" 
+                    class="filter-item-checkbox-input"/>
+            <span className={checked === true ? 'filter-item-checkbox-checked fa fa-check' : 'filter-item-checkbox-unchecked'}
+                role='button'
+                tabIndex={0}
+                aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
+                onClick={() => { onChange(title) }}/>
+            {/* <div className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
                 role='button'
                 aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
                 onClick={() => { onChange(title) }}>
-                <span className={checked === true ? 'fa fa-check' : ''}/>
             </div>
+            <span className={checked === true ? 'fa fa-check' : ''}/> */}
         </div>
->>>>>>> 95cba3bb9abf101ed04ce82332cf583d857ee9d5
     )
 }
 
@@ -172,13 +163,8 @@ export default {
     * @param {Function} onFilterSelected What to do when you select a filter. */
     mapInterestToFilters: (interest, key, filters, onFilterSelected) => {
         return (
-<<<<<<< HEAD
             <fieldset className='login-club-filter-section' key={key}>
                 <legend className='login-club-filter-section-title' tabIndex={0}>{interest}</legend>
-=======
-            <div className='login-club-filter-section' key={key}>
-                <h1 className='login-club-filter-section-title'>{interest}</h1>
->>>>>>> 95cba3bb9abf101ed04ce82332cf583d857ee9d5
 
                 <CollectionView className='login-club-filter-section-items'
                                 orientation={CollectionView.Orientation.vertical}
