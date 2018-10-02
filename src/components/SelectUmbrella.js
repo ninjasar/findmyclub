@@ -40,7 +40,7 @@ export default class SelectUmbrella extends React.Component {
 		let passDown = true
 		if (e.which === 9) {
 			this.setState({ umbrellaSearchFocused: false })
-		} else if (e.which === 13 && e.target.className === "dashboard-clubs-umbrella-btn") {
+		} else if ([13, 38, 40].includes(e.which) && e.target.className === "dashboard-clubs-umbrella-btn") {
 			this.setState({ umbrellaSearchFocused: true }, () => {
 				this.activeTab(this.currentTab)
 			})

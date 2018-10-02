@@ -82,7 +82,10 @@ export default class ClubList extends React.Component {
 	activeTab = (tabIndex) => {
 		this.currentTab = tabIndex
 		if (this.currentTab >= this.tabs.length) this.currentTab = this.tabs.length - 1
-		else if (this.currentTab < 0) this.currentTab = 0
+    else if (this.currentTab < 0) this.currentTab = 0
+
+    if (this.currentTab > this.tabs.length - 3) document.querySelector(".club-list").scrollTop += 100
+
 		this.tabs[this.currentTab].focus()
 	}
   
@@ -105,7 +108,7 @@ export default class ClubList extends React.Component {
             const clubDetail = this.state.clubDetails[club.ID];
             const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
             return (
-              <LazyLoad ref="lazyload" key={club.ID} height={84} overflow placeholder={(<div style={{height: 84}}>{club.Name}</div>)}>
+              <LazyLoad ref="lazyload" key={club.ID} height={84} overflow resize placeholder={(<div style={{height: 84}}>{club.Name}</div>)}>
                 <Club role='listitem' club={club} onComponentDidMount={() => this.reloadClubDetail(club.ID)}>
                   {
                     Maps.mapClubToDashboardComponent({
