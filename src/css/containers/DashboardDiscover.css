@@ -125,15 +125,16 @@
     text-align: left;
     font-weight: 500;
     line-height: 1.2rem;
-
     margin: 0px;
     /* Only Safari and Chrome is supported. Text will be trucated
     in other browsers */
-    display: -webkit-box;
+}
+
+.dashboard-line-clamp {
     /*DO NOT remove autoprefixer unless create react app fixes this bug  */
     /* autoprefixer: off */
+    display: -webkit-box;
     -webkit-box-orient: vertical;
-    /* autoprefixer: on */
     -webkit-line-clamp: 2;
 }
 

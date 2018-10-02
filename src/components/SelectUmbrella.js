@@ -7,12 +7,134 @@ import '../css/SelectUmbrella.css';
 
 import * as InterestsAndCategories from '../util/InterestsAndCategories';
 
+
+// UW.Dropdowns = Backbone.View.extend({
+//         chunkSize: 8,
+//         menuWidth: 1170,
+//         menuBlock: '<div class="menu-block"></div>',
+//         menuBlockWidth: 230,
+//         index: {
+//             topmenu: 0,
+//             submenu: 0
+//         },
+//         elements: {
+//             toplevel: ".dawgdrops-item"
+//         },
+//         keys: {
+//             enter: 13,
+//             esc: 27,
+//             tab: 9,
+//             left: 37,
+//             up: 38,
+//             right: 39,
+//             down: 40,
+//             spacebar: 32
+//         },
+//         events: {
+//             "keydown .dawgdrops-menu a": "moveFocusInSubMenu",
+//             "keydown .dawgdrops-item > a": "toggleSubMenu",
+//             "focus .dawgdrops-item": "positionSubmenu",
+//             "mouseenter .dawgdrops-item": "positionSubmenu"
+//         },
+//         initialize: function(a) {
+//             _.bindAll(this, "render", "chunk", "wrap", "wrapChildren", "positionSubmenu", "toggleSubMenu"),
+//             this.settings = _.extend({}, this.defaults, this.$el.data(), a),
+//             this.$topLevelNav = this.$el.find(this.elements.toplevel),
+//             this.render()
+//         },
+//         render: function() {
+//             _.each(this.$topLevelNav, this.wrapChildren)
+//         },
+//         chunk: function(a, b) {
+//             return Math.floor(b / this.chunkSize)
+//         },
+//         wrapChildren: function(a) {
+//             $(a).find("li").length > this.chunkSize && _.each(_.groupBy($(a).find("li"), this.chunk), this.wrap)
+//         },
+//         wrap: function(a) {
+//             $(a).wrapAll(this.menuBlock)
+//         },
+//         positionSubmenu: function(a) {
+//             var b = $(a.currentTarget)
+//               , c = b.position()
+//               , d = b.find(".menu-block")
+//               , e = this.menuBlockWidth * d.length + c.left
+//               , f = e > UW.$window.width() ? b.outerWidth() + c.left - d.length * this.menuBlockWidth : c.left;
+//             b.find("ul").css({
+//                 top: c.top + 58,
+//                 left: f
+//             })
+//         },
+//         toggleSubMenu: function(a) {
+//             switch (a.keyCode) {
+//             case this.keys.enter:
+//             case this.keys.down:
+//                 return $(a.currentTarget).attr("aria-expanded", "true"),
+//                 this.currentSubMenu = $(a.currentTarget).siblings("ul"),
+//                 this.currentSubMenuAnchors = this.currentSubMenu.find("a"),
+//                 this.currentSubMenu.attr("aria-expanded", "true").show().find("a").eq(0).focus(),
+//                 !1;
+//             case this.keys.left:
+//                 return $(a.currentTarget).parent().prev().children("a").first().focus(),
+//                 !1;
+//             case this.keys.right:
+//                 return $(a.currentTarget).parent().next().children("a").first().focus(),
+//                 !1;
+//             case this.keys.spacebar:
+//                 return window.location.href = $(a.currentTarget).attr("href"),
+//                 !1
+//             }
+//         },
+//         moveFocusInSubMenu: function(a) {
+//             switch (a.keyCode) {
+//             case this.keys.tab:
+//                 this.currentSubMenu && (this.currentSubMenu.hide(),
+//                 this.currentSubMenu = null,
+//                 this.index.submenu = 0);
+//                 break;
+//             case this.keys.down:
+//                 return this.index.submenu = this.index.submenu === this.currentSubMenuAnchors.length - 1 ? 0 : this.index.submenu + 1,
+//                 this.currentSubMenuAnchors.eq(this.index.submenu).focus(),
+//                 !1;
+//             case this.keys.up:
+//                 return this.index.submenu = 0 === this.index.submenu ? this.currentSubMenuAnchors.length - 1 : this.index.submenu - 1,
+//                 this.currentSubMenuAnchors.eq(this.index.submenu).focus(),
+//                 !1;
+//             case this.keys.left:
+//                 return this.currentSubMenu.hide().parent().prev().children("a").first().focus(),
+//                 this.index.submenu = 0,
+//                 this.currentSubMenu.attr("aria-expanded", "false").parent().children("a").first().attr("aria-expanded", "false"),
+//                 !1;
+//             case this.keys.right:
+//                 return this.currentSubMenu.hide().parent().next().children("a").first().focus(),
+//                 this.index.submenu = 0,
+//                 this.currentSubMenu.attr("aria-expanded", "false").parent().children("a").first().attr("aria-expanded", "false"),
+//                 !1;
+//             case this.keys.spacebar:
+//             case this.keys.enter:
+//                 return window.location.href = $(a.currentTarget).attr("href"),
+//                 !1;
+//             case this.keys.esc:
+//                 return this.currentSubMenu.attr("aria-expanded", "false").hide().parent().children("a").first().attr("aria-expanded", "false").focus(),
+//                 !1;
+//             default:
+//                 var b = String.fromCharCode(a.which)
+//                   , c = !1;
+//                 return this.currentSubMenuAnchors.filter(function() {
+//                     return c = this.innerHTML.charAt(0) === b
+//                 }).first().focus(),
+//                 !c
+//             }
+//         }
+//     }),
+
 export default class SelectUmbrella extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			umbrellaSearchFocused: false,
 		}
+		this.listItems = [];
 		this.dropDownRef = React.createRef()
 		this.tabs = []
 		this.currentTab = 0
@@ -82,7 +204,19 @@ export default class SelectUmbrella extends React.Component {
 	}
 
 	renderDropdown = () => {
+<<<<<<< HEAD
+		this.listItems = InterestsAndCategories.umbrellas.map((val, index) => {
+			return Maps.mapUmbrellaToLabelComponent(val.name, index, () => {
+				this.props.didSelectUmbrella(val);
+				this.setState({
+					umbrellaSearchFocused: false,
+				});
+			}, this.props.overlayShowing);
+		});
+
+=======
 		let umbrellaLength = InterestsAndCategories.umbrellas.length;
+>>>>>>> 04bd518423f86d1218ac4b2353d8aea896cdb635
 		return (
 			<div ref={this.dropDownRef} className='dashboard-clubs-umbrellas-container'>
 				{this.state.umbrellaSearchFocused &&
