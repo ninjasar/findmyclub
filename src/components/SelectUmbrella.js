@@ -204,7 +204,6 @@ export default class SelectUmbrella extends React.Component {
 	}
 
 	renderDropdown = () => {
-<<<<<<< HEAD
 		this.listItems = InterestsAndCategories.umbrellas.map((val, index) => {
 			return Maps.mapUmbrellaToLabelComponent(val.name, index, () => {
 				this.props.didSelectUmbrella(val);
@@ -214,9 +213,8 @@ export default class SelectUmbrella extends React.Component {
 			}, this.props.overlayShowing);
 		});
 
-=======
+
 		let umbrellaLength = InterestsAndCategories.umbrellas.length;
->>>>>>> 04bd518423f86d1218ac4b2353d8aea896cdb635
 		return (
 			<div ref={this.dropDownRef} className='dashboard-clubs-umbrellas-container'>
 				{this.state.umbrellaSearchFocused &&
@@ -226,8 +224,8 @@ export default class SelectUmbrella extends React.Component {
 							InterestsAndCategories.umbrellas.map((val, index) => {
 								return Maps.mapUmbrellaToLabelComponent(
 									val.name,
-									val.name + (index === 0 ? ". You reach the first element of the list." : (index >= umbrellaLength - 1 ? ". You reach the last element of the list." : "")), 
-									index, 
+									val.name + (index === 0 ? ". You reach the first element of the list." : (index >= umbrellaLength - 1 ? ". You reach the last element of the list." : "")),
+									index,
 									() => {
 										this.props.didSelectUmbrella(val);
 										this.setState({

@@ -251,7 +251,7 @@ export default {
             <div className='dashboard-club-item'
                 key={index}
                 onClick={() => { onClick(ID, Name) } }
-                tabIndex={overlayShowing ? -1 : 0}
+                tabIndex={overlayShowing ? -1 : 1}
                 // tabIndex={overlayShowing ? -1 : 0}
                 role='button'
                 aria-label={`

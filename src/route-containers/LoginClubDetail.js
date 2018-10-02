@@ -12,16 +12,16 @@ import ReactGA from 'react-ga';
 const maxEvents = 2;
 
 class LoginClubDetail extends Component {
-    
+
 	/****************************
     *                           *
     *            INIT           *
     *                           *
     *****************************/
-    
+
     constructor(props) {
         super(props);
-        
+
         this.state = {
             upcomingEvents: [],
             category: undefined,
@@ -37,26 +37,26 @@ class LoginClubDetail extends Component {
             clubContactEmail: undefined,
         }
     }
-    
+
     reloadCategory = async () => {
         const category = await InterestsAndCategories.getCategoryFromID(this.props.club.CategoryID);
         this.setState({ category });
     }
-    
+
     reloadEvents = async () => {
         const events = await Networking.getEventsForClub(this.props.club.ID, new Date(Date.now() - 3600 * 1000 * 24 * 1), new Date(Date.now() + 3600 * 1000 * 24 * 7));
         this.setState({
             upcomingEvents: events,
         });
     }
-    
+
     reloadClubDetail = async () => {
         const clubDetail = await Networking.getClubInformation(this.props.club.ID);
         this.setState({
             clubDetail,
         });
     }
-    
+
     reloadFollowedClubs = async () => {
         const followedClubs = await Networking.getFollowedClubs();
         const followingClubIDs = _.map(followedClubs || [], 'ID');
@@ -65,7 +65,7 @@ class LoginClubDetail extends Component {
             followed,
         });
     }
-    
+
     async componentDidMount() {
         try { ReactGA.pageview(`/club/${this.props.club.ID}`); }
         catch (err) { }
@@ -74,10 +74,10 @@ class LoginClubDetail extends Component {
         await this.reloadEvents();
         await this.reloadClubDetail();
         await this.reloadFollowedClubs();
-        
+
         if(this.state.clubDetail) {
             const portalInfo = this.state.clubDetail.profile_responses;
-            
+
             const website = this.state.clubDetail.website_url;
             const facebook = portalInfo.find((item) => { return item.element.name === 'Facebook' });
             const insta = portalInfo.find((item) => { return item.element.type === 'Instagram' });
@@ -99,24 +99,24 @@ class LoginClubDetail extends Component {
 
         this.refs['club-detail-close-btn'].focus();
     }
-    
+
 	/****************************
     *                           *
     *           RENDER          *
     *                           *
     *****************************/
-    
+
 	render() {
         const headerImageSrc = UIUtil.getClubHeaderGraphic(this.state.clubDetail);
         const links = this.state.clubDetail && this.state.clubDetail.links;
         const interestName = this.state.category && this.state.category.interest;
         const interestColor = this.state.category && this.state.category.interestColor;
 		return (
-			<div className="LoginClubDetail overlay">
-                
+			<div className="LoginClubDetail overlay" tabIndex={1}>
+
                 <div className="login-club-detail-top">
                     <img aria-hidden={true} className='club-detail-background-image' src={headerImageSrc} alt=''/>
-                    <button 
+                    <button
                         tabIndex={0}
                         ref='club-detail-close-btn'
                         className='club-detail-close-btn'
@@ -129,12 +129,13 @@ class LoginClubDetail extends Component {
                         }}><span aria-hidden={true} className='fa fa-times'/>
                     </button>
                 </div>
-                
-                <div className="login-club-detail-middle">
 
-                    <div className="login-club-detail-buttons">
-                        <button className='pill-button club-detail-follow-btn' 
+                <div className="login-club-detail-middle" tabIndex={1}>
+
+                    <div className="login-club-detail-buttons" tabIndex={1}>
+                        <button className='pill-button club-detail-follow-btn'
                                 onClick={this.handleFollowClub}
+                                tabIndex={1}
                                 aria-live='polite'
                                 aria-label={`Click to follow or unfollow the club ${(this.state.club && this.state.club.Name) || ""}`}
                                 style={{
@@ -170,7 +171,7 @@ class LoginClubDetail extends Component {
                         role='button'
                         aria-live='polite'
                         aria-label={`Click to go to NYU Engage`}><span aria-hidden={true} tabIndex={0}>Join Link</span> <a className='club-detail-go-to-engage-link' href={links && links.web} target='_blank'>Join on Engage</a></p>
-                
+
                     <p className='club-detail-description' tabIndex={0}
                         role='region'
                         aria-live='polite'>
@@ -194,7 +195,7 @@ class LoginClubDetail extends Component {
                         <a className='club-detail-portal-information-link' href={this.state.clubInstagram || "/"} >
                             {this.state.clubInstagram || "Not Available"}
                         </a>
-                        
+
                         <p className='club-detail-portal-information-title' tabIndex={0}>Meetings</p>
                         <p className='club-detail-portal-information-link not-link' tabIndex={0}>
                             {this.state.clubMeetings || "Not Available"}
@@ -210,16 +211,16 @@ class LoginClubDetail extends Component {
                             {this.state.clubContactEmail || "Not Available"}
                         </a>
                     </div>
-                    
+
                     <h3 className='club-detail-events-title' tabIndex={0}
                         aria-label={this.state.upcomingEvents.length <= 0 ? `There are no upcoming events for this club.` : `Upcoming Events`}>Upcoming Events</h3>
-                    <CollectionView 
+                    <CollectionView
                         className='club-detail-events-list'
                         orientation={CollectionView.Orientation.vertical}
                         edgeInsets={['10px', '0px', '10px', '0px']}
                         emptyDataView={<EmptyList subtitle='There are no upcoming events for this club'/>}
                         data={
-                            
+
                             _.slice(this.state.upcomingEvents, 0, (this.state.maxEvents || this.state.upcomingEvents.length))
                                 .map((val, index) => {
                                     const _val = {
@@ -237,32 +238,32 @@ class LoginClubDetail extends Component {
                                     })
                                 })
                     }/>
-                    
+
                     {this.state.upcomingEvents.length > maxEvents && (
                         <button className="club-detail-see-more-btn" onClick={() => {
                                 this.setState({
                                     maxEvents: this.state.maxEvents === 0 ? maxEvents : 0,
                                 });
-                            }} 
+                            }}
                             tabIndex={0}
                             aria-live='polite'
                             aria-label='Click to see more or fewer events'>
                             See {this.state.maxEvents === 0 ? "Less" : "More"}
                         </button>
                     )}
-                    
+
                 </div>
             </div>
             );
         }
-        
-        
+
+
         /****************************
         *                           *
         *         FUNCTIONS         *
         *                           *
         *****************************/
-        
+
         handleFollowClub = async () => {
             if (this.state.followed) {
                 await Networking.unfollowClub(this.props.club.ID);
@@ -271,14 +272,13 @@ class LoginClubDetail extends Component {
             }
             await this.reloadFollowedClubs();
         }
-        
+
         /****************************
         *                           *
         *           STYLES          *
         *                           *
         *****************************/
-        
+
     }
-    
+
     export default LoginClubDetail;
-    
