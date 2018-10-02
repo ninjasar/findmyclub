@@ -109,6 +109,7 @@ class LoginClubMatch extends Component {
         //     () => this.didSelectClubCard(club),
         //     () => this.didFollowClubCard(club));
         // });
+        let filteredClubs = [];
         const clubComponents = this.state.clubInterests.map((interest) => {
             // Get the clubs that match the interest.
             const clubs = this.props.selectedClubs.filter((club) => {
@@ -122,6 +123,7 @@ class LoginClubMatch extends Component {
                     image: this.state.thumbnails[club.ID] || require("../util/Constants").default.clubThumbnailDefaultPath,
                 }
             })
+            filteredClubs = filteredClubs.concat(clubs);
 
             return Maps.mapInterestWithClubsToComponent(interest, clubs,
                 () => { console.log('See More') },
@@ -150,7 +152,7 @@ class LoginClubMatch extends Component {
 
                 {/* The actual club matches page. */}
                 <ClubMatchesHeader
-                    selectedClubs={this.props.selectedClubs}
+                    selectedClubs={filteredClubs}
                     isScrolled={this.state.isScrolled}
                     onRefine={this.props.onRefine}
                     handleGoBack={this.handleGoBack}

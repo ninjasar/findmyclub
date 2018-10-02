@@ -18,8 +18,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         interest })
                     }}
                     tabIndex={overlayShowing ? - 1 : 0}
-                    role='button' aria-label={`Club Title is ${Name}.
-                                                                    The associated interest is ${interest}.`}>
+                    role='button' aria-label={`${Name}. The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
                         <img src={image} alt='' className='club-card-image'/>
                     </div>
@@ -50,6 +49,22 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
 // filter to component
 const mFtC = ( { title, checked, interest }, key, onChange) => {
     return (
+<<<<<<< HEAD
+           <div className='filter-item' key={key}>
+            <label className='filter-item-title' tabIndex={0}>
+            {title}
+            </label>
+            <input tabIndex={0} name={title} type="checkbox"  class=""/>
+            <span className={checked === true ? 'fa fa-check' : ''}/>
+            {/*}
+                // className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
+                // role='button'
+                // aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
+                // onClick={() => { onChange(title) }}
+                // <span className={checked === true ? 'fa fa-check' : ''}/>
+            // </input> */}
+          </div>
+=======
         <div className='filter-item' key={key}>
             <h2 className='filter-item-title'>{title}</h2>
             <div tabIndex={0}
@@ -60,6 +75,7 @@ const mFtC = ( { title, checked, interest }, key, onChange) => {
                 <span className={checked === true ? 'fa fa-check' : ''}/>
             </div>
         </div>
+>>>>>>> 95cba3bb9abf101ed04ce82332cf583d857ee9d5
     )
 }
 
@@ -156,8 +172,13 @@ export default {
     * @param {Function} onFilterSelected What to do when you select a filter. */
     mapInterestToFilters: (interest, key, filters, onFilterSelected) => {
         return (
+<<<<<<< HEAD
+            <fieldset className='login-club-filter-section' key={key}>
+                <legend className='login-club-filter-section-title' tabIndex={0}>{interest}</legend>
+=======
             <div className='login-club-filter-section' key={key}>
                 <h1 className='login-club-filter-section-title'>{interest}</h1>
+>>>>>>> 95cba3bb9abf101ed04ce82332cf583d857ee9d5
 
                 <CollectionView className='login-club-filter-section-items'
                                 orientation={CollectionView.Orientation.vertical}
@@ -166,7 +187,7 @@ export default {
                                         return mFtC(filt, index, onFilterSelected);
                                     })
                                 }/>
-            </div>
+            </fieldset>
         )
     },
 
@@ -252,7 +273,7 @@ export default {
                 // tabIndex={overlayShowing ? -1 : 0}
                 role='button'
                 aria-label={`
-                    Club name is ${Name} and its associated interest is ${interest.interest}.
+                    ${Name} and its associated interest is ${interest.interest}.
                 `}
                 onKeyDown={(e) => {
                     if(e.keyCode === 27) {
@@ -281,11 +302,11 @@ export default {
     * @param {String|Number} key The key for identifying the component in the collection view.
     * @param {Function} onClick What to do when you click the label.
     * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
-    mapUmbrellaToLabelComponent: (umbrellaName, key, onClick, overlayShowing) => {
+    mapUmbrellaToLabelComponent: (umbrellaName, ariaLabel, key, onClick, overlayShowing) => {
         return (
             <div className='dashboard-umbrella-label' key={key} onClick={onClick}
                 role='button'
-                aria-label={umbrellaName}
+                aria-label={ariaLabel}
                 tabIndex={overlayShowing ? -1 : 0}>
                 {umbrellaName.substring(0, 18) + '...'}
             </div>
