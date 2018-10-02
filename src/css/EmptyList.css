@@ -21,6 +21,7 @@
   text-align: center;
   color: #dfceeb;
   margin: 0px;
+  display: block;
 }
 
 p.emptylist-title {

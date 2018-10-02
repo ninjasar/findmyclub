@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import $ from 'jquery';
 
 import ClubList from '../components/ClubList';
 import SelectUmbrella from '../components/SelectUmbrella';
@@ -9,7 +8,6 @@ import LoadingBubbles from '../components/LoadingBubbles';
 import Networking from '../util/Networking';
 
 import '../css/containers/DashboardClubs.css';
-import Globals from '../util/Globals';
 
 class DashboardClubs extends Component {
 

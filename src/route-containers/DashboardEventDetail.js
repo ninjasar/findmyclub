@@ -48,7 +48,6 @@ class DashboardEventDetail extends Component {
 			<div className="DashboardEventDetail overlay">
                 <button className='event-detail-close-btn'
                         ref='event-detail-close-btn'
-                        role='button'
                         aria-label='Close Button: Click to close Event Detail'
                         onClick={() => {
                             if(this.props.onClose) {
@@ -58,7 +57,7 @@ class DashboardEventDetail extends Component {
                 <img className='event-detail-background-image' src={thumbnail} alt=''/>
 
                 <button className='pill-button event-detail-calender-btn' onClick={this.handleExportCalendar}
-                        role='button' aria-label='Calendar Button: Click to download to calendar'>
+                        aria-label='Calendar Button: Click to download to calendar'>
                     <span className='fa fa-plus'/>&nbsp;Download iCal
                 </button>
 

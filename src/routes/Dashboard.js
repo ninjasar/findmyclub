@@ -89,12 +89,12 @@ class Dashboard extends Component {
                             }}
                         ><span aria-hidden={true} className='fas fa-search' /></div>
                         <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo' />
-                        <div tabIndex={-1} className='dashboard-profile-button'
+                        <div className='dashboard-profile-button'
                           tabIndex={this.state.overlayShowing ? - 1 : 0}
                           role='button'
                           aria-live='polite'
                           aria-label='Profile Button: Click to go to your profile'
-                          onClick={this.toggleProfile.bind(this)}>	&#x1F60E;</div>
+                          onClick={this.toggleProfile.bind(this)}><span role='img' aria-label='cool'>&#x1F60E;</span></div>
 
                     </div>
                     <div className='dashboard-search-bar-area'

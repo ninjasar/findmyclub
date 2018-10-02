@@ -1,11 +1,9 @@
-import $ from 'jquery';
 import React, { Component } from 'react';
 import Networking from '../util/Networking';
 
 import Logo from '../images/FindMyClub_NEWLOGO.svg';
 import NyuLogo from '../images/FMC_NYU_logo.png';
 import Promotion from '../images/findMyClubPromotion.png'
-import nyuLogo from '../images/FMC_NYU_logo.png'
 import '../css/containers/LoginLanding.css';
 
 class LoginLanding extends Component {
@@ -48,7 +46,6 @@ class LoginLanding extends Component {
                       ref={(loginButton) => this.loginButton = loginButton}
                       onClick={this.handleLogin.bind(this)}
                       tabIndex={0}
-                      role='button'
                       aria-label='Button: Click to Login'>Login</button>
                   <img src={Promotion} alt="" className="login-landing-promotion"/>
               </main>
@@ -73,7 +70,6 @@ class LoginLanding extends Component {
                         </p>
                         <button className='login-landing-beta-info-close-btn'
                                 tabIndex={0}
-                                role='button'
                                 aria-label='Close Button: Click to close the beta alert.'
                                 onClick={() => this.setState({ isShowingBetaInfo: false })}><span aria-hidden={true} className='fa fa-times-circle' /></button>
                     </div>
