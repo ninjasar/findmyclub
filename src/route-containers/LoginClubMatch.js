@@ -25,7 +25,6 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack, 
                             onRefine();
                         }
                     }}
-                    role='button'
                     aria-label='Refine Button: Click to refine your search button'>
                     <p>Refine your search<span className='fas fa-sliders-h'></span></p>
                 </button>
@@ -47,7 +46,6 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack, 
                         onRefine();
                     }
                 }}
-                role='button'
                 aria-label='Refine Button: Click to refine your search button'
                 tabIndex={isScrolled && overlayShowing ? 0 : 1}>
                 Refine&nbsp;<span className='fas fa-sliders-h'></span>
@@ -174,7 +172,6 @@ class LoginClubMatch extends Component {
                 <div className='login-club-matches-body'>
 
                     <button
-                        role='button'
                         aria-live='polite'
                         aria-label='Finish Button: Click to Finish Selecting Clubs'
                         className='bottom-rect-button login-club-matches-finish-btn'

@@ -10,7 +10,6 @@ import Maps from '../util/Maps';
 import '../css/containers/DashboardEvents.css';
 
 import Networking from '../util/Networking';
-import Globals from '../util/Globals';
 
 class DashboardEvents extends Component {
 
@@ -89,7 +88,6 @@ class DashboardEvents extends Component {
             }}>
                 <div className='dashboard-events-header'>
                     <h1 className='dashboard-events-title'
-                        role='heading'
                         aria-label='Header: Events'>Events</h1>
                 </div>
                 <main>

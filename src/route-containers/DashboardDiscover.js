@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import $ from 'jquery';
 
 import LoadingBubbles from '../components/LoadingBubbles';
 import SelectUmbrella from '../components/SelectUmbrella';
@@ -9,7 +8,6 @@ import ClubList from '../components/ClubList';
 import '../css/containers/DashboardDiscover.css';
 
 import Networking from '../util/Networking';
-import Globals from '../util/Globals';
 
 class DashboardDiscover extends Component {
 
@@ -62,7 +60,6 @@ class DashboardDiscover extends Component {
             }}>
                 <div className='dashboard-discover-header'>
                     <h1 className='dashboard-discover-title'
-                        role='heading'
                         aria-label='Header: All NYU'>All NYU</h1>
                     <SelectUmbrella
                         didSelectUmbrella={this.didSelectUmbrella}
