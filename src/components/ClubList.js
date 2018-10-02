@@ -38,6 +38,9 @@ export default class ClubList extends React.Component {
       // all categories information to filter by umbrella with
       umbrellaIDToCategories: { },
     };
+
+    this.tabs = [];
+		this.currentTab = 0;
   }
 
   forceCheckLazyLoad = _.throttle(forceCheck, 100)
@@ -47,12 +50,44 @@ export default class ClubList extends React.Component {
     // to handle case that shown clubs are changed without scroll position (i.e. search / filter)
     // need to perform a force check lazyload whenever new props are received
     this.forceCheckLazyLoad();
+    this.tabs = document.querySelectorAll(".dashboard-club-item");
   }
   
 
   componentDidMount = () => {
     this.reloadCategories();
+    document.addEventListener('keydown', this.handleKeyDown);
   }
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.handleKeyDown);
+  }
+  
+  handleKeyDown = (e) => {
+    if (e.target.className !== "club-list" && e.target.className !== "dashboard-club-item") return;
+		let passDown = true;
+		if (e.which === 13 && e.target.className === "club-list") {
+      this.activeTab(this.currentTab);
+			passDown = false;
+		} else if (e.which === 38) {
+			this.activeTab(this.currentTab - 1);
+			passDown = false;
+		} else if (e.which === 40) {
+			this.activeTab(this.currentTab + 1);
+			passDown = false;
+		}
+		if (!passDown) e.preventDefault();
+	}
+
+	activeTab = (tabIndex) => {
+		this.currentTab = tabIndex
+		if (this.currentTab >= this.tabs.length) this.currentTab = this.tabs.length - 1
+    else if (this.currentTab < 0) this.currentTab = 0
+
+    if (this.currentTab > this.tabs.length - 3) document.querySelector(".club-list").scrollTop += 100
+
+		this.tabs[this.currentTab].focus()
+	}
   
   renderEmpty = () => {
     return (
@@ -67,13 +102,13 @@ export default class ClubList extends React.Component {
     }
     
     return (
-      <div className='club-list' role='list'>
+      <div className='club-list' role='list' tabIndex="0" aria-label='Club List: Press Enter to enter the list, up and down to explore every item, Tab to skip.'>
         {
           clubsToShow.map((club, index) => {
             const clubDetail = this.state.clubDetails[club.ID];
             const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
             return (
-              <LazyLoad key={club.ID} height={84} overflow placeholder={(<div style={{height: 84}}>{club.Name}</div>)}>
+              <LazyLoad ref="lazyload" key={club.ID} height={84} overflow resize placeholder={(<div style={{height: 84}}>{club.Name}</div>)}>
                 <Club role='listitem' club={club} onComponentDidMount={() => this.reloadClubDetail(club.ID)}>
                   {
                     Maps.mapClubToDashboardComponent({

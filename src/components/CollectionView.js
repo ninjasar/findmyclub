@@ -22,7 +22,7 @@ class CollectionView extends Component {
     *           INIT            *
     *                           *
     *****************************/
-   
+
     constructor(props) {
         super(props);
 
@@ -33,7 +33,7 @@ class CollectionView extends Component {
             emptyDataView: props.emptyDataView || <div></div>,
             shouldScrollOnReload: props.shouldScrollOnReload || false,
             edgeInsets: props.edgeInsets || ['0px','0px','0px','0px'],   // top, right, bottom, left,
-            isScrollEnabled: props.isScrollEnabled || true
+            isScrollEnabled: props.isScrollEnabled || true,
         }
     }
 
@@ -51,7 +51,7 @@ class CollectionView extends Component {
                 ref='collectionView'
                 className={`collectionView ${this.props.className}`}
                 style={this.configureStyles()}>
-                
+
                 {(this.props.data || []).length > 0 ? (this.props.data ? (this.props.data instanceof Function ? this.props.data() : this.props.data) : []) : this.state.emptyDataView}
 
             </div>
@@ -71,7 +71,7 @@ class CollectionView extends Component {
     }
 
 
-    /** Call this function to reload the data in this collection view. 
+    /** Call this function to reload the data in this collection view.
     * @param newData The new data to populate the collection view with.
     * @param before The function to run just before the data gets reloaded.
     * @param after The function to run directly after the data gets reloaded.
@@ -93,7 +93,7 @@ class CollectionView extends Component {
                 }, () => {
                     // If there is something to run immediately after setting the state, do it now.
                     if(after) { after(this.refs.collectionView); }
-                    
+
                     // Scroll to the bottom of the collection view.
                     if(this.state.shouldScrollOnReload === true) { this.scrollToBottom(); }
                 });
@@ -105,11 +105,11 @@ class CollectionView extends Component {
             }, () => {
                 // If there is something to run immediately after setting the state, do it now.
                 if(after) { after(this.refs.collectionView); }
-                
+
                 // Scroll to the bottom of the collection view.
                 if(this.state.shouldScrollOnReload === true) { this.scrollToBottom(); }
             });
-        }        
+        }
     }
 
 
@@ -133,7 +133,7 @@ class CollectionView extends Component {
     *                           *
     *           STYLES          *
     *                           *
-    *****************************/  
+    *****************************/
 
     /** The styles for the collection view. */
     configureStyles() {
