@@ -66,7 +66,7 @@ class App extends Component {
                 tabs.forEach((t, i) => {
                     if (t.getAttribute("aria-label") === this.currentTab) current = i + adder;
                 });
-                while (current < tabs.length && current >= 0 && tabs[current].style.visibility) current += adder;
+                while (current < tabs.length && current >= 0 && ["hidden", "none"].includes(tabs[current].style.visibility)) current += adder;
                 if (current >= tabs.length) current = 0;
                 else if (current < 0) current = tabs.length - 1;
 

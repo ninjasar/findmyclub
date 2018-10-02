@@ -90,6 +90,13 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-bottom: 1px solid #d7d7e1;
+    transition-duration: 0.2s;
+}
+
+.dashboard-club-item:focus {
+    font-weight: bold;
+    background-color: #e8e1ed;
+    outline: none !important;
 }
 
 .dashboard-club-item-vert {

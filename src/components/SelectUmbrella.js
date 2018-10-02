@@ -14,16 +14,52 @@ export default class SelectUmbrella extends React.Component {
 			umbrellaSearchFocused: false,
 		}
 		this.dropDownRef = React.createRef()
+		this.tabs = []
+		this.currentTab = 0
 	}
 
 	componentDidMount() {
 		document.addEventListener('mousedown', this.handleClickOutside)
 		document.addEventListener('touchstart', this.handleClickOutside)
+		document.addEventListener('keydown', this.handleKeyDown)
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('mousedown', this.handleClickOutside)
 		document.removeEventListener('touchstart', this.handleClickOutside)
+		document.removeEventListener('keydown', this.handleKeyDown)
+	}
+
+	componentDidUpdate() {
+		this.tabs = document.querySelectorAll(".dashboard-umbrella-label")
+		this.currentTab = 0
+	}
+
+	handleKeyDown = (e) => {
+		if (e.target.className !== "dashboard-clubs-umbrella-btn" && e.target.className !== "dashboard-umbrella-label") return;
+		let passDown = true
+		if (e.which === 9) {
+			this.setState({ umbrellaSearchFocused: false })
+		} else if (e.which === 13 && e.target.className === "dashboard-clubs-umbrella-btn") {
+			this.setState({ umbrellaSearchFocused: true }, () => {
+				this.activeTab(this.currentTab)
+			})
+			passDown = false
+		} else if (e.which === 38) {
+			this.activeTab(this.currentTab - 1)
+			passDown = false
+		} else if (e.which === 40) {
+			this.activeTab(this.currentTab + 1)
+			passDown = false
+		}
+		if (!passDown) e.preventDefault()
+	}
+
+	activeTab = (tabIndex) => {
+		this.currentTab = tabIndex
+		if (this.currentTab >= this.tabs.length) this.currentTab = this.tabs.length - 1
+		else if (this.currentTab < 0) this.currentTab = 0
+		this.tabs[this.currentTab].focus()
 	}
 
 	handleClickOutside = (e) => {
