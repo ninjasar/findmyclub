@@ -24,8 +24,7 @@
     "start-dev": "REACT_APP_BASE_URL='https://dev.findmyclub.nyu.edu' react-scripts start",
     "start-prod": "REACT_APP_BASE_URL='https://findmyclub.nyu.edu' react-scripts start",
     
-    "// CI=false: react-script by default treats warnings as erros on CI env but there are warnings i dont know how to fix at this time so CI=false for now": "",
-    "build-dev": "CI=false REACT_APP_BASE_URL='https://dev.findmyclub.nyu.edu' react-scripts build",
+    "build-dev": "REACT_APP_BASE_URL='https://dev.findmyclub.nyu.edu' react-scripts build",
     "build-prod": "REACT_APP_BASE_URL='https://findmyclub.nyu.edu' react-scripts build",
 
     "push-dev": "aws s3 cp build s3://findmyclub-dev-frontend/ --recursive",
