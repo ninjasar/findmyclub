@@ -8,3 +8,7 @@
     position: absolute;
     scroll-behavior: smooth;
 }
+
+.club-list:focus {
+    outline: 1px;
+}

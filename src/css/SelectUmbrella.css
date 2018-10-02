@@ -58,7 +58,8 @@
     transition-duration: 0.2s;
 }
 
-.dashboard-umbrella-label:hover {
+.dashboard-umbrella-label:hover, .dashboard-umbrella-label:focus {
     font-weight: bold;
     background-color: #e8e1ed;
+    outline: none !important;
 }
