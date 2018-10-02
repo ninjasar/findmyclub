@@ -52,6 +52,32 @@ class App extends Component {
             if(e.keyCode !== 32 && e.keyCode !== 13) return;
             if(e.target) $(e.target).click();
         });
+
+        window.addEventListener('keydown', (e) => {
+
+            let { keyCode, shiftKey } = e;
+            let adder = 1;
+            if (shiftKey) adder = -1;
+
+            if (keyCode === 9) {
+                // Tab
+                let tabs = document.querySelectorAll("[aria-label]:not(h1):not(.dashboard-umbrella-label):not(.dashboard-club-item)");
+                let current = 0;
+                tabs.forEach((t, i) => {
+                    if (t.getAttribute("aria-label") === this.currentTab) current = i + adder;
+                });
+                while (current < tabs.length && current >= 0 && tabs[current].style.visibility) current += adder;
+                if (current >= tabs.length) current = 0;
+                else if (current < 0) current = tabs.length - 1;
+
+                this.currentTab = tabs[current].getAttribute("aria-label");
+                tabs[current].focus();
+                
+                e.preventDefault();
+            }
+
+        });
+        this.currentTab = "";
    }
 
 	/****************************
