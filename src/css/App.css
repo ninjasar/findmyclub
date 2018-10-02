@@ -76,6 +76,7 @@
     height: 100%;
     /* max-height: 210px; */
     cursor: pointer;
+    padding: 5px;
     text-align: left;
     border-radius: 4px;
     margin-right: 10px;
@@ -96,8 +97,12 @@
 
 .club-card-top {
     position: relative;
-    width: 100%;
+    width: 99%;
     height: 82%;
+    margin: 1px;
+}
+.club-card-top:focus {
+    outline: pink;
 }
 
 .club-card-image-area {

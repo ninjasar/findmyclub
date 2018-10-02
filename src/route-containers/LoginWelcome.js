@@ -41,7 +41,6 @@ class LoginWelcome extends Component {
                 </p>
                 <button className='round-rect-button login-welcome-login-btn'
                         tabIndex={0}
-                        role='button'
                         aria-label='Next Button: Click to go to the next page'
                         onClick={this.handleGoToNextSlide.bind(this)}>Let's get started!</button>
 			</div>

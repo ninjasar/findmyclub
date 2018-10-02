@@ -120,7 +120,6 @@ class LoginClubDetail extends Component {
                         tabIndex={0}
                         ref='club-detail-close-btn'
                         className='club-detail-close-btn'
-                        role='button'
                         aria-live='polite'
                         aria-label='Click to close Club Detail Button'
                         onClick={() => {
@@ -136,7 +135,6 @@ class LoginClubDetail extends Component {
                     <div className="login-club-detail-buttons">
                         <button className='pill-button club-detail-follow-btn' 
                                 onClick={this.handleFollowClub}
-                                role='button'
                                 aria-live='polite'
                                 aria-label={`Click to follow or unfollow the club ${(this.state.club && this.state.club.Name) || ""}`}
                                 style={{
@@ -147,8 +145,7 @@ class LoginClubDetail extends Component {
                         </button>
                     </div>
 
-                    <h1 className='club-detail-title' tabIndex={0}
-                        role='heading' aria-label={`Club Title: ${this.props.club.Name}`}>{this.props.club.Name}</h1>
+                    <h1 className='club-detail-title' aria-label={`Club Title: ${this.props.club.Name}`}>{this.props.club.Name}</h1>
                     {
                         (this.state.category) &&
                         <p className='club-detail-information club-detail-information-interest'
@@ -181,7 +178,7 @@ class LoginClubDetail extends Component {
                     </p>
 
                     <h3 className='club-detail-portal-title' tabIndex={0}
-                        role='heading' aria-label='Portal Information'>Portal Information</h3>
+                        aria-label='Portal Information'>Portal Information</h3>
                     <div className='club-detail-portal-information'>
                         <p className='club-detail-portal-information-title' tabIndex={0}>Website</p>
                         <a className='club-detail-portal-information-link' href={this.state.clubWebsite || "/"}>
@@ -248,7 +245,6 @@ class LoginClubDetail extends Component {
                                 });
                             }} 
                             tabIndex={0}
-                            role='button'
                             aria-live='polite'
                             aria-label='Click to see more or fewer events'>
                             See {this.state.maxEvents === 0 ? "Less" : "More"}

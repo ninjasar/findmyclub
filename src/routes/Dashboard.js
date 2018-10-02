@@ -54,6 +54,12 @@ class Dashboard extends Component {
         const searchDisabled = this.state.searchDisabled
         this.refs['dashboard-toggle-search-btn'].style.opacity = searchDisabled ? '0.4' : '1';
         this.refs['dashboard-toggle-search-btn'].style.cursor = searchDisabled ? 'default' : 'pointer';
+
+        if(this.state.searchBarShowing === true) {
+            setTimeout(() => {
+                this.refs['dashboard-search-bar'].focus();
+            }, 200);
+        }
     }
 
 
@@ -83,14 +89,13 @@ class Dashboard extends Component {
                             }}
                         ><span aria-hidden={true} className='fas fa-search' /></div>
                         <img src={AppLogo} alt='' tabIndex={-1} className='dashboard-app-logo' />
-                        <img src={require('../images/profile_image.png')}
-                            alt=''
-                            className='dashboard-profile-button'
-                            tabIndex={this.state.overlayShowing ? - 1 : 0}
-                            role='button'
-                            aria-live='polite'
-                            aria-label='Profile Button: Click to go to your profile'
-                            onClick={this.toggleProfile.bind(this)} />
+                        <div className='dashboard-profile-button'
+                          tabIndex={this.state.overlayShowing ? - 1 : 0}
+                          role='button'
+                          aria-live='polite'
+                          aria-label='Profile Button: Click to go to your profile'
+                          onClick={this.toggleProfile.bind(this)}><span role='img' aria-label='cool'>&#x1F60E;</span></div>
+
                     </div>
                     <div className='dashboard-search-bar-area'
                         style={{
@@ -101,10 +106,11 @@ class Dashboard extends Component {
                         }}>
                         <form role='search'>
                             <input type='text'
+                                ref='dashboard-search-bar'
                                 className='dashboard-search-bar'
                                 placeholder='Search for keywords'
                                 tabIndex={this.state.showingOverlay ? -1 : 0}
-                                aria-label='Search Bar: Edit to search for clubs and events'
+                                aria-label={`Search Bar: Edit to search for clubs and events. Current Text: ${this.state.searchKeyword}`}
                                 onChange={this.handleSearchKeywordChange}
                                 value={this.state.searchKeyword}
                                 style={{
@@ -133,7 +139,6 @@ class Dashboard extends Component {
 
 
                 <nav>
-
                     <div className='dashboard-tab-bar'>
                         <div className='dashboard-tab-indicator' style={{
                             left: `${this.getTabIndicatorLeft(this.state.currentTab)}%`

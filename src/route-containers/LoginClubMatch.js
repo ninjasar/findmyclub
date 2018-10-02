@@ -25,24 +25,27 @@ const ClubMatchesHeader = ({ selectedClubs, onRefine, isScrolled, handleGoBack, 
                             onRefine();
                         }
                     }}
-                    role='button'
                     aria-label='Refine Button: Click to refine your search button'>
                     <p>Refine your search<span className='fas fa-sliders-h'></span></p>
                 </button>
             </div>
         }
         
-        <div className='login-club-matches-header-short' role='button' aria-label='Back Button: Click to go back to the interests selection page'>
-            <span aria-hidden={true} onClick={handleGoBack} className='login-club-matches-go-back'>
+        <div className='login-club-matches-header-short'>
+            <span tabIndex={0} 
+                aria-hidden={true} 
+                onClick={handleGoBack} 
+                className='login-club-matches-go-back'
+                role='button' 
+                aria-label='Back Button: Click to go back to the interests selection page'>
                 <span aria-hidden={true} className='fa fa-chevron-left' />&nbsp; Go back
-    </span>
+            </span>
             <button className='pill-button filter-button-sm'
                 onClick={() => {
                     if (onRefine) {
                         onRefine();
                     }
                 }}
-                role='button'
                 aria-label='Refine Button: Click to refine your search button'
                 tabIndex={isScrolled && overlayShowing ? 0 : 1}>
                 Refine&nbsp;<span className='fas fa-sliders-h'></span>
@@ -169,7 +172,6 @@ class LoginClubMatch extends Component {
                 <div className='login-club-matches-body'>
 
                     <button
-                        role='button'
                         aria-live='polite'
                         aria-label='Finish Button: Click to Finish Selecting Clubs'
                         className='bottom-rect-button login-club-matches-finish-btn'

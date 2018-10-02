@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import $ from 'jquery';
 
 import ClubList from '../components/ClubList';
 import SelectUmbrella from '../components/SelectUmbrella';
@@ -9,7 +8,6 @@ import LoadingBubbles from '../components/LoadingBubbles';
 import Networking from '../util/Networking';
 
 import '../css/containers/DashboardClubs.css';
-import Globals from '../util/Globals';
 
 class DashboardClubs extends Component {
 
@@ -53,8 +51,7 @@ class DashboardClubs extends Component {
             }}>
                 <div className='dashboard-clubs-header' tabIndex={-1}>
                     <h1 className='dashboard-clubs-title'
-                        aria-label='Header: My Clubs'
-                        tabIndex={this.props.overlayShowing ? -1 : 0}>My Clubs</h1>
+                        aria-label='Header: My Clubs'>My Clubs</h1>
 
                     <SelectUmbrella
                         overlayShowing={this.props.overlayShowing}

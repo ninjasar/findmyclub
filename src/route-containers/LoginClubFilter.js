@@ -39,7 +39,14 @@ class LoginClubFilter extends Component {
 
 	render() {
 		return (
-			<div className="LoginClubFilter overlay">
+			<div className="LoginClubFilter overlay"
+                onKeyDown={e => {
+                    if(e.keyCode === 27) {
+                        if(this.props.onClose) {
+                            this.props.onClose();
+                        }
+                    }
+                }}>
                 <button
                     ref='login-club-filter-close-btn'
                     className='login-club-filter-close-btn'
@@ -52,8 +59,8 @@ class LoginClubFilter extends Component {
                 >
                     <span className='fa fa-times'/>
                 </button>
-                <h1 className='login-club-filter-title' tabIndex={0}>Filter</h1>
-                <p className='login-club-filter-subtitle' tabIndex={0}>Check the boxes below to filter your results!</p>
+                <h1 className='login-club-filter-title'>Filter</h1>
+                <p className='login-club-filter-subtitle'>Check the boxes below to filter your results!</p>
 
                 <CollectionView
                     className='login-club-filters-filter-section'

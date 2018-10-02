@@ -31,53 +31,57 @@ class DashboardProfile extends Component {
     render() {
         const user = this.getUserInfo();
         return (
-            <div className="DashboardProfile overlay">
+            <div className="DashboardProfile overlay"
+                onKeyDown={e => {
+                    if(e.keyCode === 27) {
+                        if (this.props.onClose) {
+                            this.props.onClose();
+                        }
+                    }
+                }}>
                 <button className='dashboard-profile-back-btn'
                     onClick={() => {
                         if (this.props.onClose) {
                             this.props.onClose();
                         }
                     }}
-                    role='button'
                     aria-label='Back Button: Click to close the profile'
                     ref='dashboard-profile-back-btn'
                     tabIndex={0}>
                     <span aria-hidden={true} className='fa fa-chevron-left' />
                 </button>
-
-                <img tabIndex={-1} src={require('../images/profile_image.png')} alt='' className='dashboard-profile-image' />
+                <div tabIndex={-1} className='dashboard-profile-image'><span role='img' aria-label='cool'>&#x1F60E;</span></div>
+                {/* <img tabIndex={-1} src={require('../images/profile_image.png')} alt=''  /> */}
                 <h4 tabIndex={0} className='dashboard-profile-fullname'>{user.fullName}</h4>
                 <p tabIndex={0} className='dashboard-profile-school'>{user.school}</p>
 
                 <div className='dashboard-profile-action-button-container'>
                     <button className='round-rect-button dashboard-profile-action-button-primary' onClick={() => { this.handleEditPreference() }}
-                            role='button'
                             tabIndex={0}
                             aria-label='Button: Click to go to the edit preferences page'>
                         Edit Preferences
                     </button>
                     <button className='round-rect-button dashboard-profile-action-button-clear' onClick={() => { this.handleLogout() }}
-                            role='button'
                             tabIndex={0}
                             aria-label='Button: Click to logout and go to the home page'>
                         Log Out
                     </button>
 
                     <div className='dashboard-profile-accessibility-information'
-                        role='information'
+                        role='heading'
                         tabIndex={0}
-                        aria-label='support information'>
+                        aria-label='information: support information'>
                         <div className='dashboard-profile-accessibility-information-title-holder'>
                             <h3 className='dashboard-profile-accessibility-information-title'>Support</h3>
                         </div>
-                      <a role='link'
+                      <a
                         tabIndex={0}
                         aria-label='Link: Click to go to accessibility information'
                         href="https://www.nyu.edu/footer/accessibility.html">
-                        Accessibility Link
+                        Accessibility
                       </a>
                       <br></br>
-                      <a role='link'
+                      <a
                       tabIndex={0}
                       aria-label = 'Link:Click to send an email to our support team'
                       href="mailto:it-stit@nyu.edu?Subject=Inquiry%20about%20Find%20My%20Club">

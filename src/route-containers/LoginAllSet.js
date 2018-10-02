@@ -31,9 +31,9 @@ class LoginAllSet extends Component {
 
                 <div className='login-allset-content'>
                     <p className='login-allset-icon'><span className='far fa-check-circle'/></p>
-                    <h3 className='login-allset-header' tabIndex={0}
+                    <h3 className='login-allset-header'
                         role='region' aria-label="You're all set!">{"You're all set!"}</h3>
-                    <p className='login-allset-description' tabIndex={0}
+                    <p className='login-allset-description'
                         role='region' aria-label={"Subtitle: We have collected your chosen clubs in another page. Click \"Finish\" below to see them!"}>
                         We have collected your chosen clubs in another page. Click "Finish" below
                         to see them!

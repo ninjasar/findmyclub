@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import React from 'react';
 import CollectionView from '../components/CollectionView';
 import dateformat from 'dateformat';
@@ -7,7 +8,7 @@ import EmptyList from '../components/EmptyList';
 // club to card
 const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubClick, onFollowClick, overlayShowing) => {
     return (
-        <div className='club-item' key={ID}>
+        <div className='club-item'  key={ID}>
             <div className='club-card'
             // tabIndex={overlayShowing ? - 1 : 0}
             >
@@ -49,6 +50,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
 // filter to component
 const mFtC = ( { title, checked, interest }, key, onChange) => {
     return (
+<<<<<<< HEAD
            <div className='filter-item' key={key}>
             <label className='filter-item-title' tabIndex={0}>
             {title}
@@ -63,6 +65,18 @@ const mFtC = ( { title, checked, interest }, key, onChange) => {
                 // <span className={checked === true ? 'fa fa-check' : ''}/>
             // </input> */}
           </div>
+=======
+        <div className='filter-item' key={key}>
+            <h2 className='filter-item-title'>{title}</h2>
+            <div tabIndex={0}
+                className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
+                role='button'
+                aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
+                onClick={() => { onChange(title) }}>
+                <span className={checked === true ? 'fa fa-check' : ''}/>
+            </div>
+        </div>
+>>>>>>> 95cba3bb9abf101ed04ce82332cf583d857ee9d5
     )
 }
 
@@ -114,14 +128,12 @@ export default {
             <div className='login-club-matches-category-section' key={name}>
                 <h1 className='login-club-matches-category-section-title'
                     role='region' aria-label={`Interest Title: ${name}`}
-                    tabIndex={overlayShowing ? - 1 : 0}
                     onClick={() => { document.getElementsByClassName('login-club-matches-category-section-title')[0].blur(); }}>
                     {name}
                 </h1>
                 <h1 className='login-club-matches-category-section-subtitle'
                     role='region'
-                    aria-label={`We found ${clubs.length} club(s) that match your interest.`}
-                    tabIndex={overlayShowing ? - 1 : 0}>
+                    aria-label={`We found ${clubs.length} club(s) that match your interest.`} >
                     We found <span aria-hidden={true} style={{ color: '#8061DB' }}>{clubs.length} club(s)</span> that match your interest.
                 </h1>
 
@@ -161,8 +173,13 @@ export default {
     * @param {Function} onFilterSelected What to do when you select a filter. */
     mapInterestToFilters: (interest, key, filters, onFilterSelected) => {
         return (
+<<<<<<< HEAD
             <fieldset className='login-club-filter-section' key={key}>
                 <legend className='login-club-filter-section-title' tabIndex={0}>{interest}</legend>
+=======
+            <div className='login-club-filter-section' key={key}>
+                <h1 className='login-club-filter-section-title'>{interest}</h1>
+>>>>>>> 95cba3bb9abf101ed04ce82332cf583d857ee9d5
 
                 <CollectionView className='login-club-filter-section-items'
                                 orientation={CollectionView.Orientation.vertical}
@@ -250,12 +267,22 @@ export default {
     mapClubToDashboardComponent: ({ Name, image, ID }, interest, index, onClick, overlayShowing) => {
         interest = interest || {};
         return (
-            <div className='dashboard-club-item' key={index} onClick={() => { onClick(ID, Name) } }
+            <div className='dashboard-club-item'
+                key={index}
+                onClick={() => { onClick(ID, Name) } }
+                tabIndex={overlayShowing ? -1 : 0}
                 // tabIndex={overlayShowing ? -1 : 0}
                 role='button'
                 aria-label={`
                     Club name is ${Name} and its associated interest is ${interest.interest}.
-                `}>
+                `}
+                onKeyDown={(e) => {
+                    if(e.keyCode === 27) {
+                        // Un-focus the selected club item.
+                        $('.dashboard-club-item').blur();
+                        $('.club-list').blur();
+                    }
+                }}>
                 <img aria-hidden={true} src={image} alt='' className='dashboard-club-item-image'/>
                 <div aria-hidden={true} className='dashboard-club-item-vert'>
                     <h4 aria-hidden={true} className='dashboard-club-item-title' role='link' tabIndex='0'>{Name}</h4>
