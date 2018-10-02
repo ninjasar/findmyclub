@@ -49,20 +49,24 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
 // filter to component
 const mFtC = ( { title, checked, interest }, key, onChange) => {
     return (
-           <div className='filter-item' key={key}>
-            <label className='filter-item-title' tabIndex={0}>
-            {title}
-            </label>
-            <input tabIndex={0} name={title} type="checkbox"  class=""/>
-            <span className={checked === true ? 'fa fa-check' : ''}/>
-            {/*}
-                // className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
-                // role='button'
-                // aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
-                // onClick={() => { onChange(title) }}
-                // <span className={checked === true ? 'fa fa-check' : ''}/>
-            // </input> */}
-          </div>
+        <div className='filter-item' key={key}>
+            <label className='filter-item-title' tabIndex={0}>{title}</label>
+            <input tabIndex={0} 
+                    name={title} 
+                    type="checkbox" 
+                    class="filter-item-checkbox-input"/>
+            <span className={checked === true ? 'filter-item-checkbox-checked fa fa-check' : 'filter-item-checkbox-unchecked'}
+                role='button'
+                tabIndex={0}
+                aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
+                onClick={() => { onChange(title) }}/>
+            {/* <div className={checked === true ? 'filter-item-checkbox-checked' : 'filter-item-checkbox-unchecked'}
+                role='button'
+                aria-label={`Filter Name: ${title} is ${checked === true ? 'selected' : 'not selected'}`}
+                onClick={() => { onChange(title) }}>
+            </div>
+            <span className={checked === true ? 'fa fa-check' : ''}/> */}
+        </div>
     )
 }
 

@@ -212,8 +212,6 @@ export default class SelectUmbrella extends React.Component {
 				});
 			}, this.props.overlayShowing);
 		});
-
-
 		let umbrellaLength = InterestsAndCategories.umbrellas.length;
 		return (
 			<div ref={this.dropDownRef} className='dashboard-clubs-umbrellas-container'>
