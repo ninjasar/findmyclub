@@ -18,8 +18,7 @@ const mCtC = ({ image, ID, Name, tags, tagColor, followed, interest }, onClubCli
                         interest })
                     }}
                     tabIndex={overlayShowing ? - 1 : 0}
-                    role='button' aria-label={`Club Title is ${Name}.
-                                                                    The associated interest is ${interest}.`}>
+                    role='button' aria-label={`${Name}. The associated interest is ${interest}.`}>
                     <div className='club-card-image-area' aria-hidden={true}>
                         <img src={image} alt='' className='club-card-image'/>
                     </div>
@@ -281,11 +280,11 @@ export default {
     * @param {String|Number} key The key for identifying the component in the collection view.
     * @param {Function} onClick What to do when you click the label.
     * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
-    mapUmbrellaToLabelComponent: (umbrellaName, key, onClick, overlayShowing) => {
+    mapUmbrellaToLabelComponent: (umbrellaName, ariaLabel, key, onClick, overlayShowing) => {
         return (
             <div className='dashboard-umbrella-label' key={key} onClick={onClick}
                 role='button'
-                aria-label={umbrellaName}
+                aria-label={ariaLabel}
                 tabIndex={overlayShowing ? -1 : 0}>
                 {umbrellaName.substring(0, 18) + '...'}
             </div>

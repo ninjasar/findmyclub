@@ -51,7 +51,6 @@ export default class ClubList extends React.Component {
     // need to perform a force check lazyload whenever new props are received
     this.forceCheckLazyLoad();
     this.tabs = document.querySelectorAll(".dashboard-club-item");
-		this.currentTab = 0;
   }
   
 
@@ -65,7 +64,7 @@ export default class ClubList extends React.Component {
   }
   
   handleKeyDown = (e) => {
-		if (e.target.className !== "club-list" && e.target.className !== "dashboard-club-item") return;
+    if (e.target.className !== "club-list" && e.target.className !== "dashboard-club-item") return;
 		let passDown = true;
 		if (e.which === 13 && e.target.className === "club-list") {
       this.activeTab(this.currentTab);
@@ -106,7 +105,7 @@ export default class ClubList extends React.Component {
             const clubDetail = this.state.clubDetails[club.ID];
             const interest = InterestsAndCategories.getInterestFromCategory(clubDetail && clubDetail.category && clubDetail.category.name);
             return (
-              <LazyLoad key={club.ID} height={84} overflow placeholder={(<div style={{height: 84}}>{club.Name}</div>)}>
+              <LazyLoad ref="lazyload" key={club.ID} height={84} overflow placeholder={(<div style={{height: 84}}>{club.Name}</div>)}>
                 <Club role='listitem' club={club} onComponentDidMount={() => this.reloadClubDetail(club.ID)}>
                   {
                     Maps.mapClubToDashboardComponent({

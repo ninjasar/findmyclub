@@ -82,6 +82,7 @@ export default class SelectUmbrella extends React.Component {
 	}
 
 	renderDropdown = () => {
+		let umbrellaLength = InterestsAndCategories.umbrellas.length;
 		return (
 			<div ref={this.dropDownRef} className='dashboard-clubs-umbrellas-container'>
 				{this.state.umbrellaSearchFocused &&
@@ -89,12 +90,16 @@ export default class SelectUmbrella extends React.Component {
 						orientation={CollectionView.Orientation.vertical}
 						data={
 							InterestsAndCategories.umbrellas.map((val, index) => {
-								return Maps.mapUmbrellaToLabelComponent(val.name, index, () => {
-									this.props.didSelectUmbrella(val);
-									this.setState({
-										umbrellaSearchFocused: false,
-									});
-								}, this.props.overlayShowing);
+								return Maps.mapUmbrellaToLabelComponent(
+									val.name,
+									val.name + (index === 0 ? ". You reach the first element of the list." : (index >= umbrellaLength - 1 ? ". You reach the last element of the list." : "")), 
+									index, 
+									() => {
+										this.props.didSelectUmbrella(val);
+										this.setState({
+											umbrellaSearchFocused: false,
+										});
+									}, this.props.overlayShowing);
 							})
 						}
 					/>
@@ -117,7 +122,7 @@ export default class SelectUmbrella extends React.Component {
 					aria-label={
 						this.props.selectedUmbrella ?
 							`Umbrella Filter Button: The currently selected umbrella is ${this.props.selectedUmbrella.name}. Press Enter to change, Tab to skip.` :
-							`Umbrella Filter Button: Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected. Press Enter, Up and Down to change, Tab to skip.`
+							`Umbrella Filter Button: Click to select an umbrella. Currently ${this.state.umbrellaSearchFocused ? ' is' : 'is not'} selected. Press Enter, Up and Down Arrow to change, Tab to skip.`
 					}
 					tabIndex={this.props.overlayShowing ? -1 : 0}
 					role='button'>
