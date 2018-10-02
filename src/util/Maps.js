@@ -281,12 +281,13 @@ export default {
     * @param {String|Number} key The key for identifying the component in the collection view.
     * @param {Function} onClick What to do when you click the label.
     * @param {Bool} overlayShowing Whether or not an overlay is currently showing. */
-    mapUmbrellaToLabelComponent: (umbrellaName, key, onClick, overlayShowing) => {
+    mapUmbrellaToLabelComponent: (umbrellaName, key, onClick, overlayShowing, firstItem) => {
         return (
             <div className='dashboard-umbrella-label' key={key} onClick={onClick}
-                role='button'
+                role='menuitem'
                 aria-label={umbrellaName}
-                tabIndex={overlayShowing ? -1 : 0}>
+                tabIndex={-1}
+                firstItem={key === 0}>
                 {umbrellaName.substring(0, 18) + '...'}
             </div>
         )
