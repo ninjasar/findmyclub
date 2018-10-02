@@ -5,22 +5,22 @@ jobs:
       - image: max0ne/circleci-node-aws:latest
     steps:
       - checkout
-      - run: cd front && npm i
-      - run: cd front && npm run build-dev
+      - run: npm i
+      - run: npm run build-dev
       - run: 
           name: Deploy to S3
-          command: cd front && aws s3 cp build s3://findmyclub-dev-frontend/ --recursive
+          command: aws s3 cp build s3://findmyclub-dev-frontend/ --recursive
 
   build-deploy-prod:
     docker:
       - image: max0ne/circleci-node-aws:latest
     steps:
       - checkout
-      - run: cd front && npm i
-      - run: cd front && npm run build-s3
+      - run: npm i
+      - run: npm run build-s3
       - run:
           name: Deploy to S3
-          command: cd front && aws s3 cp build s3://findmyclub-prod-frontend/ --recursive
+          command: aws s3 cp build s3://findmyclub-prod-frontend/ --recursive
 
 workflows:
   version: 2
